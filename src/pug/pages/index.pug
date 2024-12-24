@@ -1,0 +1,14 @@
+extends /elements/layout-page
+include /script/s-gtm-noscript
+include /script/s-yametrika-noscript
+include /script/s-pin
+
+block data
+  - title = "Template"
+
+block libjs
+  //- +s-gtm-noscript({})
+  //- +s-yametrika-noscript({})
+  //- +s-pin({})
+
+block content

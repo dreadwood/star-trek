@@ -1,0 +1,10 @@
+mixin script-reg({})
+  script.
+    window.initPin = () => {
+      [urlsConfig.registrationWidgetLoader].forEach((_item) => {
+        const script = document.createElement('script')
+        script.src = urlsConfig.cdnUrl + '/' + _item
+        document.head.appendChild(script);
+      })
+    }
+  script(src="https://fon.bet/settings.js" onload="initPin()")

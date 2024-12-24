@@ -1,0 +1,23 @@
+include /elements/favicon
+//- include /script/s-gtm
+//- include /script/s-yametrika
+//- include /elements/open-graph
+
+mixin head({ title })
+  head
+    meta(name="robots" content="noindex, nofollow")
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    //- meta(name="gtm_name" content="")
+    //- meta(name="cdn" content="./")
+
+    title=title
+
+    +favicon({})
+    //- +open-graph({})
+
+    link(rel="stylesheet" href=`${baseUrl}/css/style.css?v=${searchId}`)
+
+    //- +s-gtm({})
+    //- +s-yametrika({})
+    //- script(src="https://origin.bk6bba-resources.com/webStaticRed/promo/lands/scripts/utm.js")

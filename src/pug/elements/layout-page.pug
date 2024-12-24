@@ -1,0 +1,20 @@
+include /elements/head
+include /elements/images
+include /components/block/b-header
+include /components/block/b-footer
+
+- let title = ""
+
+block data
+
+doctype html
+html(lang="ru")
+  +head({ title })
+  body
+    block libjs
+    +b-header({})
+    main
+      block content
+    +b-footer({})
+    block modal
+    include /elements/script

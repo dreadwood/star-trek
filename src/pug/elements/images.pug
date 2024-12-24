@@ -1,0 +1,43 @@
+//- simple raster image
+mixin picture({ image, width, height, altText, className })
+  - const path = image.split(".")[0]
+  picture
+    source(type="image/avif" srcset=`${baseUrl}${path}.avif`)
+    source(type="image/webp" srcset=`${baseUrl}${path}.webp`)
+    img(
+      class=className
+      src=`${baseUrl}${image}`
+      width=width
+      height=height
+      alt=altText
+    )
+
+//- retina raster image
+mixin picture2x({ image, width, height, altText, className })
+  - const path = image.split("@")[0]
+  - const format = image.split(".")[1]
+  picture
+    source(
+      type="image/avif"
+      srcset=`${baseUrl}${path}@1x.avif 1x, ${baseUrl}${path}@2x.avif 2x`
+    )
+    source(
+      type="image/webp"
+      srcset=`${baseUrl}${path}@1x.webp 1x, ${baseUrl}${path}@2x.webp 2x`
+    )
+    img(
+      class=className
+      src=`${baseUrl}${image}`
+      srcset=`${baseUrl}${path}@2x.${format} 2x`
+      width=width
+      height=height
+      alt=altText
+    )
+
+//- simple vector image
+mixin svg({ name, width, height, className })
+  if name.includes('/img')
+    img(class=className || null src=`${baseUrl}${name}` width=width height=height alt="")
+  else
+    svg(class=className || null width=width height=height)
+      use(xlink:href=`${baseUrl}/img/sprite.svg#${name}`)
