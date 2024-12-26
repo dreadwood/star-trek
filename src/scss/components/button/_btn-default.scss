@@ -1,0 +1,40 @@
+.btn-default {
+  @include transition(background-color, color);
+  display: block;
+  flex-shrink: 0;
+  width: max-content;
+  max-width: 100%;
+  margin: 0;
+  padding: 12rem 35rem;
+  font-family: $font-default;
+  font-size: 16rem;
+  line-height: 20rem;
+  font-weight: 500;
+  text-align: center;
+  color: $color-white;
+  letter-spacing: -0.02em;
+  background-color: $color-carmine-red-2;
+  border: 0;
+  border-radius: 10rem;
+  &:not([disabled]):hover,
+  &:not([disabled]):focus-visible {
+    background-color: $color-ruby-red;
+  }
+  &[disabled] {
+    background-color: $color-gray-537;
+  }
+  &.promo {
+    width: 100%;
+    color: $color-black;
+    background-color: $color-white;
+    &:not([disabled]):hover,
+    &:not([disabled]):focus-visible {
+      background-color: $color-gray-925;
+    }
+  }
+  @include desktop {
+    &.promo {
+      max-width: 100%;
+    }
+  }
+}

@@ -1,0 +1,118 @@
+.b-week-star {
+  margin-bottom: -210rem;
+  padding: 50rem $padding 320rem $padding;
+  font-family: $font-default;
+  font-size: 18rem;
+  line-height: 1.1;
+  font-weight: 500;
+  text-align: center;
+  color: $color-gray-537;
+  background-color: $color-gray-933;
+  @include desktop {
+    margin-bottom: -270rem;
+    padding: 70rem $padding-desktop 266rem $padding-desktop;
+    font-size: 16rem;
+    line-height: 1.2;
+  }
+}
+.b-week-star__title {
+  @include desktop {
+    width: 100%;
+    max-width: 940rem;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+.b-week-star__text {
+  margin-top: 20rem;
+  margin-bottom: 0;
+  @include desktop {
+    width: 100%;
+    max-width: 530rem;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+.b-week-star__art {
+  position: relative;
+  margin-top: 73rem;
+  @include desktop {
+    width: max-content;
+    margin-top: 50rem;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+.b-week-star__img1 {
+  width: 343rem;
+  height: 256rem;
+  overflow: hidden;
+  border-radius: 14rem;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  @include desktop {
+    width: 480rem;
+    height: 320rem;
+  }
+}
+.b-week-star__img2 {
+  display: none;
+  @include desktop {
+    position: absolute;
+    top: 77rem;
+    left: 385rem;
+    display: block;
+    width: 250rem;
+    height: 238rem;
+    overflow: hidden;
+    border-radius: 14rem;
+    rotate: 15deg;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+.b-week-star__player {
+  position: absolute;
+  top: 142rem;
+  left: 39rem;
+  width: 263rem;
+  height: auto;
+  @include desktop {
+    top: -35rem;
+    left: -365rem;
+    width: 411rem;
+  }
+}
+.b-week-star__cup {
+  position: absolute;
+  top: -36rem;
+  right: 15rem;
+  width: 109rem;
+  height: auto;
+  rotate: -14deg;
+  @include desktop {
+    top: -1rem;
+    right: -230rem;
+    width: 188rem;
+  }
+}
+.b-week-star__arrow {
+  position: absolute;
+  top: -75rem;
+  left: 97rem;
+  width: 57rem;
+  rotate: 58deg;
+  @include desktop {
+    top: -50rem;
+    right: 2rem;
+    left: auto;
+    width: 85rem;
+    rotate: 75deg;
+  }
+}

@@ -1,8 +1,35 @@
+$color-gray-973: #f8f8f8; // hsl(0, 0%, 97.3%)
 $color-gray-965: #f6f6f6; // hsl(0, 0%, 96.5%)
+$color-gray-933: #eeeeee; // hsl(0, 0%, 93.3%)
+$color-gray-925: #ececec; // hsl(0, 0%, 92.5%)
+$color-gray-896: #e4e4e5; // hsl(0, 0%, 89.6%)
+$color-gray-537: #898989; // hsl(0, 0%, 53.7%)
 $color-gray-212: #363636; // hsl(0, 0%, 21.2%)
 
 $color-white: #ffffff;
 $color-black: #000000;
-$color-blue: #2750d3;
-$color-yellow: #ffd00e;
-$color-red: #fe0000;
+
+$color-very-dark-yellow-green: #11251c;
+$color-gray-brown-1: #3a3636;
+$color-gray-brown-2: #483c3c;
+$color-beige-1: #f9fbef;
+$color-beige-2: #f8f7e8;
+$color-carmine-red-1: #e80124;
+$color-carmine-red-2: #e80024;
+$color-ruby-red: #a80b24;
+$color-green-blue: #222b36;
+$color-blue-degrees: #0756e4;
+$color-lavender: #d7e2f9;
+$color-blue-alice: #f5f8ff;
+$color-sea-wave: #036bdb;
+$color-scarlet: #ff1700;
+$color-white-lightpink: #fff7f6;
+
+$color-midnight-blue: #001e79;
+$color-cobalt-blue: #0038df;
+
+$gradient-hero: linear-gradient(
+  180deg,
+  $color-midnight-blue 0,
+  $color-cobalt-blue 100%
+);

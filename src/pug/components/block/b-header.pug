@@ -1,2 +1,13 @@
-mixin b-header({ className })
-  header.b-header(class=className)
+mixin b-header({ isShow, link, className })
+  header.b-header.js-header(class=(isShow && "show") class=className)
+    a.b-header__logo(href=link target="_blank")
+      +svg({ name: "logo", w: 126, h: 22 })
+    .b-header__overflay.js-header-dialog
+      .b-header__dialog
+        nav.b-header__nav.js-header-nav
+          a.b-header__link(href="#about") О мероприятии
+          a.b-header__link(href="#games") Игры
+          a.b-header__link(href="#ambassadors") Амбассадоры
+        .b-header__btn Открытие регистрации: 16.01.25
+    button.b-header__burger.js-header-burger(aria-label="Открыть меню")
+      span

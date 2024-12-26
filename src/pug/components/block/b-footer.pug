@@ -1,2 +1,11 @@
-mixin b-footer({ className })
-  footer.b-header(class=className)
+mixin b-footer({ link, className })
+  footer.b-footer(class=className)
+    .b-footer__backside
+      .b-footer__bg
+        +picture({ image: "/img/footer/bottom-full.png", w: 375, h: 387, className: "mobile" })
+        +picture({ image: "/img/footer/bottom-full-desktop.png", w: 1440, h: 798, className: "desktop" })
+    .b-footer__content
+      a.b-footer__logo(href=link target="_blank")
+        +svg({ name: "logo", w: 126, h: 22 })
+      p.b-footer__text 8-9 февраля, «Сибирь-Арена», Новосибирск
+      .b-footer__raiting 18+

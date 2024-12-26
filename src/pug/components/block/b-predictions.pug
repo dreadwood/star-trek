@@ -1,0 +1,72 @@
+include /components/button/btn-default
+
+mixin b-predictions({ className })
+  .b-predictions(id="games" class=className)
+    -
+      let predictionsCards = [
+        {
+          title: "Какой дивизион победит?",
+          subtitle: "Откроется 30 января",
+          img: "./img/predictions/predictions-cup.svg",
+          imgWidth: "327",
+          imgHeight: "222",
+          cssClass: "division",
+        },
+        {
+          title: "Кто забьет первую шайбу?",
+          subtitle: "Откроется 30 января",
+          img: "./img/predictions/predictions-puck.svg",
+          imgWidth: "251",
+          imgHeight: "201",
+          cssClass: "puck",
+        },
+        {
+          title: "Какой вратарь сделает больше сейвов?",
+          subtitle: "Откроется 30 января",
+          img: "./img/predictions/predictions-goalie.svg",
+          imgWidth: "525",
+          imgHeight: "233",
+          cssClass: "goalie",
+        },
+        {
+          title: "Сколько пробьют буллитов?",
+          subtitle: "Откроется 30 января",
+          img: "./img/predictions/predictions-field.svg",
+          imgWidth: "287",
+          imgHeight: "186",
+          cssClass: "penalty",
+        },
+        {
+          title: "Какой игрок станет самым результативным?",
+          subtitle: "Откроется 30 января",
+          img: "./img/predictions/predictions-equipment.svg",
+          imgWidth: "244",
+          imgHeight: "208",
+          cssClass: "player",
+        },
+      ]
+    .b-predictions__backside
+      .b-predictions__bg
+        img(class="mobile" src="./img/mountains.svg" width="375" height="350")
+        img(class="desktop" src="./img/mountains-desktop.svg" width="1440" height="460")
+    .b-predictions__content
+      h2.title Прогнозы
+      .b-predictions__subtext
+        p.mobile Думаешь, шаришь в&nbsp;хоккее? Когда смотришь матчи, даешь тренерам и&nbsp;игрокам советы? Тогда докажи, что ты&nbsp;эксперт! Сделай 5&nbsp;прогнозов на&nbsp;ФОНБЕТ Матч Звезд КХЛ 2025. Выиграешь&nbsp;&mdash; получишь фрибет до&nbsp;50000&nbsp;₽!
+        p.desktop Думаешь, шаришь в&nbsp;хоккее? Когда смотришь матчи, даешь тренерам и&nbsp;игрокам советы? Тогда докажи, что ты&nbsp;эксперт! #[br]#[br] Сделай 5&nbsp;прогнозов на&nbsp;ФОНБЕТ Матч Звезд КХЛ 2025. Выиграешь&nbsp;&mdash; получишь фрибетдо 50000&nbsp;₽!
+      .b-predictions__btn
+        +btn-default({ text: "Правила" })
+      .b-predictions__list
+        each it in predictionsCards
+          .b-predictions__card(class=it.cssClass)
+            .b-predictions__card-circle
+            img.b-predictions__card-img(
+              src=it.img
+              width=it.imgWidth
+              height=it.imgHeight
+              alt=""
+            )
+            .b-predictions__card-title=it.title
+            .b-predictions__card-subtitle
+              +svg({ name: "lock", w: 10, h: 13 })
+              span=it.subtitle

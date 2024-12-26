@@ -1,0 +1,31 @@
+include /components/block/b-header
+
+mixin b-hero({ isHeaderShow, link, className })
+  .b-hero(class=className)
+    +b-header({ isShow: isHeaderShow, link: link })
+    .b-hero__star
+      +svg({ name: "stars", w: 344, h: 356, className: 'mobile' })
+      +svg({ name: "stars-desktop", w: 1354, h: 407, className: 'desktop' })
+    .b-hero__circle
+    .b-hero__title
+      h1.visually-hidden Звездный путь
+      .b-hero__skates
+        img(src="./img/hero/hero-skates.svg" width="76" height="77" alt="")
+      .b-hero__puck
+        img(src="./img/hero/hero-hockey-puck.svg" width="140" height="110" alt="")
+      .b-hero__stick
+        img(src="./img/hero/hero-hockey-stick.svg" width="190" height="140" alt="")
+      .b-hero__players
+        img(src="./img/hero/hero-hockey-player.svg" width="283" height="253" alt="")
+      .b-hero__title-logo
+        +picture({ image: '/img/hero/logo-site.png', w: 343, h: 126 })
+      .b-hero__vip
+        +picture({ image: '/img/hero/vip.png', w: 122, h: 89 })
+      .b-hero__ticket
+        +svg({ name: "vip-ticket", w: 140, h: 118 })
+      .b-hero__cards
+        +picture({ image: '/img/hero/cards.png', w: 211, h: 156, className: 'mobile' })
+        +picture({ image: '/img/hero/cards-desktop.png', w: 482, h: 349, className: 'desktop' })
+    .b-hero__date 16.01.25 – 07.02.25
+    p.b-hero__text ФОНБЕТ Неделя Звезд Хоккея 2025 пройдетв самом сердце России&nbsp;&mdash; в&nbsp;Новосибирске.
+    p.b-hero__text.second С&nbsp;любого конца нашей необъятной страны туда можно добраться на&nbsp;поезде по&nbsp;легендарному маршруту. Вместес амбассадорами FONBET тебе предстоит проехать по&nbsp;Транссибирской магистрали, выполнить их&nbsp;испытания и&nbsp;получить возможность выиграть один из&nbsp;призов.

@@ -2,9 +2,19 @@ extends /elements/layout-page
 include /script/s-gtm-noscript
 include /script/s-yametrika-noscript
 include /script/s-pin
+include /components/block/b-hero
+include /components/block/b-stars
+include /components/block/b-prizes
+include /components/block/b-ambassadors
+include /components/block/b-promo
+include /components/block/b-week-star
+include /components/block/b-predictions
+include /components/block/b-footer
+
 
 block data
-  - title = "Template"
+  - title = "FONBET: Звездный путь"
+  - logoLink = "https://fon.bet/"
 
 block libjs
   //- +s-gtm-noscript({})
@@ -12,3 +22,11 @@ block libjs
   //- +s-pin({})
 
 block content
+  +b-hero({ isHeaderShow: false, link: logoLink })
+  +b-prizes({})
+  +b-stars({})
+  +b-ambassadors({})
+  +b-promo({})
+  +b-week-star({})
+  +b-predictions({})
+  +b-footer({ link: logoLink })

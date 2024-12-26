@@ -1,0 +1,181 @@
+.b-prizes {
+  position: relative;
+  padding-top: 190rem;
+  @include desktop {
+    padding-top: 60rem;
+  }
+}
+.b-prizes__backside {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.b-prizes__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 350rem;
+  svg {
+    width: 100%;
+    height: 100%;
+    fill: $color-gray-933;
+  }
+  .desktop {
+    display: none;
+  }
+  @include desktop {
+    top: -200rem;
+    height: 460rem;
+    .mobile {
+      display: none;
+    }
+    .desktop {
+      display: block;
+    }
+  }
+}
+.b-prizes__content {
+  position: relative;
+  padding: 20rem $padding 50rem $padding;
+  background-color: $color-gray-933;
+  @include desktop {
+    padding: 50rem $padding-desktop 70rem $padding-desktop;
+  }
+}
+.b-prizes__slider {
+  margin-top: 16rem;
+  margin-right: -#{$padding};
+  margin-left: -#{$padding};
+  padding-right: $padding;
+  padding-left: $padding;
+  overflow: hidden;
+  @include desktop {
+    margin-right: -#{$padding-desktop};
+    margin-left: -#{$padding-desktop};
+    padding-right: $padding-desktop;
+    padding-left: $padding-desktop;
+  }
+}
+.b-prizes__nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6rem;
+}
+.b-prizes__wrp {
+  margin-top: 30rem;
+}
+.b-prizes__card {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-items: center;
+  width: 264rem;
+  height: 353rem;
+  padding: 16rem;
+  overflow: hidden;
+  font-family: $font-default;
+  font-size: 18rem;
+  line-height: 1.1;
+  font-weight: 500;
+  text-align: center;
+  color: $color-sea-wave;
+  background-color: $color-blue-alice;
+  border-radius: 14rem;
+  box-shadow: 1rem 1rem 14rem 0 transparentize($color-black, 0.92);
+  &:not(:last-child) {
+    margin-right: 10rem;
+  }
+  &.tour {
+    .b-prizes__img {
+      width: 254rem;
+    }
+  }
+  &.smartphone {
+    .b-prizes__img {
+      width: 208rem;
+    }
+  }
+  &.tablet {
+    .b-prizes__img {
+      width: 200rem;
+    }
+  }
+  &.console {
+    .b-prizes__img {
+      width: 236rem;
+    }
+  }
+  &.headphones {
+    .b-prizes__img {
+      width: 215rem;
+    }
+  }
+  &.merch {
+    .b-prizes__img {
+      width: 250rem;
+    }
+  }
+  &.fribet {
+    .b-prizes__img {
+      right: auto;
+      bottom: 20rem;
+      left: 11rem;
+      width: 243rem;
+    }
+  }
+}
+.b-prizes__letter {
+  position: absolute;
+  top: 124rem;
+  left: -15rem;
+  width: 284rem;
+  height: 283rem;
+  rotate: 27deg;
+  svg {
+    fill: $color-sea-wave;
+  }
+}
+.b-prizes__num {
+  display: flex;
+  align-items: center;
+  gap: 6rem;
+  width: max-content;
+  padding: 11rem 22rem;
+  font-size: 14rem;
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  background-color: transparentize($color-sea-wave, 0.94);
+  border-radius: 10rem;
+  svg {
+    width: 12rem;
+    height: 12rem;
+    fill: currentcolor;
+  }
+}
+.b-prizes__name {
+  margin-top: 10rem;
+  margin-bottom: 0;
+  font: inherit;
+}
+.b-prizes__img {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+.b-prizes__ticket {
+  position: absolute;
+  bottom: 90rem;
+  left: 5rem;
+  width: 140rem;
+  height: 118rem;
+  rotate: 13deg;
+  svg {
+    fill: $color-scarlet;
+  }
+}

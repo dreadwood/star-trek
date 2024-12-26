@@ -1,7 +1,217 @@
 .b-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
   margin-right: auto;
   margin-left: auto;
-  padding-right: $padding;
-  padding-left: $padding;
+  padding: 10rem 10rem 10rem 20rem;
+  font-family: $font-default;
+  font-size: 16rem;
+  line-height: 1.2;
+  font-weight: 500;
+  text-align: left;
+  color: $color-white;
+  letter-spacing: -0.02em;
+  background-color: transparentize($color-white, 0.9);
+  border-radius: 10rem;
+  &.show {
+    .b-header__logo {
+      color: $color-carmine-red-2;
+      &:hover,
+      &:focus-visible {
+        color: $color-green-blue;
+      }
+    }
+    .b-header__overflay {
+      display: block;
+    }
+    .b-header__burger {
+      color: $color-black;
+      background-color: transparentize($color-black, 0.9);
+      &:hover,
+      &:focus-visible {
+        background-color: transparentize($color-black, 0.85);
+      }
+      span {
+        transform: scaleX(0);
+      }
+      &::before {
+        top: 50%;
+        rotate: 45deg;
+      }
+      &::after {
+        top: 50%;
+        rotate: -45deg;
+      }
+    }
+  }
+  @include desktop {
+    padding: 11rem 10rem 11rem 30rem;
+    &.show {
+      .b-header__logo {
+        color: $color-white;
+        &:hover,
+        &:focus-visible {
+          color: $color-carmine-red-2;
+        }
+      }
+    }
+  }
 }
+.b-header__logo {
+  @include transition(color);
+  position: relative;
+  z-index: 10;
+  display: block;
+  width: 126rem;
+  color: $color-white;
+  svg {
+    width: 100%;
+    height: auto;
+    fill: currentcolor;
+  }
+  &:hover,
+  &:focus-visible {
+    color: $color-carmine-red-2;
+  }
+}
+.b-header__overflay {
+  @include hide-scroll;
+  position: fixed;
+  inset: 0;
+  z-index: 9;
+  display: none;
+  padding: 10rem;
+  overflow: scroll;
+  background-color: transparentize($color-black, 0.7);
+  @include desktop {
+    position: static;
+    display: block;
+    flex-grow: 1;
+    padding: 0;
+    padding-left: 100rem;
+    background-color: transparent;
+  }
+}
+.b-header__dialog {
+  width: 100%;
+  padding: 110rem 20rem 20rem 20rem;
+  color: $color-black;
+  background-color: $color-white;
+  border-radius: 10rem;
+  @include desktop {
+    display: flex;
+    align-items: center;
+    // gap: 40rem;
+    padding: 0;
+    color: $color-white;
+    background-color: transparent;
+    border-radius: 0;
+  }
+}
+.b-header__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 20rem;
+  @include desktop {
+    flex-direction: row;
+    align-items: center;
+    gap: 26rem;
+    margin: 0 auto;
+  }
+}
+.b-header__link {
+  @include transition(color);
+  &:hover,
+  &:focus-visible {
+    color: $color-carmine-red-2;
+  }
+}
+.b-header__btn {
+  display: block;
+  margin: 44rem 0 0 0;
+  padding: 15rem 38rem;
+  font-size: 16rem;
+  line-height: 1.2;
+  font-weight: 500;
+  text-align: center;
+  color: $color-carmine-red-2;
+  background-color: $color-white-lightpink;
+  border: 0;
+  border-radius: 10rem;
+  @include desktop {
+    margin: 0;
+    padding: 15rem 20rem;
+    font-size: 14rem;
+    text-align: left;
+    color: $color-black;
+    letter-spacing: -0.02em;
+  }
+}
+.b-header__burger {
+  @include transition(background-color, color);
+  position: relative;
+  z-index: 10;
+  display: block;
+  flex-shrink: 0;
+  width: 50rem;
+  height: 50rem;
+  margin: 0;
+  padding: 0;
+  color: $color-white;
+  background-color: transparentize($color-white, 0.9);
+  background-color: transparentize($color-black, 0.9);
+  border: 0;
+  border-radius: 10rem;
+  &:hover,
+  &:focus-visible {
+    background-color: transparentize($color-white, 0.7);
+    background-color: transparentize($color-black, 0.85);
+  }
+  span {
+    @include transition(transform);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 26rem;
+    height: 2rem;
+    background-color: currentcolor;
+    border-radius: 2rem;
+    transform-origin: center center;
+    translate: -50% -50%;
+  }
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    width: 26rem;
+    height: 2rem;
+    background-color: currentcolor;
+    border-radius: 2rem;
+    translate: -50% -50%;
+    transition: rotate linear 0.3s;
+  }
+  &::before {
+    top: calc(50% - 7rem);
+  }
+  &::after {
+    top: calc(50% + 7rem);
+  }
+  @include desktop {
+    display: none;
+  }
+}
+
+// @keyframes burger-cross-open {
+//   0% {
+//     //
+//   }
+//   40% {
+//     top: 50%;
+//   }
+//   100% {
+//     rotate: 45deg;
+//   }
+// }

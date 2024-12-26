@@ -5,7 +5,7 @@
   z-index: 9;
   display: none;
   flex-direction: column;
-  padding: 10px;
+  padding: 10rem;
   overflow: scroll;
   background-color: transparentize($color-black, 0.8);
   &.show {

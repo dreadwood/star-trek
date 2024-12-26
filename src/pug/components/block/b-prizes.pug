@@ -1,0 +1,74 @@
+include /components/button/btn-arrow
+
+mixin b-prizes({ className })
+  .b-prizes(id="about" class=className)
+    -
+      let prizes = [
+        {
+          num: "I",
+          name: "VIP-тур на двоихна ФОНБЕТ Неделю Звезд Хоккея",
+          img: "/img/prizes/all-star.png",
+          cssClass: "tour",
+          isTicket: true
+        },
+        {
+          num: "II",
+          name: "Смартфон",
+          img: "/img/prizes/iphone.png",
+          cssClass: "smartphone",
+        },
+        {
+          num: "III",
+          name: "Планшет",
+          img: "/img/prizes/ipad.png",
+          cssClass: "tablet",
+        },
+        {
+          num: "IV",
+          name: "Игровая приставка",
+          img: "/img/prizes/switch.png",
+          cssClass: "console",
+        },
+        {
+          num: "V",
+          name: "Наушники",
+          img: "/img/prizes/airpods.png",
+          cssClass: "headphones",
+        },
+        {
+          num: "VI",
+          name: "Эксклюзивный мерч ФОНБЕТ Недели Звезд Хоккея",
+          img: "/img/prizes/sweater.png",
+          cssClass: "merch",
+        },
+        {
+          num: "VII",
+          name: "Фрибет от FONBET",
+          img: "/img/prizes/fribet.png",
+          cssClass: "fribet",
+        },
+      ]
+    .b-prizes__backside
+      .b-prizes__bg
+        +svg({ name: "mountains", w: 375, h: 350, className: "mobile" })
+        +svg({ name: "mountains-desktop", w: 1440, h: 460, className: "desktop" })
+    .b-prizes__content
+      h2.title Призы
+      .b-prizes__slider.js-slider-prizes
+        .b-prizes__nav
+          +btn-arrow({ isPrev: true, className: "js-slider-prizes-prev" })
+          +btn-arrow({ className: "js-slider-prizes-next" })
+        .b-prizes__wrp.swiper-wrapper
+          each it in prizes
+            article.b-prizes__card.swiper-slide(class=it.cssClass)
+              .b-prizes__letter
+                +svg({ name: "letter-f", w: 284, h: 283 })
+              .b-prizes__num
+                +svg({ name: "star", w: 12, h: 12 })
+                span=it.num
+              h3.b-prizes__name=it.name
+              .b-prizes__img
+                +picture({ image: it.img, w: 401, h: 340 })
+              if it.isTicket
+                .b-prizes__ticket
+                  +svg({ name: "vip-ticket", w: 140, h: 118 })

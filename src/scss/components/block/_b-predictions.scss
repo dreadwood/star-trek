@@ -1,0 +1,230 @@
+.b-predictions {
+  position: relative;
+  padding-top: 210rem;
+  font-family: $font-default;
+  font-size: 18rem;
+  line-height: 1.1;
+  font-weight: 500;
+  text-align: center;
+  color: $color-gray-537;
+  @include desktop {
+    padding-top: 270rem;
+    font-size: 16rem;
+    line-height: 1.2;
+  }
+}
+.b-predictions__backside {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.b-predictions__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  img {
+    width: 100%;
+  }
+  .desktop {
+    display: none;
+  }
+  @include desktop {
+    .mobile {
+      display: none;
+    }
+    .desktop {
+      display: block;
+    }
+  }
+}
+.b-predictions__content {
+  position: relative;
+  padding: 40rem $padding;
+  background-color: $color-white;
+  @include desktop {
+    padding: 20rem $padding-desktop 80rem $padding-desktop;
+  }
+}
+.b-predictions__subtext {
+  margin-top: 20rem;
+  p {
+    margin: 0;
+  }
+  .desktop {
+    display: none;
+  }
+  @include desktop {
+    width: 582rem;
+    margin-right: auto;
+    margin-left: auto;
+    .mobile {
+      display: none;
+    }
+    .desktop {
+      display: block;
+    }
+  }
+}
+.b-predictions__btn {
+  width: max-content;
+  margin: 20rem auto 0 auto;
+}
+.b-predictions__list {
+  display: grid;
+  gap: 10rem;
+  margin-top: 20rem;
+  @include desktop {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 30rem;
+  }
+}
+.b-predictions__card {
+  position: relative;
+  height: 282rem;
+  padding: 25rem;
+  overflow: hidden;
+  font-size: 16rem;
+  line-height: 1.2;
+  font-weight: 500;
+  text-align: left;
+  color: $color-gray-537;
+  letter-spacing: -0.02em;
+  background-color: $color-gray-973;
+  border-radius: 14rem;
+  &.division .b-predictions__card-img {
+    top: 123rem;
+    left: 106rem;
+    width: 327rem;
+  }
+  &.puck .b-predictions__card-img {
+    top: 120rem;
+    left: 133rem;
+    width: 251rem;
+  }
+  &.goalie .b-predictions__card-img {
+    top: 129rem;
+    left: 72rem;
+    width: 525rem;
+  }
+  &.penalty .b-predictions__card-img {
+    top: 121rem;
+    left: 98rem;
+    width: 287rem;
+  }
+  &.player .b-predictions__card-img {
+    top: 103rem;
+    left: 99rem;
+    width: 244rem;
+  }
+  @include desktop {
+    &.division {
+      width: 337rem;
+      .b-predictions__card-circle {
+        top: 134rem;
+        left: 42rem;
+        width: 388rem;
+        height: 388rem;
+      }
+      .b-predictions__card-img {
+        top: 123rem;
+        left: 96rem;
+        width: 330rem;
+      }
+    }
+    &.puck {
+      width: 568rem;
+      .b-predictions__card-circle {
+        top: 134rem;
+        left: 140rem;
+        width: 428rem;
+        height: 428rem;
+      }
+      .b-predictions__card-img {
+        top: 100rem;
+        left: 300rem;
+        width: 300rem;
+      }
+    }
+    &.goalie {
+      width: calc(100% - 20rem - 337rem - 568rem);
+      .b-predictions__card-circle {
+        top: 134rem;
+        left: 52rem;
+        width: 428rem;
+        height: 428rem;
+      }
+      .b-predictions__card-img {
+        top: 126rem;
+        left: 86rem;
+        width: 530rem;
+      }
+    }
+    &.penalty {
+      width: calc((100% - 10rem) / 2);
+      .b-predictions__card-circle {
+        top: 106rem;
+        left: 150rem;
+        width: 556rem;
+        height: 556rem;
+      }
+      .b-predictions__card-img {
+        top: 61rem;
+        left: 288rem;
+        width: 447rem;
+      }
+    }
+    &.player {
+      width: calc((100% - 10rem) / 2);
+      .b-predictions__card-circle {
+        top: 106rem;
+        left: 150rem;
+        width: 556rem;
+        height: 556rem;
+      }
+      .b-predictions__card-img {
+        top: 28rem;
+        left: 289rem;
+        width: 360rem;
+      }
+    }
+  }
+}
+.b-predictions__card-circle {
+  position: absolute;
+  top: 130rem;
+  left: 50rem;
+  width: 382rem;
+  height: 382rem;
+  background-color: $color-gray-896;
+  border-radius: 50%;
+  @include desktop {
+    background-color: $color-gray-925;
+  }
+}
+.b-predictions__card-img {
+  position: absolute;
+  height: auto;
+  max-width: none;
+}
+.b-predictions__card-title {
+  font-size: 24rem;
+  line-height: 1.1;
+  color: $color-black;
+  letter-spacing: 0;
+}
+.b-predictions__card-subtitle {
+  display: flex;
+  align-items: center;
+  gap: 6rem;
+  margin-top: 10rem;
+  svg {
+    flex-shrink: 0;
+    width: 10rem;
+    height: 13rem;
+    fill: currentcolor;
+  }
+}

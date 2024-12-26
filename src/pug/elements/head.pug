@@ -16,6 +16,9 @@ mixin head({ title })
     +favicon({})
     //- +open-graph({})
 
+    link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css")
+    script(src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js")
+
     link(rel="stylesheet" href=`${baseUrl}/css/style.css?v=${searchId}`)
 
     //- +s-gtm({})

@@ -1,5 +1,5 @@
 //- simple raster image
-mixin picture({ image, width, height, altText, className })
+mixin picture({ image, w, h, alt, className })
   - const path = image.split(".")[0]
   picture
     source(type="image/avif" srcset=`${baseUrl}${path}.avif`)
@@ -7,13 +7,13 @@ mixin picture({ image, width, height, altText, className })
     img(
       class=className
       src=`${baseUrl}${image}`
-      width=width
-      height=height
-      alt=altText
+      width=w
+      height=h
+      alt=(alt || "")
     )
 
 //- retina raster image
-mixin picture2x({ image, width, height, altText, className })
+mixin picture2x({ image, w, h, alt, className })
   - const path = image.split("@")[0]
   - const format = image.split(".")[1]
   picture
@@ -29,15 +29,15 @@ mixin picture2x({ image, width, height, altText, className })
       class=className
       src=`${baseUrl}${image}`
       srcset=`${baseUrl}${path}@2x.${format} 2x`
-      width=width
-      height=height
-      alt=altText
+      width=w
+      height=h
+      alt=(alt || "")
     )
 
 //- simple vector image
-mixin svg({ name, width, height, className })
+mixin svg({ name, w, h, className })
   if name.includes('/img')
-    img(class=className || null src=`${baseUrl}${name}` width=width height=height alt="")
+    img(class=className || null src=`${baseUrl}${name}` width=w height=h alt="")
   else
-    svg(class=className || null width=width height=height)
+    svg(class=className || null width=w height=h)
       use(xlink:href=`${baseUrl}/img/sprite.svg#${name}`)

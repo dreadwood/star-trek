@@ -1,0 +1,48 @@
+include /components/button/btn-arrow
+
+mixin b-ambassadors({ className })
+  .b-ambassadors(id="ambassadors" class=className)
+    -
+      let ambassadors = [
+        {
+          name: "Александр Овечкин",
+          spec: "звезда хоккея",
+          img: "/img/ambassadors/ovi.png"
+        },
+        {
+          name: "Евгения Медведева",
+          spec: "звезда фигурного катания",
+          img: "/img/ambassadors/medvedeva.png"
+        },
+        {
+          name: "Корней из Hockey Brothers",
+          spec: "звезда медиахоккея",
+          img: "/img/ambassadors/korney.png"
+        },
+        {
+
+          name: "Эд из 2DROTS",
+          spec: "звезда медиафутбола",
+          img: "/img/ambassadors/ed.png"
+        },
+        {
+          name: "Игорь Акинфеев",
+          spec: "звезда футбола",
+          img: "/img/ambassadors/igor.png"
+        },
+      ]
+    h2.title Амбассадоры
+    .b-ambassadors__slider.swiper.js-slider-ambassadors
+      .b-ambassadors__nav
+        +btn-arrow({ isPrev: true, className: "js-slider-ambassadors-prev" })
+        +btn-arrow({ className: "js-slider-ambassadors-next" })
+      .b-ambassadors__wrp.swiper-wrapper
+        each it in ambassadors
+          article.b-ambassadors__card.swiper-slide
+            .b-ambassadors__card-rect
+              +svg({ name: "card-rect", w: 424, h: 424 })
+            h3.b-ambassadors__card-title=it.name
+            p.b-ambassadors__card-spec=it.spec
+            .b-ambassadors__card-photo
+              +picture({ image: it.img, w: 264, h: 246 })
+

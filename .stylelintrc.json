@@ -28,7 +28,11 @@
           "extend",
           "use",
           "if",
-          "for"
+          "for",
+          "function",
+          "return",
+          "else",
+          "else if"
         ]
       }
     ],

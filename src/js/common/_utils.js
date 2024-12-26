@@ -5,8 +5,8 @@
  */
 ;(() => {
   window.jsUtils = {
-    BREAKPOINT_MOBILE: '(max-width: 767px)',
-    BREAKPOINT_TABLET: '(max-width: 1023px)',
+    BREAKPOINT_MOBILE: '(min-width: 768px)',
+    BREAKPOINT_TABLET: '(min-width: 1024px)',
 
     /**
      * show html element

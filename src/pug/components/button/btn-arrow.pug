@@ -1,0 +1,6 @@
+mixin btn-arrow({ text, isPrev, isDisabled, className })
+  button.btn-arrow(class=className disabled=isDisabled)
+    if isPrev
+      +svg({ name: "arrow-prev", w: 40, h: 40 })
+    else
+      +svg({ name: "arrow-next", w: 40, h: 40 })

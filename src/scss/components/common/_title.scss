@@ -1,0 +1,14 @@
+.title {
+  margin: 0;
+  font-family: $font-default;
+  font-size: 38rem;
+  line-height: 1.1;
+  font-weight: 700;
+  text-align: center;
+  color: $color-black;
+  text-transform: uppercase;
+  @include desktop {
+    font-size: 70rem;
+    line-height: 1;
+  }
+}

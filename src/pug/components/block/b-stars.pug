@@ -1,0 +1,71 @@
+include /components/button/btn-default
+include /components/button/btn-arrow
+
+mixin b-stars({ className })
+  -
+    let train = [
+      {
+        img: "/img/stars/sticks.png",
+        num: "Игра 5",
+        name: "Отбей шайбу",
+        date: "Игра откроется 24 января. ",
+        isClose: true
+      },
+      {
+        img: "/img/stars/cup.png",
+        num: "Игра 4",
+        name: "Испытание звезд",
+        date: "Игра откроется 22 января. ",
+        isClose: true
+      },
+      {
+        img: "/img/stars/uniform.png",
+        num: "Игра 3",
+        name: "Шаришь за джерси?",
+        date: "Игра откроется 20 января. ",
+        isClose: true
+      },
+      {
+        img: "/img/stars/equipment.png",
+        num: "Игра 2",
+        name: "Ты не видел мой экип?",
+        date: "Игра откроется 18 января. ",
+        isClose: true
+      },
+      {
+        img: "/img/stars/skates.png",
+        num: "Игра 1",
+        name: "Начало пути",
+        date: "Игра откроется 16 января. ",
+        isClose: true
+      },
+    ]
+  .b-stars(class=className)
+    .b-stars__sky-desktop
+      img(class="desktop" src="./img/stars/sky-desktop.svg" width="1313" height="216")
+    h2.title.b-stars__title.title Играй и&nbsp;получай звезды
+    .b-stars__btn
+      +btn-default({ text: "Правила" })
+    p.b-stars__text На пути тебя ждет пять испытаний, в которых ты сможешь заработать звезды, чтобы побороться за призы.
+    .b-stars__slider.js-slider-stars
+      .b-stars__sky-mobile
+        img(class="mobile" src="./img/stars/sky.svg" width="327" height="165")
+      .b-stars__nav
+        +btn-arrow({ isPrev: true, className: "js-slider-stars-prev" })
+        +btn-arrow({ className: "js-slider-stars-next" })
+      .b-stars__wrp.swiper-wrapper
+        each it in train
+          article.b-stars__card.swiper-slide
+            img.b-stars__carriage(src="./img/stars/train-carriage.svg" width="390" height="223")
+            .b-stars__prize
+              +picture({ image: it.img, w: 401, h: 340 })
+            .b-stars__info
+              button.b-stars__info-btn=it.num
+              .b-stars__info-title
+                +svg({ name: "lock", w: 10, h: 13 })
+                span=it.name
+              .b-stars__info-date=it.date
+              .b-stars__info-notif Не пропусти!
+        .b-stars__first-card.swiper-slide
+          img(src="./img/stars/train-nose.svg" width="680" height="223")
+
