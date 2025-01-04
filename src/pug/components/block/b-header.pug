@@ -5,9 +5,9 @@ mixin b-header({ isShow, link, className })
     .b-header__overflay.js-header-dialog
       .b-header__dialog
         nav.b-header__nav.js-header-nav
-          a.b-header__link(href="#about") О мероприятии
-          a.b-header__link(href="#games") Игры
-          a.b-header__link(href="#ambassadors") Амбассадоры
+          include /data/section-data
+          each it, key in sectionData
+            a.b-header__link(href=it.link)=it.name
         .b-header__btn Открытие регистрации: 16.01.25
     button.b-header__burger.js-header-burger(aria-label="Открыть меню")
       span

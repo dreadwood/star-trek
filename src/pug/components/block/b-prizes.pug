@@ -1,7 +1,7 @@
 include /components/button/btn-arrow
 
-mixin b-prizes({ className })
-  .b-prizes(id="about" class=className)
+mixin b-prizes({ className, id })
+  section.b-prizes(class=className id=id)
     -
       let prizes = [
         {

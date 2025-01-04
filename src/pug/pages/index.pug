@@ -10,6 +10,7 @@ include /components/block/b-promo
 include /components/block/b-week-star
 include /components/block/b-predictions
 include /components/block/b-footer
+include /components/modal/m-rules
 
 
 block data
@@ -17,16 +18,20 @@ block data
   - logoLink = "https://fon.bet/"
 
 block libjs
-  //- +s-gtm-noscript({})
-  //- +s-yametrika-noscript({})
+  +s-gtm-noscript({})
+  +s-yametrika-noscript({})
   //- +s-pin({})
 
 block content
+  include /data/section-data
   +b-hero({ isHeaderShow: false, link: logoLink })
   +b-prizes({})
-  +b-stars({})
-  +b-ambassadors({})
+  +b-stars({ id: sectionData.games.id })
+  +b-ambassadors({ id: sectionData.ambassadors.id })
   +b-promo({})
-  +b-week-star({})
+  +b-week-star({ id: sectionData.about.id })
   +b-predictions({})
   +b-footer({ link: logoLink })
+
+block modal
+  +m-rules({ isShow: false })

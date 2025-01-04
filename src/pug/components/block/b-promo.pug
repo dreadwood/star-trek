@@ -1,7 +1,7 @@
 include /components/button/btn-default
 
-mixin b-promo({ className })
-  .b-promo(class=className)
+mixin b-promo({ className, id })
+  section.b-promo(class=className id=id)
     .b-promo__card
       .b-promo__card-bg
         +picture({ image: "/img/promo/promo.jpg", w: 343, h: 590, className: "mobile" })
@@ -10,4 +10,4 @@ mixin b-promo({ className })
         h2.b-promo__title Сделай ставку
         p.b-promo__text И получи шанс выиграть приз
         .b-promo__btn
-          +btn-default({ text: "Правила", className: "promo" })
+          +btn-default({ text: "Правила", className: "promo js-modal-rules-show" })

@@ -1,7 +1,7 @@
 include /components/button/btn-default
 include /components/button/btn-arrow
 
-mixin b-stars({ className })
+mixin b-stars({ className, id })
   -
     let train = [
       {
@@ -40,12 +40,12 @@ mixin b-stars({ className })
         isClose: true
       },
     ]
-  .b-stars(class=className)
+  section.b-stars(class=className id=id)
     .b-stars__sky-desktop
       img(class="desktop" src="./img/stars/sky-desktop.svg" width="1313" height="216")
     h2.title.b-stars__title.title Играй и&nbsp;получай звезды
     .b-stars__btn
-      +btn-default({ text: "Правила" })
+      +btn-default({ text: "Правила", className: "js-modal-rules-show" })
     p.b-stars__text На пути тебя ждет пять испытаний, в которых ты сможешь заработать звезды, чтобы побороться за призы.
     .b-stars__slider.js-slider-stars
       .b-stars__sky-mobile

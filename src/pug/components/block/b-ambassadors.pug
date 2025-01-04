@@ -1,7 +1,7 @@
 include /components/button/btn-arrow
 
-mixin b-ambassadors({ className })
-  .b-ambassadors(id="ambassadors" class=className)
+mixin b-ambassadors({ className, id })
+  section.b-ambassadors(class=className id=id)
     -
       let ambassadors = [
         {

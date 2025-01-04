@@ -1,0 +1,132 @@
+@keyframes m-btn-close {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.m-rules {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: $font-default;
+  font-size: 14rem;
+  line-height: 1.1;
+  font-weight: 400;
+  text-align: center;
+  color: $color-gray-400;
+  background-color: $color-white;
+  @include desktop {
+    width: 860rem;
+    height: auto;
+    margin: auto;
+    border-radius: 14rem;
+  }
+}
+.m-rules__close {
+  @include transition(background-color, color);
+  position: absolute;
+  top: 16rem;
+  right: 16rem;
+  z-index: 2;
+  display: block;
+  width: 30rem;
+  height: 30rem;
+  margin: 0;
+  padding: 0;
+  color: $color-gray-400;
+  background-color: transparent;
+  border: 0;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16rem;
+    height: 2rem;
+    background-color: currentcolor;
+    border-radius: 2rem;
+    transform-origin: center center;
+  }
+  &::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+  &::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+  &:hover,
+  &:focus-visible {
+    color: $color-sea-wave;
+    animation-name: m-btn-close;
+    animation-duration: 0.7s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+  }
+}
+.m-rules__backside {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.m-rules__bg {
+  position: absolute;
+  bottom: -129rem;
+  left: 0;
+  width: 375rem;
+  height: 350rem;
+  opacity: 0.6;
+  svg {
+    width: 100%;
+    height: 100%;
+    fill: $color-gray-933;
+  }
+  .desktop {
+    display: none;
+  }
+  @include desktop {
+    bottom: -180rem;
+    left: -100rem;
+    width: 1100rem;
+    height: 460rem;
+    .mobile {
+      display: none;
+    }
+    .desktop {
+      display: block;
+    }
+  }
+}
+.m-rules__content {
+  position: relative;
+  padding: 70rem 16rem;
+  @include desktop {
+    padding: 60rem 40rem 150rem 40rem;
+  }
+}
+.m-rules__title {
+  margin: 0;
+  font-family: $font-default;
+  font-size: 22rem;
+  line-height: 1.1;
+  font-weight: 500;
+  text-align: center;
+  color: $color-black;
+  @include desktop {
+    font-size: 28rem;
+  }
+}
+.m-rules__text {
+  margin-top: 20rem;
+  margin-bottom: 0;
+  @include desktop {
+    margin-top: 16rem;
+  }
+}

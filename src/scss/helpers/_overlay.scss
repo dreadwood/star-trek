@@ -2,13 +2,17 @@
   @include hide-scroll;
   position: fixed;
   inset: 0;
-  z-index: 9;
+  z-index: 20;
   display: none;
   flex-direction: column;
-  padding: 10rem;
+  padding: 0;
   overflow: scroll;
-  background-color: transparentize($color-black, 0.8);
+  background-color: transparentize($color-black, 0.5);
+  backdrop-filter: blur(15px);
   &.show {
     display: flex;
+  }
+  @include desktop {
+    padding: 10rem;
   }
 }

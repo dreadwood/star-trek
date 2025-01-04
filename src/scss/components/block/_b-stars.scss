@@ -23,6 +23,8 @@
     width: 1313rem;
     height: 216rem;
     translate: -50% 0;
+    user-select: none;
+    pointer-events: none;
   }
 }
 .b-stars__title {

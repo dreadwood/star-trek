@@ -1,7 +1,7 @@
 include /components/block/b-header
 
-mixin b-hero({ isHeaderShow, link, className })
-  .b-hero(class=className)
+mixin b-hero({ isHeaderShow, link, className, id })
+  section.b-hero(class=className id=id)
     +b-header({ isShow: isHeaderShow, link: link })
     .b-hero__star
       +svg({ name: "stars", w: 344, h: 356, className: 'mobile' })

@@ -1,5 +1,5 @@
-mixin b-footer({ link, className })
-  footer.b-footer(class=className)
+mixin b-footer({ link, className, id })
+  footer.b-footer(class=className id=id)
     .b-footer__backside
       .b-footer__bg
         +picture({ image: "/img/footer/bottom-full.png", w: 375, h: 387, className: "mobile" })
