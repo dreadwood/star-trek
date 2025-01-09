@@ -73,6 +73,8 @@
   width: 327rem;
   height: 165rem;
   translate: -50% 0;
+  user-select: none;
+  pointer-events: none;
   img {
     width: 100%;
   }

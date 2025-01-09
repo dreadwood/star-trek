@@ -45,10 +45,15 @@
       new Swiper('.js-slider-stars', {
         slidesPerView: 'auto',
         grabCursor: true,
-        initialSlide: 6,
+        initialSlide: 5,
         navigation: {
           prevEl: '.js-slider-stars-prev',
           nextEl: '.js-slider-stars-next'
+        },
+        on: {
+          update(swiper) {
+            swiper.slideNext()
+          }
         }
       })
 
