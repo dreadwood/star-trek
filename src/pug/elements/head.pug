@@ -21,6 +21,10 @@ mixin head({ title })
 
     link(rel="stylesheet" href=`${baseUrl}/css/style.css?v=${searchId}`)
 
+    script.
+      window.lang = 'ru';
+      window.alias = 'fasw2025';
+
     +s-gtm({})
     +s-yametrika({})
     script(src="https://origin.bk6bba-resources.com/webStaticRed/promo/lands/scripts/utm.js")
