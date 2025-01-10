@@ -22,9 +22,12 @@
     display: block;
     width: 1313rem;
     height: 216rem;
-    translate: -50% 0;
+    transform: translateX(-50%);
     user-select: none;
     pointer-events: none;
+    img {
+      width: 100%;
+    }
   }
 }
 .b-stars__title {
