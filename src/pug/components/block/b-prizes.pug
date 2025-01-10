@@ -6,7 +6,7 @@ mixin b-prizes({ className, id })
       let prizes = [
         {
           num: "I",
-          name: "VIP-тур на ФОНБЕТ Матч Звезд КХЛ 2025 на двоих",
+          name: "VIP-тур на ФОНБЕТ Матч Звезд КХЛ 2025 на&nbsp;двоих",
           img: "/img/prizes/all-star.png",
           cssClass: "tour",
           isTicket: true
@@ -66,7 +66,7 @@ mixin b-prizes({ className, id })
               .b-prizes__num
                 +svg({ name: "star", w: 12, h: 12 })
                 span=it.num
-              h3.b-prizes__name=it.name
+              h3.b-prizes__name !{it.name}
               .b-prizes__img
                 +picture({ image: it.img, w: 401, h: 340 })
               if it.isTicket
