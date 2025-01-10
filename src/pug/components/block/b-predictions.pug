@@ -7,17 +7,17 @@ mixin b-predictions({ className, id })
         {
           title: "Какой дивизион победит?",
           subtitle: "Откроется 30 января",
-          img: "./img/predictions/predictions-cup.svg",
-          imgWidth: "327",
-          imgHeight: "222",
+          img: "./img/predictions/predictions-card.png",
+          imgWidth: "275",
+          imgHeight: "138",
           cssClass: "division",
         },
         {
           title: "Кто забросит первую шайбу?",
           subtitle: "Откроется 30 января",
-          img: "./img/predictions/predictions-puck.svg",
-          imgWidth: "251",
-          imgHeight: "201",
+          img: "./img/predictions/predictions-puck.png",
+          imgWidth: "302",
+          imgHeight: "244",
           cssClass: "puck",
         },
         {
@@ -47,14 +47,14 @@ mixin b-predictions({ className, id })
       ]
     .b-predictions__backside
       .b-predictions__bg
-        img(class="mobile" src="./img/mountains.svg" width="375" height="350")
-        img(class="desktop" src="./img/mountains-desktop.svg" width="1440" height="460")
+        img(class="mobile" src="./img/mountains.svg" width="375" height="350" alt="")
+        img(class="desktop" src="./img/mountains-desktop.svg" width="1440" height="460" alt="")
     .b-predictions__content
       h2.title Прогнозы
       .b-predictions__subtext
         p.mobile Думаешь, шаришь в&nbsp;хоккее? Когда смотришь матчи, даешь тренерам и&nbsp;игрокам советы? Тогда докажи, что ты&nbsp;эксперт! Сделай 5&nbsp;прогнозов на&nbsp;ФОНБЕТ Матч Звезд КХЛ 2025. Выиграешь&nbsp;&mdash; получишь фрибет до&nbsp;50000&nbsp;₽!
         p.desktop Думаешь, шаришь в&nbsp;хоккее? Когда смотришь матчи, даешь тренерам и&nbsp;игрокам советы? Тогда докажи, что ты&nbsp;эксперт! #[br]#[br] Сделай 5&nbsp;прогнозов на&nbsp;ФОНБЕТ Матч Звезд КХЛ 2025. Выиграешь&nbsp;&mdash; получишь фрибет до 50000&nbsp;₽!
-      .b-predictions__btn
+      //- .b-predictions__btn
         +btn-default({ text: "Правила", className: "js-modal-rules-show" })
       .b-predictions__list
         each it in predictionsCards

@@ -1,12 +1,17 @@
 mixin b-week-star({ className, id })
   section.b-week-star(class=className id=id)
-    h2.b-week-star__title.title ФОНБЕТ Неделя&nbsp;Звезд Хоккея&nbsp;2025
-    p.b-week-star__text Кульминация хоккейного сезона&nbsp;&mdash; самое зрелищное событие, проводимое FONBET и&nbsp;КХЛ, с&nbsp;участием сильнейших хоккеистов лиги. В&nbsp;этом году она пройдет 1-9 февраля на&nbsp;&laquo;Сибирь-Арене&raquo; в&nbsp;Новосибирске. На&nbsp;лед выйдут все игроки топ-лиги,а возглавят четыре &laquo;команды мечты&raquo; лучшие тренеры.
-    .b-week-star__art
-      .b-week-star__img1
-        +picture({ image: "/img/week/week-img-1.jpg", w: 343, h: 256 })
-      .b-week-star__img2
-        +picture({ image: "/img/week/week-img-2.jpg", w: 250, h: 238 })
-      img(class="b-week-star__player" src="./img/week/hockey-player.svg" width="411" height="373")
-      img(class="b-week-star__cup" src="./img/week/cup.svg" width="215" height="224")
-      img(class="b-week-star__arrow" src="./img/magic-arrow.svg" width="86" height="191")
+    .b-week-star__backside
+      .b-week-star__star
+        img(class="mobile" src="./img/sky-stars-2.svg" width="411" height="373" alt="")
+        img(class="desktop" src="./img/sky-stars-desktop.svg" width="1313" height="216" alt="")
+    .b-week-star__content
+      h2.b-week-star__title.title ФОНБЕТ Неделя&nbsp;Звезд Хоккея&nbsp;2025
+      p.b-week-star__text Кульминация хоккейного сезона&nbsp;&mdash; самое зрелищное событие, проводимое FONBET и&nbsp;КХЛ, с&nbsp;участием сильнейших хоккеистов лиги. В&nbsp;этом году она пройдет 1-9 февраля на&nbsp;&laquo;Сибирь-Арене&raquo; в&nbsp;Новосибирске. На&nbsp;лед выйдут все игроки топ-лиги, а возглавят четыре &laquo;команды мечты&raquo; лучшие тренеры.
+      .b-week-star__art
+        .b-week-star__img1
+          +picture({ image: "/img/week/week-img-1.jpg", w: 343, h: 256 })
+        .b-week-star__img2
+          +picture({ image: "/img/week/week-img-2.jpg", w: 250, h: 238 })
+        img(class="b-week-star__player" src="./img/week/hockey-player.svg" width="411" height="373" alt="")
+        img(class="b-week-star__cup" src="./img/week/cup.svg" width="215" height="224" alt="")
+        img(class="b-week-star__arrow" src="./img/magic-arrow.svg" width="86" height="191" alt="")
