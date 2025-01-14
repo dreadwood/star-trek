@@ -7,12 +7,13 @@
     mediaQuery: window.matchMedia(window.jsUtils.BREAKPOINT_TABLET),
 
     init() {
-      this.ambassadors()
-      this.stars()
-      this.prizes()
+      this._ambassadors()
+      this._stars()
+      this._prizes()
+      this._changeAmbasador()
     },
 
-    ambassadors() {
+    _ambassadors() {
       // eslint-disable-next-line no-undef
       const swiper = new Swiper('.js-slider-ambassadors', {
         slidesPerView: 'auto',
@@ -23,24 +24,13 @@
         }
       })
 
-      /**
-       * @param {boolean} matches
-       */
-      function toogleSlider(matches) {
-        if (matches) {
-          swiper.disable()
-        } else {
-          swiper.enable()
-        }
-      }
-
       this.mediaQuery.addEventListener('change', (evt) =>
-        toogleSlider(evt.matches)
+        this._toggleSwiper(swiper, evt.matches)
       )
-      toogleSlider(this.mediaQuery.matches)
+      this._toggleSwiper(swiper, this.mediaQuery.matches)
     },
 
-    stars() {
+    _stars() {
       // eslint-disable-next-line no-undef
       new Swiper('.js-slider-stars', {
         slidesPerView: 'auto',
@@ -56,25 +46,9 @@
           }
         }
       })
-
-      // /**
-      //  * @param {boolean} matches
-      //  */
-      // function toogleSlider(matches) {
-      //   if (matches) {
-      //     swiper.disable()
-      //   } else {
-      //     swiper.enable()
-      //   }
-      // }
-
-      // this.mediaQuery.addEventListener('change', (evt) =>
-      //   toogleSlider(evt.matches)
-      // )
-      // toogleSlider(this.mediaQuery.matches)
     },
 
-    prizes() {
+    _prizes() {
       // eslint-disable-next-line no-undef
       new Swiper('.js-slider-prizes', {
         slidesPerView: 'auto',
@@ -84,6 +58,28 @@
           nextEl: '.js-slider-prizes-next'
         }
       })
+    },
+
+    _changeAmbasador() {
+      // eslint-disable-next-line no-undef
+      const swiper = new Swiper('.js-slider-change-ambasador', {
+        slidesPerView: 'auto',
+        grabCursor: true,
+        navigation: {
+          prevEl: '.js-slider-change-ambasador-prev',
+          nextEl: '.js-slider-change-ambasador-next'
+        }
+      })
+
+      this.mediaQuery.addEventListener('change', (evt) => {
+        this._toggleSwiper(swiper, evt.matches)
+      })
+      this._toggleSwiper(swiper, this.mediaQuery.matches)
+    },
+
+    _toggleSwiper(swiperInstance, matches) {
+      if (matches) swiperInstance.disable()
+      else swiperInstance.enable()
     }
   }
 })()

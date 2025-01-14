@@ -23,17 +23,26 @@
   &[disabled] {
     background-color: $color-gray-537;
   }
-  &.promo {
+  &.promo,
+  &.bingo {
     width: 100%;
     color: $color-black;
     background-color: $color-white;
+    &[disabled] {
+      color: transparentize($color-black, 0.5);
+    }
     &:not([disabled]):hover,
     &:not([disabled]):focus-visible {
       background-color: $color-gray-925;
     }
   }
+  &.set {
+    width: 100%;
+    padding: 19rem 34rem;
+  }
   @include desktop {
-    &.promo {
+    &.promo,
+    &.bingo {
       max-width: 100%;
     }
   }

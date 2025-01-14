@@ -1,7 +1,4 @@
 extends /elements/layout-page
-include /script/s-gtm-noscript
-include /script/s-yametrika-noscript
-include /script/s-pin
 include /components/block/b-hero
 include /components/block/b-stars
 include /components/block/b-prizes
@@ -9,8 +6,11 @@ include /components/block/b-ambassadors
 include /components/block/b-promo
 include /components/block/b-week-star
 include /components/block/b-predictions
+include /components/block/b-bingo
 include /components/block/b-footer
+include /components/modal/m-set
 include /components/modal/m-rules
+include /components/game/g-first
 
 
 block data
@@ -18,9 +18,7 @@ block data
   - logoLink = "https://fon.bet/"
 
 block libjs
-  +s-gtm-noscript({})
-  +s-yametrika-noscript({})
-  //- +s-pin({})
+  script(src="https://origin.bk6bba-resources.com/webStaticRed/promo/lands/scripts/marked.min.js")
 
 block content
   include /data/section-data
@@ -31,7 +29,13 @@ block content
   +b-promo({})
   +b-week-star({ id: sectionData.about.id })
   +b-predictions({})
+  +b-bingo({})
   +b-footer({ link: logoLink })
 
 block modal
-  //- +m-rules({ isShow: false })
+  //- game
+  //- +g-first({ isShow: true })
+
+  //- modal
+  +m-set({ isShow: true })
+  +m-rules({ isShow: false })

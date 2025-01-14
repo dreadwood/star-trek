@@ -19,6 +19,7 @@ import svgstore from 'gulp-svgstore'
 import sync from 'browser-sync'
 import { nanoid } from 'nanoid'
 import postcssUrl from 'postcss-url'
+import inject from 'gulp-inject'
 
 const baseUrl = '.'
 const pathCss = '..'
@@ -119,6 +120,21 @@ const sprite = () => {
     .pipe(gulp.dest('dist/img'))
 }
 
+const injectSprite = () => {
+  const spritePath = 'dist/img/sprite.svg'
+
+  return gulp
+    .src('dist/*.html')
+    .pipe(
+      inject(gulp.src(spritePath), {
+        transform: (filePath, file) => {
+          return file.contents.toString()
+        }
+      })
+    )
+    .pipe(gulp.dest('dist'))
+}
+
 const jsCommon = () => {
   return gulp
     .src('src/js/common/*.js')
@@ -184,8 +200,11 @@ const server = () => {
     ui: false
   })
 
-  gulp.watch('src/pug/**/*.{pug,js}', gulp.series(html, refresh))
-  gulp.watch('src/icons/**/*.svg', gulp.series(sprite, html, refresh))
+  gulp.watch('src/pug/**/*.{pug,js}', gulp.series(html, injectSprite, refresh))
+  gulp.watch(
+    'src/icons/**/*.svg',
+    gulp.series(sprite, html, injectSprite, refresh)
+  )
   gulp.watch('src/scss/**/*.scss', gulp.series(css))
   gulp.watch('src/js/**/*.js', gulp.series(jsVendor, jsCommon, refresh))
 }
@@ -200,7 +219,8 @@ export const build = gulp.series(
   // webp,
   // avif,
   sprite,
-  html
+  html,
+  injectSprite
 )
 
 export const dev = gulp.series(build, server)

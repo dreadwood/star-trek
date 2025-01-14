@@ -1,0 +1,196 @@
+.b-bingo {
+  padding: 50rem $padding;
+  font-family: $font-default;
+  font-size: 24rem;
+  line-height: 1.1;
+  font-weight: 500;
+  color: $color-white;
+  background-color: $color-white;
+  @include desktop {
+    padding: 70rem $padding-desktop;
+    font-size: 32rem;
+  }
+}
+.b-bingo__card {
+  position: relative;
+  height: 590rem;
+  overflow: hidden;
+  background-color: $color-carmine-red-2;
+  border-radius: 14rem;
+}
+.b-bingo__card-backside {
+  position: absolute;
+  inset: 0;
+}
+.b-bingo__letter {
+  position: absolute;
+  top: 180rem;
+  left: -105rem;
+  width: 694rem;
+  height: 692rem;
+  transform: rotate(25deg);
+  svg {
+    width: 100%;
+    height: 100%;
+    fill: $color-blue-degrees;
+  }
+  @include desktop {
+    top: 6rem;
+    left: 308rem;
+    width: 1210rem;
+    height: 1206rem;
+    transform: rotate(26deg);
+  }
+}
+.b-bingo__star {
+  position: absolute;
+  top: 173rem;
+  right: 13rem;
+  width: 102rem;
+  height: 72rem;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .desktop {
+    display: none;
+  }
+  @include desktop {
+    top: 48rem;
+    right: 93rem;
+    width: 730rem;
+    height: 302rem;
+    .mobile {
+      display: none;
+    }
+    .desktop {
+      display: block;
+    }
+  }
+}
+.b-bingo__chips {
+  position: absolute;
+  bottom: 134rem;
+  // right: 7rem;
+  left: 0;
+  width: 336rem;
+  height: 189rem;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .desktop {
+    display: none;
+  }
+  @include desktop {
+    right: 0;
+    bottom: 0;
+    left: auto;
+    width: 886rem;
+    height: 225rem;
+    .mobile {
+      display: none;
+    }
+    .desktop {
+      display: block;
+    }
+  }
+}
+.b-bingo__paper {
+  position: absolute;
+  bottom: 124rem;
+  left: 70rem;
+  width: 201rem;
+  height: 259rem;
+  transform: rotate(-14deg);
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .desktop {
+    display: none;
+  }
+  @include desktop {
+    inset: 91rem 182rem auto auto;
+    width: 464rem;
+    height: 600rem;
+    transform: rotate(-4deg);
+    .mobile {
+      display: none;
+    }
+    .desktop {
+      display: block;
+    }
+  }
+}
+.b-bingo__content {
+  position: relative;
+  height: 100%;
+  padding: 20rem;
+  @include desktop {
+    padding: 48rem 40rem 40rem 40rem;
+  }
+}
+.b-bingo__wrp {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  @include desktop {
+    width: 100%;
+    max-width: 530rem;
+  }
+}
+.b-bingo__title {
+  margin: 0;
+  font-size: 32rem;
+  line-height: 1.1;
+  font-weight: 700;
+  text-transform: uppercase;
+  @include desktop {
+    font-size: 70rem;
+    line-height: 1;
+  }
+}
+.b-bingo__text {
+  margin-top: 20rem;
+  margin-bottom: 0;
+  @include desktop {
+    margin-top: 30rem;
+  }
+}
+.b-bingo__bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20rem;
+  margin-top: auto;
+  @include desktop {
+    flex-direction: row;
+  }
+}
+.b-bingo__data {
+  display: flex;
+  align-items: center;
+  gap: 6rem;
+  font-size: 16rem;
+  line-height: 1.2;
+  font-weight: 500;
+  text-align: center;
+  letter-spacing: -0.02em;
+  svg {
+    flex-shrink: 0;
+    width: 10rem;
+    height: 13rem;
+    fill: currentcolor;
+  }
+}
+.b-bingo__btn {
+  width: 100%;
+  @include desktop {
+    order: -1;
+    width: 134rem;
+  }
+}

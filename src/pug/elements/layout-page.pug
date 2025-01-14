@@ -1,5 +1,9 @@
 include /elements/head
 include /elements/images
+include /elements/sprite
+include /script/s-gtm-noscript
+include /script/s-yametrika-noscript
+include /script/s-pin
 
 - let title = ""
 
@@ -9,7 +13,11 @@ doctype html
 html(lang="ru")
   +head({ title })
   body
+    +s-gtm-noscript({})
+    +s-yametrika-noscript({})
+    +s-pin({})
     block libjs
+    +sprite({})
     block content
     block modal
     include /elements/script

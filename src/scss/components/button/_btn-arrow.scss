@@ -21,4 +21,11 @@
     color: $color-white;
     background-color: $color-blue-degrees;
   }
+  &.set {
+    background-color: $color-blue-alice;
+    &:not([disabled]):hover,
+    &:not([disabled]):focus-visible {
+      background-color: $color-blue-degrees;
+    }
+  }
 }

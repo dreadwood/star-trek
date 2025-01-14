@@ -1,0 +1,337 @@
+.m-set {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: $font-default;
+  font-size: 16rem;
+  line-height: 1.2;
+  font-weight: 500;
+  text-align: center;
+  color: $color-gray-400;
+  letter-spacing: -0.02em;
+  background-color: $color-white;
+  @include desktop {
+    width: 860rem;
+    height: 510rem;
+    margin: auto;
+    border-radius: 14rem;
+  }
+}
+.m-set__close {
+  position: absolute;
+  top: 16rem;
+  right: 16rem;
+  z-index: 2;
+  @include desktop {
+    top: 10rem;
+    right: 10rem;
+  }
+}
+.m-set__backside {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.m-set__bg {
+  position: absolute;
+  bottom: -129rem;
+  left: 0;
+  width: 375rem;
+  height: 350rem;
+  opacity: 0.6;
+  svg {
+    width: 100%;
+    height: 100%;
+    fill: $color-gray-933;
+  }
+  .desktop {
+    display: none;
+  }
+  @include desktop {
+    bottom: -180rem;
+    left: -100rem;
+    width: 1100rem;
+    height: 460rem;
+    .mobile {
+      display: none;
+    }
+    .desktop {
+      display: block;
+    }
+  }
+}
+.m-set__train {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 375rem;
+  .desktop {
+    display: none;
+  }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center bottom;
+  }
+  @include desktop {
+    height: 241rem;
+    .mobile {
+      display: none;
+    }
+    .desktop {
+      display: block;
+    }
+  }
+}
+.m-set__screen {
+  position: relative;
+  height: 100%;
+}
+.m-set__form {
+  height: 100%;
+  padding: 120rem 16rem 70rem 16rem;
+  @include desktop {
+    width: 420rem;
+    margin: 0 auto;
+    padding: 160rem 40rem 60rem 40rem;
+  }
+}
+.m-set__list {
+  height: 100%;
+  padding: 120rem 16rem 70rem 16rem;
+  .m-set__subtitle {
+    width: 100%;
+    max-width: 290rem;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  @include desktop {
+    padding: 60rem 40rem 40rem 40rem;
+    .m-set__subtitle {
+      max-width: 400rem;
+    }
+    .m-set__btn {
+      width: max-content;
+      margin: 30rem auto 0 auto;
+    }
+  }
+}
+.m-set__person {
+  height: 100%;
+  padding: 120rem 16rem 70rem 16rem;
+  .m-set__title,
+  .m-set__subtitle {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .m-set__title {
+    max-width: 265rem;
+  }
+  .m-set__subtitle {
+    max-width: 265rem;
+  }
+  @include desktop {
+    padding: 60rem 40rem 30rem 40rem;
+    .m-set__title {
+      max-width: none;
+    }
+    .m-set__subtitle {
+      max-width: 330rem;
+    }
+    .m-set__btn {
+      width: max-content;
+      margin: 30rem auto 0 auto;
+    }
+  }
+}
+.m-set__finish {
+  position: relative;
+  height: 100%;
+  padding: 140rem 16rem 70rem 16rem;
+  .m-set__subtitle {
+    width: 100%;
+    max-width: 260rem;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  @include desktop {
+    padding: 60rem 40rem 30rem 40rem;
+    .m-set__subtitle {
+      max-width: none;
+    }
+    .m-set__btn {
+      width: max-content;
+      margin: 30rem auto 0 auto;
+    }
+  }
+}
+.m-set__step {
+  position: absolute;
+  top: 16rem;
+  left: 16rem;
+  font-size: 14rem;
+  line-height: 1.5;
+  font-weight: 400;
+  color: $color-gray-443;
+  @include desktop {
+    top: 25rem;
+    left: 30rem;
+  }
+}
+.m-set__title {
+  margin: 0;
+  font-family: $font-default;
+  font-size: 22rem;
+  line-height: 1.1;
+  font-weight: 500;
+  color: $color-fir-green;
+  @include desktop {
+    font-size: 28rem;
+  }
+}
+.m-set__subtitle {
+  margin-top: 20rem;
+  @include desktop {
+    margin-top: 16rem;
+  }
+}
+.m-set__field {
+  margin-top: 20rem;
+  @include desktop {
+    margin-top: 30rem;
+  }
+}
+.m-set__btn {
+  margin-top: 20rem;
+  @include desktop {
+    margin-top: 8rem;
+  }
+}
+.m-set__slider {
+  margin-top: 20rem;
+  @include desktop {
+    margin-top: 30rem;
+  }
+}
+.m-set__slider-card {
+  display: block;
+  width: 140rem;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  border: 0;
+  &:not(:last-child) {
+    margin-right: 20rem;
+  }
+  &:not(.actv):hover,
+  &:not(.actv):focus-visible {
+    .m-set__slider-card-img {
+      border-color: transparentize($color-blue-degrees, 0.5);
+    }
+  }
+  &.actv {
+    .m-set__slider-card-img {
+      border-color: $color-blue-degrees;
+    }
+  }
+}
+.m-set__slider-card-img {
+  @include transition(border);
+  position: relative;
+  width: 140rem;
+  height: 140rem;
+  overflow: hidden;
+  background-color: $color-gray-933;
+  border: 2rem solid transparent;
+  border-radius: 50%;
+  user-select: none;
+  pointer-events: none;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+.m-set__slider-card-name {
+  margin-top: 16rem;
+  font-size: 14rem;
+  line-height: 1.2;
+  font-weight: 500;
+  text-align: center;
+  color: $color-black;
+  letter-spacing: -0.02em;
+  @include desktop {
+    margin-top: 15rem;
+  }
+}
+.m-set__slider-card-spec {
+  margin-top: 6rem;
+  font-size: 12rem;
+  line-height: 1.2;
+  font-weight: 400;
+  text-align: center;
+  color: $color-gray-537;
+  @include desktop {
+    margin-top: 4rem;
+  }
+}
+.m-set__slider-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6rem;
+  margin-top: 20rem;
+  @include desktop {
+    display: none;
+  }
+}
+.m-set__ambasador {
+  width: 206rem;
+  height: 206rem;
+  margin-top: 20rem;
+  margin-right: auto;
+  margin-left: auto;
+  overflow: hidden;
+  background-color: $color-gray-933;
+  border-radius: 50%;
+  user-select: none;
+  pointer-events: none;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+  @include desktop {
+    margin-top: 30rem;
+  }
+}
+
+// .m-set__finish-bg {
+//   position: absolute;
+//   bottom: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 375rem;
+//   .desktop {
+//     display: none;
+//   }
+//   img {
+//     width: 100%;
+//     height: 100%;
+//     object-fit: contain;
+//     object-position: center bottom;
+//   }
+//   @include desktop {
+//     height: 241rem;
+//     .mobile {
+//       display: none;
+//     }
+//     .desktop {
+//       display: block;
+//     }
+//   }
+// }

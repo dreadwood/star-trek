@@ -1,0 +1,98 @@
+include /components/button/btn-close
+include /components/button/btn-default
+include /components/button/btn-arrow
+include /components/form/f-field
+
+mixin m-set-screen-1({ isHidden, className })
+  .m-set__screen.js-set-screen-1(class=className hidden=isHidden)
+    .m-set__form
+      .m-set__step Этап 1
+      .m-set__title Откуда ты?
+      .m-set__subtitle Займи свое место или зарегистрируйся
+      .m-set__field
+        +f-field({ placeholder: "Выберите город" })
+      .m-set__btn
+        +btn-default({ text: "Далее", className: "set" })
+
+mixin m-set-screen-2({ isHidden, className })
+  -
+    let personData = [
+      {
+        name: "Александр Овечкин",
+        spec: "звезда хоккея",
+        img: "/img/person/ovechkin-circle.png"
+      },
+      {
+        name: "Евгения Медведева",
+        spec: "звезда фигурного катания",
+        img: "/img/person/medvedeva-circle.png"
+      },
+      {
+        name: "Корней из Hockey Brothers",
+        spec: "звезда медиахоккея",
+        img: "/img/person/korney-circle.png"
+      },
+      {
+        name: "Эд из 2DROTS",
+        spec: "звезда медиафутбола",
+        img: "/img/person/ed-circle.png"
+      },
+      {
+        name: "Игорь Акинфеев",
+        spec: "звезда футбола",
+        img: "/img/person/akinfeev-circle.png"
+      },
+    ]
+  .m-set__screen.js-set-screen-2(class=className hidden=isHidden)
+    .m-set__list
+      .m-set__step Этап 2
+      .m-set__title С&nbsp;кем ты&nbsp;поедешь?
+      .m-set__subtitle Выбери, с&nbsp;кем из&nbsp;наших амбассадоров ты&nbsp;поедешь на&nbsp;ФОНБЕТ Неделю Звезд Хоккея
+      .m-set__slider.js-slider-change-ambasador
+        .m-set__slider-wrp.swiper-wrapper
+          each it in personData
+            button.m-set__slider-card.swiper-slide
+              .m-set__slider-card-img
+                +picture({ image: it.img, w: 140, h: 140 })
+              .m-set__slider-card-name=it.name
+              .m-set__slider-card-spec=it.spec
+        .m-set__slider-nav
+          +btn-arrow({ isPrev: true, className: "set js-slider-change-ambasador-prev" })
+          +btn-arrow({ className: "set js-slider-change-ambasador-next" })
+      .m-set__btn
+        +btn-default({ text: "Далее", className: "set" })
+
+mixin m-set-screen-3({ isHidden, className })
+  .m-set__screen.js-set-screen-3(class=className hidden=isHidden)
+    .m-set__person
+      .m-set__title Привет! Круто, что ты&nbsp;выбрал меня
+      .m-set__subtitle Давай вместе играть в&nbsp;игры и&nbsp;выигрывать крутые призы
+      .m-set__ambasador
+        img(src="./img/person/ovechkin-circle.png" width="206" height="206" alt="")
+      .m-set__btn
+        +btn-default({ text: "Круто!", className: "set" })
+
+mixin m-set-screen-4({ isHidden, className })
+  .m-set__screen.js-set-screen-4(class=className hidden=isHidden)
+    .m-set__finish
+      .m-set__title В путь!
+      .m-set__subtitle Хорошего путешествия по&nbsp;&laquo;Звездному пути&raquo;
+      .m-set__btn
+        +btn-default({ text: "Перейти к игре", className: "set" })
+
+mixin m-set({ isShow, className })
+  .overlay.js-modal-set(class=isShow && "show" class=className)
+    .m-set.js-set
+      .m-set__close
+        +btn-close({ isHidden: true, className: "js-m-close" })
+      .m-set__backside
+        .m-set__bg
+          +svg({ name: "mountains", w: 375, h: 350, className: "mobile" })
+          +svg({ name: "mountains-desktop", w: 1440, h: 460, className: "desktop" })
+        .m-set__train(hidden)
+          img(class="mobile" src="./img/set/train.svg" width="375" height="245" alt="")
+          img(class="desktop" src="./img/set/train-desktop.svg" width="375" height="245" alt="")
+      +m-set-screen-1({ isHidden: false })
+      +m-set-screen-2({ isHidden: true })
+      +m-set-screen-3({ isHidden: true })
+      +m-set-screen-4({ isHidden: true })

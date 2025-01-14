@@ -1,0 +1,43 @@
+.f-field {
+  @include transition(border-color);
+  width: 100%;
+  padding: 18rem 25rem;
+  font-family: $font-default;
+  font-size: 16rem;
+  line-height: 18rem;
+  font-weight: 500;
+  color: $color-black;
+  background-color: $color-white;
+  border: 1rem solid $color-gray-875;
+  border-radius: 6rem;
+  outline: none;
+  appearance: none;
+  &:not([disabled]):hover,
+  &:not([disabled]):focus {
+    border-color: $color-gray-537;
+  }
+  &::placeholder {
+    color: $color-gray-537;
+  }
+  &::-webkit-search-cancel-button {
+    display: none;
+  }
+  &[type="number"]::-webkit-outer-spin-button, // webkit
+  &[type="number"]::-webkit-inner-spin-button {
+    margin: 0;
+    appearance: none;
+  }
+  &[type="number"] {
+    // firefox
+    appearance: textfield;
+  }
+  &::-webkit-credentials-auto-fill-button {
+    // for hidden key icon in safari
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+}

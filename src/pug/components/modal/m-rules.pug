@@ -1,11 +1,18 @@
+include /components/button/btn-close
+
 mixin m-rules({ isShow, className })
   .overlay.js-modal-rules(class=isShow && "show" class=className)
     .m-rules
-      button.m-rules__close.js-m-close
+      .m-rules__close
+        +btn-close({ className: "js-m-close" })
+      //- button.m-rules__close.js-m-close
       .m-rules__backside
         .m-rules__bg
           +svg({ name: "mountains", w: 375, h: 350, className: "mobile" })
           +svg({ name: "mountains-desktop", w: 1440, h: 460, className: "desktop" })
       .m-rules__content
-        h2.m-rules__title Правила акции
-        p.m-rules__text Настоящие правила (далее – «Правила») регламентируют порядок проведения мероприятия «Неделя звезд хоккея» (далее – «Мероприятие»), направленного на привлечение внимания новых клиентов к деятельности организатора Мероприятия и на увеличение активности таких клиентов в приобретении услуг организатора Мероприятия, проводимого в рамках Программы лояльности “Фрибет до 15 000 без депозита новым клиентам” (далее – «Программа лояльности»).
+        .m-rules__markdown.markdown(
+          data-alias='fasw25'
+          data-alias-mob='fasw25'
+          data-locale='ru'
+        )

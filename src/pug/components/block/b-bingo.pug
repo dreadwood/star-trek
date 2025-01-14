@@ -1,0 +1,30 @@
+mixin b-bingo({ className })
+  section.b-bingo(class=className)
+    .b-bingo__card
+      .b-bingo__card-backside
+        .b-bingo__letter
+          +svg({ name: "letter-f", w: 284, h: 283 })
+        .b-bingo__star
+          img(class="mobile" src="./img/bingo/bingo-start.svg" width="102" height="72" alt="")
+          img(class="desktop" src="./img/bingo/bingo-start-desktop.svg" width="730" height="302" alt="")
+        .b-bingo__chips
+          +picture({ image: "/img/bingo/chips.png", w: 336, h: 189, className: "mobile" })
+          +picture({ image: "/img/bingo/chips-desktop.png", w: 886, h: 225, className: "desktop" })
+        .b-bingo__paper
+          +picture({ image: "/img/bingo/card@2x.png", w: 201, h: 259, className: "mobile" })
+          +picture({ image: "/img/bingo/card-desktop@2x.png", w: 464, h: 600, className: "desktop" })
+      .b-bingo__content
+        .b-bingo__wrp
+          h2.b-bingo__title Бинго!
+          p.b-bingo__text Угадай, что произойдет на&nbsp;ФОНБЕТ Матче Звезд КХЛ 2025 и&nbsp;получи шанс выиграть приз!
+          .b-bingo__bottom
+            .b-bingo__data
+              +svg({ name: "lock", w: 10, h: 13 })
+              span Откроется 30 января
+            .b-bingo__btn
+              +btn-default({
+                text: "Играть",
+                isDisabled: true,
+                className: "promo"
+              })
+

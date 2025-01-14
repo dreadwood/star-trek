@@ -5,26 +5,22 @@ include /script/s-yametrika
 
 mixin head({ title })
   head
-    meta(name="robots" content="noindex, nofollow")
     meta(charset="utf-8")
     meta(name="viewport" content="width=device-width, initial-scale=1")
-    //- meta(name="gtm_name" content="")
-    //- meta(name="cdn" content="./")
+    meta(name="gtm_name" content="fasw25")
 
     title=title
 
     +favicon({})
     //- +open-graph({})
 
-    link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css")
-    script(src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js")
+    //- link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css")
+    //- script(src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js")
 
     link(rel="stylesheet" href=`${baseUrl}/css/style.css?v=${searchId}`)
 
-    script.
-      window.lang = 'ru';
-      window.alias = 'fasw2025';
-
     +s-gtm({})
     +s-yametrika({})
+
+    //- UTM
     script(src="https://origin.bk6bba-resources.com/webStaticRed/promo/lands/scripts/utm.js")

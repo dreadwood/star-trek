@@ -1,0 +1,20 @@
+include /components/button/btn-default
+
+mixin g-first-msg({ isShow, className })
+  .g-msg(class=isShow && "show" class=className)
+    .g-msg__backside
+    .g-msg__content
+      .g-msg__wrp
+        h2.g-msg__title Начало пути
+        p.g-msg__text Ну&nbsp;что, ты&nbsp;выбрал, с&nbsp;кем отправишься на&nbsp;ФОНБЕТ Неделю Звезд Хоккея. Теперь пора выяснить, как хорошо ты&nbsp;знаешь своего попутчика!
+        p.g-msg__text За&nbsp;каждый правильный ответ ты&nbsp;получишь 100&nbsp;звезд, время ограничено. В&nbsp;путь!
+        .g-msg__btn
+          +btn-default({ text: "Начать игру" })
+      p.g-msg__ribbon Транссиб&nbsp;&mdash; это не&nbsp;шутка: впереди долгая дорога и&nbsp;4&nbsp;станции. Хорошо, что вместе с&nbsp;тобой на&nbsp;ФОНБЕТ Неделю Звезд Хоккея в&nbsp;Новосибирск еду&nbsp;я!
+
+mixin g-first({ isShow, className })
+  .overlay(class=isShow && "show" class=className)
+    .g-layout
+      .g-layout__close
+        +btn-close({ className: "js-m-close" })
+      +g-first-msg({})
