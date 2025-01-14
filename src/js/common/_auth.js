@@ -54,6 +54,7 @@
       const testBlock = document.querySelector('.js-test')
       const ambasadorTestList = document.querySelectorAll('.js-test-ambasador')
       const ambasadorMsgList = document.querySelectorAll('.js-msg-ambasador')
+      const ambasadorQuizList = document.querySelectorAll('.js-quiz-ambasador')
 
       // idText.textContent = `****${userInfo.pin.slice(-4)}`
       idText.textContent = userInfo.pin
@@ -68,8 +69,9 @@
       const existMsgAmbasador = [...ambasadorMsgList].some(
         (it) => it.dataset.person === userInfo.ambasador
       )
-
-      console.log(existMsgAmbasador)
+      const existQuizAmbasador = [...ambasadorQuizList].some(
+        (it) => it.dataset.person === userInfo.ambasador
+      )
 
       if (existTestAmbasador) {
         ambasadorTestList.forEach((it) => {
@@ -83,6 +85,16 @@
 
       if (existMsgAmbasador) {
         ambasadorMsgList.forEach((it) => {
+          if (it.dataset.person === userInfo.ambasador) {
+            window.jsUtils.showEl(it)
+          } else {
+            window.jsUtils.hideEl(it)
+          }
+        })
+      }
+
+      if (existQuizAmbasador) {
+        ambasadorQuizList.forEach((it) => {
           if (it.dataset.person === userInfo.ambasador) {
             window.jsUtils.showEl(it)
           } else {

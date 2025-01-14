@@ -1,0 +1,300 @@
+.g-quiz {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: $font-default;
+  background-color: $color-gray-961;
+}
+.g-quiz__content {
+  padding: 60rem 16rem 20rem 16rem;
+  @include desktop {
+    padding: 80rem 40rem 40rem 40rem;
+  }
+}
+.g-quiz__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 26rem 24rem;
+  font-size: 16rem;
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  background-color: $color-white;
+  border-radius: 10rem;
+  @include desktop {
+    padding: 16rem 24rem;
+    & > * {
+      width: 30%;
+    }
+  }
+}
+.g-quiz__step {
+  color: $color-gray-537;
+  opacity: 0.8;
+}
+.g-quiz__time {
+  color: $color-black;
+  @include desktop {
+    text-align: center;
+  }
+}
+.g-quiz__btn-next-top {
+  display: none;
+  @include desktop {
+    @include transition(color);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12rem;
+    margin: 0;
+    padding: 0;
+    font-family: $font-default;
+    font-size: 16rem;
+    line-height: 1.2;
+    font-weight: 500;
+    color: $color-black;
+    letter-spacing: -0.02em;
+    background-color: transparent;
+    border: 0;
+    &[disabled] {
+      opacity: 0;
+    }
+    &:not([disabled]):hover,
+    &:not([disabled]):focus-visible {
+      color: $color-cobalt-blue;
+    }
+  }
+}
+.g-quiz__btn-next-top-icon {
+  @include desktop {
+    display: grid;
+    flex-shrink: 0;
+    place-items: center;
+    width: 40rem;
+    height: 40rem;
+    background-color: $color-gray-961;
+    border-radius: 50%;
+    svg {
+      width: 16rem;
+      height: 16rem;
+      stroke: $color-black;
+    }
+  }
+}
+.g-quiz__wrp {
+  @include desktop {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    margin-top: 40rem;
+  }
+}
+.g-quiz__question {
+  position: relative;
+  margin-top: 30rem;
+  @include desktop {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0;
+  }
+}
+.g-quiz__question-stars {
+  position: absolute;
+  top: 67rem;
+  left: 55rem;
+  width: 232rem;
+  height: 109rem;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .desktop {
+    display: none;
+  }
+  @include desktop {
+    top: 138rem;
+    left: 225rem;
+    width: 233rem;
+    height: 133rem;
+    .mobile {
+      display: none;
+    }
+    .desktop {
+      display: block;
+    }
+  }
+}
+.g-quiz__question-img {
+  position: relative;
+  top: 0;
+  left: calc(50% - 5rem);
+  width: 100rem;
+  height: 100rem;
+  margin-top: 23rem;
+  overflow: hidden;
+  background-color: $color-salmon-crayola;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  @include desktop {
+    position: static;
+    left: auto;
+    width: 160rem;
+    height: 160rem;
+    margin-top: auto;
+    transform: none;
+  }
+}
+.g-quiz__question-person {
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+.g-quiz__question-text {
+  font-size: 24rem;
+  line-height: 1.1;
+  font-weight: 500;
+  text-align: center;
+  color: $color-black;
+  @include desktop {
+    width: 100%;
+    max-width: 420rem;
+    font-size: 32rem;
+    text-align: left;
+  }
+}
+.g-quiz__control {
+  margin-top: 30rem;
+  @include desktop {
+    width: 100%;
+    max-width: 496rem;
+    margin-top: 0;
+  }
+}
+.g-quiz__control-text {
+  font-size: 18rem;
+  line-height: 1.1;
+  font-weight: 500;
+  color: $color-black;
+}
+.g-quiz__list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10rem;
+  margin-top: 20rem;
+}
+.g-quiz__answer {
+  @include transition(background-color, color);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 114rem;
+  margin: 0;
+  padding: 15rem;
+  background-color: $color-white;
+  border: 0;
+  border-radius: 10rem;
+  &:not(.actv):hover,
+  &:not(.actv):focus-visible {
+    background-color: transparentize($color-blue-degrees, 0.9);
+  }
+  &.actv {
+    background-color: $color-blue-degrees;
+    .g-quiz__answer-num {
+      color: transparentize($color-white, 0.2);
+    }
+    .g-quiz__answer-text {
+      color: $color-white;
+    }
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    top: 15rem;
+    right: 15rem;
+    display: block;
+    width: 22rem;
+    height: 22rem;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+  &.correct {
+    &::after {
+      background-image: url('data:image/svg+xml,<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="22" height="22" rx="11" fill="white"/><path d="M6 10.25L10.0741 14L16 8" stroke="%230756E4" stroke-width="2" stroke-linecap="round"/></svg>');
+    }
+  }
+  &.error {
+    &::after {
+      background-image: url('data:image/svg+xml,<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="22" height="22" rx="11" fill="white"/><path d="M14 8L8 14" stroke="%23E80024" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 8L14 14" stroke="%23E80024" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+    }
+  }
+  @include desktop {
+    height: 129rem;
+    padding: 15rem 20rem;
+    &::after {
+      top: 14rem;
+      right: 20rem;
+      width: 30rem;
+      height: 30rem;
+    }
+  }
+}
+.g-quiz__answer-num {
+  font-size: 14rem;
+  line-height: 110%;
+  font-weight: 400;
+  color: transparentize($color-black, 0.4);
+}
+.g-quiz__answer-text {
+  margin-top: auto;
+  font-size: 16rem;
+  line-height: 1.2;
+  font-weight: 500;
+  color: $color-black;
+  letter-spacing: -0.02em;
+  @include desktop {
+    font-size: 18rem;
+  }
+}
+.g-quiz__btn-next {
+  @include transition(background-color, color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+  margin-top: 11rem;
+  padding: 9rem 12rem;
+  font-size: 16rem;
+  line-height: 1.2;
+  color: $color-white;
+  background-color: $color-carmine-red-2;
+  border: 0;
+  border-radius: 10rem;
+  &:not([disabled]):hover,
+  &:not([disabled]):focus-visible {
+    background-color: $color-ruby-red;
+  }
+  @include desktop {
+    display: none;
+  }
+}
+.g-quiz__btn-next-icon {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 40rem;
+  height: 40rem;
+  background-color: $color-white;
+  border-radius: 50%;
+  svg {
+    width: 16rem;
+    height: 16rem;
+    stroke: $color-carmine-red-2;
+  }
+}
