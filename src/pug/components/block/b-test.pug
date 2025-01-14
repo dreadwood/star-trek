@@ -1,0 +1,24 @@
+include /components/button/btn-default
+
+mixin b-test({ isHidden, className, id })
+  section.b-test.js-test(class=className id=id hidden=isHidden)
+    .b-test__card
+      .b-test__card-backside
+        .b-test__bg.js-test-ambasador(data-person="ovechkin")
+          +picture({ image: "/img/test/test-ovechkin.jpg", w: 343, h: 545, className: "mobile" })
+          +picture({ image: "/img/test/test-ovechkin-desktop.jpg", w: 1368, h: 590, className: "desktop" })
+        .b-test__bg.js-test-ambasador(data-person="medvedeva" hidden)
+          +picture({ image: "/img/test/test-medvedeva.jpg", w: 343, h: 545, className: "mobile" })
+          +picture({ image: "/img/test/test-medvedeva-desktop.jpg", w: 1368, h: 590, className: "desktop" })
+        .b-test__bg.js-test-ambasador(data-person="korney" hidden)
+          +picture({ image: "/img/test/test-korney.jpg", w: 343, h: 545, className: "mobile" })
+          +picture({ image: "/img/test/test-korney-desktop.jpg", w: 1368, h: 590, className: "desktop" })
+        .b-test__bg.js-test-ambasador(data-person="ed" hidden)
+          +picture({ image: "/img/test/test-ed.jpg", w: 343, h: 545, className: "mobile" })
+          +picture({ image: "/img/test/test-ed-desktop.jpg", w: 1368, h: 590, className: "desktop" })
+        .b-test__bg.js-test-ambasador(data-person="akinfeev" hidden)
+          +picture({ image: "/img/test/test-akinfeev.jpg", w: 343, h: 545, className: "mobile" })
+          +picture({ image: "/img/test/test-akinfeev-desktop.jpg", w: 1368, h: 590, className: "desktop" })
+      .b-test__content
+        .b-test__btn
+          +btn-default({ text: "Начать играть", className: "test js-game-1-start" })

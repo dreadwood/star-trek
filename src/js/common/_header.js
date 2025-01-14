@@ -15,7 +15,7 @@
 
       burger.addEventListener('click', () => {
         if (this.isShow) {
-          this._closeModal()
+          this.closeModal()
         } else {
           this._openModal()
         }
@@ -23,22 +23,22 @@
 
       dialog.addEventListener('click', (evt) => {
         if (evt.target !== dialog) return
-        this._closeModal()
+        this.closeModal()
       })
 
       links.forEach((link) =>
-        link.addEventListener('click', () => this._closeModal())
+        link.addEventListener('click', () => this.closeModal())
       )
 
       document.addEventListener('keydown', (evt) => {
         if (evt.key === 'Escape') {
-          this._closeModal()
+          this.closeModal()
         }
       })
 
       this.mediaQuery.addEventListener('change', (evt) => {
         if (!evt.matches) return
-        this._closeModal()
+        this.closeModal()
       })
     },
 
@@ -49,7 +49,7 @@
       this.isShow = true
     },
 
-    _closeModal() {
+    closeModal() {
       document.documentElement.classList.remove('scroll-lock')
       this.header.classList.remove('show')
 

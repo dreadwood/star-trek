@@ -1,0 +1,20 @@
+include /components/button/btn-close
+
+mixin m-auth({ isShow, className })
+  - let linkLogin = "https://fon.bet/authProcess/login/"
+  .overlay.js-modal-reg(class=isShow && "show" class=className)
+    .m-auth(class=className)
+      .m-auth__close.js-modal-reg-close
+        +btn-close({ className: "js-auth-close" })
+      .m-auth__text.sup Для участия в&nbsp;акции войди в&nbsp;свой аккаунт
+      a.m-auth__login(href=linkLogin target="_blank") Войти с FONBET
+      .m-auth__text.sub Или зарегистрируйся
+      .m-auth__container(
+        id="registrationContainer"
+        data-auto-login="1"
+        data-hidden-promo-id="true"
+        data-promo-id=""
+        data-ignore-label="true"
+        data-locale="ru"
+        data-layout="4"
+      )

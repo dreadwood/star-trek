@@ -8,6 +8,14 @@ mixin b-header({ isShow, link, className })
           include /data/section-data
           each it, key in sectionData
             a.b-header__link(href=it.link)=it.name
-        .b-header__btn Открытие регистрации: 16.01.25
+        //- .b-header__btn Открытие регистрации: 16.01.25
+        .b-header__bottom
+          .b-header__score.js-header-score-wrp(hidden)
+            +svg({ name: "star", w: 24, h: 24 })
+            span.js-header-score-text
+          .b-header__id.js-header-id-wrp(hidden)
+            +svg({ name: "user", w: 24, h: 24 })
+            span.js-header-id-text
+          button.b-header__btn-login.js-modal-reg-show.js-header-login Войти
     button.b-header__burger.js-header-burger(aria-label="Открыть меню")
       span

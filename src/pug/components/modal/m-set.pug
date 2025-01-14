@@ -10,37 +10,47 @@ mixin m-set-screen-1({ isHidden, className })
       .m-set__title Откуда ты?
       .m-set__subtitle Займи свое место или зарегистрируйся
       .m-set__field
-        +f-field({ placeholder: "Выберите город" })
+        +f-field({ placeholder: "Выберите город", className: "js-set-field" })
       .m-set__btn
-        +btn-default({ text: "Далее", className: "set" })
+        +btn-default({ text: "Далее", isDisabled: true, className: "set js-set-btn-city" })
 
 mixin m-set-screen-2({ isHidden, className })
   -
     let personData = [
       {
         name: "Александр Овечкин",
+        id: "ovechkin",
         spec: "звезда хоккея",
-        img: "/img/person/ovechkin-circle.png"
+        img: "/img/person/ovechkin-circle.png",
+        webp: "/img/person/ovechkin-circle.webp"
       },
       {
         name: "Евгения Медведева",
+        id: "medvedeva",
         spec: "звезда фигурного катания",
-        img: "/img/person/medvedeva-circle.png"
+        img: "/img/person/medvedeva-circle.png",
+        webp: "/img/person/medvedeva-circle.webp"
       },
       {
         name: "Корней из Hockey Brothers",
+        id: "korney",
         spec: "звезда медиахоккея",
-        img: "/img/person/korney-circle.png"
+        img: "/img/person/korney-circle.png",
+        webp: "/img/person/korney-circle.webp"
       },
       {
         name: "Эд из 2DROTS",
+        id: "ed",
         spec: "звезда медиафутбола",
-        img: "/img/person/ed-circle.png"
+        img: "/img/person/ed-circle.png",
+        webp: "/img/person/ed-circle.webp"
       },
       {
         name: "Игорь Акинфеев",
+        id: "akinfeev",
         spec: "звезда футбола",
-        img: "/img/person/akinfeev-circle.png"
+        img: "/img/person/akinfeev-circle.png",
+        webp: "/img/person/akinfeev-circle.webp"
       },
     ]
   .m-set__screen.js-set-screen-2(class=className hidden=isHidden)
@@ -51,7 +61,10 @@ mixin m-set-screen-2({ isHidden, className })
       .m-set__slider.js-slider-change-ambasador
         .m-set__slider-wrp.swiper-wrapper
           each it in personData
-            button.m-set__slider-card.swiper-slide
+            button.m-set__slider-card.swiper-slide.js-set-ambasador(
+              data-id=it.id
+              data-img=it.webp
+            )
               .m-set__slider-card-img
                 +picture({ image: it.img, w: 140, h: 140 })
               .m-set__slider-card-name=it.name
@@ -60,7 +73,7 @@ mixin m-set-screen-2({ isHidden, className })
           +btn-arrow({ isPrev: true, className: "set js-slider-change-ambasador-prev" })
           +btn-arrow({ className: "set js-slider-change-ambasador-next" })
       .m-set__btn
-        +btn-default({ text: "Далее", className: "set" })
+        +btn-default({ text: "Далее", isDisabled: true, className: "set js-set-btn-ambasador" })
 
 mixin m-set-screen-3({ isHidden, className })
   .m-set__screen.js-set-screen-3(class=className hidden=isHidden)
@@ -68,9 +81,9 @@ mixin m-set-screen-3({ isHidden, className })
       .m-set__title Привет! Круто, что ты&nbsp;выбрал меня
       .m-set__subtitle Давай вместе играть в&nbsp;игры и&nbsp;выигрывать крутые призы
       .m-set__ambasador
-        img(src="./img/person/ovechkin-circle.png" width="206" height="206" alt="")
+        img.js-set-person(src="" width="206" height="206" alt="")
       .m-set__btn
-        +btn-default({ text: "Круто!", className: "set" })
+        +btn-default({ text: "Круто!", className: "set js-set-btn-finish" })
 
 mixin m-set-screen-4({ isHidden, className })
   .m-set__screen.js-set-screen-4(class=className hidden=isHidden)
@@ -78,18 +91,18 @@ mixin m-set-screen-4({ isHidden, className })
       .m-set__title В путь!
       .m-set__subtitle Хорошего путешествия по&nbsp;&laquo;Звездному пути&raquo;
       .m-set__btn
-        +btn-default({ text: "Перейти к игре", className: "set" })
+        +btn-default({ text: "Перейти к игре", className: "set js-set-close" })
 
 mixin m-set({ isShow, className })
   .overlay.js-modal-set(class=isShow && "show" class=className)
     .m-set.js-set
       .m-set__close
-        +btn-close({ isHidden: true, className: "js-m-close" })
-      .m-set__backside
+        +btn-close({ isHidden: true, className: "js-set-close" })
+      .m-set__backside.js-set-bg
         .m-set__bg
           +svg({ name: "mountains", w: 375, h: 350, className: "mobile" })
           +svg({ name: "mountains-desktop", w: 1440, h: 460, className: "desktop" })
-        .m-set__train(hidden)
+        .m-set__train
           img(class="mobile" src="./img/set/train.svg" width="375" height="245" alt="")
           img(class="desktop" src="./img/set/train-desktop.svg" width="375" height="245" alt="")
       +m-set-screen-1({ isHidden: false })

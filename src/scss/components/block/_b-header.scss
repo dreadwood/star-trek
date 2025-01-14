@@ -149,6 +149,39 @@
     letter-spacing: -0.02em;
   }
 }
+.b-header__bottom {
+  display: flex;
+  align-items: center;
+  gap: 6rem;
+  margin-top: 44rem;
+  @include desktop {
+    gap: 10rem;
+    margin-top: 0;
+  }
+}
+.b-header__btn-login {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 15rem 38rem;
+  font-size: 16rem;
+  line-height: 1.2;
+  font-weight: 500;
+  text-align: center;
+  color: $color-white;
+  background-color: $color-carmine-red-2;
+  border: 0;
+  border-radius: 10rem;
+  @include desktop {
+    width: max-content;
+    padding: 15rem 20rem;
+    font-size: 14rem;
+    text-align: left;
+    color: $color-black;
+    letter-spacing: -0.02em;
+    background-color: $color-white;
+  }
+}
 .b-header__burger {
   @include transition(background-color, color);
   position: relative;
@@ -203,15 +236,62 @@
     display: none;
   }
 }
-
-// @keyframes burger-cross-open {
-//   0% {
-//     //
-//   }
-//   40% {
-//     top: 50%;
-//   }
-//   100% {
-//     rotate: 45deg;
-//   }
-// }
+.b-header__id {
+  display: flex;
+  align-items: center;
+  gap: 10rem;
+  width: 100%;
+  padding: 10rem 18rem;
+  font-size: 14rem;
+  line-height: 1.2;
+  font-weight: 500;
+  color: $color-white;
+  background-color: $color-blue-degrees;
+  border-radius: 10rem;
+  svg {
+    flex-shrink: 0;
+    width: 24rem;
+    height: 24rem;
+    stroke: currentcolor;
+  }
+  @include desktop {
+    gap: 6rem;
+    width: max-content;
+    color: $color-blue-degrees;
+    background-color: $color-white;
+    svg {
+      width: 20rem;
+      height: 20rem;
+    }
+  }
+}
+.b-header__score {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10rem;
+  width: 100%;
+  padding: 10rem 18rem;
+  font-size: 14rem;
+  line-height: 1.2;
+  font-weight: 500;
+  color: $color-white;
+  background-color: $color-gray-537;
+  border-radius: 10rem;
+  svg {
+    flex-shrink: 0;
+    width: 24rem;
+    height: 24rem;
+    fill: transparentize($color-white, 0.4);
+  }
+  @include desktop {
+    gap: 6rem;
+    width: max-content;
+    min-width: 100rem;
+    background-color: transparentize($color-white, 0.8);
+    svg {
+      width: 20rem;
+      height: 20rem;
+    }
+  }
+}

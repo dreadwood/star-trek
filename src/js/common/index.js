@@ -1,10 +1,10 @@
 /**
  * index.js
  */
-;(() => {
-  // window.jsPin.init()
-  // window.jsAuth.init()
+;(async () => {
+  window.jsPin.init()
   window.jsHeader.init()
   window.jsSlider.init()
   window.jsDialog.init()
+  await window.jsAuth.init()
 })()

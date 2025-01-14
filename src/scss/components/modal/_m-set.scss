@@ -34,6 +34,14 @@
   left: 0;
   width: 100%;
   height: 100%;
+  &.last-screen {
+    .m-set__bg {
+      display: none;
+    }
+    .m-set__train {
+      display: block;
+    }
+  }
 }
 .m-set__bg {
   position: absolute;
@@ -67,6 +75,7 @@
   position: absolute;
   bottom: 0;
   left: 0;
+  display: none;
   width: 100%;
   height: 375rem;
   .desktop {
@@ -220,6 +229,7 @@
   }
 }
 .m-set__slider-card {
+  position: relative;
   display: block;
   width: 140rem;
   margin: 0;
@@ -235,14 +245,47 @@
       border-color: transparentize($color-blue-degrees, 0.5);
     }
   }
+  &::before {
+    @include transition(opacity);
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 18rem;
+    z-index: 1;
+    width: 22rem;
+    height: 22rem;
+    background-color: $color-blue-degrees;
+    border-radius: 50%;
+    opacity: 0;
+  }
+  &::after {
+    @include transition(opacity);
+    content: "";
+    position: absolute;
+    top: 9rem;
+    right: 20rem;
+    z-index: 1;
+    width: 10rem;
+    height: 6rem;
+    border-bottom: 2rem solid $color-white;
+    border-left: 2rem solid $color-white;
+    transform: rotate(-45deg);
+    transform-origin: left bottom;
+    opacity: 0;
+  }
   &.actv {
     .m-set__slider-card-img {
       border-color: $color-blue-degrees;
+      opacity: 0.5;
+    }
+    &::before,
+    &::after {
+      opacity: 1;
     }
   }
 }
 .m-set__slider-card-img {
-  @include transition(border);
+  @include transition(border, opacity);
   position: relative;
   width: 140rem;
   height: 140rem;
