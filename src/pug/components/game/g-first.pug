@@ -3,6 +3,21 @@ include /components/button/btn-default
 mixin g-first-msg({ isShow, className })
   .g-msg(class=isShow && "show" class=className)
     .g-msg__backside
+      .g-msg__person.js-msg-ambasador(data-person="ovechkin" hidden)
+        +picture({ image: "/img/game/ovechkin@2x.png", w: 375, h: 482, className: "mobile" })
+        +picture({ image: "/img/game/ovechkin-desktop@2x.png", w: 565, h: 535, className: "desktop" })
+      .g-msg__person.js-msg-ambasador(data-person="medvedeva" hidden)
+        +picture({ image: "/img/game/medvedeva@2x.png", w: 375, h: 482, className: "mobile" })
+        +picture({ image: "/img/game/medvedeva-desktop@2x.png", w: 565, h: 535, className: "desktop" })
+      .g-msg__person.js-msg-ambasador(data-person="korney" hidden)
+        +picture({ image: "/img/game/korney@2x.png", w: 375, h: 482, className: "mobile" })
+        +picture({ image: "/img/game/korney-desktop@2x.png", w: 565, h: 535, className: "desktop" })
+      .g-msg__person.js-msg-ambasador(data-person="ed" hidden)
+        +picture({ image: "/img/game/ed@2x.png", w: 375, h: 482, className: "mobile" })
+        +picture({ image: "/img/game/ed-desktop@2x.png", w: 565, h: 535, className: "desktop" })
+      .g-msg__person.js-msg-ambasador(data-person="akinfeev" hidden)
+        +picture({ image: "/img/game/akinfeev@2x.png", w: 375, h: 482, className: "mobile" })
+        +picture({ image: "/img/game/akinfeev-desktop@2x.png", w: 565, h: 535, className: "desktop" })
     .g-msg__content
       .g-msg__wrp
         h2.g-msg__title Начало пути

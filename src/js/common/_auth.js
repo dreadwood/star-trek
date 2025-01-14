@@ -52,7 +52,8 @@
       const btnLogin = document.querySelector('.js-header-login')
 
       const testBlock = document.querySelector('.js-test')
-      const ambasadorBgList = document.querySelectorAll('.js-test-ambasador')
+      const ambasadorTestList = document.querySelectorAll('.js-test-ambasador')
+      const ambasadorMsgList = document.querySelectorAll('.js-msg-ambasador')
 
       // idText.textContent = `****${userInfo.pin.slice(-4)}`
       idText.textContent = userInfo.pin
@@ -61,12 +62,27 @@
       window.jsUtils.showEl(scoreWrp)
       window.jsUtils.hideEl(btnLogin)
 
-      const existAmbasador = [...ambasadorBgList].some(
+      const existTestAmbasador = [...ambasadorTestList].some(
+        (it) => it.dataset.person === userInfo.ambasador
+      )
+      const existMsgAmbasador = [...ambasadorMsgList].some(
         (it) => it.dataset.person === userInfo.ambasador
       )
 
-      if (existAmbasador) {
-        ambasadorBgList.forEach((it) => {
+      console.log(existMsgAmbasador)
+
+      if (existTestAmbasador) {
+        ambasadorTestList.forEach((it) => {
+          if (it.dataset.person === userInfo.ambasador) {
+            window.jsUtils.showEl(it)
+          } else {
+            window.jsUtils.hideEl(it)
+          }
+        })
+      }
+
+      if (existMsgAmbasador) {
+        ambasadorMsgList.forEach((it) => {
           if (it.dataset.person === userInfo.ambasador) {
             window.jsUtils.showEl(it)
           } else {
@@ -202,12 +218,35 @@
     async _checkAmbasador(pin) {
       const userInfo = await this._getUserInfo(pin)
 
+      if (!userInfo) {
+        // подразумеваеться что он если нужно зарегистрирует
+        await this._regUser(pin)
+      }
+
       if (!userInfo.ambasador) {
         this._openSet()
         return
       }
 
       this._updateData(userInfo)
+    },
+
+    async _regUser(pin) {
+      try {
+        const req = { pin }
+        const res = await window.jsUtils.sendData(this.regUrl, 'POST', req)
+
+        if (res.error) {
+          // добавить обработку ошибок
+          return false
+        }
+
+        return !res.error
+      } catch (err) {
+        console.error(err)
+        // добавить обработку ошибок
+        return false
+      }
     },
 
     async _getUserInfo(pin) {
