@@ -157,6 +157,8 @@
   }
 }
 .g-quiz__question-text {
+  position: relative;
+  z-index: 1;
   font-size: 24rem;
   line-height: 1.1;
   font-weight: 500;
@@ -257,6 +259,7 @@
   font-size: 16rem;
   line-height: 1.2;
   font-weight: 500;
+  text-align: left;
   color: $color-black;
   letter-spacing: -0.02em;
   @include desktop {
