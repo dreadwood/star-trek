@@ -12,7 +12,7 @@ mixin b-header({ isShow, link, className })
         .b-header__bottom
           button.b-header__score.js-modal-score-show.js-header-score-wrp(hidden)
             +svg({ name: "star", w: 24, h: 24 })
-            span.js-header-score-text
+            span.b-header__score-text.js-header-score-text
           .b-header__id.js-header-id-wrp(hidden)
             +svg({ name: "user", w: 24, h: 24 })
             span.js-header-id-text

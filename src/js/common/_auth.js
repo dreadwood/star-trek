@@ -28,6 +28,7 @@
         const pin = evt.detail.clientId
         if (!pin) return
 
+        this._closeReg()
         await this._checkAmbasador(pin)
       })
 
@@ -35,6 +36,7 @@
         if (evt.detail.clientId !== evt.detail.prevClientId) {
           console.log('userInfoUpdated')
 
+          this._closeReg()
           await this._checkAmbasador(evt.detail.clientId)
         }
       })
@@ -57,7 +59,6 @@
       const ambasadorMsgList = document.querySelectorAll('.js-msg-ambasador')
       const ambasadorQuizList = document.querySelectorAll('.js-quiz-ambasador')
 
-      // idText.textContent = `****${userInfo.pin.slice(-4)}`
       idText.textContent = userInfo.pin
       scoreText.textContent = userInfo.score
       window.jsUtils.showEl(idWrp)
@@ -139,12 +140,14 @@
       const cityBtn = this.setModal.querySelector('.js-set-btn-city')
       const ambasadorBtn = this.setModal.querySelector('.js-set-btn-ambasador')
       const finishBtn = this.setModal.querySelector('.js-set-btn-finish')
+      const gameBtn = this.setModal.querySelector('.js-set-btn-game')
       const closeBtnList = document.querySelectorAll('.js-set-close')
 
       const cityField = this.setModal.querySelector('.js-set-field')
       const ambasadorList = this.setModal.querySelectorAll('.js-set-ambasador')
       const personImg = this.setModal.querySelector('.js-set-person')
       const bg = this.setModal.querySelector('.js-set-bg')
+      const sliderGame = document.querySelector('.js-slider-stars')
 
       cityField.addEventListener('input', () => {
         if (cityField.value.length === 0) {
@@ -178,6 +181,12 @@
         window.jsUtils.hideEl(screen3)
         window.jsUtils.showEl(screen4)
         bg.classList.add('last-screen')
+      })
+
+      gameBtn.addEventListener('click', () => {
+        this._closeSet()
+        sliderGame.scrollIntoView({ behavior: 'smooth' })
+        window.jsSlider.stars.slideTo(4)
       })
 
       ambasadorList.forEach((ambasador) =>
@@ -244,6 +253,18 @@
       }
 
       await this._updateData(userInfo)
+    },
+
+    async updateScore() {
+      // FIXME: 2025-01-15 /
+      const pin = window.userInfo.getClientID()
+      if (!pin) return
+
+      const userInfo = await this._getUserInfo(pin)
+      if (!userInfo) return
+
+      const scoreText = document.querySelector('.js-header-score-text')
+      scoreText.textContent = userInfo.score
     },
 
     async _updateGameState(pin, ambasador) {

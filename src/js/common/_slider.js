@@ -6,6 +6,8 @@
     /** @type {MediaQueryList} */
     mediaQuery: window.matchMedia(window.jsUtils.BREAKPOINT_TABLET),
 
+    stars: null,
+
     init() {
       this._ambassadors()
       this._stars()
@@ -32,7 +34,7 @@
 
     _stars() {
       // eslint-disable-next-line no-undef
-      new Swiper('.js-slider-stars', {
+      this.stars = new Swiper('.js-slider-stars', {
         slidesPerView: 'auto',
         grabCursor: true,
         initialSlide: 5,

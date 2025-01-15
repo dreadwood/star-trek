@@ -38,7 +38,9 @@
     },
 
     _closeDialogl(dialog) {
-      document.documentElement.classList.remove('scroll-lock')
+      if (!window.jsHeader.isShow) {
+        document.documentElement.classList.remove('scroll-lock')
+      }
       dialog.classList.remove('show')
     },
 

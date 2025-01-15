@@ -6,6 +6,15 @@ mixin m-score({ isShow, className })
       .m-score__close
         +btn-close({ className: "js-m-close" })
       .m-score__content
+        .m-score__promo
+          .m-score__promo-bg
+            +picture({ image: "/img/score/score-bg.jpg", w: 343, h: 210, className: "mobile" })
+            +picture({ image: "/img/score/score-bg-desktop", w: 780, h: 200, className: "desktop" })
+          .m-score__promo-wrp
+            .m-score__promo-title Сделай ставку от&nbsp;300&nbsp;₽ на&nbsp;любое событие и&nbsp;получи шанс выиграть один из&nbsp;призов. После 27&nbsp;января мы&nbsp;проверим наличие квалификационной ставки и&nbsp;объявим победителей
+            .m-score__promo-bottom
+              a.m-score__promo-btn(href="https://fon.bet/sports/tournament/776" target="_black") Сделать ставку
+              button.m-score__promo-link.js-modal-rules-show Правила
         .m-score__table
           .m-score__head
             div ID

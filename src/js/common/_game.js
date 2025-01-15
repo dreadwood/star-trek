@@ -116,6 +116,8 @@
       if (length < window.stateJs.firstQuizQuestion) {
         // network
         await this._sendResult()
+        await window.jsAuth.updateScore()
+
         window.stateJs.firstQuizStatus =
           length === window.stateJs.firstQuizRight ? 'high' : 'low'
         this._showFirstEnd()
@@ -140,6 +142,8 @@
       if (length < window.stateJs.firstQuizQuestion) {
         // network
         await this._sendResult()
+        await window.jsAuth.updateScore()
+
         window.stateJs.firstQuizStatus =
           length === window.stateJs.firstQuizRight ? 'high' : 'low'
         this._showFirstEnd()
