@@ -60,6 +60,8 @@
     border: 0;
     &[disabled] {
       opacity: 0;
+      user-select: none;
+      pointer-events: none;
     }
     &:not([disabled]):hover,
     &:not([disabled]):focus-visible {
@@ -199,8 +201,8 @@
   background-color: $color-white;
   border: 0;
   border-radius: 10rem;
-  &:not(.actv):hover,
-  &:not(.actv):focus-visible {
+  &:not(.actv, [disabled]):hover,
+  &:not(.actv, [disabled]):focus-visible {
     background-color: transparentize($color-blue-degrees, 0.9);
   }
   &.actv {
@@ -279,6 +281,11 @@
   &:not([disabled]):hover,
   &:not([disabled]):focus-visible {
     background-color: $color-ruby-red;
+  }
+  &[disabled] {
+    opacity: 0;
+    user-select: none;
+    pointer-events: none;
   }
   @include desktop {
     display: none;

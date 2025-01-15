@@ -7,7 +7,7 @@ mixin g-first-bg({})
   .g-msg__stars
     img(class="mobile" src="./img/game/stars-msg.svg" width="190" height="90" alt="")
     img(class="desktop" src="./img/game/stars-msg-desktop.svg" width="214" height="176" alt="")
-  .g-msg__person.js-msg-ambasador(data-person="ovechkin" hidden)
+  .g-msg__person.js-msg-ambasador(data-person="ovechkin")
     img(class="mobile" src="./img/game/ovechkin@2x.webp" width="375" height="482" alt="")
     img(class="desktop" src="./img/game/ovechkin-desktop@2x.webp" width="565" height="535" alt="")
   .g-msg__person.js-msg-ambasador(data-person="medvedeva" hidden)
@@ -33,7 +33,7 @@ mixin g-first-msg({ isHidden, isShow, className })
         p.g-msg__text Ну&nbsp;что, ты&nbsp;выбрал, с&nbsp;кем отправишься на&nbsp;ФОНБЕТ Неделю Звезд Хоккея. Теперь пора выяснить, как хорошо ты&nbsp;знаешь своего попутчика!
         p.g-msg__text За&nbsp;каждый правильный ответ ты&nbsp;получишь 100&nbsp;звезд, время ограничено. В&nbsp;путь!
         .g-msg__btn
-          +btn-default({ text: "Начать игру" })
+          +btn-default({ text: "Начать игру", className: "js-game-first-start" })
       p.g-msg__ribbon Транссиб&nbsp;&mdash; это не&nbsp;шутка: впереди долгая дорога и&nbsp;4&nbsp;станции. Хорошо, что вместе с&nbsp;тобой на&nbsp;ФОНБЕТ Неделю Звезд Хоккея в&nbsp;Новосибирск еду&nbsp;я!
 
 mixin g-first-end({ isShow, className, isHidden })
@@ -48,15 +48,15 @@ mixin g-first-end({ isShow, className, isHidden })
         )
         p.g-msg__text Ты&nbsp;и&nbsp;правда меня знаешь. С&nbsp;таким попутчиком дорога пройдет незаметно!
         .g-msg__btn
-          +btn-default({ text: "На главную" })
+          +btn-default({ text: "На главную", className: 'js-game-first-close' })
 
 mixin g-first-quiz({ isShow, className, isHidden })
   .g-quiz(class=isShow && "show" class=className,  hidden=isHidden)
     .g-quiz__content
       .g-quiz__top
-        .g-quiz__step Вопрос 1/5
-        .g-quiz__time 00:30
-        button.g-quiz__btn-next-top
+        .g-quiz__step.js-game-quiz-step Вопрос 1/5
+        .g-quiz__time.js-game-quiz-time 00:30
+        button.g-quiz__btn-next-top.js-game-quiz-next(disabled)
           span Следующий вопрос
           .g-quiz__btn-next-top-icon
             +svg({ name: "quiz-arrow", w: 16, h: 16 })
@@ -65,7 +65,7 @@ mixin g-first-quiz({ isShow, className, isHidden })
           .g-quiz__question-stars
             img(class="mobile" src="./img/game/stars-quiz.svg" width="233" height="109" alt="")
             img(class="desktop" src="./img/game/stars-quiz-desktop.svg" width="233" height="133" alt="")
-          .g-quiz__question-text В&nbsp;каком возрастея впервые встала на&nbsp;лед?
+          .g-quiz__question-text.js-game-quiz-question В&nbsp;каком возрастея впервые встала на&nbsp;лед?
           .g-quiz__question-img
             .g-quiz__question-person.js-quiz-ambasador(data-person="ovechkin")
               img(class="mobile" src="./img/person/ovechkin-circle.webp" width="100" height="100" alt="")
@@ -81,28 +81,28 @@ mixin g-first-quiz({ isShow, className, isHidden })
         .g-quiz__control
           .g-quiz__control-text Варианты ответа
           .g-quiz__list
-            button.g-quiz__answer.actv.correct
+            button.g-quiz__answer.js-game-quiz-answer
               .g-quiz__answer-num A
-              .g-quiz__answer-text 3 года
-            button.g-quiz__answer.actv.error
+              .g-quiz__answer-text.js-game-quiz-answer-text 3 года
+            button.g-quiz__answer.js-game-quiz-answer
               .g-quiz__answer-num B
-              .g-quiz__answer-text 4 года
-            button.g-quiz__answer
+              .g-quiz__answer-text.js-game-quiz-answer-text 4 года
+            button.g-quiz__answer.js-game-quiz-answer
               .g-quiz__answer-num C
-              .g-quiz__answer-text 5 лет
-            button.g-quiz__answer
+              .g-quiz__answer-text.js-game-quiz-answer-text 5 лет
+            button.g-quiz__answer.js-game-quiz-answer
               .g-quiz__answer-num D
-              .g-quiz__answer-text 6 лет
-          button.g-quiz__btn-next
+              .g-quiz__answer-text.js-game-quiz-answer-text 6 лет
+          button.g-quiz__btn-next.js-game-quiz-next
             span Следующий вопрос
             .g-quiz__btn-next-icon
               +svg({ name: "quiz-arrow", w: 16, h: 16 })
 
 mixin g-first({ isShow, className })
-  .overlay(class=isShow && "show" class=className)
+  .overlay.js-game-first-dialog(class=isShow && "show" class=className)
     .g-layout
       .g-layout__close
-        +btn-close({ className: "js-m-close" })
-      +g-first-msg({ isHidden: true })
-      +g-first-quiz({ isHidden: false })
-      +g-first-end({ isHidden: true })
+        +btn-close({ className: "js-game-first-close" })
+      +g-first-msg({ isHidden: true, className: "js-game-first-msg" })
+      +g-first-quiz({ isHidden: true, className: "js-game-first-quiz" })
+      +g-first-end({ isHidden: true, className: "js-game-first-end" })

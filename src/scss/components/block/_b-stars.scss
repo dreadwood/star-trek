@@ -150,7 +150,7 @@
     padding-top: 75rem;
   }
 }
-.b-stars__info-btn {
+.b-stars__info-name {
   @include transition(background-color, color);
   display: block;
   width: max-content;
@@ -165,6 +165,31 @@
   background-color: transparentize($color-white, 0.7);
   border: 0;
   border-radius: 6rem;
+}
+.b-stars__info-btn {
+  @include transition(background-color);
+  display: block;
+  gap: 30px;
+  width: max-content;
+  margin: 0;
+  margin-top: 6rem;
+  padding: 8rem 12rem;
+  font-family: $font-default;
+  font-size: 16rem;
+  line-height: 1.2;
+  font-weight: 500;
+  color: $color-black;
+  letter-spacing: -0.02em;
+  background-color: $color-white;
+  border: 0;
+  border-radius: 10rem;
+  &[disabled] {
+    color: transparentize($color-black, 0.5);
+  }
+  &:not([disabled]):hover,
+  &:not([disabled]):focus-visible {
+    background-color: $color-gray-925;
+  }
 }
 .b-stars__info-title {
   display: flex;

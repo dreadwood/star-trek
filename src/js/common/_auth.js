@@ -13,6 +13,7 @@
     regUrl: 'https://xcomfeed.com/fonbet/fasw2025/register-user',
     getUserUrl: 'https://xcomfeed.com/fonbet/fasw2025/get-user-info',
     sendAmbasodor: 'https://xcomfeed.com/fonbet/fasw2025/update',
+    getResultUrl: 'https://xcomfeed.com/fonbet/fasw2025/get-games',
 
     async init() {
       this.regModal = document.querySelector('.js-modal-reg')
@@ -44,7 +45,7 @@
       }
     },
 
-    _updateData(userInfo) {
+    async _updateData(userInfo) {
       const idWrp = document.querySelector('.js-header-id-wrp')
       const idText = document.querySelector('.js-header-id-text')
       const scoreWrp = document.querySelector('.js-header-score-wrp')
@@ -104,6 +105,7 @@
       }
 
       window.jsUtils.showEl(testBlock)
+      await this._updateGameState(userInfo.pin, userInfo.ambasador)
     },
 
     _initReg() {
@@ -240,7 +242,22 @@
         return
       }
 
-      this._updateData(userInfo)
+      await this._updateData(userInfo)
+    },
+
+    async _updateGameState(pin, ambasador) {
+      if (window.stateJs.pin !== pin) {
+        window.stateJs.resetState(pin)
+      }
+
+      window.stateJs.setAmbasador(ambasador)
+
+      const userResult = await this._getResult()
+      if (userResult[0].user.has_answer) {
+        window.stateJs.firstQuizQuestion = 6
+        window.stateJs.firstQuizStatus =
+          userResult[0].user.scores === 500 ? 'high' : 'low'
+      }
     },
 
     async _regUser(pin) {
@@ -305,6 +322,34 @@
         }
 
         return !res.error
+      } catch (err) {
+        console.error(err)
+        // добавить обработку ошибок
+        return false
+      }
+    },
+
+    async _getResult() {
+      const pin = window.userInfo.getClientID()
+      if (!pin) {
+        console.error('Не получилось получить результаты')
+        return
+      }
+
+      try {
+        const req = { pin }
+        const res = await window.jsUtils.sendData(
+          this.getResultUrl,
+          'POST',
+          req
+        )
+
+        if (res.error) {
+          // добавить обработку ошибок
+          return false
+        }
+
+        return res.data
       } catch (err) {
         console.error(err)
         // добавить обработку ошибок

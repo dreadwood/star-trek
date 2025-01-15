@@ -1,0 +1,11 @@
+include /components/button/btn-close
+
+mixin m-close({ isShow, className })
+  - let linkLogin = "https://fon.bet/authProcess/login/"
+  .overlay.m-close-overlay.js-modal-close(class=isShow && "show" class=className)
+    .m-close(class=className)
+      .m-close__content
+        h2.m-close__title Ты точно хочешь выйти из игры?
+        .m-close__btn-next.js-modal-close-next
+          +btn-default({ text: "Продолжить", className: "set js-modal-btn-" })
+        button.m-close__btn-exit.js-modal-close-exit Выйти на главную –>

@@ -37,7 +37,8 @@ mixin b-stars({ className, id })
         num: "Игра 1",
         name: "Начало пути",
         date: "Игра откроется 16 января. ",
-        isClose: true
+        btnCssClass: "js-game-first-open",
+        isClose: false
       },
     ]
   section.b-stars(class=className id=id)
@@ -60,12 +61,16 @@ mixin b-stars({ className, id })
             .b-stars__prize
               +picture({ image: it.img, w: 401, h: 340 })
             .b-stars__info
-              button.b-stars__info-btn=it.num
+              .b-stars__info-name=it.num
               .b-stars__info-title
-                +svg({ name: "lock", w: 10, h: 13 })
+                if it.isClose
+                  +svg({ name: "lock", w: 10, h: 13 })
                 span=it.name
-              .b-stars__info-date=it.date
-              .b-stars__info-notif Не пропусти!
+              if it.isClose
+                .b-stars__info-date=it.date
+                .b-stars__info-notif Не пропусти!
+              else
+                button.b-stars__info-btn(class=it.btnCssClass) Играть
         .b-stars__first-card.swiper-slide
           img(src="./img/stars/train-nose.svg" width="680" height="223" alt="")
 
