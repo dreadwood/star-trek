@@ -51,12 +51,19 @@
         .map((it) => this._renderRow(it))
         .join(' ')
 
+      const selfString = result
+        .filter((it) => it.current_user)
+        .map((it) => this._renderRow(it))
+        .join(' ')
+
       body.innerHTML = bodySring
+      self.innerHTML = selfString
     },
 
     _renderRow(row) {
       const self = row.current_user ? 'Это ты' : ''
-      return `<div class="m-score__row">
+      const selfClass = row.current_user ? 'blue' : ''
+      return `<div class="m-score__row ${selfClass}">
   <div>${row.place}</div>
   <div>${row.pin}</div>
   <div>${self}</div>
