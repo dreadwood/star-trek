@@ -140,14 +140,14 @@
       const cityBtn = this.setModal.querySelector('.js-set-btn-city')
       const ambasadorBtn = this.setModal.querySelector('.js-set-btn-ambasador')
       const finishBtn = this.setModal.querySelector('.js-set-btn-finish')
-      const gameBtn = this.setModal.querySelector('.js-set-btn-game')
+      const gameBtnList = document.querySelectorAll('.js-set-btn-game')
       const closeBtnList = document.querySelectorAll('.js-set-close')
 
       const cityField = this.setModal.querySelector('.js-set-field')
       const ambasadorList = this.setModal.querySelectorAll('.js-set-ambasador')
       const personImg = this.setModal.querySelector('.js-set-person')
       const bg = this.setModal.querySelector('.js-set-bg')
-      const sliderGame = document.querySelector('.js-slider-stars')
+      const sliderGame = document.querySelector('.js-game-stars-block')
 
       cityField.addEventListener('input', () => {
         if (cityField.value.length === 0) {
@@ -183,11 +183,13 @@
         bg.classList.add('last-screen')
       })
 
-      gameBtn.addEventListener('click', () => {
-        this._closeSet()
-        sliderGame.scrollIntoView({ behavior: 'smooth' })
-        window.jsSlider.stars.slideTo(4)
-      })
+      gameBtnList.forEach((it) =>
+        it.addEventListener('click', () => {
+          this._closeSet()
+          sliderGame.scrollIntoView({ behavior: 'smooth' })
+          window.jsSlider.stars.slideTo(4)
+        })
+      )
 
       ambasadorList.forEach((ambasador) =>
         ambasador.addEventListener('click', () => {
@@ -256,7 +258,6 @@
     },
 
     async updateScore() {
-      // FIXME: 2025-01-15 /
       const pin = window.userInfo.getClientID()
       if (!pin) return
 

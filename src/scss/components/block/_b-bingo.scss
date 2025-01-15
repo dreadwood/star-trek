@@ -19,8 +19,27 @@
   position: absolute;
   inset: 0;
   overflow: hidden;
-  background-color: $color-carmine-red-2;
   border-radius: 14rem;
+}
+.b-bingo__bg {
+  position: absolute;
+  inset: 0;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .desktop {
+    display: none;
+  }
+  @include desktop {
+    .mobile {
+      display: none;
+    }
+    .desktop {
+      display: block;
+    }
+  }
 }
 .b-bingo__letter {
   position: absolute;

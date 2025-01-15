@@ -2,12 +2,15 @@ mixin b-bingo({ className })
   section.b-bingo(class=className)
     .b-bingo__card
       .b-bingo__card-backside
-        .b-bingo__letter
+        .b-bingo__bg
+          +picture({ image: "/img/bingo/bingo-bg.jpg", w: 343, h: 590, className: "mobile" })
+          +picture({ image: "/img/bingo/bingo-bg-desktop.jpg", w: 1368, h: 590, className: "desktop" })
+        //- .b-bingo__letter
           +svg({ name: "letter-f", w: 284, h: 283 })
         .b-bingo__star
           img(class="mobile" src="./img/bingo/bingo-start.svg" width="102" height="72" alt="")
           img(class="desktop" src="./img/bingo/bingo-start-desktop.svg" width="730" height="302" alt="")
-        .b-bingo__chips
+        //- .b-bingo__chips
           +picture({ image: "/img/bingo/chips.png", w: 336, h: 189, className: "mobile" })
           +picture({ image: "/img/bingo/chips-desktop.png", w: 886, h: 225, className: "desktop" })
         .b-bingo__paper

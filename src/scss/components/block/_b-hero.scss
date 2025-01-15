@@ -211,14 +211,25 @@
   line-height: 1.1;
   font-weight: 500;
 }
+.b-hero__btn {
+  position: relative;
+  width: max-content;
+  margin-top: 10rem;
+  margin-right: auto;
+  margin-left: auto;
+  @include desktop {
+    margin-top: 14rem;
+  }
+}
 .b-hero__text {
-  margin: 34rem auto 0 auto;
+  position: relative;
+  margin: 36rem auto 0 auto;
   &.second {
     margin-top: 12rem;
   }
   @include desktop {
     width: 100%;
     max-width: 700rem;
-    margin-top: 90rem;
+    // margin-top: 90rem;
   }
 }
