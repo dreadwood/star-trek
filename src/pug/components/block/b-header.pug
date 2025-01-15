@@ -10,7 +10,7 @@ mixin b-header({ isShow, link, className })
             a.b-header__link(href=it.link)=it.name
         //- .b-header__btn Открытие регистрации: 16.01.25
         .b-header__bottom
-          .b-header__score.js-header-score-wrp(hidden)
+          button.b-header__score.js-modal-score-show.js-header-score-wrp(hidden)
             +svg({ name: "star", w: 24, h: 24 })
             span.js-header-score-text
           .b-header__id.js-header-id-wrp(hidden)

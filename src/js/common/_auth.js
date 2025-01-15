@@ -208,8 +208,9 @@
     },
 
     _openReg() {
-      document.documentElement.classList.add('scroll-lock')
       window.jsHeader.closeModal()
+
+      document.documentElement.classList.add('scroll-lock')
       this.regModal.classList.add('show')
     },
 

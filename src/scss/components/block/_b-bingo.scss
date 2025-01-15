@@ -14,13 +14,13 @@
 .b-bingo__card {
   position: relative;
   height: 590rem;
-  overflow: hidden;
-  background-color: $color-carmine-red-2;
-  border-radius: 14rem;
 }
 .b-bingo__card-backside {
   position: absolute;
   inset: 0;
+  overflow: hidden;
+  background-color: $color-carmine-red-2;
+  border-radius: 14rem;
 }
 .b-bingo__letter {
   position: absolute;
