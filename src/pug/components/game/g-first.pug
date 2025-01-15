@@ -62,11 +62,11 @@ mixin g-first-quiz({ isShow, className, isHidden })
             +svg({ name: "quiz-arrow", w: 16, h: 16 })
       .g-quiz__wrp
         .g-quiz__question
-          .g-quiz__question-stars
-            img(class="mobile" src="./img/game/stars-quiz.svg" width="233" height="109" alt="")
-            img(class="desktop" src="./img/game/stars-quiz-desktop.svg" width="233" height="133" alt="")
           .g-quiz__question-text.js-game-quiz-question В&nbsp;каком возрастея впервые встала на&nbsp;лед?
           .g-quiz__question-img
+            .g-quiz__question-stars
+              img(class="mobile" src="./img/game/stars-quiz.svg" width="233" height="109" alt="")
+              img(class="desktop" src="./img/game/stars-quiz-desktop.svg" width="233" height="133" alt="")
             .g-quiz__question-person.js-quiz-ambasador(data-person="ovechkin")
               img(class="mobile" src="./img/person/ovechkin-circle.webp" width="100" height="100" alt="")
             .g-quiz__question-person.js-quiz-ambasador(data-person="medvedeva" hidden)

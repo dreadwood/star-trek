@@ -2,7 +2,7 @@
  * game.js
  */
 ;(() => {
-  const TIMER_SECOND = 30
+  const TIMER_SECOND = 10
   const LOCAL_KEY = 'GS_KEY'
 
   window.jsGame = {
@@ -156,7 +156,7 @@
       this.isGame = false
 
       if (this.isAnswer) {
-        window.stateJs.firstQuizQuestion += 1
+        // window.stateJs.firstQuizQuestion += 1
         this.isAnswer = false
       }
 

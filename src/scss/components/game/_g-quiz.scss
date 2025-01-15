@@ -99,13 +99,14 @@
   @include desktop {
     display: flex;
     flex-direction: column;
+    gap: 2rem;
     margin-top: 0;
   }
 }
 .g-quiz__question-stars {
   position: absolute;
-  top: 67rem;
-  left: 55rem;
+  top: -10rem;
+  left: -62rem;
   width: 232rem;
   height: 109rem;
   img {
@@ -117,8 +118,8 @@
     display: none;
   }
   @include desktop {
-    top: 138rem;
-    left: 225rem;
+    top: -7rem;
+    left: 224rem;
     width: 233rem;
     height: 133rem;
     .mobile {
@@ -136,12 +137,8 @@
   width: 100rem;
   height: 100rem;
   margin-top: 23rem;
-  overflow: hidden;
-  background-color: $color-salmon-crayola;
-  border-radius: 50%;
   transform: translateX(-50%);
   @include desktop {
-    position: static;
     left: auto;
     width: 160rem;
     height: 160rem;
@@ -150,6 +147,9 @@
   }
 }
 .g-quiz__question-person {
+  overflow: hidden;
+  background-color: $color-salmon-crayola;
+  border-radius: 50%;
   img {
     width: 100%;
     height: 100%;
@@ -167,7 +167,7 @@
   @include desktop {
     width: 100%;
     max-width: 420rem;
-    font-size: 32rem;
+    font-size: 31rem;
     text-align: left;
   }
 }
