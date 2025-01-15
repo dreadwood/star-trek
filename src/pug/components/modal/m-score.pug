@@ -1,0 +1,49 @@
+include /components/button/btn-close
+
+mixin m-score({ isShow, className })
+  .overlay.js-modal-score(class=isShow && "show" class=className)
+    .m-score
+      .m-score__close
+        +btn-close({ className: "js-m-close" })
+      .m-score__content
+        .m-score__table
+          .m-score__head
+            div ID
+            div Звезды
+          .m-score__row
+            div 1
+            div *2852
+            div
+            div
+            div 1934602
+          .m-score__row
+            div 2
+            div *2746
+            div
+            div
+            div 1934602
+          .m-score__row
+            div 3
+            div *2746
+            div
+            div
+            div 1934602
+          .m-score__row
+            div 4
+            div *3281
+            div
+            div
+            div 1934602
+          .m-score__row
+            div 5
+            div *2346
+            div
+            div
+            div 1934602
+          .m-score__line
+          .m-score__row.blue
+            div 22
+            div *5237
+            div Это ты
+            div
+            div 5637
