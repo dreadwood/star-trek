@@ -13,7 +13,7 @@
     regUrl: 'https://xcomfeed.com/fonbet/fasw2025/register-user',
     getUserUrl: 'https://xcomfeed.com/fonbet/fasw2025/get-user-info',
     sendAmbasodor: 'https://xcomfeed.com/fonbet/fasw2025/update',
-    getResultUrl: 'https://xcomfeed.com/fonbet/fasw2025/get-games',
+    getGameDataUrl: 'https://xcomfeed.com/fonbet/fasw2025/get-games',
 
     async init() {
       this.regModal = document.querySelector('.js-modal-reg')
@@ -275,11 +275,13 @@
 
       window.stateJs.setAmbasador(ambasador)
 
-      const userResult = await this._getResult()
-      if (userResult[0].user.has_answer) {
+      const gameData = await this._getGameData()
+      window.jsPage.renderGameCard(gameData)
+
+      if (gameData[0].user.has_answer) {
         window.stateJs.firstQuizQuestion = 6
-        window.stateJs.firstQuizStatus =
-          userResult[0].user.scores === 500 ? 'high' : 'low'
+        window.stateJs.firstQuizRight = gameData[0].user.scores / 100
+        window.stateJs.updateFirstQuizStatus()
       }
     },
 
@@ -352,7 +354,7 @@
       }
     },
 
-    async _getResult() {
+    async _getGameData() {
       const pin = window.userInfo.getClientID()
       if (!pin) {
         console.error('Не получилось получить результаты')
@@ -362,7 +364,7 @@
       try {
         const req = { pin }
         const res = await window.jsUtils.sendData(
-          this.getResultUrl,
+          this.getGameDataUrl,
           'POST',
           req
         )

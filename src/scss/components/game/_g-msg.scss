@@ -89,6 +89,7 @@
   @include desktop {
     width: 565rem;
     height: 535rem;
+    max-height: none;
     .mobile {
       display: none;
     }
@@ -162,5 +163,25 @@
     width: 516rem;
     padding: 15rem 20rem;
     box-shadow: 0 4rem 25rem transparentize($color-cadet-blue-crayola, 0.9);
+  }
+}
+.g-msg__result {
+  display: flex;
+  flex-direction: column;
+  gap: 8rem;
+  margin-top: 20rem;
+  font-size: 18rem;
+  line-height: 1.1;
+  font-weight: 500;
+  color: $color-blue-degrees;
+}
+.g-msg__result-text {
+  display: flex;
+  align-items: center;
+  gap: 6rem;
+  svg {
+    width: 22rem;
+    height: 22rem;
+    fill: $color-lavender;
   }
 }

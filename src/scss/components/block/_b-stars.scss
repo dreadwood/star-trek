@@ -99,6 +99,7 @@
 }
 .b-stars__card {
   position: relative;
+  display: grid;
   flex-shrink: 0;
   width: 281rem;
   height: 160rem;
@@ -139,15 +140,18 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  padding-top: 29rem;
+  margin-top: 29rem;
+  margin-bottom: 32rem;
   font-size: 14rem;
   line-height: 1.1;
   font-weight: 400;
   text-align: center;
   color: $color-white;
   @include desktop {
-    padding-top: 75rem;
+    margin-top: 75rem;
+    margin-bottom: 48rem;
   }
 }
 .b-stars__info-name {
@@ -211,6 +215,24 @@
 }
 .b-stars__info-date {
   margin-top: 6rem;
+}
+.b-stars__info-done {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6rem;
+  margin-top: 6rem;
+  font-size: 14rem;
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  svg {
+    display: block;
+    flex-shrink: 0;
+    width: 15rem;
+    height: 15rem;
+    stroke: currentcolor;
+  }
 }
 .b-stars__info-notif {
   margin-top: 2rem;

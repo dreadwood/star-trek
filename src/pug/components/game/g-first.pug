@@ -45,8 +45,19 @@ mixin g-first-end({ isShow, className, isHidden })
         h2.g-msg__title.js-game-first-title(
           data-high="Ого, неплохо!"
           data-low="Класс, ты неплохо меня знаешь!"
+          data-zero="Да ты меня совсем не знаешь!"
         )
-        p.g-msg__text Ты&nbsp;и&nbsp;правда меня знаешь. С&nbsp;таким попутчиком дорога пройдет незаметно!
+        p.g-msg__text.js-game-first-text(
+          data-high="Ты&nbsp;и&nbsp;правда меня знаешь. С&nbsp;таким попутчиком дорога пройдет незаметно!"
+          data-low="Ты&nbsp;и&nbsp;правда меня знаешь. С&nbsp;таким попутчиком дорога пройдет незаметно!"
+          data-zero="Ничего, в&nbsp;пути как раз познакомимся поближе!"
+        )
+        .g-msg__result
+          .g-msg__result-text Результат: #[span.js-game-first-answer 0/5]
+          .g-msg__result-text
+            | Ты заработал:
+            +svg({ name: "star", w: 22, h: 22 })
+            | #[span.js-game-first-score 0] звезд
         .g-msg__btn
           +btn-default({ text: "На главную", className: 'js-game-first-close' })
 

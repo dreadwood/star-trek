@@ -5,40 +5,45 @@ mixin b-stars({ className, id })
   -
     let train = [
       {
+        order: 5,
         img: "/img/stars/sticks.png",
         num: "Игра 5",
         name: "Отбей шайбу",
         date: "Игра откроется 24 января. ",
-        isClose: true
+        state: 0 // 0 ЕЩЕ не открылась, 1 открыта, 2 пройдена
       },
       {
+        order: 4,
         img: "/img/stars/cup.png",
         num: "Игра 4",
         name: "Испытание звезд",
         date: "Игра откроется 22 января. ",
-        isClose: true
+        state: 0
       },
       {
+        order: 3,
         img: "/img/stars/uniform.png",
         num: "Игра 3",
         name: "Шаришь за джерси?",
         date: "Игра откроется 20 января. ",
-        isClose: true
+        state: 0
       },
       {
+        order: 2,
         img: "/img/stars/equipment.png",
         num: "Игра 2",
         name: "Ты не видел мой экип?",
         date: "Игра откроется 18 января. ",
-        isClose: true
+        state: 0
       },
       {
+        order: 1,
         img: "/img/stars/skates.png",
         num: "Игра 1",
         name: "Начало пути",
         date: "Игра откроется 16 января. ",
         btnCssClass: "js-game-first-open",
-        isClose: false
+        state: 1
       },
     ]
   section.b-stars(class=className id=id)
@@ -56,21 +61,25 @@ mixin b-stars({ className, id })
         +btn-arrow({ className: "js-slider-stars-next" })
       .b-stars__wrp.swiper-wrapper
         each it in train
-          article.b-stars__card.swiper-slide
+          article.b-stars__card.swiper-slide.js-game-card(data-order=it.order)
             img.b-stars__carriage(src="./img/stars/train-carriage.svg" width="390" height="223")
             .b-stars__prize
               +picture({ image: it.img, w: 401, h: 340 })
             .b-stars__info
               .b-stars__info-name=it.num
               .b-stars__info-title
-                if it.isClose
+                if it.state === 0
                   +svg({ name: "lock", w: 10, h: 13 })
                 span=it.name
-              if it.isClose
+              .js-game-card-state(data-state="close" hidden=(it.state !== 0))
                 .b-stars__info-date=it.date
                 .b-stars__info-notif Не пропусти!
-              else
+              .js-game-card-state(data-state="open" hidden=(it.state !== 1))
                 button.b-stars__info-btn(class=it.btnCssClass) Играть
+              .js-game-card-state(data-state="done" hidden=(it.state !== 2))
+                .b-stars__info-done
+                  +svg({ name: "arrow-check", w: 15, h: 11 })
+                  | Игра пройдена
         .b-stars__first-card.swiper-slide
           img(src="./img/stars/train-nose.svg" width="680" height="223" alt="")
 

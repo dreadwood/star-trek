@@ -115,11 +115,14 @@
 
       if (length < window.stateJs.firstQuizQuestion) {
         // network
-        await this._sendResult()
+        const result = await this._sendResult()
+        console.log(result)
+        if (result) {
+          window.stateJs.setFirstQuizScore(result.total_scores)
+        }
         await window.jsAuth.updateScore()
 
-        window.stateJs.firstQuizStatus =
-          length === window.stateJs.firstQuizRight ? 'high' : 'low'
+        window.stateJs.updateFirstQuizStatus()
         this._showFirstEnd()
         return
       }
@@ -141,11 +144,21 @@
 
       if (length < window.stateJs.firstQuizQuestion) {
         // network
-        await this._sendResult()
+        // TODO: 2025-01-16 /
+        const result = await this._sendResult()
+        const gameData = await window.jsAuth._getGameData()
+
+        if (result) {
+          window.stateJs.setFirstQuizScore(result.total_scores)
+        }
+
+        if (gameData) {
+          window.jsPage.renderGameCard(gameData)
+        }
+
         await window.jsAuth.updateScore()
 
-        window.stateJs.firstQuizStatus =
-          length === window.stateJs.firstQuizRight ? 'high' : 'low'
+        window.stateJs.updateFirstQuizStatus()
         this._showFirstEnd()
       } else {
         this._updateFirstQuestion()
@@ -187,7 +200,14 @@
       this.isGame = false
 
       const title = document.querySelector('.js-game-first-title')
+      const text = document.querySelector('.js-game-first-text')
+      const answer = document.querySelector('.js-game-first-answer')
+      const score = document.querySelector('.js-game-first-score')
+
       title.textContent = title.dataset[window.stateJs.firstQuizStatus]
+      text.innerHTML = text.dataset[window.stateJs.firstQuizStatus]
+      answer.textContent = `${window.stateJs.firstQuizRight}/5`
+      score.textContent = window.stateJs.firstQuizScore
 
       window.jsUtils.hideEl(this.firstMsg)
       window.jsUtils.hideEl(this.firstQuiz)
@@ -363,7 +383,7 @@
           return false
         }
 
-        return !res.error
+        return res.data
       } catch (err) {
         console.error(err)
         // добавить обработку ошибок
