@@ -1,6 +1,6 @@
 .b-stars {
   position: relative;
-  padding: 50rem $padding;
+  padding: 30rem $padding;
   font-family: $font-default;
   font-size: 18rem;
   line-height: 1.1;
@@ -10,7 +10,7 @@
   color: $color-gray-537;
   background-color: $color-gray-933;
   @include desktop {
-    padding: 70rem $padding-desktop;
+    padding: 50rem $padding-desktop;
   }
 }
 .b-stars__sky-desktop {
@@ -92,7 +92,7 @@
   gap: 6rem;
 }
 .b-stars__wrp {
-  margin-top: 150rem;
+  margin-top: 100rem;
   @include desktop {
     margin-top: 62rem;
   }

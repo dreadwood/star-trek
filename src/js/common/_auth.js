@@ -140,14 +140,14 @@
       const cityBtn = this.setModal.querySelector('.js-set-btn-city')
       const ambasadorBtn = this.setModal.querySelector('.js-set-btn-ambasador')
       const finishBtn = this.setModal.querySelector('.js-set-btn-finish')
-      const gameBtnList = document.querySelectorAll('.js-set-btn-game')
+      const gameBtn = document.querySelector('.js-set-btn-game')
+      const gameBtnAuth = document.querySelector('.js-set-btn-game-auth')
       const closeBtnList = document.querySelectorAll('.js-set-close')
 
       const cityField = this.setModal.querySelector('.js-set-field')
       const ambasadorList = this.setModal.querySelectorAll('.js-set-ambasador')
       const personImg = this.setModal.querySelector('.js-set-person')
       const bg = this.setModal.querySelector('.js-set-bg')
-      const sliderGame = document.querySelector('.js-game-stars-block')
 
       cityField.addEventListener('input', () => {
         if (cityField.value.length === 0) {
@@ -183,13 +183,18 @@
         bg.classList.add('last-screen')
       })
 
-      gameBtnList.forEach((it) =>
-        it.addEventListener('click', () => {
-          this._closeSet()
-          sliderGame.scrollIntoView({ behavior: 'smooth' })
-          window.jsSlider.stars.slideTo(4)
-        })
-      )
+      gameBtn.addEventListener('click', () => {
+        this._gameBtnHandler()
+      })
+
+      gameBtnAuth.addEventListener('click', () => {
+        const pin = window.userInfo.getClientID()
+        if (pin) {
+          this._gameBtnHandler()
+        } else {
+          this._openReg()
+        }
+      })
 
       ambasadorList.forEach((ambasador) =>
         ambasador.addEventListener('click', () => {
@@ -211,6 +216,14 @@
         if (evt.target !== this.setModal) return
         this._closeSet()
       })
+    },
+
+    _gameBtnHandler() {
+      const sliderGame = document.querySelector('.js-game-stars-block')
+
+      this._closeSet()
+      sliderGame.scrollIntoView({ behavior: 'smooth' })
+      window.jsSlider.stars.swiper.slideTo(1)
     },
 
     _closeReg() {

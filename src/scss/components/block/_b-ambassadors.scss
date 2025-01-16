@@ -1,9 +1,9 @@
 .b-ambassadors {
-  padding: 50rem $padding;
+  padding: 30rem $padding;
   color: $color-black;
   background-color: $color-gray-933;
   @include desktop {
-    padding: 70rem $padding-desktop;
+    padding: 50rem $padding-desktop;
   }
 }
 .b-ambassadors__slider {

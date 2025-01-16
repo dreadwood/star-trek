@@ -1,8 +1,8 @@
 .b-test {
-  padding: 50rem $padding;
+  padding: 30rem $padding;
   background-color: $color-white;
   @include desktop {
-    padding: 70rem $padding-desktop;
+    padding: 50rem $padding-desktop;
   }
 }
 .b-test__card {

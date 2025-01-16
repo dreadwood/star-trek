@@ -42,30 +42,19 @@
 }
 .b-predictions__content {
   position: relative;
-  padding: 40rem $padding;
+  padding: 10rem $padding 30rem $padding;
   background-color: $color-white;
   @include desktop {
-    padding: 20rem $padding-desktop 80rem $padding-desktop;
+    padding: 20rem $padding-desktop 50rem $padding-desktop;
   }
 }
 .b-predictions__subtext {
   margin-top: 20rem;
-  p {
-    margin: 0;
-  }
-  .desktop {
-    display: none;
-  }
+  margin-bottom: 0;
   @include desktop {
     width: 582rem;
     margin-right: auto;
     margin-left: auto;
-    .mobile {
-      display: none;
-    }
-    .desktop {
-      display: block;
-    }
   }
 }
 .b-predictions__btn {

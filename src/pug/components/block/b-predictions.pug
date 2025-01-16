@@ -51,10 +51,8 @@ mixin b-predictions({ className, id })
         img(class="desktop" src="./img/mountains-desktop.svg" width="1440" height="460" alt="")
     .b-predictions__content
       h2.title Прогнозы
-      .b-predictions__subtext
-        p.mobile Думаешь, шаришь в&nbsp;хоккее? Когда смотришь матчи, даешь тренерам и&nbsp;игрокам советы? Тогда докажи, что ты&nbsp;эксперт! Сделай 5&nbsp;прогнозов на&nbsp;ФОНБЕТ Матч Звезд КХЛ 2025. Выиграешь&nbsp;&mdash; получишь фрибет до&nbsp;50000&nbsp;₽!
-        p.desktop Думаешь, шаришь в&nbsp;хоккее? Когда смотришь матчи, даешь тренерам и&nbsp;игрокам советы? Тогда докажи, что ты&nbsp;эксперт! #[br]#[br] Сделай 5&nbsp;прогнозов на&nbsp;ФОНБЕТ Матч Звезд КХЛ 2025. Выиграешь&nbsp;&mdash; получишь фрибет до 50000&nbsp;₽!
-      .b-predictions__btn
+      p.b-predictions__subtext Сделай 5&nbsp;прогнозов на&nbsp;ФОНБЕТ Матч Звезд КХЛ 2025. Выиграешь&nbsp;&mdash; получишь фрибет до&nbsp;50000&nbsp;₽!
+      //- .b-predictions__btn
         +btn-default({ text: "Правила", className: "js-modal-rules-show" })
       .b-predictions__list
         each it in predictionsCards

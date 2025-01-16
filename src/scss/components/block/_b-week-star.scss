@@ -55,9 +55,9 @@
 }
 .b-week-star__content {
   position: relative;
-  padding: 50rem $padding 320rem $padding;
+  padding: 30rem $padding 320rem $padding;
   @include desktop {
-    padding: 70rem $padding-desktop 266rem $padding-desktop;
+    padding: 50rem $padding-desktop 220rem $padding-desktop;
   }
 }
 .b-week-star__title {

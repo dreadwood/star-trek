@@ -39,10 +39,10 @@
 }
 .b-prizes__content {
   position: relative;
-  padding: 20rem $padding 50rem $padding;
+  padding: 20rem $padding 30rem $padding;
   background-color: $color-gray-933;
   @include desktop {
-    padding: 50rem $padding-desktop 70rem $padding-desktop;
+    padding: 50rem $padding-desktop 50rem $padding-desktop;
   }
 }
 .b-prizes__slider {

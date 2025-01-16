@@ -1,5 +1,5 @@
 .b-bingo {
-  padding: 50rem $padding;
+  padding: 30rem $padding;
   font-family: $font-default;
   font-size: 24rem;
   line-height: 1.1;
@@ -7,7 +7,7 @@
   color: $color-white;
   background-color: $color-white;
   @include desktop {
-    padding: 70rem $padding-desktop;
+    padding: 50rem $padding-desktop;
     font-size: 32rem;
   }
 }

@@ -1,9 +1,9 @@
 .b-footer {
   position: relative;
   width: 100%;
-  min-height: 450rem;
+  min-height: 420rem;
   margin-right: auto;
-  padding: 40rem $padding;
+  padding: 30rem $padding;
   font-family: $font-default;
   font-size: 18rem;
   line-height: 1.1;
@@ -12,7 +12,7 @@
   color: $color-carmine-red-2;
   background-color: $color-white;
   @include desktop {
-    min-height: 820rem;
+    min-height: 780rem;
     padding: 60rem $padding-desktop;
   }
 }
@@ -77,4 +77,23 @@
   color: $color-white;
   background-color: $color-carmine-red-2;
   border-radius: 30rem;
+}
+.b-footer__link {
+  @include transition(background-color, color);
+  display: block;
+  width: max-content;
+  margin: 30rem auto 0 auto;
+  padding: 0;
+  font-size: 16rem;
+  line-height: 1.2;
+  font-weight: 500;
+  color: $color-carmine-red-2;
+  letter-spacing: -0.02em;
+  background-color: transparent;
+  border: 0;
+  text-decoration-line: underline;
+  &:not([disabled]):hover,
+  &:not([disabled]):focus-visible {
+    color: $color-ruby-red;
+  }
 }

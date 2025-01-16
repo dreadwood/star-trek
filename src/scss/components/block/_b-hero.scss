@@ -48,8 +48,8 @@
   position: absolute;
   bottom: 0;
   left: 50%;
-  width: 386rem;
-  height: 386rem;
+  width: 375rem;
+  height: 375rem;
   background: linear-gradient(184deg, #bccaff -25.79%, #0a2a89 63.4%);
   border-radius: 50%;
   translate: -50% 59%;
@@ -210,6 +210,10 @@
   font-size: 18rem;
   line-height: 1.1;
   font-weight: 500;
+  @include desktop {
+    position: relative;
+    margin-top: 40rem;
+  }
 }
 .b-hero__btn {
   position: relative;

@@ -2,6 +2,10 @@ mixin b-header({ isShow, link, className })
   header.b-header.js-header(class=(isShow && "show") class=className)
     a.b-header__logo(href=link target="_blank")
       +svg({ name: "logo", w: 126, h: 22 })
+    //- .b-header__logo-add
+    //-   img(src="./img/logo-khl.svg" width="40" height="40" alt="")
+    .b-header__logo-add
+      img(src="./img/logo-khl-jhl.svg" width="40" height="40" alt="")
     .b-header__overflay.js-header-dialog
       .b-header__dialog
         nav.b-header__nav.js-header-nav
