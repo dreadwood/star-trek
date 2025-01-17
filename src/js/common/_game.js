@@ -44,6 +44,9 @@
 
     sendResultUrl: 'https://xcomfeed.com/fonbet/fasw2025/answer',
 
+    secondGameUrl: 'https://fon.bet/promo/fasw2025_g2/',
+    // secondGameUrl: 'https://2lands.ru/ru/fasw2025_g2/',
+
     init() {
       this._initConfirm()
       this._initSoon()
@@ -266,7 +269,7 @@
     },
 
     _secondStartBtnHandler() {
-      this.secondIframe.src = 'https://2lands.ru/ru/fasw2025_g2/'
+      this.secondIframe.src = this.secondGameUrl
       // this.secondIframe.src = './game2'
       this.isGame = true
 
