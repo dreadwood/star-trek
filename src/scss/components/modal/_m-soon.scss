@@ -1,0 +1,121 @@
+.m-soon {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: $font-default;
+  font-size: 18rem;
+  line-height: 1.1;
+  font-weight: 500;
+  text-align: left;
+  color: $color-gray-537;
+  background-color: $color-white;
+  @include desktop {
+    width: 1080rem;
+    height: 540rem;
+    margin: auto;
+    border-radius: 14rem;
+  }
+}
+.m-soon__close {
+  position: absolute;
+  top: 20rem;
+  right: 20rem;
+  z-index: 2;
+  @include desktop {
+    top: 10rem;
+    right: 10rem;
+  }
+}
+.m-soon__backside {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.m-soon__bg {
+  position: absolute;
+  // bottom: -129rem;
+  // left: 0;
+  // width: 375rem;
+  // height: 350rem;
+  // opacity: 0.6;
+  // svg {
+  //   width: 100%;
+  //   height: 100%;
+  //   fill: $color-gray-933;
+  // }
+  .desktop {
+    display: none;
+  }
+  @include desktop {
+    // bottom: -180rem;
+    // left: -100rem;
+    // width: 1100rem;
+    // height: 460rem;
+    .mobile {
+      display: none;
+    }
+    .desktop {
+      display: block;
+    }
+  }
+}
+.m-soon__content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 20rem 16rem;
+  @include desktop {
+    padding: 35rem 40rem 40rem 40rem;
+  }
+}
+.m-soon__title {
+  width: 100%;
+  max-width: 310rem;
+  margin: 0;
+  font-size: 32rem;
+  line-height: 1.1;
+  font-weight: 500;
+  color: $color-black;
+  letter-spacing: 0.01em;
+  @include desktop {
+    max-width: 514rem;
+    font-size: 46rem;
+  }
+}
+.m-soon__text {
+  margin-top: 20rem;
+  @include desktop {
+    max-width: 514rem;
+  }
+}
+.m-soon__btn {
+  margin-top: 20rem;
+  margin-bottom: auto;
+}
+.m-soon__link {
+  @include transition(color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: max-content;
+  margin: 0;
+  margin-top: 20rem;
+  padding: 0;
+  font-family: $font-default;
+  font-size: 14rem;
+  line-height: 1.1;
+  font-weight: 400;
+  text-align: center;
+  color: $color-gray-400;
+  background-color: transparent;
+  border: 0;
+  &:hover,
+  &:focus-visible {
+    color: $color-black;
+    text-decoration: underline;
+  }
+}

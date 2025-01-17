@@ -1,0 +1,14 @@
+include /components/button/btn-close
+
+mixin m-soon({ isShow, className })
+  .overlay.js-modal-soon(class=isShow && "show" class=className)
+    .m-soon
+      .m-soon__close
+        +btn-close({ className: "js-m-close" })
+      .m-soon__backside
+        .m-soon__bg
+      .m-soon__content
+        h2.m-soon__title Новая игра откроется (дата), возвращайся!
+        p.m-soon__text Сделай ставку от&nbsp;300&nbsp;₽ на&nbsp;любое событие и&nbsp;получи шанс выиграть один из&nbsp;призов. После 27&nbsp;январямы проверим наличие квалификационной ставкии объявим победителей
+        a.m-soon__btn.btn-default(href=betLink) Сделать ставку
+        button.m-soon__link <– Выйти на главную

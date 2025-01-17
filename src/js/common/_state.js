@@ -44,7 +44,18 @@
 
     setSecondGameScore(score) {
       this.secondGameScore = score
-      this.updateSecondGameStatus()
+
+      switch (true) {
+        case this.secondGameScore === 3000:
+          this.secondGameStatus = 'high'
+          break
+        case this.secondGameScore === 0:
+          this.secondGameStatus = 'zero'
+          break
+        default:
+          this.secondGameStatus = 'low'
+          break
+      }
     },
 
     updateFirstQuizStatus() {
@@ -59,20 +70,20 @@
           this.firstQuizStatus = 'low'
           break
       }
-    },
-
-    updateSecondGameStatus() {
-      switch (true) {
-        case this.secondGameScore === 3000:
-          this.secondGameStatus = 'high'
-          break
-        case this.secondGameScore === 0:
-          this.secondGameStatus = 'zero'
-          break
-        default:
-          this.secondGameStatus = 'low'
-          break
-      }
     }
+
+    // updateSecondGameStatus() {
+    //   switch (true) {
+    //     case this.secondGameScore === 3000:
+    //       this.secondGameStatus = 'high'
+    //       break
+    //     case this.secondGameScore === 0:
+    //       this.secondGameStatus = 'zero'
+    //       break
+    //     default:
+    //       this.secondGameStatus = 'low'
+    //       break
+    //   }
+    // }
   }
 })()

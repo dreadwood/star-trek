@@ -108,6 +108,8 @@
     },
 
     async _initSecond() {
+      const gameId = 2
+
       const openBtnList = document.querySelectorAll('.js-game-second-open')
       const startBtn = document.querySelector('.js-game-second-start')
       const closeBtnList = document.querySelectorAll('.js-game-second-close')
@@ -153,10 +155,6 @@
           return
         }
 
-        console.log(msg)
-
-        // score, find, exit
-
         if (msg.type === 'exit') {
           // TODO: 2025-01-17 / Выход
           this._closeSecondDialog()
@@ -164,17 +162,17 @@
 
         if (msg.type === 'score') {
           // TODO: 2025-01-17 / Завершение игры
-          console.log('Набрано очков ', msg.value)
+          // console.log('Набрано очков ', msg.value)
 
-          const result = await this._sendResult(2, msg.value)
-          const gameData = await window.jsAuth._getGameData()
+          const result = await this._sendResult(gameId, msg.value)
+          const gameDataList = await window.jsAuth._getGameData()
 
           if (result) {
-            window.jsState.setSecondGameScore(result.total_scores)
+            window.jsState.setSecondGameScore(msg.value)
           }
 
-          if (gameData) {
-            window.jsPage.renderGameCard(gameData)
+          if (gameDataList) {
+            window.jsPage.renderGameCard(gameDataList)
           }
 
           await window.jsAuth.updateScore()
@@ -204,9 +202,14 @@
 
       if (length < window.jsState.firstQuizQuestion) {
         // network
-        const result = await this._sendResult(1, window.jsState.firstQuizRight)
+        const gameId = 1
+        const result = await this._sendResult(
+          gameId,
+          window.jsState.firstQuizRight
+        )
+
         if (result) {
-          window.jsState.setFirstQuizScore(result.total_scores)
+          window.jsState.setFirstQuizScore(window.jsState.firstQuizRight * 100)
         }
         await window.jsAuth.updateScore()
 
@@ -262,15 +265,19 @@
       if (length < window.jsState.firstQuizQuestion) {
         // network
         // TODO: 2025-01-16 /
-        const result = await this._sendResult(1, window.jsState.firstQuizRight)
-        const gameData = await window.jsAuth._getGameData()
+        const gameId = 1
+        const result = await this._sendResult(
+          gameId,
+          window.jsState.firstQuizRight
+        )
+        const gameDataList = await window.jsAuth._getGameData()
 
         if (result) {
-          window.jsState.setFirstQuizScore(result.total_scores)
+          window.jsState.setFirstQuizScore(window.jsState.firstQuizRight * 100)
         }
 
-        if (gameData) {
-          window.jsPage.renderGameCard(gameData)
+        if (gameDataList) {
+          window.jsPage.renderGameCard(gameDataList)
         }
 
         await window.jsAuth.updateScore()
