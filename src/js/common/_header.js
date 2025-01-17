@@ -4,7 +4,6 @@
     dialog: null,
     isShow: false,
 
-    /** @type {MediaQueryList} */
     mediaQuery: window.matchMedia(window.jsUtils.BREAKPOINT_TABLET),
 
     init() {

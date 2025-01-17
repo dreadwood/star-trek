@@ -282,19 +282,19 @@
     },
 
     async _updateGameState(pin, ambasador) {
-      if (window.stateJs.pin !== pin) {
-        window.stateJs.resetState(pin)
+      if (window.jsState.pin !== pin) {
+        window.jsState.resetState(pin)
       }
 
-      window.stateJs.setAmbasador(ambasador)
+      window.jsState.setAmbasador(ambasador)
 
       const gameData = await this._getGameData()
       window.jsPage.renderGameCard(gameData)
 
       if (gameData[0].user.has_answer) {
-        window.stateJs.firstQuizQuestion = 6
-        window.stateJs.firstQuizRight = gameData[0].user.scores / 100
-        window.stateJs.updateFirstQuizStatus()
+        window.jsState.firstQuizQuestion = 6
+        window.jsState.firstQuizRight = gameData[0].user.scores / 100
+        window.jsState.updateFirstQuizStatus()
       }
     },
 

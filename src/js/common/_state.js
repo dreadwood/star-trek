@@ -2,7 +2,7 @@
  * state.js
  */
 ;(() => {
-  window.stateJs = {
+  window.jsState = {
     ambasadorList: ['ovechkin', 'medvedeva', 'korney', 'ed', 'akinfeev'],
 
     pin: null,

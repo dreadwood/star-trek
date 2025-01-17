@@ -1,5 +1,5 @@
 ;(() => {
-  window.quizJs = {
+  window.jsQuiz = {
     ovechkin: [
       {
         quesion: 'Сколько раз я&nbsp;выигрывал &laquo;Харт Трофи&raquo;?',

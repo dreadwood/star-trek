@@ -170,7 +170,7 @@
           const gameData = await window.jsAuth._getGameData()
 
           if (result) {
-            window.stateJs.setSecondGameScore(result.total_scores)
+            window.jsState.setSecondGameScore(result.total_scores)
           }
 
           if (gameData) {
@@ -179,7 +179,7 @@
 
           await window.jsAuth.updateScore()
 
-          window.stateJs.setSecondGameScore(msg.value)
+          window.jsState.setSecondGameScore(msg.value)
 
           this._showSecondEnd()
         }
@@ -195,23 +195,22 @@
 
       this._openFirstDialog()
 
-      if (window.stateJs.firstQuizStatus) {
+      if (window.jsState.firstQuizStatus) {
         this._showFirstEnd()
         return
       }
 
-      const length = window.quizJs[window.stateJs.ambasador].length
+      const length = window.jsQuiz[window.jsState.ambasador].length
 
-      if (length < window.stateJs.firstQuizQuestion) {
+      if (length < window.jsState.firstQuizQuestion) {
         // network
-        const result = await this._sendResult(1, window.stateJs.firstQuizRight)
-        console.log(result)
+        const result = await this._sendResult(1, window.jsState.firstQuizRight)
         if (result) {
-          window.stateJs.setFirstQuizScore(result.total_scores)
+          window.jsState.setFirstQuizScore(result.total_scores)
         }
         await window.jsAuth.updateScore()
 
-        window.stateJs.updateFirstQuizStatus()
+        window.jsState.updateFirstQuizStatus()
         this._showFirstEnd()
         return
       }
@@ -229,7 +228,7 @@
 
       this._openSecondDialog()
 
-      if (window.stateJs.secondGameStatus) {
+      if (window.jsState.secondGameStatus) {
         // this._showFirstEnd()
         console.log('result second open')
         return
@@ -258,16 +257,16 @@
     },
 
     async _firstQuizNextHandler() {
-      const length = window.quizJs[window.stateJs.ambasador].length
+      const length = window.jsQuiz[window.jsState.ambasador].length
 
-      if (length < window.stateJs.firstQuizQuestion) {
+      if (length < window.jsState.firstQuizQuestion) {
         // network
         // TODO: 2025-01-16 /
-        const result = await this._sendResult(1, window.stateJs.firstQuizRight)
+        const result = await this._sendResult(1, window.jsState.firstQuizRight)
         const gameData = await window.jsAuth._getGameData()
 
         if (result) {
-          window.stateJs.setFirstQuizScore(result.total_scores)
+          window.jsState.setFirstQuizScore(result.total_scores)
         }
 
         if (gameData) {
@@ -276,7 +275,7 @@
 
         await window.jsAuth.updateScore()
 
-        window.stateJs.updateFirstQuizStatus()
+        window.jsState.updateFirstQuizStatus()
         this._showFirstEnd()
       } else {
         this._updateFirstQuestion()
@@ -287,7 +286,7 @@
       this.isGame = false
 
       if (this.isAnswer) {
-        // window.stateJs.firstQuizQuestion += 1
+        // window.jsState.firstQuizQuestion += 1
         this.isAnswer = false
       }
 
@@ -327,10 +326,10 @@
       const answer = document.querySelector('.js-game-first-answer')
       const score = document.querySelector('.js-game-first-score')
 
-      title.textContent = title.dataset[window.stateJs.firstQuizStatus]
-      text.innerHTML = text.dataset[window.stateJs.firstQuizStatus]
-      answer.textContent = `${window.stateJs.firstQuizRight}/5`
-      score.textContent = window.stateJs.firstQuizScore
+      title.textContent = title.dataset[window.jsState.firstQuizStatus]
+      text.innerHTML = text.dataset[window.jsState.firstQuizStatus]
+      answer.textContent = `${window.jsState.firstQuizRight}/5`
+      score.textContent = window.jsState.firstQuizScore
 
       window.jsUtils.hideEl(this.firstMsg)
       window.jsUtils.hideEl(this.firstQuiz)
@@ -361,9 +360,9 @@
       const text = document.querySelector('.js-game-second-text')
       const score = document.querySelector('.js-game-second-score')
 
-      title.textContent = title.dataset[window.stateJs.secondGameStatus]
-      text.innerHTML = text.dataset[window.stateJs.secondGameStatus]
-      score.textContent = window.stateJs.secondGameScore
+      title.textContent = title.dataset[window.jsState.secondGameStatus]
+      text.innerHTML = text.dataset[window.jsState.secondGameStatus]
+      score.textContent = window.jsState.secondGameScore
 
       window.jsUtils.hideEl(this.secondMsg)
       window.jsUtils.hideEl(this.secondContent)
@@ -371,8 +370,8 @@
     },
 
     _updateFirstQuestion() {
-      const index = window.stateJs.firstQuizQuestion - 1
-      const questionData = window.quizJs[window.stateJs.ambasador][index]
+      const index = window.jsState.firstQuizQuestion - 1
+      const questionData = window.jsQuiz[window.jsState.ambasador][index]
 
       const questionStep = document.querySelector('.js-game-quiz-step')
       const questionText = document.querySelector('.js-game-quiz-question')
@@ -395,8 +394,8 @@
 
       questionText.innerHTML = questionData.quesion
 
-      const count = window.quizJs[window.stateJs.ambasador].length
-      questionStep.textContent = `Вопрос ${window.stateJs.firstQuizQuestion}/${count}`
+      const count = window.jsQuiz[window.jsState.ambasador].length
+      questionStep.textContent = `Вопрос ${window.jsState.firstQuizQuestion}/${count}`
 
       this._setTimer()
       this.isAnswer = true
@@ -435,8 +434,8 @@
         it.setAttribute('disabled', 'disabled')
       )
 
-      const indexQuestion = window.stateJs.firstQuizQuestion - 1
-      const asw = this.asw[window.stateJs.ambasador][indexQuestion]
+      const indexQuestion = window.jsState.firstQuizQuestion - 1
+      const asw = this.asw[window.jsState.ambasador][indexQuestion]
 
       this.firstAnswerList.forEach((it, i) => {
         if (i === asw) {
@@ -444,7 +443,7 @@
         }
       })
 
-      window.stateJs.firstQuizQuestion += 1
+      window.jsState.firstQuizQuestion += 1
 
       this.firstBtnNextList.forEach((it) => {
         it.removeAttribute('disabled')
@@ -462,12 +461,12 @@
         it.setAttribute('disabled', 'disabled')
       )
 
-      const indexQuestion = window.stateJs.firstQuizQuestion - 1
-      const asw = this.asw[window.stateJs.ambasador][indexQuestion]
+      const indexQuestion = window.jsState.firstQuizQuestion - 1
+      const asw = this.asw[window.jsState.ambasador][indexQuestion]
 
       if (i === asw) {
         btn.classList.add('correct')
-        window.stateJs.firstQuizRight += 1
+        window.jsState.firstQuizRight += 1
       } else {
         btn.classList.add('error')
         this.firstAnswerList.forEach((it, i) => {
@@ -477,7 +476,7 @@
         })
       }
 
-      window.stateJs.firstQuizQuestion += 1
+      window.jsState.firstQuizQuestion += 1
 
       this.firstBtnNextList.forEach((it) => {
         it.removeAttribute('disabled')
@@ -493,9 +492,9 @@
 
       const data = {
         pin,
-        firstQuizQuestion: window.stateJs.firstQuizQuestion,
-        firstQuizRight: window.stateJs.firstQuizRight,
-        firstQuizStatus: window.stateJs.firstQuizStatus
+        firstQuizQuestion: window.jsState.firstQuizQuestion,
+        firstQuizRight: window.jsState.firstQuizRight,
+        firstQuizStatus: window.jsState.firstQuizStatus
       }
 
       localStorage.setItem(LOCAL_KEY, JSON.stringify(data))
@@ -509,10 +508,10 @@
       }
       const data = JSON.parse(value)
 
-      window.stateJs.pin = data.pin
-      window.stateJs.firstQuizQuestion = data.firstQuizQuestion
-      window.stateJs.firstQuizRight = data.firstQuizRight
-      window.stateJs.firstQuizStatus = data.firstQuizStatus
+      window.jsState.pin = data.pin
+      window.jsState.firstQuizQuestion = data.firstQuizQuestion
+      window.jsState.firstQuizRight = data.firstQuizRight
+      window.jsState.firstQuizStatus = data.firstQuizStatus
     },
 
     async _sendResult(gameId, answer) {
