@@ -4,11 +4,13 @@ mixin m-soon({ isShow, className })
   .overlay.js-modal-soon(class=isShow && "show" class=className)
     .m-soon
       .m-soon__close
-        +btn-close({ className: "js-m-close" })
+        +btn-close({ className: "js-modal-soon-close" })
       .m-soon__backside
         .m-soon__bg
+          +picture({ image: "/img/soon/soon-bg.png", w: 375, h: 812, className: "mobile" })
+          +picture({ image: "/img/soon/soon-bg-desktop.png", w: 1080, h: 540, className: "desktop" })
       .m-soon__content
-        h2.m-soon__title Новая игра откроется (дата), возвращайся!
+        h2.m-soon__title Новая игра откроется #[span.js-modal-soon-date скоро], возвращайся!
         p.m-soon__text Сделай ставку от&nbsp;300&nbsp;₽ на&nbsp;любое событие и&nbsp;получи шанс выиграть один из&nbsp;призов. После 27&nbsp;январямы проверим наличие квалификационной ставкии объявим победителей
-        a.m-soon__btn.btn-default(href=betLink) Сделать ставку
-        button.m-soon__link <– Выйти на главную
+        a.m-soon__btn.btn-default.soon(href=betLink) Сделать ставку
+        button.m-soon__link.js-modal-soon-close <– Выйти на главную

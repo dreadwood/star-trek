@@ -19,6 +19,8 @@
     isGame: false, // открыт экран квиза
     isAnswer: false, // идет ответ на вопрос
 
+    nextGame: null,
+
     // first
     firstDialog: null,
     firstMsg: null,
@@ -35,6 +37,7 @@
     secondIframe: null,
 
     confirmDialog: null,
+    soonDialog: null,
 
     timer: TIMER_SECOND,
     timerId: null,
@@ -43,6 +46,7 @@
 
     init() {
       this._initConfirm()
+      this._initSoon()
       this._initFirst()
       this._initSecond()
     },
@@ -58,6 +62,24 @@
 
       exitBtn.addEventListener('click', () => {
         this._confirmDialogExitBtnHandler()
+      })
+    },
+
+    async _initSoon() {
+      this.soonDialog = document.querySelector('.js-modal-soon')
+      const closeBtnList = this.soonDialog.querySelectorAll(
+        '.js-modal-soon-close'
+      )
+
+      closeBtnList.forEach((it) =>
+        it.addEventListener('click', () => {
+          this._closeSoonDialog()
+        })
+      )
+
+      this.soonDialog.addEventListener('click', (evt) => {
+        if (evt.target !== this.soonDialog) return
+        this._closeSoonDialog()
       })
     },
 
@@ -173,6 +195,7 @@
 
           if (gameDataList) {
             window.jsPage.renderGameCard(gameDataList)
+            this.setNextGameData(gameDataList)
           }
 
           await window.jsAuth.updateScore()
@@ -278,6 +301,7 @@
 
         if (gameDataList) {
           window.jsPage.renderGameCard(gameDataList)
+          this.setNextGameData(gameDataList)
         }
 
         await window.jsAuth.updateScore()
@@ -521,6 +545,29 @@
       window.jsState.firstQuizStatus = data.firstQuizStatus
     },
 
+    setNextGameData(gameDataList) {
+      // TODO: 2025-01-17 /
+      this.nextGame = null
+      const currentDate = new Date()
+
+      for (const it of gameDataList) {
+        const startDate = new Date(it.started_at)
+        const isOpen = startDate < currentDate
+
+        if (isOpen && !it.user.has_answer) {
+          break
+        }
+
+        if (!isOpen) {
+          this.nextGame = startDate.toLocaleDateString('ru-RU', {
+            day: '2-digit',
+            month: 'long'
+          })
+          break
+        }
+      }
+    },
+
     async _sendResult(gameId, answer) {
       const pin = window.userInfo.getClientID()
       if (!pin || !gameId) {
@@ -564,8 +611,13 @@
         return
       }
 
-      document.documentElement.classList.remove('scroll-lock')
       this.firstDialog.classList.remove('show')
+      document.documentElement.classList.remove('scroll-lock')
+
+      if (this.nextGame) {
+        this._openSoonDialog()
+        return
+      }
     },
 
     _openSecondDialog() {
@@ -579,8 +631,13 @@
         return
       }
 
-      document.documentElement.classList.remove('scroll-lock')
       this.secondDialog.classList.remove('show')
+      document.documentElement.classList.remove('scroll-lock')
+
+      if (this.nextGame) {
+        this._openSoonDialog()
+        return
+      }
     },
 
     _openConfirmDialog() {
@@ -589,6 +646,22 @@
 
     _closeConfirmDialog() {
       this.confirmDialog.classList.remove('show')
+    },
+
+    _openSoonDialog() {
+      if (this.nextGame) {
+        const date = this.soonDialog.querySelector('.js-modal-soon-date')
+        date.textContent = this.nextGame
+      }
+
+      this.soonDialog.classList.add('show')
+      document.documentElement.classList.add('scroll-lock')
+    },
+
+    _closeSoonDialog() {
+      this.nextGame = null
+      this.soonDialog.classList.remove('show')
+      document.documentElement.classList.remove('scroll-lock')
     }
   }
 })()
