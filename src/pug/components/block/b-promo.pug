@@ -4,11 +4,10 @@ mixin b-promo({ className, id })
   section.b-promo(class=className id=id)
     .b-promo__card
       .b-promo__card-bg
-        +picture({ image: "/img/promo/promo.jpg", w: 343, h: 590, className: "mobile" })
+        +picture({ image: "/img/promo/promo-old.jpg", w: 343, h: 590, className: "mobile" })
         +picture({ image: "/img/promo/promo-desktop.jpg", w: 1368, h: 590, className: "desktop" })
       .b-promo__content
         h2.b-promo__title Сделай ставку
-        p.b-promo__subtitle И получи шанс выиграть приз
-        p.b-promo__text Для участия в&nbsp;розыгрыше призов, необходимо сделать ставку от&nbsp;300&nbsp;₽ на&nbsp;любое событие в&nbsp;срок до&nbsp;26&nbsp;января
+        p.b-promo__text Чтобы выиграть приз, тебе необходимо сделать ставку от&nbsp;300 рублей в&nbsp;приложении FONBET
         .b-promo__btn
           a.btn-default.promo(href=betLink) Сделать

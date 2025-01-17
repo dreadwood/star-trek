@@ -24,13 +24,13 @@ mixin g-second-bg({})
     img(class="desktop" src="./img/game/akinfeev-desktop@2x.webp" width="565" height="535" alt="")
 
 mixin g-second-msg({ isHidden, isShow, className })
-  .g-msg(class=isShow && "show" class=className hidden=isHidden)
+  .g-msg.second(class=isShow && "show" class=className hidden=isHidden)
     .g-msg__backside
       +g-second-bg({})
     .g-msg__content
       .g-msg__wrp
         h2.g-msg__title Ты не видел мой экип?
-        p.g-msg__text На&nbsp;картинке спрятано 10&nbsp;предметов хоккейной снаряги&nbsp;&mdash; коньки, клюшка, шлем и&nbsp;все такое. Ты&nbsp;увидишь все, что тебе надо найти, рядом с&nbsp;картинкой.
+        p.g-msg__text На&nbsp;картинке спрятано 10&nbsp;предметов хоккейной снаряги&nbsp;&mdash; коньки, клюшка, шлем и&nbsp;все такое. Ты&nbsp;увидишь все, что&nbsp;тебе надо найти, рядом с&nbsp;картинкой.
         p.g-msg__text Нашел? Нажимай на&nbsp;предмет и&nbsp;получай 100&nbsp;звезд! На&nbsp;все про все у&nbsp;тебя минута. А&nbsp;если найдешь все за&nbsp;30&nbsp;секунд, получишь &times;1,5 бонуса к&nbsp;звездам. Всего будет две попытки.
         p.g-msg__text Погнали!
         .g-msg__btn
@@ -38,7 +38,7 @@ mixin g-second-msg({ isHidden, isShow, className })
       p.g-msg__ribbon Ох, хорошо, что ты&nbsp;тут! Я&nbsp;только со&nbsp;станции: там снег, ветер&nbsp;&mdash; в&nbsp;общем, жесть. А&nbsp;что творится на&nbsp;платформе? Весь экип рассыпался, прикинь... Поможешь собрать, пока поезд не&nbsp;уехал?
 
 mixin g-second-end({ isShow, className, isHidden })
-  .g-msg(class=isShow && "show" class=className,  hidden=isHidden)
+  .g-msg.second(class=isShow && "show" class=className,  hidden=isHidden)
     .g-msg__backside
       +g-second-bg({})
     .g-msg__content
