@@ -142,15 +142,46 @@
         this._closeSecondDialog()
       })
 
-      this.secondIframe.addEventListener('load', () => {
-        console.log('load second iframe')
+      window.addEventListener('message', async (event) => {
+        if (!(event.data && event.data.type === 'log')) {
+          return
+        }
 
-        const iframeWindow = this.secondIframe.contentWindow
-        const originalConsoleLog = iframeWindow.console.log
+        const msg = event.data.args[0]
 
-        iframeWindow.console.log = (...args) => {
-          console.log('Log from iframe:', ...args)
-          // originalConsoleLog.apply(iframeWindow.console, args) // Вызываем оригинальную функцию
+        if (!(typeof msg === 'object' && msg !== null)) {
+          return
+        }
+
+        console.log(msg)
+
+        // score, find, exit
+
+        if (msg.type === 'exit') {
+          // TODO: 2025-01-17 / Выход
+          this._closeSecondDialog()
+        }
+
+        if (msg.type === 'score') {
+          // TODO: 2025-01-17 / Завершение игры
+          console.log('Набрано очков ', msg.value)
+
+          const result = await this._sendResult(2, msg.value)
+          const gameData = await window.jsAuth._getGameData()
+
+          if (result) {
+            window.stateJs.setSecondGameScore(result.total_scores)
+          }
+
+          if (gameData) {
+            window.jsPage.renderGameCard(gameData)
+          }
+
+          await window.jsAuth.updateScore()
+
+          window.stateJs.setSecondGameScore(msg.value)
+
+          this._showSecondEnd()
         }
       })
     },
@@ -173,7 +204,7 @@
 
       if (length < window.stateJs.firstQuizQuestion) {
         // network
-        const result = await this._sendResult()
+        const result = await this._sendResult(1, window.stateJs.firstQuizRight)
         console.log(result)
         if (result) {
           window.stateJs.setFirstQuizScore(result.total_scores)
@@ -198,34 +229,21 @@
 
       this._openSecondDialog()
 
-      if (window.stateJs.secondQuizStatus) {
+      if (window.stateJs.secondGameStatus) {
         // this._showFirstEnd()
         console.log('result second open')
         return
       }
 
-      // const length = window.quizJs[window.stateJs.ambasador].length
-
-      // if (length < window.stateJs.firstQuizQuestion) {
-      //   // network
-      //   const result = await this._sendResult()
-      //   console.log(result)
-      //   if (result) {
-      //     window.stateJs.setFirstQuizScore(result.total_scores)
-      //   }
-      //   await window.jsAuth.updateScore()
-
-      //   window.stateJs.updateFirstQuizStatus()
-      //   this._showFirstEnd()
-      //   return
-      // }
+      // TODO: 2025-01-17 /
 
       this._showSecondMsg()
     },
 
     _secondStartBtnHandler() {
-      // this.secondIframe.src = 'https://2lands.ru/ru/fasw2025_g2/'
-      this.secondIframe.src = './game2'
+      this.secondIframe.src = 'https://2lands.ru/ru/fasw2025_g2/'
+      // this.secondIframe.src = './game2'
+      this.isGame = true
 
       this._showSecondContent()
     },
@@ -245,7 +263,7 @@
       if (length < window.stateJs.firstQuizQuestion) {
         // network
         // TODO: 2025-01-16 /
-        const result = await this._sendResult()
+        const result = await this._sendResult(1, window.stateJs.firstQuizRight)
         const gameData = await window.jsAuth._getGameData()
 
         if (result) {
@@ -275,6 +293,9 @@
 
       this._setLocal()
       this._stopTimer()
+
+      // TODO: 2025-01-17 /
+      this.secondIframe.src = ''
 
       this._closeConfirmDialog()
       this._closeFirstDialog()
@@ -330,6 +351,23 @@
       window.jsUtils.hideEl(this.secondMsg)
       window.jsUtils.showEl(this.secondContent)
       window.jsUtils.hideEl(this.secondEnd)
+    },
+
+    _showSecondEnd() {
+      // this._setLocal()
+      this.isGame = false
+
+      const title = document.querySelector('.js-game-second-title')
+      const text = document.querySelector('.js-game-second-text')
+      const score = document.querySelector('.js-game-second-score')
+
+      title.textContent = title.dataset[window.stateJs.secondGameStatus]
+      text.innerHTML = text.dataset[window.stateJs.secondGameStatus]
+      score.textContent = window.stateJs.secondGameScore
+
+      window.jsUtils.hideEl(this.secondMsg)
+      window.jsUtils.hideEl(this.secondContent)
+      window.jsUtils.showEl(this.secondEnd)
     },
 
     _updateFirstQuestion() {
@@ -477,9 +515,9 @@
       window.stateJs.firstQuizStatus = data.firstQuizStatus
     },
 
-    async _sendResult() {
+    async _sendResult(gameId, answer) {
       const pin = window.userInfo.getClientID()
-      if (!pin) {
+      if (!pin || !gameId) {
         console.error('Не получилось отправить результат')
         return
       }
@@ -487,8 +525,8 @@
       try {
         const req = {
           pin,
-          game_id: 1,
-          answer: window.stateJs.firstQuizRight
+          game_id: gameId,
+          answer
         }
         const res = await window.jsUtils.sendData(
           this.sendResultUrl,

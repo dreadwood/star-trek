@@ -15,9 +15,9 @@
     firstQuizScore: 0,
 
     // second
-    secondQuizRight: 0,
-    secondQuizStatus: null, // low / high / zero
-    secondQuizScore: 0,
+    secondGameRight: 0,
+    secondGameStatus: null, // low / high / zero
+    secondGameScore: 0,
 
     resetState(pin) {
       this.pin = pin
@@ -27,9 +27,9 @@
       this.firstQuizStatus = null
       this.firstQuizScore = 0
 
-      this.secondQuizRight = 0
-      this.secondQuizStatus = null
-      this.secondQuizScore = 0
+      this.secondGameRight = 0
+      this.secondGameStatus = null
+      this.secondGameScore = 0
     },
 
     setAmbasador(ambasador) {
@@ -42,6 +42,11 @@
       this.firstQuizScore = score
     },
 
+    setSecondGameScore(score) {
+      this.secondGameScore = score
+      this.updateSecondGameStatus()
+    },
+
     updateFirstQuizStatus() {
       switch (this.firstQuizRight) {
         case 5:
@@ -52,6 +57,20 @@
           break
         default:
           this.firstQuizStatus = 'low'
+          break
+      }
+    },
+
+    updateSecondGameStatus() {
+      switch (true) {
+        case this.secondGameScore === 3000:
+          this.secondGameStatus = 'high'
+          break
+        case this.secondGameScore === 0:
+          this.secondGameStatus = 'zero'
+          break
+        default:
+          this.secondGameStatus = 'low'
           break
       }
     }
