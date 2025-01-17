@@ -8,18 +8,28 @@
     pin: null,
 
     ambasador: 'ovechkin',
-    // quiz
+    // first
     firstQuizQuestion: 1,
     firstQuizRight: 0,
     firstQuizStatus: null, // low / high / zero
     firstQuizScore: 0,
 
+    // second
+    secondQuizRight: 0,
+    secondQuizStatus: null, // low / high / zero
+    secondQuizScore: 0,
+
     resetState(pin) {
       this.pin = pin
+
       this.firstQuizQuestion = 1
       this.firstQuizRight = 0
       this.firstQuizStatus = null
       this.firstQuizScore = 0
+
+      this.secondQuizRight = 0
+      this.secondQuizStatus = null
+      this.secondQuizScore = 0
     },
 
     setAmbasador(ambasador) {

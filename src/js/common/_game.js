@@ -19,14 +19,22 @@
     isGame: false, // открыт экран квиза
     isAnswer: false, // идет ответ на вопрос
 
+    // first
     firstDialog: null,
     firstMsg: null,
     firstQuiz: null,
     firstEnd: null,
     firstAnswerList: [],
-    firstNextList: [],
+    firstBtnNextList: [], // клавиша следующего хода
 
-    dialogClose: null,
+    // second
+    secondDialog: null,
+    secondMsg: null,
+    secondContent: null,
+    secondEnd: null,
+    secondIframe: null,
+
+    confirmDialog: null,
 
     timer: TIMER_SECOND,
     timerId: null,
@@ -34,28 +42,38 @@
     sendResultUrl: 'https://xcomfeed.com/fonbet/fasw2025/answer',
 
     init() {
+      this._initConfirm()
       this._initFirst()
+      this._initSecond()
+    },
+
+    async _initConfirm() {
+      this.confirmDialog = document.querySelector('.js-modal-close')
+      const nextBtn = this.confirmDialog.querySelector('.js-modal-close-next')
+      const exitBtn = this.confirmDialog.querySelector('.js-modal-close-exit')
+
+      nextBtn.addEventListener('click', () => {
+        this._closeConfirmDialog()
+      })
+
+      exitBtn.addEventListener('click', () => {
+        this._confirmDialogExitBtnHandler()
+      })
     },
 
     async _initFirst() {
-      const startOpenList = document.querySelectorAll('.js-game-first-open')
+      const openBtnList = document.querySelectorAll('.js-game-first-open')
       const startBtn = document.querySelector('.js-game-first-start')
-      const firstDialogCloseList = document.querySelectorAll(
-        '.js-game-first-close'
-      )
+      const closeBtnList = document.querySelectorAll('.js-game-first-close')
 
       this.firstDialog = document.querySelector('.js-game-first-dialog')
       this.firstMsg = document.querySelector('.js-game-first-msg')
       this.firstQuiz = document.querySelector('.js-game-first-quiz')
       this.firstEnd = document.querySelector('.js-game-first-end')
       this.firstAnswerList = document.querySelectorAll('.js-game-quiz-answer')
-      this.firstNextList = document.querySelectorAll('.js-game-quiz-next')
+      this.firstBtnNextList = document.querySelectorAll('.js-game-quiz-next')
 
-      this.dialogClose = document.querySelector('.js-modal-close')
-      const dialogCloseNext = document.querySelector('.js-modal-close-next')
-      const dialogCloseExit = document.querySelector('.js-modal-close-exit')
-
-      startOpenList.forEach((btn) => {
+      openBtnList.forEach((btn) => {
         btn.addEventListener('click', () => {
           this._firstQuizOpenHandler()
         })
@@ -65,15 +83,15 @@
         this._firstQuizStartHandler()
       })
 
-      firstDialogCloseList.forEach((it) =>
+      closeBtnList.forEach((it) =>
         it.addEventListener('click', () => {
-          this._closeDialog()
+          this._closeFirstDialog()
         })
       )
 
       this.firstDialog.addEventListener('click', (evt) => {
         if (evt.target !== this.firstDialog) return
-        this._closeDialog()
+        this._closeFirstDialog()
       })
 
       this.firstAnswerList.forEach((it, i) => {
@@ -82,18 +100,58 @@
         })
       })
 
-      this.firstNextList.forEach((it) => {
+      this.firstBtnNextList.forEach((it) => {
         it.addEventListener('click', () => {
           this._firstQuizNextHandler()
         })
       })
+    },
 
-      dialogCloseNext.addEventListener('click', () => {
-        this._closeDialogClose()
+    async _initSecond() {
+      const openBtnList = document.querySelectorAll('.js-game-second-open')
+      const startBtn = document.querySelector('.js-game-second-start')
+      const closeBtnList = document.querySelectorAll('.js-game-second-close')
+
+      this.secondDialog = document.querySelector('.js-game-second-dialog')
+      this.secondMsg = document.querySelector('.js-game-second-msg')
+      this.secondContent = document.querySelector('.js-game-second-content')
+      this.secondEnd = document.querySelector('.js-game-second-end')
+      this.secondIframe = this.secondDialog.querySelector(
+        '.js-game-second-iframe'
+      )
+
+      openBtnList.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          this._secondGameOpenHandler()
+        })
       })
 
-      dialogCloseExit.addEventListener('click', () => {
-        this._dialogCloseExitHandler()
+      startBtn.addEventListener('click', () => {
+        // начало игры
+        this._secondStartBtnHandler()
+      })
+
+      closeBtnList.forEach((it) =>
+        it.addEventListener('click', () => {
+          this._closeSecondDialog()
+        })
+      )
+
+      this.secondDialog.addEventListener('click', (evt) => {
+        if (evt.target !== this.secondDialog) return
+        this._closeSecondDialog()
+      })
+
+      this.secondIframe.addEventListener('load', () => {
+        console.log('load second iframe')
+
+        const iframeWindow = this.secondIframe.contentWindow
+        const originalConsoleLog = iframeWindow.console.log
+
+        iframeWindow.console.log = (...args) => {
+          console.log('Log from iframe:', ...args)
+          // originalConsoleLog.apply(iframeWindow.console, args) // Вызываем оригинальную функцию
+        }
       })
     },
 
@@ -104,7 +162,7 @@
         return
       }
 
-      this._openDialog()
+      this._openFirstDialog()
 
       if (window.stateJs.firstQuizStatus) {
         this._showFirstEnd()
@@ -128,6 +186,48 @@
       }
 
       this._showFirstMsg()
+    },
+
+    // TODO: 2025-01-17 /
+    async _secondGameOpenHandler() {
+      const pin = window.userInfo.getClientID()
+      if (!pin) {
+        window.jsAuth._openReg()
+        return
+      }
+
+      this._openSecondDialog()
+
+      if (window.stateJs.secondQuizStatus) {
+        // this._showFirstEnd()
+        console.log('result second open')
+        return
+      }
+
+      // const length = window.quizJs[window.stateJs.ambasador].length
+
+      // if (length < window.stateJs.firstQuizQuestion) {
+      //   // network
+      //   const result = await this._sendResult()
+      //   console.log(result)
+      //   if (result) {
+      //     window.stateJs.setFirstQuizScore(result.total_scores)
+      //   }
+      //   await window.jsAuth.updateScore()
+
+      //   window.stateJs.updateFirstQuizStatus()
+      //   this._showFirstEnd()
+      //   return
+      // }
+
+      this._showSecondMsg()
+    },
+
+    _secondStartBtnHandler() {
+      // this.secondIframe.src = 'https://2lands.ru/ru/fasw2025_g2/'
+      this.secondIframe.src = './game2'
+
+      this._showSecondContent()
     },
 
     _firstQuizStartHandler() {
@@ -165,7 +265,7 @@
       }
     },
 
-    _dialogCloseExitHandler() {
+    _confirmDialogExitBtnHandler() {
       this.isGame = false
 
       if (this.isAnswer) {
@@ -175,8 +275,10 @@
 
       this._setLocal()
       this._stopTimer()
-      this._closeDialogClose()
-      this._closeDialog()
+
+      this._closeConfirmDialog()
+      this._closeFirstDialog()
+      this._closeSecondDialog()
     },
 
     _showFirstMsg() {
@@ -214,6 +316,22 @@
       window.jsUtils.showEl(this.firstEnd)
     },
 
+    _showSecondMsg() {
+      this.isGame = false
+
+      window.jsUtils.showEl(this.secondMsg)
+      window.jsUtils.hideEl(this.secondContent)
+      window.jsUtils.hideEl(this.secondEnd)
+    },
+
+    _showSecondContent() {
+      this.isGame = true
+
+      window.jsUtils.hideEl(this.secondMsg)
+      window.jsUtils.showEl(this.secondContent)
+      window.jsUtils.hideEl(this.secondEnd)
+    },
+
     _updateFirstQuestion() {
       const index = window.stateJs.firstQuizQuestion - 1
       const questionData = window.quizJs[window.stateJs.ambasador][index]
@@ -233,7 +351,7 @@
         it.removeAttribute('disabled')
       })
 
-      this.firstNextList.forEach((it) => {
+      this.firstBtnNextList.forEach((it) => {
         it.setAttribute('disabled', 'disabled')
       })
 
@@ -290,7 +408,7 @@
 
       window.stateJs.firstQuizQuestion += 1
 
-      this.firstNextList.forEach((it) => {
+      this.firstBtnNextList.forEach((it) => {
         it.removeAttribute('disabled')
       })
 
@@ -323,7 +441,7 @@
 
       window.stateJs.firstQuizQuestion += 1
 
-      this.firstNextList.forEach((it) => {
+      this.firstBtnNextList.forEach((it) => {
         it.removeAttribute('disabled')
       })
 
@@ -391,14 +509,14 @@
       }
     },
 
-    _openDialog() {
+    _openFirstDialog() {
       document.documentElement.classList.add('scroll-lock')
       this.firstDialog.classList.add('show')
     },
 
-    _closeDialog() {
+    _closeFirstDialog() {
       if (this.isGame) {
-        this._openDialogClose()
+        this._openConfirmDialog()
         return
       }
 
@@ -406,12 +524,27 @@
       this.firstDialog.classList.remove('show')
     },
 
-    _openDialogClose() {
-      this.dialogClose.classList.add('show')
+    _openSecondDialog() {
+      document.documentElement.classList.add('scroll-lock')
+      this.secondDialog.classList.add('show')
     },
 
-    _closeDialogClose() {
-      this.dialogClose.classList.remove('show')
+    _closeSecondDialog() {
+      if (this.isGame) {
+        this._openConfirmDialog()
+        return
+      }
+
+      document.documentElement.classList.remove('scroll-lock')
+      this.secondDialog.classList.remove('show')
+    },
+
+    _openConfirmDialog() {
+      this.confirmDialog.classList.add('show')
+    },
+
+    _closeConfirmDialog() {
+      this.confirmDialog.classList.remove('show')
     }
   }
 })()

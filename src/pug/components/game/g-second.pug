@@ -1,0 +1,77 @@
+include /components/button/btn-default
+
+mixin g-second-bg({})
+  .g-msg__mountans
+    +svg({ name: "mountains", w: 375, h: 350, className: "mobile" })
+    +svg({ name: "mountains-desktop", w: 1440, h: 460, className: "desktop" })
+  .g-msg__stars
+    img(class="mobile" src="./img/game/stars-msg.svg" width="190" height="90" alt="")
+    img(class="desktop" src="./img/game/stars-msg-desktop.svg" width="214" height="176" alt="")
+  .g-msg__person.js-msg-ambasador(data-person="ovechkin")
+    img(class="mobile" src="./img/game/ovechkin@2x.webp" width="375" height="482" alt="")
+    img(class="desktop" src="./img/game/ovechkin-desktop@2x.webp" width="565" height="535" alt="")
+  .g-msg__person.js-msg-ambasador(data-person="medvedeva" hidden)
+    img(class="mobile" src="./img/game/medvedeva@2x.webp" width="375" height="482" alt="")
+    img(class="desktop" src="./img/game/medvedeva-desktop@2x.webp" width="565" height="535" alt="")
+  .g-msg__person.js-msg-ambasador(data-person="korney" hidden)
+    img(class="mobile" src="./img/game/korney@2x.webp" width="375" height="482" alt="")
+    img(class="desktop" src="./img/game/korney-desktop@2x.webp" width="565" height="535" alt="")
+  .g-msg__person.js-msg-ambasador(data-person="ed" hidden)
+    img(class="mobile" src="./img/game/ed@2x.webp" width="375" height="482" alt="")
+    img(class="desktop" src="./img/game/ed-desktop@2x.webp" width="565" height="535" alt="")
+  .g-msg__person.js-msg-ambasador(data-person="akinfeev" hidden)
+    img(class="mobile" src="./img/game/akinfeev@2x.webp" width="375" height="482" alt="")
+    img(class="desktop" src="./img/game/akinfeev-desktop@2x.webp" width="565" height="535" alt="")
+
+mixin g-second-msg({ isHidden, isShow, className })
+  .g-msg(class=isShow && "show" class=className hidden=isHidden)
+    .g-msg__backside
+      +g-second-bg({})
+    .g-msg__content
+      .g-msg__wrp
+        h2.g-msg__title Ты не видел мой экип?
+        p.g-msg__text На&nbsp;картинке спрятано 10&nbsp;предметов хоккейной снаряги&nbsp;&mdash; коньки, клюшка, шлем и&nbsp;все такое. Ты&nbsp;увидишь все, что тебе надо найти, рядом с&nbsp;картинкой.
+        p.g-msg__text Нашел? Нажимай на&nbsp;предмет и&nbsp;получай 100&nbsp;звезд! На&nbsp;все про все у&nbsp;тебя минута. А&nbsp;если найдешь все за&nbsp;30&nbsp;секунд, получишь &times;1,5 бонуса к&nbsp;звездам. Всего будет две попытки.
+        p.g-msg__text Погнали!
+        .g-msg__btn
+          +btn-default({ text: "Вперед", className: "js-game-second-start" })
+      p.g-msg__ribbon Ох, хорошо, что ты&nbsp;тут! Я&nbsp;только со&nbsp;станции: там снег, ветер&nbsp;&mdash; в&nbsp;общем, жесть. А&nbsp;что творится на&nbsp;платформе? Весь экип рассыпался, прикинь... Поможешь собрать, пока поезд не&nbsp;уехал?
+
+mixin g-second-end({ isShow, className, isHidden })
+  .g-msg(class=isShow && "show" class=className,  hidden=isHidden)
+    .g-msg__backside
+      +g-second-bg({})
+    .g-msg__content
+      .g-msg__wrp
+        h2.g-msg__title.js-game-second-title(
+          data-high="Ого, ты нашел все! Хорош!"
+          data-low="Спасибо за помощь!"
+          data-zero="<no data>"
+        )
+        p.g-msg__text.js-game-second-text(
+          data-high="Давай стряхивай снег и&nbsp;садись &mdash; нам пора ехать!"
+          data-low="Давай стряхивай снег и&nbsp;садись &mdash; нам пора ехать!"
+          data-zero="<no data>"
+        )
+        .g-msg__result
+          .g-msg__result-text Результат: #[span.js-game-second-answer 0/5]
+          .g-msg__result-text
+            | Ты заработал:
+            +svg({ name: "star", w: 22, h: 22 })
+            | #[span.js-game-second-score 0] звезд
+        .g-msg__btn
+          +btn-default({ text: "На главную", className: 'js-game-second-close' })
+
+mixin g-second-content({ isShow, className, isHidden })
+  .g-iframe(class=isShow && "show" class=className, hidden=isHidden)
+    iframe.js-game-second-iframe(frameborder="0")
+
+
+mixin g-second({ isShow, className })
+  .overlay.js-game-second-dialog(class=isShow && "show" class=className)
+    .g-layout
+      .g-layout__close
+        +btn-close({ className: "js-game-second-close" })
+      +g-second-msg({ isHidden: true, className: "js-game-second-msg" })
+      +g-second-content({ isHidden: true, className: "js-game-second-content" })
+      +g-second-end({ isHidden: true, className: "js-game-second-end" })
