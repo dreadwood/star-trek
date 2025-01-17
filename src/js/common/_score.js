@@ -56,6 +56,7 @@
       const selfString = result
         .filter((it) => it.current_user)
         .map((it) => this._renderRow(it))
+        .slice(0, 1)
         .join(' ')
 
       body.innerHTML = bodySring
