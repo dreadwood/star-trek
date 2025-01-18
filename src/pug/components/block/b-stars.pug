@@ -11,7 +11,7 @@ mixin b-stars({ className, id })
         name: "Начало пути",
         date: "Игра откроется 16 января.",
         btnCssClass: "js-game-first-open",
-        state: 1
+        state: 1 // 0 ЕЩЕ не открылась, 1 открыта, 2 пройдена
       },
       {
         order: 2,
@@ -27,15 +27,16 @@ mixin b-stars({ className, id })
         img: "/img/stars/uniform.png",
         num: "Игра 3",
         name: "Шаришь за джерси?",
-        date: "Игра откроется 20 января. ",
-        state: 0
+        date: "Игра откроется 20 января.",
+        btnCssClass: "js-game-third-open",
+        state: 1
       },
       {
         order: 4,
         img: "/img/stars/cup.png",
         num: "Игра 4",
         name: "Испытание звезд",
-        date: "Игра откроется 22 января. ",
+        date: "Игра откроется 22 января.",
         state: 0
       },
       {
@@ -43,16 +44,14 @@ mixin b-stars({ className, id })
         img: "/img/stars/sticks.png",
         num: "Игра 5",
         name: "Отбей шайбу",
-        date: "Игра откроется 24 января. ",
-        state: 0 // 0 ЕЩЕ не открылась, 1 открыта, 2 пройдена
+        date: "Игра откроется 24 января.",
+        state: 0
       },
     ]
   section.b-stars(class=className id=id)
     .b-stars__sky-desktop
       img(class="desktop" src="./img/sky-stars-desktop.svg" width="1313" height="216" alt="")
     h2.title.b-stars__title.title.js-game-stars-block Играй и&nbsp;получай звезды
-    //- .b-stars__btn
-      +btn-default({ text: "Правила", className: "js-modal-rules-show" })
     p.b-stars__text На пути тебя ждет пять испытаний, в&nbsp;которых ты сможешь заработать звезды, чтобы побороться за призы.
     .b-stars__slider.js-slider-stars
       .b-stars__sky-mobile

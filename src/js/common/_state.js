@@ -38,28 +38,11 @@
       this.ambasador = existAmbasador ? ambasador : 'ovechkin'
     },
 
-    setFirstQuizScore(score) {
-      this.firstQuizScore = score
-    },
+    setFirstQuizScore(rightAnswer) {
+      this.firstQuizRight = rightAnswer
+      this.firstQuizScore = rightAnswer * 100
 
-    setSecondGameScore(score) {
-      this.secondGameScore = score
-
-      switch (true) {
-        case this.secondGameScore === 3000:
-          this.secondGameStatus = 'high'
-          break
-        case this.secondGameScore === 0:
-          this.secondGameStatus = 'zero'
-          break
-        default:
-          this.secondGameStatus = 'low'
-          break
-      }
-    },
-
-    updateFirstQuizStatus() {
-      switch (this.firstQuizRight) {
+      switch (rightAnswer) {
         case 5:
           this.firstQuizStatus = 'high'
           break
@@ -70,20 +53,22 @@
           this.firstQuizStatus = 'low'
           break
       }
-    }
+    },
 
-    // updateSecondGameStatus() {
-    //   switch (true) {
-    //     case this.secondGameScore === 3000:
-    //       this.secondGameStatus = 'high'
-    //       break
-    //     case this.secondGameScore === 0:
-    //       this.secondGameStatus = 'zero'
-    //       break
-    //     default:
-    //       this.secondGameStatus = 'low'
-    //       break
-    //   }
-    // }
+    setSecondGameScore(score) {
+      this.secondGameScore = score
+
+      switch (true) {
+        case score === 3000:
+          this.secondGameStatus = 'high'
+          break
+        case score === 0:
+          this.secondGameStatus = 'zero'
+          break
+        default:
+          this.secondGameStatus = 'low'
+          break
+      }
+    }
   }
 })()

@@ -1,3 +1,6 @@
+/**
+ * header.js
+ */
 ;(() => {
   window.jsHeader = {
     header: null,

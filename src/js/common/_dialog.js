@@ -3,8 +3,6 @@
  */
 ;(() => {
   window.jsDialog = {
-    duringAnimation: 500,
-
     init() {
       const rules = document.querySelector('.js-modal-rules')
       const rulesShowBtns = document.querySelectorAll('.js-modal-rules-show')
@@ -37,13 +35,8 @@
     },
 
     closeDialogl(dialog) {
-      setTimeout(() => {
-        dialog.classList.remove('hiding')
-      }, this.duringAnimation)
-
       document.documentElement.classList.remove('scroll-lock')
       dialog.classList.remove('show')
-      dialog.classList.add('hiding')
     }
   }
 })()

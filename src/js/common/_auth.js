@@ -1,7 +1,6 @@
 /**
  * auth.js
  */
-
 ;(() => {
   window.jsAuth = {
     city: null,
@@ -12,7 +11,7 @@
 
     regUrl: 'https://xcomfeed.com/fonbet/fasw2025/register-user',
     getUserUrl: 'https://xcomfeed.com/fonbet/fasw2025/get-user-info',
-    sendAmbasodor: 'https://xcomfeed.com/fonbet/fasw2025/update',
+    sendAmbasodorUrl: 'https://xcomfeed.com/fonbet/fasw2025/update',
     getGameDataUrl: 'https://xcomfeed.com/fonbet/fasw2025/get-games',
 
     async init() {
@@ -293,8 +292,8 @@
 
       if (gameData[0].user.has_answer) {
         window.jsState.firstQuizQuestion = 6
-        window.jsState.firstQuizRight = gameData[0].user.scores / 100
-        window.jsState.updateFirstQuizStatus()
+        const firstQuizRightAnswer = gameData[0].user.scores / 100
+        window.jsState.setFirstQuizScore(firstQuizRightAnswer)
       }
     },
 
@@ -304,14 +303,13 @@
         const res = await window.jsUtils.sendData(this.regUrl, 'POST', req)
 
         if (res.error) {
-          // добавить обработку ошибок
+          console.error(res.error)
           return false
         }
 
         return !res.error
       } catch (err) {
         console.error(err)
-        // добавить обработку ошибок
         return false
       }
     },
@@ -322,14 +320,13 @@
         const res = await window.jsUtils.sendData(this.getUserUrl, 'POST', req)
 
         if (res.error) {
-          // добавить обработку ошибок
+          console.error(res.error)
           return false
         }
 
         return res.data
       } catch (err) {
         console.error(err)
-        // добавить обработку ошибок
         return false
       }
     },
@@ -349,20 +346,19 @@
         }
 
         const res = await window.jsUtils.sendData(
-          this.sendAmbasodor,
+          this.sendAmbasodorUrl,
           'POST',
           req
         )
 
         if (res.error) {
-          // добавить обработку ошибок
+          console.error(res.error)
           return false
         }
 
         return !res.error
       } catch (err) {
         console.error(err)
-        // добавить обработку ошибок
         return false
       }
     },
@@ -383,14 +379,13 @@
         )
 
         if (res.error) {
-          // добавить обработку ошибок
+          console.error(res.error)
           return false
         }
 
         return res.data
       } catch (err) {
         console.error(err)
-        // добавить обработку ошибок
         return false
       }
     }

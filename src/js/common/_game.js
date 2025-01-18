@@ -6,8 +6,6 @@
   const LOCAL_KEY = 'GS_KEY'
 
   window.jsGame = {
-    TIME_SECOND: TIMER_SECOND,
-
     asw: {
       ovechkin: [1, 2, 2, 3, 1],
       medvedeva: [0, 1, 2, 0, 1],
@@ -36,6 +34,14 @@
     secondEnd: null,
     secondIframe: null,
 
+    // third
+    thirdDialog: null,
+    thirdMsg: null,
+    thirdContent: null,
+    thirdPause: null,
+    thirdEnd: null,
+
+    // other
     confirmDialog: null,
     soonDialog: null,
 
@@ -43,9 +49,8 @@
     timerId: null,
 
     sendResultUrl: 'https://xcomfeed.com/fonbet/fasw2025/answer',
-
-    secondGameUrl: 'https://fon.bet/promo/fasw2025_g2/',
-    // secondGameUrl: 'https://2lands.ru/ru/fasw2025_g2/',
+    // secondGameUrl: 'https://fon.bet/promo/fasw2025_g2/',
+    secondGameUrl: 'https://2lands.ru/ru/fasw2025_g2/',
 
     init() {
       this._initConfirm()
@@ -154,7 +159,6 @@
       })
 
       startBtn.addEventListener('click', () => {
-        // начало игры
         this._secondStartBtnHandler()
       })
 
@@ -181,14 +185,10 @@
         }
 
         if (msg.type === 'exit') {
-          // TODO: 2025-01-17 / Выход
           this._closeSecondDialog()
         }
 
         if (msg.type === 'score') {
-          // TODO: 2025-01-17 / Завершение игры
-          // console.log('Набрано очков ', msg.value)
-
           const result = await this._sendResult(gameId, msg.value)
           const gameDataList = await window.jsAuth._getGameData()
 
@@ -224,10 +224,9 @@
         return
       }
 
-      const length = window.jsQuiz[window.jsState.ambasador].length
+      const length = window.jsFirstQuiz[window.jsState.ambasador].length
 
       if (length < window.jsState.firstQuizQuestion) {
-        // network
         const gameId = 1
         const result = await this._sendResult(
           gameId,
@@ -235,11 +234,10 @@
         )
 
         if (result) {
-          window.jsState.setFirstQuizScore(window.jsState.firstQuizRight * 100)
+          window.jsState.setFirstQuizScore(window.jsState.firstQuizRight)
         }
         await window.jsAuth.updateScore()
 
-        window.jsState.updateFirstQuizStatus()
         this._showFirstEnd()
         return
       }
@@ -247,7 +245,6 @@
       this._showFirstMsg()
     },
 
-    // TODO: 2025-01-17 /
     async _secondGameOpenHandler() {
       const pin = window.userInfo.getClientID()
       if (!pin) {
@@ -258,19 +255,14 @@
       this._openSecondDialog()
 
       if (window.jsState.secondGameStatus) {
-        // this._showFirstEnd()
-        console.log('result second open')
         return
       }
-
-      // TODO: 2025-01-17 /
 
       this._showSecondMsg()
     },
 
     _secondStartBtnHandler() {
       this.secondIframe.src = this.secondGameUrl
-      // this.secondIframe.src = './game2'
       this.isGame = true
 
       this._showSecondContent()
@@ -286,11 +278,9 @@
     },
 
     async _firstQuizNextHandler() {
-      const length = window.jsQuiz[window.jsState.ambasador].length
+      const length = window.jsFirstQuiz[window.jsState.ambasador].length
 
       if (length < window.jsState.firstQuizQuestion) {
-        // network
-        // TODO: 2025-01-16 /
         const gameId = 1
         const result = await this._sendResult(
           gameId,
@@ -299,7 +289,7 @@
         const gameDataList = await window.jsAuth._getGameData()
 
         if (result) {
-          window.jsState.setFirstQuizScore(window.jsState.firstQuizRight * 100)
+          window.jsState.setFirstQuizScore(window.jsState.firstQuizRight)
         }
 
         if (gameDataList) {
@@ -309,7 +299,6 @@
 
         await window.jsAuth.updateScore()
 
-        window.jsState.updateFirstQuizStatus()
         this._showFirstEnd()
       } else {
         this._updateFirstQuestion()
@@ -320,14 +309,12 @@
       this.isGame = false
 
       if (this.isAnswer) {
-        // window.jsState.firstQuizQuestion += 1
         this.isAnswer = false
       }
 
       this._setLocal()
       this._stopTimer()
 
-      // TODO: 2025-01-17 /
       this.secondIframe.src = ''
 
       this._closeConfirmDialog()
@@ -387,7 +374,6 @@
     },
 
     _showSecondEnd() {
-      // this._setLocal()
       this.isGame = false
 
       const title = document.querySelector('.js-game-second-title')
@@ -405,7 +391,7 @@
 
     _updateFirstQuestion() {
       const index = window.jsState.firstQuizQuestion - 1
-      const questionData = window.jsQuiz[window.jsState.ambasador][index]
+      const questionData = window.jsFirstQuiz[window.jsState.ambasador][index]
 
       const questionStep = document.querySelector('.js-game-quiz-step')
       const questionText = document.querySelector('.js-game-quiz-question')
@@ -428,7 +414,7 @@
 
       questionText.innerHTML = questionData.quesion
 
-      const count = window.jsQuiz[window.jsState.ambasador].length
+      const count = window.jsFirstQuiz[window.jsState.ambasador].length
       questionStep.textContent = `Вопрос ${window.jsState.firstQuizQuestion}/${count}`
 
       this._setTimer()
@@ -549,7 +535,6 @@
     },
 
     setNextGameData(gameDataList) {
-      // TODO: 2025-01-17 /
       this.nextGame = null
       const currentDate = new Date()
 

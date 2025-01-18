@@ -3,7 +3,6 @@
  */
 ;(() => {
   window.jsSlider = {
-    /** @type {MediaQueryList} */
     mediaQuery: window.matchMedia(window.jsUtils.BREAKPOINT_TABLET),
 
     stars: null,
