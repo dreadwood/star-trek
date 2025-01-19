@@ -39,6 +39,10 @@
     thirdPause: null,
     thirdEnd: null,
 
+    jersey: null,
+    shorts: null,
+    getri: null,
+
     answerList: [],
     answerGrid: null,
 
@@ -55,6 +59,10 @@
       this.thirdContent = document.querySelector('.js-game-third-content')
       this.thirdPause = document.querySelector('.js-game-third-pause')
       this.thirdEnd = document.querySelector('.js-game-third-end')
+
+      this.jersey = document.querySelector('.js-game-third-jersey')
+      this.shorts = document.querySelector('.js-game-third-shorts')
+      this.getri = document.querySelector('.js-game-third-getri')
 
       this.answerList = document.querySelectorAll('.g-equip__answer')
       this.answerGrid = document.querySelector('.js-game-third-grid')
@@ -106,10 +114,6 @@
     },
 
     _answerHandler(answer) {
-      const jersey = document.querySelector('.js-game-third-jersey')
-      const shorts = document.querySelector('.js-game-third-shorts')
-      const getri = document.querySelector('.js-game-third-getri')
-
       const division = this.division[this.pos]
       const type = answer.dataset.type
       const id = answer.dataset.id
@@ -118,15 +122,15 @@
 
       switch (type) {
         case 'jersey':
-          jersey.src = `./img/equip/${division}-${type}-${id}.webp`
+          this.jersey.src = `./img/equip/${division}-${type}-${id}.webp`
           indexAsw = 0
           break
         case 'shorts':
-          shorts.src = `./img/equip/${division}-${type}-${id}.webp`
+          this.shorts.src = `./img/equip/${division}-${type}-${id}.webp`
           indexAsw = 1
           break
         case 'getri':
-          getri.src = `./img/equip/${division}-${type}-${id}.webp`
+          this.getri.src = `./img/equip/${division}-${type}-${id}.webp`
           indexAsw = 2
           break
       }
@@ -201,6 +205,9 @@
       this._updateLives()
 
       name.textContent = `Дивизион ${this.name[division]}`
+      this.jersey.src = this.jersey.dataset.default
+      this.shorts.src = this.shorts.dataset.default
+      this.getri.src = this.getri.dataset.default
       this.answerGrid.dataset.division = this.division[this.pos]
       this.answerList.forEach((it) => {
         it.classList.remove('error')

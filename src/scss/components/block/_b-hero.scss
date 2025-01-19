@@ -195,15 +195,20 @@
 }
 .b-hero__title-logo {
   position: relative;
-  width: 380rem;
+  width: 375rem;
   margin-left: -20rem;
+  overflow: hidden;
   img {
-    width: 100%;
+    width: 380rem;
+    max-width: none;
     object-fit: contain;
   }
   @include desktop {
     width: 922rem;
     margin-left: 0;
+    img {
+      width: 100%;
+    }
   }
 }
 .b-hero__date {

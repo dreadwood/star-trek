@@ -192,8 +192,8 @@
 .g-equip__window {
   position: relative;
   width: 100%;
-  // height: 309rem;
   padding: 8rem 14rem 8rem 14rem;
+  overflow: hidden;
   background-color: $color-white;
   @include desktop {
     flex-shrink: 0;
@@ -206,19 +206,19 @@
 .g-equip__star-1 {
   position: absolute;
   top: 82rem;
-  left: 53rem;
+  left: 32rem;
   width: 87rem;
   height: 83rem;
   object-fit: contain;
   @include desktop {
     top: 104rem;
-    left: 69rem;
+    left: 52rem;
   }
 }
 .g-equip__star-2 {
   position: absolute;
   top: 181rem;
-  right: 0;
+  right: -20rem;
   width: 145rem;
   height: 90rem;
   object-fit: contain;
@@ -231,7 +231,7 @@
   @include desktop {
     position: absolute;
     top: 197rem;
-    right: 31rem;
+    right: 24rem;
     display: block;
     width: 190rem;
     height: 90rem;

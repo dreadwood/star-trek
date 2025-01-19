@@ -144,10 +144,10 @@ mixin g-third-content({ isShow, className, isHidden })
         .g-equip__name.js-game-third-name Дивизион Харламова
         .g-equip__mannequin
           img.g-equip__helmet(src="./img/equip/mannequin-helmet.webp" alt="")
-          img.g-equip__jersey.js-game-third-jersey(src="./img/equip/mannequin-jersey.webp" alt="")
+          img.g-equip__jersey.js-game-third-jersey(src="./img/equip/mannequin-jersey.webp" data-default="./img/equip/mannequin-jersey.webp" alt="")
           img.g-equip__gloves(src="./img/equip/mannequin-gloves.webp" alt="")
-          img.g-equip__shorts.js-game-third-shorts(src="./img/equip/mannequin-shorts.webp" alt="")
-          img.g-equip__getri.js-game-third-getri(src="./img/equip/mannequin-getri.webp" alt="")
+          img.g-equip__shorts.js-game-third-shorts(src="./img/equip/mannequin-shorts.webp" data-default="./img/equip/mannequin-shorts.webp" alt="")
+          img.g-equip__getri.js-game-third-getri(src="./img/equip/mannequin-getri.webp" data-default="./img/equip/mannequin-getri.webp" alt="")
           img.g-equip__ice-skate(src="./img/equip/mannequin-ice-skate.webp" alt="")
       .g-equip__grid.js-game-third-grid(data-division="bobrov")
         each division, name in equipData.jersey
@@ -165,7 +165,7 @@ mixin g-third-content({ isShow, className, isHidden })
 
 
 mixin g-third-pause({ isHidden, isShow, className })
-  .g-msg(class=isShow && "show" class=className hidden=isHidden)
+  .g-msg.third(class=isShow && "show" class=className hidden=isHidden)
     .g-msg__backside
       +g-third-bg({})
     .g-msg__content
@@ -195,7 +195,7 @@ mixin g-third-pause({ isHidden, isShow, className })
           +btn-default({ text: "На главную", className: "msg white js-game-third-close" })
 
 mixin g-third-end({ isShow, className, isHidden })
-  .g-msg(class=isShow && "show" class=className,  hidden=isHidden)
+  .g-msg.third(class=isShow && "show" class=className,  hidden=isHidden)
     .g-msg__backside
       +g-third-bg({})
     .g-msg__content
