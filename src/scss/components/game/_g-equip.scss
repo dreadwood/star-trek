@@ -17,7 +17,8 @@
 .g-equip__top {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-  gap: 14rem;
+  // gap: 14rem;
+  gap: 2rem;
   width: 100%;
   padding: 16rem 24rem;
   background-color: $color-white;
@@ -191,8 +192,8 @@
 .g-equip__window {
   position: relative;
   width: 100%;
-  height: 344rem;
-  padding: 14rem 14rem 7rem 14rem;
+  // height: 309rem;
+  padding: 8rem 14rem 8rem 14rem;
   background-color: $color-white;
   @include desktop {
     flex-shrink: 0;
@@ -254,7 +255,7 @@
   left: 50%;
   z-index: 1;
   width: 100rem;
-  height: 292rem;
+  height: 262rem;
   margin-top: 11rem;
   transform: translateX(-50%);
   @include desktop {
@@ -267,8 +268,8 @@
   top: 0;
   left: calc(50% + 1rem);
   z-index: 6;
-  width: 40rem;
-  height: 51rem;
+  width: 36rem;
+  height: 46rem;
   object-fit: contain;
   transform: translateX(-50%);
   @include desktop {
@@ -278,11 +279,11 @@
 }
 .g-equip__jersey {
   position: absolute;
-  top: 45rem;
+  top: 41rem;
   left: 50%;
   z-index: 4;
-  width: 95rem;
-  height: 116rem;
+  width: 86rem;
+  height: 104rem;
   object-fit: contain;
   transform: translateX(-50%);
   @include desktop {
@@ -293,11 +294,11 @@
 }
 .g-equip__gloves {
   position: absolute;
-  top: 142rem;
+  top: 128rem;
   left: 50%;
   z-index: 5;
-  width: 100rem;
-  height: 42rem;
+  width: 90rem;
+  height: 38rem;
   object-fit: contain;
   transform: translateX(-50%);
   @include desktop {
@@ -308,11 +309,11 @@
 }
 .g-equip__shorts {
   position: absolute;
-  top: 147rem;
+  top: 132rem;
   left: 50%;
   z-index: 3;
-  width: 79rem;
-  height: 72rem;
+  width: 71rem;
+  height: 65rem;
   object-fit: cover;
   object-position: bottom;
   transform: translateX(-50%);
@@ -324,11 +325,11 @@
 }
 .g-equip__getri {
   position: absolute;
-  top: 206rem;
+  top: 185rem;
   left: 50%;
   z-index: 1;
-  width: 54rem;
-  height: 66rem;
+  width: 49rem;
+  height: 59rem;
   object-fit: contain;
   transform: translateX(-50%);
   @include desktop {
@@ -339,11 +340,11 @@
 }
 .g-equip__ice-skate {
   position: absolute;
-  top: 248rem;
+  top: 223rem;
   left: 50%;
   z-index: 2;
-  width: 52rem;
-  height: 47rem;
+  width: 47rem;
+  height: 42rem;
   object-fit: contain;
   transform: translateX(-50%);
   @include desktop {
@@ -357,7 +358,7 @@
   grid-template-columns: repeat(4, auto);
   justify-content: center;
   justify-items: center;
-  gap: 10rem 5rem;
+  gap: 4rem;
   width: 100%;
   margin-top: 10rem;
   &[data-division="bobrov"] {
@@ -393,7 +394,7 @@
   display: none;
   place-items: center;
   width: 85rem;
-  height: 102rem;
+  height: 92rem;
   margin: 0;
   padding: 0;
   background-color: $color-white;
@@ -410,7 +411,7 @@
     background-color: $color-carmine-red-2;
   }
   img {
-    width: 68rem;
+    width: 62rem;
     height: auto;
     object-fit: contain;
   }
