@@ -303,7 +303,7 @@
         const res = await window.jsUtils.sendData(this.regUrl, 'POST', req)
 
         if (res.error) {
-          console.error(res.error)
+          console.error(res)
           return false
         }
 
@@ -320,7 +320,7 @@
         const res = await window.jsUtils.sendData(this.getUserUrl, 'POST', req)
 
         if (res.error) {
-          console.error(res.error)
+          console.error(res)
           return false
         }
 
@@ -352,7 +352,7 @@
         )
 
         if (res.error) {
-          console.error(res.error)
+          console.error(res)
           return false
         }
 
@@ -379,7 +379,7 @@
         )
 
         if (res.error) {
-          console.error(res.error)
+          console.error(res)
           return false
         }
 

@@ -5,7 +5,7 @@
   width: max-content;
   max-width: 100%;
   margin: 0;
-  padding: 12rem 35rem;
+  padding: 11rem 34rem;
   font-family: $font-default;
   font-size: 16rem;
   line-height: 20rem;
@@ -15,6 +15,7 @@
   letter-spacing: -0.02em;
   background-color: $color-carmine-red-2;
   border: 0;
+  border: 1rem solid transparent;
   border-radius: 10rem;
   &:not([disabled]):hover,
   &:not([disabled]):focus-visible {
@@ -22,6 +23,20 @@
   }
   &[disabled] {
     background-color: $color-gray-537;
+  }
+  &.msg {
+    min-width: 134rem;
+    padding: 11rem;
+  }
+  &.white {
+    min-width: none;
+    color: $color-carmine-red-2;
+    background-color: $color-white;
+    border-color: $color-carmine-red-2;
+    &:hover,
+    &:focus-visible {
+      background-color: $color-gray-925;
+    }
   }
   &.promo,
   &.bingo {

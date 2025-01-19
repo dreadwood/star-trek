@@ -1,0 +1,226 @@
+include /components/button/btn-default
+
+mixin g-third-bg({})
+  .g-msg__mountans
+    +svg({ name: "mountains", w: 375, h: 350, className: "mobile" })
+    +svg({ name: "mountains-desktop", w: 1440, h: 460, className: "desktop" })
+  .g-msg__stars
+    img(class="mobile" src="./img/game/stars-msg.svg" width="190" height="90" alt="")
+    img(class="desktop" src="./img/game/stars-msg-desktop.svg" width="214" height="176" alt="")
+  .g-msg__person.js-msg-ambasador(data-person="ovechkin")
+    img(class="mobile" src="./img/game/ovechkin@2x.webp" width="375" height="482" alt="")
+    img(class="desktop" src="./img/game/ovechkin-desktop@2x.webp" width="565" height="535" alt="")
+  .g-msg__person.js-msg-ambasador(data-person="medvedeva" hidden)
+    img(class="mobile" src="./img/game/medvedeva@2x.webp" width="375" height="482" alt="")
+    img(class="desktop" src="./img/game/medvedeva-desktop@2x.webp" width="565" height="535" alt="")
+  .g-msg__person.js-msg-ambasador(data-person="korney" hidden)
+    img(class="mobile" src="./img/game/korney@2x.webp" width="375" height="482" alt="")
+    img(class="desktop" src="./img/game/korney-desktop@2x.webp" width="565" height="535" alt="")
+  .g-msg__person.js-msg-ambasador(data-person="ed" hidden)
+    img(class="mobile" src="./img/game/ed@2x.webp" width="375" height="482" alt="")
+    img(class="desktop" src="./img/game/ed-desktop@2x.webp" width="565" height="535" alt="")
+  .g-msg__person.js-msg-ambasador(data-person="akinfeev" hidden)
+    img(class="mobile" src="./img/game/akinfeev@2x.webp" width="375" height="482" alt="")
+    img(class="desktop" src="./img/game/akinfeev-desktop@2x.webp" width="565" height="535" alt="")
+
+mixin g-third-msg({ isHidden, isShow, className })
+  .g-msg(class=isShow && "show" class=className hidden=isHidden)
+    .g-msg__backside
+      +g-third-bg({})
+    .g-msg__content
+      .g-msg__wrp
+        h2.g-msg__title Шаришь за джерси?
+        p.g-msg__text Комплект формы ФОНБЕТ Недели Звезд Хоккея 2025 состоит из&nbsp;трех предметов: джерси, шорт и&nbsp;гетр. #[br] Выбери из&nbsp;кучи вариантов правильные, чтобы собрать комплекты формы команд, которые встретят тебя на&nbsp;ФОНБЕТ Неделе Звезд Хоккея 2025. #[br] Тебя ждет 4&nbsp;уровня, на&nbsp;каждый&nbsp;&mdash; 45&nbsp;секунд. За&nbsp;каждый верно выбранный предмет ты&nbsp;получишь 100&nbsp;звезд. А&nbsp;если весь комплект правильный&nbsp;&mdash; еще &times;1,5 бонуса к&nbsp;звездам. Вперед!
+        .g-msg__btn
+          +btn-default({ text: "Вперед", className: "msg js-game-third-start" })
+      p.g-msg__ribbon Ну&nbsp;и&nbsp;погодка! Пока поезд подъезжал к&nbsp;станции, все багажное отделение так трясло, что там все рассыпалось! Вся форма для ФОНБЕТ Недели Звезд Хоккея 2025&nbsp;перепуталась. Давай быстрее, помоги собрать формы разных команд с&nbsp;ФОНБЕТ Матча Звезд КХЛ 2025, чтобы вернуть все как было.
+
+mixin g-third-content({ isShow, className, isHidden })
+  -
+    let equipData = {
+      jersey: {
+        bobrov: [
+          { img: './img/equip/bobrov-jersey-1.webp', id: 1 },
+          { img: './img/equip/bobrov-jersey-2.webp', id: 2 },
+          { img: './img/equip/bobrov-jersey-3.webp', id: 3 },
+          { img: './img/equip/bobrov-jersey-4.webp', id: 4 },
+        ],
+        chernyshev: [
+          { img: './img/equip/chernyshev-jersey-1.webp', id: 1 },
+          { img: './img/equip/chernyshev-jersey-2.webp', id: 2 },
+          { img: './img/equip/chernyshev-jersey-3.webp', id: 3 },
+          { img: './img/equip/chernyshev-jersey-4.webp', id: 4 },
+        ],
+        kharlamov: [
+          { img: './img/equip/kharlamov-jersey-1.webp', id: 1 },
+          { img: './img/equip/kharlamov-jersey-2.webp', id: 2 },
+          { img: './img/equip/kharlamov-jersey-3.webp', id: 3 },
+          { img: './img/equip/kharlamov-jersey-4.webp', id: 4 },
+        ],
+        tarasov: [
+          { img: './img/equip/tarasov-jersey-1.webp', id: 1 },
+          { img: './img/equip/tarasov-jersey-2.webp', id: 2 },
+          { img: './img/equip/tarasov-jersey-3.webp', id: 3 },
+          { img: './img/equip/tarasov-jersey-4.webp', id: 4 },
+        ],
+      },
+      shorts: {
+        bobrov: [
+          { img: './img/equip/bobrov-shorts-1.webp', id: 1 },
+          { img: './img/equip/bobrov-shorts-2.webp', id: 2 },
+          { img: './img/equip/bobrov-shorts-3.webp', id: 3 },
+          { img: './img/equip/bobrov-shorts-4.webp', id: 4 },
+        ],
+        chernyshev: [
+          { img: './img/equip/chernyshev-shorts-1.webp', id: 1 },
+          { img: './img/equip/chernyshev-shorts-2.webp', id: 2 },
+          { img: './img/equip/chernyshev-shorts-3.webp', id: 3 },
+          { img: './img/equip/chernyshev-shorts-4.webp', id: 4 },
+        ],
+        kharlamov: [
+          { img: './img/equip/kharlamov-shorts-1.webp', id: 1 },
+          { img: './img/equip/kharlamov-shorts-2.webp', id: 2 },
+          { img: './img/equip/kharlamov-shorts-3.webp', id: 3 },
+          { img: './img/equip/kharlamov-shorts-4.webp', id: 4 },
+        ],
+        tarasov: [
+          { img: './img/equip/tarasov-shorts-1.webp', id: 1 },
+          { img: './img/equip/tarasov-shorts-2.webp', id: 2 },
+          { img: './img/equip/tarasov-shorts-3.webp', id: 3 },
+          { img: './img/equip/tarasov-shorts-4.webp', id: 4 },
+        ],
+      },
+      getri: {
+        bobrov: [
+          { img: './img/equip/bobrov-getri-1.webp', id: 1 },
+          { img: './img/equip/bobrov-getri-2.webp', id: 2 },
+          { img: './img/equip/bobrov-getri-3.webp', id: 3 },
+          { img: './img/equip/bobrov-getri-4.webp', id: 4 },
+        ],
+        chernyshev: [
+          { img: './img/equip/chernyshev-getri-1.webp', id: 1 },
+          { img: './img/equip/chernyshev-getri-2.webp', id: 2 },
+          { img: './img/equip/chernyshev-getri-3.webp', id: 3 },
+          { img: './img/equip/chernyshev-getri-4.webp', id: 4 },
+        ],
+        kharlamov: [
+          { img: './img/equip/kharlamov-getri-1.webp', id: 1 },
+          { img: './img/equip/kharlamov-getri-2.webp', id: 2 },
+          { img: './img/equip/kharlamov-getri-3.webp', id: 3 },
+          { img: './img/equip/kharlamov-getri-4.webp', id: 4 },
+        ],
+        tarasov: [
+          { img: './img/equip/tarasov-getri-1.webp', id: 1 },
+          { img: './img/equip/tarasov-getri-2.webp', id: 2 },
+          { img: './img/equip/tarasov-getri-3.webp', id: 3 },
+          { img: './img/equip/tarasov-getri-4.webp', id: 4 },
+        ],
+      },
+    }
+  .g-equip(class=isShow && "show" class=className, hidden=isHidden)
+    .g-equip__top
+      .g-equip__level
+        | Уровень
+        .g-equip__level-list
+          .g-equip__level-tem.js-game-third-level.actv
+          .g-equip__level-tem.js-game-third-level
+          .g-equip__level-tem.js-game-third-level
+          .g-equip__level-tem.js-game-third-level
+      .g-equip__time
+        .g-equip__time-top
+          span 00
+          span.js-game-third-time 48
+        progress.g-equip__time-progress.js-game-third-progress(value="48" max="60")
+      .g-equip__lives
+        each it in (new Array(3).fill(0))
+          +svg({ name: "heart", w: 18, h: 16, className: "actv js-game-third-live" })
+      .g-equip__close-wrp
+        button.g-equip__close.js-game-third-close
+    .g-equip__cols
+      .g-equip__window
+        img.g-equip__star-1(src="./img/equip/stars-1.svg" width="87" height="83" alt="")
+        img.g-equip__star-2(src="./img/equip/stars-2.svg" width="145" height="90" alt="")
+        img.g-equip__star-3(src="./img/equip/stars-3.svg" width="190" height="90" alt="")
+        .g-equip__name.js-game-third-name Дивизион Харламова
+        .g-equip__mannequin
+          img.g-equip__helmet(src="./img/equip/mannequin-helmet.webp" alt="")
+          img.g-equip__jersey.js-game-third-jersey(src="./img/equip/mannequin-jersey.webp" alt="")
+          img.g-equip__gloves(src="./img/equip/mannequin-gloves.webp" alt="")
+          img.g-equip__shorts.js-game-third-shorts(src="./img/equip/mannequin-shorts.webp" alt="")
+          img.g-equip__getri.js-game-third-getri(src="./img/equip/mannequin-getri.webp" alt="")
+          img.g-equip__ice-skate(src="./img/equip/mannequin-ice-skate.webp" alt="")
+      .g-equip__grid.js-game-third-grid(data-division="bobrov")
+        each division, name in equipData.jersey
+          each it in division
+            button.g-equip__answer.js-game-third-answer(data-type="jersey" data-division=name data-id=it.id)
+              img(src=it.img  alt="")
+        each division, name in equipData.shorts
+          each it in division
+            button.g-equip__answer.js-game-third-answer(data-type="shorts" data-division=name data-id=it.id)
+              img(src=it.img alt="")
+        each division, name in equipData.getri
+          each it in division
+            button.g-equip__answer.js-game-third-answer(data-type="getri" data-division=name data-id=it.id)
+              img(src=it.img alt="")
+
+
+mixin g-third-pause({ isHidden, isShow, className })
+  .g-msg(class=isShow && "show" class=className hidden=isHidden)
+    .g-msg__backside
+      +g-third-bg({})
+    .g-msg__content
+      .g-msg__wrp
+        h2.g-msg__title.js-game-third-level-title(
+          data-cool="Супер!"
+          data-live="Бывает!"
+          data-time="Бывает!"
+        )
+        p.g-msg__text.js-game-third-level-text(
+          data-cool="Форма собрана, звезды в&nbsp;кармане.!"
+          data-live="У&nbsp;тебя кончились жизни, зато ты&nbsp;успел заработать звезды!"
+          data-time="У&nbsp;тебя закончилось время."
+        )
+        p.g-msg__text Погнали обратно в&nbsp;купе, поезд скоро тронется!
+        .g-msg__result
+          .g-msg__result-text
+            | Ты заработал:
+            +svg({ name: "star", w: 22, h: 22 })
+            | #[span.js-game-third-level-score 0] звезд
+        .g-msg__btn
+          +btn-default({ text: "Следующий уровень", className: "msg js-game-third-next" })
+          +btn-default({ text: "На главную", className: "msg white js-game-third-close" })
+
+mixin g-third-end({ isShow, className, isHidden })
+  .g-msg(class=isShow && "show" class=className,  hidden=isHidden)
+    .g-msg__backside
+      +g-third-bg({})
+    .g-msg__content
+      .g-msg__wrp
+        h2.g-msg__title.js-game-third-title(
+          data-cool="Супер!"
+          data-live="Бывает!"
+          data-time="Бывает!"
+        )
+        p.g-msg__text.js-game-third-text(
+          data-cool="Ну&nbsp;поздравляю, считай, спас все команды на&nbsp;ФОНБЕТ Неделе Звезд Хоккея! <br><br> Погнали обратно в&nbsp;купе, поезд скоро тронется!"
+          data-live="У&nbsp;тебя кончились жизни, зато у&nbsp;тебя есть звезды! Не&nbsp;пропусти следующие игры, чтобы получить их&nbsp;как можно больше!"
+          data-time="У&nbsp;тебя закончилось время, зато ты&nbsp;успел заработать звезды! Едем Дальше!"
+        )
+        .g-msg__result
+          .g-msg__result-text
+            | Ты заработал:
+            +svg({ name: "star", w: 22, h: 22 })
+            | #[span.js-game-third-score 0] звезд
+        .g-msg__btn
+          +btn-default({ text: "На главную", className: 'msg js-game-third-close' })
+
+
+mixin g-third({ isShow, className })
+  .overlay.js-game-third-dialog(class=isShow && "show" class=className)
+    .g-layout
+      .g-layout__close
+        +btn-close({ className: "js-game-third-close" })
+      +g-third-msg({ isHidden: true, className: "js-game-third-msg" })
+      +g-third-content({ isHidden: true, className: "js-game-third-content" })
+      +g-third-pause({ isHidden: true, className: "js-game-third-pause" })
+      +g-third-end({ isHidden: true, className: "js-game-third-end" })

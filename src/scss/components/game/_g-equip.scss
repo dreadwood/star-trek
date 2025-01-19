@@ -1,0 +1,425 @@
+.g-equip {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 10rem;
+  font-family: $font-default;
+  background-color: $color-blue-alice;
+  @include desktop {
+    display: block;
+    padding: 15rem 90rem;
+  }
+}
+.g-equip__top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 14rem;
+  width: 100%;
+  padding: 16rem 24rem;
+  background-color: $color-white;
+  border-radius: 10rem;
+  @include desktop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30rem;
+  }
+}
+.g-equip__level {
+  flex-shrink: 0;
+  font-family: $font-default;
+  font-size: 14rem;
+  line-height: 1.2;
+  font-weight: 500;
+  color: $color-blue-degrees;
+}
+.g-equip__level-list {
+  display: flex;
+  gap: 3rem;
+  margin-top: 9rem;
+  @include desktop {
+    gap: 6rem;
+    margin-top: 11rem;
+  }
+}
+.g-equip__level-tem {
+  flex-shrink: 0;
+  width: 15rem;
+  height: 3rem;
+  background-color: transparentize($color-gray-400, 0.6);
+  border-radius: 3rem;
+  &.actv {
+    background-color: currentcolor;
+  }
+  @include desktop {
+    width: 44rem;
+    height: 4rem;
+  }
+}
+.g-equip__time {
+  flex-shrink: 0;
+  width: 118rem;
+  font-size: 14rem;
+  line-height: 1.2;
+  font-weight: 500;
+  color: $color-blue-degrees;
+  letter-spacing: -0.02em;
+  @include desktop {
+    width: 181rem;
+    margin: 0 auto;
+  }
+}
+.g-equip__time-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  @include desktop {
+    width: calc(100% + 16rem);
+    margin: 0 -8rem;
+  }
+}
+.g-equip__time-progress {
+  display: block;
+  width: 100%;
+  height: 2rem;
+  margin-top: 9rem;
+  background-color: transparentize($color-gray-537, 0.6);
+  border: 0;
+  border-radius: 3rem;
+  appearance: none;
+  &::-moz-progress-bar {
+    background-color: #ff8630;
+    border: 0;
+    border-radius: 3rem;
+  }
+  &::-webkit-progress-bar {
+    background-color: transparentize($color-gray-537, 0.6);
+    border: 0;
+    border-radius: 3rem;
+  }
+  &::-webkit-progress-value {
+    background-color: currentcolor;
+    border-radius: 3rem;
+  }
+  @include desktop {
+    height: 3rem;
+    margin-top: 11rem;
+  }
+}
+.g-equip__lives {
+  display: flex;
+  grid-row: 2 / 3;
+  grid-column: 2 / 3;
+  flex-shrink: 0;
+  justify-content: center;
+  justify-self: center;
+  align-items: center;
+  gap: 4rem;
+  width: max-content;
+  svg {
+    flex-shrink: 0;
+    width: 18rem;
+    height: 16rem;
+    fill: transparentize($color-gray-537, 0.7);
+    &.actv {
+      fill: $color-carmine-red-2;
+    }
+  }
+  @include desktop {
+    margin-left: 70rem;
+  }
+}
+.g-equip__close-wrp {
+  @include desktop {
+    flex-shrink: 0;
+  }
+}
+.g-equip__close {
+  @include transition(background);
+  position: relative;
+  display: block;
+  width: 40rem;
+  height: 40rem;
+  margin: 0;
+  margin-left: auto;
+  padding: 0;
+  color: $color-sea-wave;
+  background-color: $color-ghostly-white;
+  border: 0;
+  border-radius: 50%;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16rem;
+    height: 2rem;
+    background-color: currentcolor;
+    border-radius: 2rem;
+    transform-origin: center center;
+  }
+  &::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+  &::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+  &:hover,
+  &:focus-visible {
+    background-color: transparentize($color-blue-degrees, 0.9);
+  }
+  @include desktop {
+    &::before,
+    &::after {
+      width: 18rem;
+    }
+  }
+}
+.g-equip__cols {
+  margin-top: 10rem;
+  @include desktop {
+    display: flex;
+    justify-content: space-between;
+    gap: 10rem;
+  }
+}
+.g-equip__window {
+  position: relative;
+  width: 100%;
+  height: 344rem;
+  padding: 14rem 14rem 7rem 14rem;
+  background-color: $color-white;
+  @include desktop {
+    flex-shrink: 0;
+    width: 440rem;
+    height: auto;
+    padding-top: 18rem;
+    border-radius: 10rem;
+  }
+}
+.g-equip__star-1 {
+  position: absolute;
+  top: 82rem;
+  left: 53rem;
+  width: 87rem;
+  height: 83rem;
+  object-fit: contain;
+  @include desktop {
+    top: 104rem;
+    left: 69rem;
+  }
+}
+.g-equip__star-2 {
+  position: absolute;
+  top: 181rem;
+  right: 0;
+  width: 145rem;
+  height: 90rem;
+  object-fit: contain;
+  @include desktop {
+    display: none;
+  }
+}
+.g-equip__star-3 {
+  display: none;
+  @include desktop {
+    position: absolute;
+    top: 197rem;
+    right: 31rem;
+    display: block;
+    width: 190rem;
+    height: 90rem;
+    object-fit: contain;
+  }
+}
+.g-equip__name {
+  font-size: 18rem;
+  line-height: 1;
+  font-weight: 700;
+  text-align: center;
+  color: $color-black;
+  text-transform: uppercase;
+  @include desktop {
+    color: $color-carmine-red-2;
+  }
+}
+.g-equip__mannequin {
+  position: relative;
+  top: 0;
+  left: 50%;
+  z-index: 1;
+  width: 100rem;
+  height: 292rem;
+  margin-top: 11rem;
+  transform: translateX(-50%);
+  @include desktop {
+    width: 126rem;
+    height: 373rem;
+  }
+}
+.g-equip__helmet {
+  position: absolute;
+  top: 0;
+  left: calc(50% + 1rem);
+  z-index: 6;
+  width: 40rem;
+  height: 51rem;
+  object-fit: contain;
+  transform: translateX(-50%);
+  @include desktop {
+    width: 50rem;
+    height: 64rem;
+  }
+}
+.g-equip__jersey {
+  position: absolute;
+  top: 45rem;
+  left: 50%;
+  z-index: 4;
+  width: 95rem;
+  height: 116rem;
+  object-fit: contain;
+  transform: translateX(-50%);
+  @include desktop {
+    top: 58rem;
+    width: 120rem;
+    height: 146rem;
+  }
+}
+.g-equip__gloves {
+  position: absolute;
+  top: 142rem;
+  left: 50%;
+  z-index: 5;
+  width: 100rem;
+  height: 42rem;
+  object-fit: contain;
+  transform: translateX(-50%);
+  @include desktop {
+    top: 181rem;
+    width: 126rem;
+    height: 53rem;
+  }
+}
+.g-equip__shorts {
+  position: absolute;
+  top: 147rem;
+  left: 50%;
+  z-index: 3;
+  width: 79rem;
+  height: 72rem;
+  // object-fit: contain;
+  object-fit: cover;
+  object-position: bottom;
+  transform: translateX(-50%);
+  @include desktop {
+    top: 179rem;
+    width: 104rem;
+    height: 100rem;
+  }
+}
+.g-equip__getri {
+  position: absolute;
+  top: 206rem;
+  left: 50%;
+  z-index: 1;
+  width: 54rem;
+  height: 66rem;
+  object-fit: contain;
+  transform: translateX(-50%);
+  @include desktop {
+    top: 261rem;
+    width: 68rem;
+    height: 83rem;
+  }
+}
+.g-equip__ice-skate {
+  position: absolute;
+  top: 248rem;
+  left: 50%;
+  z-index: 2;
+  width: 52rem;
+  height: 47rem;
+  object-fit: contain;
+  transform: translateX(-50%);
+  @include desktop {
+    top: 313rem;
+    width: 66rem;
+    height: 60rem;
+  }
+}
+.g-equip__grid {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  justify-content: center;
+  justify-items: center;
+  gap: 10rem 5rem;
+  width: 100%;
+  margin-top: 10rem;
+  &[data-division="bobrov"] {
+    .g-equip__answer[data-division="bobrov"] {
+      display: grid;
+    }
+  }
+  &[data-division="chernyshev"] {
+    .g-equip__answer[data-division="chernyshev"] {
+      display: grid;
+    }
+  }
+  &[data-division="kharlamov"] {
+    .g-equip__answer[data-division="kharlamov"] {
+      display: grid;
+    }
+  }
+  &[data-division="tarasov"] {
+    .g-equip__answer[data-division="tarasov"] {
+      display: grid;
+    }
+  }
+  @include desktop {
+    flex-shrink: 0;
+    gap: 10rem 8rem;
+    width: 440rem;
+    margin-top: 0;
+  }
+}
+.g-equip__answer {
+  @include transition(background, color, border);
+  // display: grid;
+  display: none;
+  place-items: center;
+  width: 85rem;
+  height: 102rem;
+  margin: 0;
+  padding: 0;
+  background-color: $color-white;
+  border: 2rem solid transparent;
+  border-radius: 14rem;
+  &:not(.actv, .error, [disabled]):hover,
+  &:not(.actv, .error, [disabled]):focus-visible {
+    background-color: $color-gray-925;
+  }
+  &.actv {
+    border-color: $color-carmine-red-2;
+  }
+  &.error {
+    background-color: $color-carmine-red-2;
+  }
+  img {
+    width: 68rem;
+    height: auto;
+    object-fit: contain;
+  }
+  @include desktop {
+    width: 104rem;
+    height: 136rem;
+    img {
+      width: 86rem;
+    }
+  }
+}

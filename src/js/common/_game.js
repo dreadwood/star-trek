@@ -57,6 +57,7 @@
       this._initSoon()
       this._initFirst()
       this._initSecond()
+      window.jsThirdGame.init()
     },
 
     async _initConfirm() {
@@ -320,6 +321,7 @@
       this._closeConfirmDialog()
       this._closeFirstDialog()
       this._closeSecondDialog()
+      window.jsThirdGame._closeThirdDialog()
     },
 
     _showFirstMsg() {

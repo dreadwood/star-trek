@@ -19,6 +19,11 @@
     secondGameStatus: null, // low / high / zero
     secondGameScore: 0,
 
+    // third
+    thirdGameRight: 0,
+    thirdGameStatus: null, // cool / live / time
+    thirdGameScore: 0,
+
     resetState(pin) {
       this.pin = pin
 
@@ -56,7 +61,7 @@
     },
 
     setSecondGameScore(score) {
-      this.secondGameScore = score
+      this.thirdGameScore = score
 
       switch (true) {
         case score === 3000:
@@ -69,6 +74,11 @@
           this.secondGameStatus = 'low'
           break
       }
+    },
+
+    setThirdGameScore(score, status) {
+      this.thirdGameScore = score
+      window.jsState.thirdGameStatus = status
     }
   }
 })()
