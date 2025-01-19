@@ -21,7 +21,7 @@
 
     // third
     thirdGameRight: 0,
-    thirdGameStatus: null, // cool / live / time
+    thirdGameStatus: null, // cool / live / livezero / time / timezero
     thirdGameScore: 0,
 
     resetState(pin) {
@@ -61,7 +61,7 @@
     },
 
     setSecondGameScore(score) {
-      this.thirdGameScore = score
+      this.secondGameScore = score
 
       switch (true) {
         case score === 3000:

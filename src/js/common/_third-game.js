@@ -1,10 +1,13 @@
 ;(() => {
-  const TIMER_SECOND = 60
+  const TIMER_SECOND = 45
+  // const LOCAL_KEY = 'GS_KEY_3'
 
   window.jsThirdGame = {
     gameId: 3,
 
     pos: 0,
+    isLastLevel: false,
+
     division: ['bobrov', 'chernyshev', 'kharlamov', 'tarasov'],
     name: {
       bobrov: 'Боброва',
@@ -14,14 +17,14 @@
     },
 
     asw: {
-      bobrov: ['4', '4', '4'],
-      chernyshev: ['4', '4', '4'],
-      kharlamov: ['4', '4', '4'],
-      tarasov: ['4', '4', '4']
+      bobrov: ['ggrB', 'Ubcu', 'kzID'],
+      chernyshev: ['xfyB', 'HbbQ', 'sCpV'],
+      kharlamov: ['jEYU', 'UUZZ', 'Xnhd'],
+      tarasov: ['oQPU', 'vAYJ', 'Ojhf']
     },
 
     score: [0, 0, 0, 0],
-    levelStatus: null, // cool / live / time
+    levelStatus: null, // cool / live / livezero / time / timeszero
 
     lives: 3,
     isSelect: {
@@ -80,7 +83,7 @@
       )
 
       btnNext.addEventListener('click', () => {
-        this.pos += 1
+        this._incrementPos()
         this._renderLevel()
         this._showThirdContent()
       })
@@ -151,24 +154,22 @@
 
     _checkAnswer() {
       if (this.lives === 0) {
-        this.levelStatus = 'live'
+        this._updateLevelStatus()
         this._showCorrectScreen()
-        console.log('проигрыш: жизни, результат: ', this.score[this.pos])
         return
       }
 
       if (this.timer <= 0) {
-        this.levelStatus = 'time'
+        this._updateLevelStatus()
         this._showCorrectScreen()
-        console.log('проигрыш: время, результат: ', this.score[this.pos])
         return
       }
 
       if (Object.values(this.isSelect).every((it) => it)) {
         this.score[this.pos] *= 1.5
-        this.levelStatus = 'cool'
+        this._updateLevelStatus()
         this._showCorrectScreen()
-        console.log('выигрыш, результат: ', this.score[this.pos])
+        return
       }
     },
 
@@ -180,10 +181,7 @@
       }
 
       const levelList = document.querySelectorAll('.js-game-third-level')
-      // const time = document.querySelector('.js-game-third-time')
-      // const progress = document.querySelector('.js-game-third-progress')
       const name = document.querySelector('.js-game-third-name')
-      // const liveList = document.querySelectorAll('.js-game-third-live')
 
       const division = this.division[this.pos]
 
@@ -199,10 +197,9 @@
         if (i <= this.pos) it.classList.add('actv')
         else it.classList.remove('actv')
       })
-      // time.textContent = TIMER_SECOND
-      // progress.value = TIMER_SECOND
+
       this._updateLives()
-      // liveList.forEach((it) => it.classList.add('actv'))
+
       name.textContent = `Дивизион ${this.name[division]}`
       this.answerGrid.dataset.division = this.division[this.pos]
       this.answerList.forEach((it) => {
@@ -298,7 +295,6 @@
           this.timer -= 1
           this._updateTimer(time, progress)
         } else {
-          // this._timeOver()
           this._checkAnswer()
         }
       }, 1000)
@@ -333,7 +329,7 @@
     async _showCorrectScreen() {
       this._stopTimer()
 
-      if (this.pos === this.division.length - 1) {
+      if (this.isLastLevel) {
         const score = this.score.reduce((acc, it) => acc + it)
 
         const result = await window.jsGame._sendResult(this.gameId, score)
@@ -354,6 +350,35 @@
       } else {
         this._showThirdPause()
       }
+    },
+
+    _updateLevelStatus() {
+      let score = this.score[this.pos]
+
+      if (this.isLastLevel) {
+        score = this.score.reduce((acc, it) => acc + it)
+      }
+
+      if (this.lives <= 0) {
+        this.levelStatus = score === 0 ? 'livezero' : 'live'
+        return
+      }
+
+      if (this.timer <= 0) {
+        1
+        this.levelStatus = score === 0 ? 'timezero' : 'time'
+        return
+      }
+
+      if (Object.values(this.isSelect).every((it) => it)) {
+        this.levelStatus = 'cool'
+        return
+      }
+    },
+
+    _incrementPos() {
+      this.pos += 1
+      this.isLastLevel = this.pos === this.division.length - 1
     }
   }
 })()

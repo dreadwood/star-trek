@@ -24,7 +24,7 @@ mixin g-third-bg({})
     img(class="desktop" src="./img/game/akinfeev-desktop@2x.webp" width="565" height="535" alt="")
 
 mixin g-third-msg({ isHidden, isShow, className })
-  .g-msg(class=isShow && "show" class=className hidden=isHidden)
+  .g-msg.third(class=isShow && "show" class=className hidden=isHidden)
     .g-msg__backside
       +g-third-bg({})
     .g-msg__content
@@ -40,80 +40,80 @@ mixin g-third-content({ isShow, className, isHidden })
     let equipData = {
       jersey: {
         bobrov: [
-          { img: './img/equip/bobrov-jersey-1.webp', id: 1 },
-          { img: './img/equip/bobrov-jersey-2.webp', id: 2 },
-          { img: './img/equip/bobrov-jersey-3.webp', id: 3 },
-          { img: './img/equip/bobrov-jersey-4.webp', id: 4 },
+          { img: './img/equip/bobrov-jersey-owhL.webp', oid: 1, id: 'owhL' },
+          { img: './img/equip/bobrov-jersey-uAJZ.webp', oid: 2, id: 'uAJZ' },
+          { img: './img/equip/bobrov-jersey-uqrs.webp', oid: 3, id: 'uqrs' },
+          { img: './img/equip/bobrov-jersey-ggrB.webp', oid: 4, id: 'ggrB', c: true },
         ],
         chernyshev: [
-          { img: './img/equip/chernyshev-jersey-1.webp', id: 1 },
-          { img: './img/equip/chernyshev-jersey-2.webp', id: 2 },
-          { img: './img/equip/chernyshev-jersey-3.webp', id: 3 },
-          { img: './img/equip/chernyshev-jersey-4.webp', id: 4 },
+          { img: './img/equip/chernyshev-jersey-tmIC.webp', oid: 1, id: 'tmIC' },
+          { img: './img/equip/chernyshev-jersey-xfyB.webp', oid: 4, id: 'xfyB', c: true },
+          { img: './img/equip/chernyshev-jersey-eYJn.webp', oid: 3, id: 'eYJn' },
+          { img: './img/equip/chernyshev-jersey-cnXw.webp', oid: 2, id: 'cnXw' },
         ],
         kharlamov: [
-          { img: './img/equip/kharlamov-jersey-1.webp', id: 1 },
-          { img: './img/equip/kharlamov-jersey-2.webp', id: 2 },
-          { img: './img/equip/kharlamov-jersey-3.webp', id: 3 },
-          { img: './img/equip/kharlamov-jersey-4.webp', id: 4 },
+          { img: './img/equip/kharlamov-jersey-IzNZ.webp', oid: 2, id: 'IzNZ' },
+          { img: './img/equip/kharlamov-jersey-GInq.webp', oid: 1, id: 'GInq' },
+          { img: './img/equip/kharlamov-jersey-jEYU.webp', oid: 4, id: 'jEYU', c: true },
+          { img: './img/equip/kharlamov-jersey-TWSg.webp', oid: 3, id: 'TWSg' },
         ],
         tarasov: [
-          { img: './img/equip/tarasov-jersey-1.webp', id: 1 },
-          { img: './img/equip/tarasov-jersey-2.webp', id: 2 },
-          { img: './img/equip/tarasov-jersey-3.webp', id: 3 },
-          { img: './img/equip/tarasov-jersey-4.webp', id: 4 },
+          { img: './img/equip/tarasov-jersey-oQPU.webp', oid: 4, id: 'oQPU', c: true },
+          { img: './img/equip/tarasov-jersey-sogk.webp', oid: 1, id: 'sogk' },
+          { img: './img/equip/tarasov-jersey-HANF.webp', oid: 3, id: 'HANF' },
+          { img: './img/equip/tarasov-jersey-EEae.webp', oid: 2, id: 'EEae' },
         ],
       },
       shorts: {
         bobrov: [
-          { img: './img/equip/bobrov-shorts-1.webp', id: 1 },
-          { img: './img/equip/bobrov-shorts-2.webp', id: 2 },
-          { img: './img/equip/bobrov-shorts-3.webp', id: 3 },
-          { img: './img/equip/bobrov-shorts-4.webp', id: 4 },
+          { img: './img/equip/bobrov-shorts-WfKJ.webp', oid: 2, id: 'WfKJ' },
+          { img: './img/equip/bobrov-shorts-Ubcu.webp', oid: 4, id: 'Ubcu', c: true },
+          { img: './img/equip/bobrov-shorts-UWcD.webp', oid: 1, id: 'UWcD' },
+          { img: './img/equip/bobrov-shorts-kwkF.webp', oid: 3, id: 'kwkF' },
         ],
         chernyshev: [
-          { img: './img/equip/chernyshev-shorts-1.webp', id: 1 },
-          { img: './img/equip/chernyshev-shorts-2.webp', id: 2 },
-          { img: './img/equip/chernyshev-shorts-3.webp', id: 3 },
-          { img: './img/equip/chernyshev-shorts-4.webp', id: 4 },
+          { img: './img/equip/chernyshev-shorts-oDOg.webp', oid: 2, id: 'oDOg' },
+          { img: './img/equip/chernyshev-shorts-YfCY.webp', oid: 1, id: 'YfCY' },
+          { img: './img/equip/chernyshev-shorts-HbbQ.webp', oid: 4, id: 'HbbQ', c: true },
+          { img: './img/equip/chernyshev-shorts-AAJC.webp', oid: 3, id: 'AAJC' },
         ],
         kharlamov: [
-          { img: './img/equip/kharlamov-shorts-1.webp', id: 1 },
-          { img: './img/equip/kharlamov-shorts-2.webp', id: 2 },
-          { img: './img/equip/kharlamov-shorts-3.webp', id: 3 },
-          { img: './img/equip/kharlamov-shorts-4.webp', id: 4 },
+          { img: './img/equip/kharlamov-shorts-sQOC.webp', oid: 3, id: 'sQOC' },
+          { img: './img/equip/kharlamov-shorts-WYbt.webp', oid: 2, id: 'WYbt' },
+          { img: './img/equip/kharlamov-shorts-GGSA.webp', oid: 1, id: 'GGSA' },
+          { img: './img/equip/kharlamov-shorts-UUZZ.webp', oid: 4, id: 'UUZZ', c: true },
         ],
         tarasov: [
-          { img: './img/equip/tarasov-shorts-1.webp', id: 1 },
-          { img: './img/equip/tarasov-shorts-2.webp', id: 2 },
-          { img: './img/equip/tarasov-shorts-3.webp', id: 3 },
-          { img: './img/equip/tarasov-shorts-4.webp', id: 4 },
+          { img: './img/equip/tarasov-shorts-vAYJ.webp', oid: 4, id: 'vAYJ', c: true },
+          { img: './img/equip/tarasov-shorts-sgyX.webp', oid: 1, id: 'sgyX' },
+          { img: './img/equip/tarasov-shorts-aZtG.webp', oid: 3, id: 'aZtG' },
+          { img: './img/equip/tarasov-shorts-XTTN.webp', oid: 2, id: 'XTTN' },
         ],
       },
       getri: {
         bobrov: [
-          { img: './img/equip/bobrov-getri-1.webp', id: 1 },
-          { img: './img/equip/bobrov-getri-2.webp', id: 2 },
-          { img: './img/equip/bobrov-getri-3.webp', id: 3 },
-          { img: './img/equip/bobrov-getri-4.webp', id: 4 },
+          { img: './img/equip/bobrov-getri-sbQq.webp', oid: 1, id: 'sbQq' },
+          { img: './img/equip/bobrov-getri-kzID.webp', oid: 4, id: 'kzID', c: true },
+          { img: './img/equip/bobrov-getri-CsWb.webp', oid: 3, id: 'CsWb' },
+          { img: './img/equip/bobrov-getri-wPSI.webp', oid: 2, id: 'wPSI' },
         ],
         chernyshev: [
-          { img: './img/equip/chernyshev-getri-1.webp', id: 1 },
-          { img: './img/equip/chernyshev-getri-2.webp', id: 2 },
-          { img: './img/equip/chernyshev-getri-3.webp', id: 3 },
-          { img: './img/equip/chernyshev-getri-4.webp', id: 4 },
+          { img: './img/equip/chernyshev-getri-sCpV.webp', oid: 4, id: 'sCpV', c: true },
+          { img: './img/equip/chernyshev-getri-arbz.webp', oid: 2, id: 'arbz' },
+          { img: './img/equip/chernyshev-getri-Ngft.webp', oid: 1, id: 'Ngft' },
+          { img: './img/equip/chernyshev-getri-unuS.webp', oid: 3, id: 'unuS' },
         ],
         kharlamov: [
-          { img: './img/equip/kharlamov-getri-1.webp', id: 1 },
-          { img: './img/equip/kharlamov-getri-2.webp', id: 2 },
-          { img: './img/equip/kharlamov-getri-3.webp', id: 3 },
-          { img: './img/equip/kharlamov-getri-4.webp', id: 4 },
+          { img: './img/equip/kharlamov-getri-xWkf.webp', oid: 3, id: 'xWkf' },
+          { img: './img/equip/kharlamov-getri-Xnhd.webp', oid: 4, id: 'Xnhd', c: true },
+          { img: './img/equip/kharlamov-getri-oTbl.webp', oid: 2, id: 'oTbl' },
+          { img: './img/equip/kharlamov-getri-jLtE.webp', oid: 1, id: 'jLtE' },
         ],
         tarasov: [
-          { img: './img/equip/tarasov-getri-1.webp', id: 1 },
-          { img: './img/equip/tarasov-getri-2.webp', id: 2 },
-          { img: './img/equip/tarasov-getri-3.webp', id: 3 },
-          { img: './img/equip/tarasov-getri-4.webp', id: 4 },
+          { img: './img/equip/tarasov-getri-nIpZ.webp', oid: 3, id: 'nIpZ' },
+          { img: './img/equip/tarasov-getri-Picz.webp', oid: 1, id: 'Picz' },
+          { img: './img/equip/tarasov-getri-Ojhf.webp', oid: 4, id: 'Ojhf', c: true },
+          { img: './img/equip/tarasov-getri-PgOz.webp', oid: 2, id: 'PgOz' },
         ],
       },
     }
@@ -129,8 +129,8 @@ mixin g-third-content({ isShow, className, isHidden })
       .g-equip__time
         .g-equip__time-top
           span 00
-          span.js-game-third-time 48
-        progress.g-equip__time-progress.js-game-third-progress(value="48" max="60")
+          span.js-game-third-time 45
+        progress.g-equip__time-progress.js-game-third-progress(value="45" max="45")
       .g-equip__lives
         each it in (new Array(3).fill(0))
           +svg({ name: "heart", w: 18, h: 16, className: "actv js-game-third-live" })
@@ -152,15 +152,15 @@ mixin g-third-content({ isShow, className, isHidden })
       .g-equip__grid.js-game-third-grid(data-division="bobrov")
         each division, name in equipData.jersey
           each it in division
-            button.g-equip__answer.js-game-third-answer(data-type="jersey" data-division=name data-id=it.id)
+            button.g-equip__answer.js-game-third-answer(data-type="jersey" data-division=name data-id=it.id data-oid=it.oid)
               img(src=it.img  alt="")
         each division, name in equipData.shorts
           each it in division
-            button.g-equip__answer.js-game-third-answer(data-type="shorts" data-division=name data-id=it.id)
+            button.g-equip__answer.js-game-third-answer(data-type="shorts" data-division=name data-id=it.id data-oid=it.oid)
               img(src=it.img alt="")
         each division, name in equipData.getri
           each it in division
-            button.g-equip__answer.js-game-third-answer(data-type="getri" data-division=name data-id=it.id)
+            button.g-equip__answer.js-game-third-answer(data-type="getri" data-division=name data-id=it.id data-oid=it.oid)
               img(src=it.img alt="")
 
 
@@ -173,12 +173,16 @@ mixin g-third-pause({ isHidden, isShow, className })
         h2.g-msg__title.js-game-third-level-title(
           data-cool="Супер!"
           data-live="Бывает!"
+          data-livezero="Бывает!"
           data-time="Бывает!"
+          data-timezero="Бывает!"
         )
         p.g-msg__text.js-game-third-level-text(
-          data-cool="Форма собрана, звезды в&nbsp;кармане.!"
+          data-cool="Форма собрана, звезды в&nbsp;кармане."
           data-live="У&nbsp;тебя кончились жизни, зато ты&nbsp;успел заработать звезды!"
-          data-time="У&nbsp;тебя закончилось время."
+          data-livezero="У&nbsp;тебя кончились жизни."
+          data-time="У&nbsp;тебя закончилось время, зато ты&nbsp;успел заработать звезды!"
+          data-timezero="У&nbsp;тебя закончилось время."
         )
         p.g-msg__text Погнали обратно в&nbsp;купе, поезд скоро тронется!
         .g-msg__result
@@ -199,12 +203,16 @@ mixin g-third-end({ isShow, className, isHidden })
         h2.g-msg__title.js-game-third-title(
           data-cool="Супер!"
           data-live="Бывает!"
+          data-livezero="Бывает!"
           data-time="Бывает!"
+          data-timezero="Бывает!"
         )
         p.g-msg__text.js-game-third-text(
           data-cool="Ну&nbsp;поздравляю, считай, спас все команды на&nbsp;ФОНБЕТ Неделе Звезд Хоккея! <br><br> Погнали обратно в&nbsp;купе, поезд скоро тронется!"
           data-live="У&nbsp;тебя кончились жизни, зато у&nbsp;тебя есть звезды! Не&nbsp;пропусти следующие игры, чтобы получить их&nbsp;как можно больше!"
-          data-time="У&nbsp;тебя закончилось время, зато ты&nbsp;успел заработать звезды! Едем Дальше!"
+          data-livezero="У&nbsp;тебя кончились жизни. Едем Дальше!"
+          data-time="У&nbsp;тебя закончилось время, зато ты&nbsp;успел заработать звезды! Едем Дальше! Не&nbsp;пропусти следующие игры, чтобы получить их&nbsp;как можно больше!"
+          data-timezero="У&nbsp;тебя закончилось время. Едем Дальше!"
         )
         .g-msg__result
           .g-msg__result-text

@@ -5,7 +5,7 @@
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  height: 100%;
+  // height: 100%;
   padding: 10rem;
   font-family: $font-default;
   background-color: $color-blue-alice;
@@ -313,7 +313,6 @@
   z-index: 3;
   width: 79rem;
   height: 72rem;
-  // object-fit: contain;
   object-fit: cover;
   object-position: bottom;
   transform: translateX(-50%);

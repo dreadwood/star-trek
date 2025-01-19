@@ -222,7 +222,7 @@
 
       this._closeSet()
       sliderGame.scrollIntoView({ behavior: 'smooth' })
-      window.jsSlider.stars.swiper.slideTo(1)
+      window.jsSlider.stars.swiper.slideTo(2)
     },
 
     _closeReg() {
