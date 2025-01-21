@@ -74,13 +74,13 @@
     _showMsgScreen() {
       window.jsGame.isGame = false
 
-      this._changeVisibleScreen(this.screens.msg)
+      window.jsGame.changeVisibleScreen(this.screens, this.screens.msg)
     },
 
     _showContentScreen() {
       window.jsGame.isGame = true
 
-      this._changeVisibleScreen(this.screens.content)
+      window.jsGame.changeVisibleScreen(this.screens, this.screens.content)
     },
 
     _showEndScreen() {
@@ -96,14 +96,7 @@
       answer.textContent = `${window.jsState.fourthGameRight}/${this.numQuestions}`
       score.textContent = window.jsState.fourthGameScore
 
-      this._changeVisibleScreen(this.screens.end)
-    },
-
-    _changeVisibleScreen(screen) {
-      for (const it in this.screens) {
-        if (this.screens[it] === screen) window.jsUtils.showEl(this.screens[it])
-        else window.jsUtils.hideEl(this.screens[it])
-      }
+      window.jsGame.changeVisibleScreen(this.screens, this.screens.end)
     },
 
     _startGame() {

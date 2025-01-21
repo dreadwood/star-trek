@@ -35,11 +35,17 @@
       getri: false
     },
 
-    thirdDialog: null,
-    thirdMsg: null,
-    thirdContent: null,
-    thirdPause: null,
-    thirdEnd: null,
+    dialog: null,
+    screens: {
+      msg: null,
+      content: null,
+      pause: null,
+      end: null
+    },
+    // thirdMsg: null,
+    // thirdContent: null,
+    // thirdPause: null,
+    // thirdEnd: null,
 
     jersey: null,
     shorts: null,
@@ -56,11 +62,11 @@
       const startBtn = document.querySelector('.js-game-third-start')
       const closeBtnList = document.querySelectorAll('.js-game-third-close')
 
-      this.thirdDialog = document.querySelector('.js-game-third-dialog')
-      this.thirdMsg = document.querySelector('.js-game-third-msg')
-      this.thirdContent = document.querySelector('.js-game-third-content')
-      this.thirdPause = document.querySelector('.js-game-third-pause')
-      this.thirdEnd = document.querySelector('.js-game-third-end')
+      this.dialog = document.querySelector('.js-game-third-dialog')
+      this.screens.msg = this.dialog.querySelector('.js-game-msg')
+      this.screens.content = this.dialog.querySelector('.js-game-content')
+      this.screens.pause = this.dialog.querySelector('.js-game-pause')
+      this.screens.end = this.dialog.querySelector('.js-game-end')
 
       this.jersey = document.querySelector('.js-game-third-jersey')
       this.shorts = document.querySelector('.js-game-third-shorts')
@@ -76,16 +82,16 @@
 
       startBtn.addEventListener('click', () => {
         this._renderLevel()
-        this._showThirdContent()
+        this._showContentScreen()
       })
 
       closeBtnList.forEach((it) =>
-        it.addEventListener('click', () => this._closeThirdDialog())
+        it.addEventListener('click', () => this.closeDialog())
       )
 
-      this.thirdDialog.addEventListener('click', (evt) => {
-        if (evt.target !== this.thirdDialog) return
-        this._closeThirdDialog()
+      this.dialog.addEventListener('click', (evt) => {
+        if (evt.target !== this.dialog) return
+        this.closeDialog()
       })
 
       this.answerList.forEach((it) =>
@@ -95,7 +101,7 @@
       btnNext.addEventListener('click', () => {
         this._incrementPos()
         this._renderLevel()
-        this._showThirdContent()
+        this._showContentScreen()
       })
     },
 
@@ -106,16 +112,18 @@
         return
       }
 
-      this._openThirdDialog()
+      this._openDialog()
 
       if (window.jsState.thirdGameStatus) {
         return
       }
 
-      this._showThirdMsg()
+      this._showMsgScreen()
     },
 
     _answerHandler(answer) {
+      const img = answer.querySelector('img')
+
       const division = this.division[this.pos]
       const type = answer.dataset.type
       const id = answer.dataset.id
@@ -124,15 +132,15 @@
 
       switch (type) {
         case 'jersey':
-          this.jersey.src = `./img/equip/${division}-${type}-${id}.webp`
+          this.jersey.src = img.src
           indexAsw = 0
           break
         case 'shorts':
-          this.shorts.src = `./img/equip/${division}-${type}-${id}.webp`
+          this.shorts.src = img.src
           indexAsw = 1
           break
         case 'getri':
-          this.getri.src = `./img/equip/${division}-${type}-${id}.webp`
+          this.getri.src = img.src
           indexAsw = 2
           break
       }
@@ -218,25 +226,19 @@
       })
     },
 
-    _showThirdMsg() {
+    _showMsgScreen() {
       window.jsGame.isGame = false
 
-      window.jsUtils.showEl(this.thirdMsg)
-      window.jsUtils.hideEl(this.thirdContent)
-      window.jsUtils.hideEl(this.thirdPause)
-      window.jsUtils.hideEl(this.thirdEnd)
+      window.jsGame.changeVisibleScreen(this.screens, this.screens.msg)
     },
 
-    _showThirdContent() {
+    _showContentScreen() {
       window.jsGame.isGame = true
 
-      window.jsUtils.hideEl(this.thirdMsg)
-      window.jsUtils.showEl(this.thirdContent)
-      window.jsUtils.hideEl(this.thirdPause)
-      window.jsUtils.hideEl(this.thirdEnd)
+      window.jsGame.changeVisibleScreen(this.screens, this.screens.content)
     },
 
-    _showThirdPause() {
+    _showPauseScreen() {
       window.jsGame.isGame = false
 
       const title = document.querySelector('.js-game-third-level-title')
@@ -247,13 +249,10 @@
       text.innerHTML = text.dataset[this.levelStatus]
       score.textContent = this.score[this.pos]
 
-      window.jsUtils.hideEl(this.thirdMsg)
-      window.jsUtils.hideEl(this.thirdContent)
-      window.jsUtils.showEl(this.thirdPause)
-      window.jsUtils.hideEl(this.thirdEnd)
+      window.jsGame.changeVisibleScreen(this.screens, this.screens.pause)
     },
 
-    _showThirdEnd() {
+    _showEndScreen() {
       window.jsGame.isGame = false
 
       const title = document.querySelector('.js-game-third-title')
@@ -264,24 +263,21 @@
       text.innerHTML = text.dataset[window.jsState.thirdGameStatus]
       score.textContent = window.jsState.thirdGameScore
 
-      window.jsUtils.hideEl(this.thirdMsg)
-      window.jsUtils.hideEl(this.thirdContent)
-      window.jsUtils.hideEl(this.thirdPause)
-      window.jsUtils.showEl(this.thirdEnd)
+      window.jsGame.changeVisibleScreen(this.screens, this.screens.end)
     },
 
-    _openThirdDialog() {
+    _openDialog() {
       document.documentElement.classList.add('scroll-lock')
-      this.thirdDialog.classList.add('show')
+      this.dialog.classList.add('show')
     },
 
-    _closeThirdDialog() {
+    closeDialog() {
       if (window.jsGame.isGame) {
         window.jsGame._openConfirmDialog()
         return
       }
 
-      this.thirdDialog.classList.remove('show')
+      this.dialog.classList.remove('show')
       document.documentElement.classList.remove('scroll-lock')
       this._stopTimer()
 
@@ -354,10 +350,10 @@
           window.jsGame.setNextGameData(gameDataList)
         }
 
-        this._showThirdEnd()
+        this._showEndScreen()
         return
       } else {
-        this._showThirdPause()
+        this._showPauseScreen()
       }
     },
 

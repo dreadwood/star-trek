@@ -33,13 +33,6 @@
     secondEnd: null,
     secondIframe: null,
 
-    // third
-    thirdDialog: null,
-    thirdMsg: null,
-    thirdContent: null,
-    thirdPause: null,
-    thirdEnd: null,
-
     // other
     confirmDialog: null,
     soonDialog: null,
@@ -325,7 +318,7 @@
       this._closeConfirmDialog()
       this._closeFirstDialog()
       this._closeSecondDialog()
-      window.jsThirdGame._closeThirdDialog()
+      window.jsThirdGame.closeDialog()
       window.jsFourthGame.closeDialog()
     },
 
@@ -533,6 +526,13 @@
           })
           break
         }
+      }
+    },
+
+    changeVisibleScreen(screens, screen) {
+      for (const it in screens) {
+        if (screens[it] === screen) window.jsUtils.showEl(screens[it])
+        else window.jsUtils.hideEl(screens[it])
       }
     },
 
