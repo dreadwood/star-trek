@@ -13,6 +13,7 @@ include /components/block/b-footer
 include /components/game/g-first
 include /components/game/g-second
 include /components/game/g-third
+include /components/game/g-fourth
 
 include /components/modal/m-auth
 include /components/modal/m-set
@@ -48,6 +49,7 @@ block modal
   +g-first({ isShow: false })
   +g-second({ isShow: false })
   +g-third({ isShow: false })
+  +g-fourth({ isShow: false })
 
   //- modal
   +m-auth({ isShow: false })

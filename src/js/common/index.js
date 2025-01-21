@@ -2,7 +2,7 @@
  * index.js
  */
 ;(async () => {
-  window.jsGame.getLocal()
+  // window.jsState.getLocal()
   //
   window.jsPin.init()
   window.jsHeader.init()

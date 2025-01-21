@@ -3,7 +3,6 @@
  */
 ;(() => {
   const TIMER_SECOND = 10
-  const LOCAL_KEY = 'GS_KEY'
 
   window.jsGame = {
     asw: {
@@ -58,6 +57,7 @@
       this._initFirst()
       this._initSecond()
       window.jsThirdGame.init()
+      window.jsFourthGame.init()
     },
 
     async _initConfirm() {
@@ -98,11 +98,14 @@
       const closeBtnList = document.querySelectorAll('.js-game-first-close')
 
       this.firstDialog = document.querySelector('.js-game-first-dialog')
-      this.firstMsg = document.querySelector('.js-game-first-msg')
-      this.firstQuiz = document.querySelector('.js-game-first-quiz')
-      this.firstEnd = document.querySelector('.js-game-first-end')
-      this.firstAnswerList = document.querySelectorAll('.js-game-quiz-answer')
-      this.firstBtnNextList = document.querySelectorAll('.js-game-quiz-next')
+      this.firstMsg = this.firstDialog.querySelector('.js-game-first-msg')
+      this.firstQuiz = this.firstDialog.querySelector('.js-game-first-quiz')
+      this.firstEnd = this.firstDialog.querySelector('.js-game-first-end')
+      this.firstAnswerList = this.firstDialog.querySelectorAll(
+        '.js-game-quiz-answer'
+      )
+      this.firstBtnNextList =
+        this.firstDialog.querySelectorAll('.js-game-quiz-next')
 
       openBtnList.forEach((btn) => {
         btn.addEventListener('click', () => {
@@ -313,8 +316,9 @@
         this.isAnswer = false
       }
 
-      this._setLocal()
+      window.jsState.setLocal()
       this._stopTimer()
+      window.jsFourthGame.stopTimer()
 
       this.secondIframe.src = ''
 
@@ -322,6 +326,7 @@
       this._closeFirstDialog()
       this._closeSecondDialog()
       window.jsThirdGame._closeThirdDialog()
+      window.jsFourthGame.closeDialog()
     },
 
     _showFirstMsg() {
@@ -341,7 +346,7 @@
     },
 
     _showFirstEnd() {
-      this._setLocal()
+      window.jsState.setLocal()
       this.isGame = false
 
       const title = document.querySelector('.js-game-first-title')
@@ -472,7 +477,7 @@
       })
 
       this._stopTimer()
-      this._setLocal()
+      window.jsState.setLocal()
       this.isAnswer = false
     },
 
@@ -505,35 +510,8 @@
       })
 
       this._stopTimer()
-      this._setLocal()
+      window.jsState.setLocal()
       this.isAnswer = false
-    },
-
-    _setLocal() {
-      const pin = window.userInfo.getClientID()
-
-      const data = {
-        pin,
-        firstQuizQuestion: window.jsState.firstQuizQuestion,
-        firstQuizRight: window.jsState.firstQuizRight,
-        firstQuizStatus: window.jsState.firstQuizStatus
-      }
-
-      localStorage.setItem(LOCAL_KEY, JSON.stringify(data))
-    },
-
-    getLocal() {
-      const value = localStorage.getItem(LOCAL_KEY)
-
-      if (!value) {
-        return
-      }
-      const data = JSON.parse(value)
-
-      window.jsState.pin = data.pin
-      window.jsState.firstQuizQuestion = data.firstQuizQuestion
-      window.jsState.firstQuizRight = data.firstQuizRight
-      window.jsState.firstQuizStatus = data.firstQuizStatus
     },
 
     setNextGameData(gameDataList) {

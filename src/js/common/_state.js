@@ -2,12 +2,13 @@
  * state.js
  */
 ;(() => {
+  const LOCAL_KEY = 'GS_KEY'
+
   window.jsState = {
     ambasadorList: ['ovechkin', 'medvedeva', 'korney', 'ed', 'akinfeev'],
-
     pin: null,
-
     ambasador: 'ovechkin',
+
     // first
     firstQuizQuestion: 1,
     firstQuizRight: 0,
@@ -24,6 +25,12 @@
     thirdGameStatus: null, // cool / live / livezero / time / timezero
     thirdGameScore: 0,
 
+    // fourth
+    fourthGameQuestion: 1,
+    fourthGameRight: 0,
+    fourthGameStatus: null, // low / high / zero
+    fourthGameScore: 0,
+
     resetState(pin) {
       this.pin = pin
 
@@ -32,9 +39,10 @@
       this.firstQuizStatus = null
       this.firstQuizScore = 0
 
-      this.secondGameRight = 0
-      this.secondGameStatus = null
-      this.secondGameScore = 0
+      this.fourthGameQuestion = 1
+      this.fourthGameRight = 0
+      this.fourthGameStatus = null
+      this.fourthGameScore = 0
     },
 
     setAmbasador(ambasador) {
@@ -79,6 +87,57 @@
     setThirdGameScore(score, status) {
       this.thirdGameScore = score
       window.jsState.thirdGameStatus = status
+    },
+
+    setFourthGameScore(score) {
+      this.fourthGameScore = score
+
+      switch (this.fourthGameRight) {
+        case 12:
+          this.fourthGameStatus = 'high'
+          break
+        case 0:
+          this.fourthGameStatus = 'zero'
+          break
+        default:
+          this.fourthGameStatus = 'low'
+          break
+      }
+    },
+
+    setLocal() {
+      const pin = window.userInfo.getClientID()
+      if (!pin) return
+
+      const data = {
+        pin,
+
+        firstQuizQuestion: window.jsState.firstQuizQuestion,
+        firstQuizRight: window.jsState.firstQuizRight,
+        firstQuizStatus: window.jsState.firstQuizStatus,
+
+        fourthGameQuestion: window.jsState.fourthGameQuestion,
+        fourthGameRight: window.jsState.fourthGameRight,
+        fourthGameStatus: window.jsState.fourthGameStatus
+      }
+
+      localStorage.setItem(LOCAL_KEY, JSON.stringify(data))
+    },
+
+    getLocal() {
+      const value = localStorage.getItem(LOCAL_KEY)
+      if (!value) return
+
+      const data = JSON.parse(value)
+
+      window.jsState.pin = data.pin
+      window.jsState.firstQuizQuestion = data.firstQuizQuestion || 1
+      window.jsState.firstQuizRight = data.firstQuizRight || 0
+      window.jsState.firstQuizStatus = data.firstQuizStatus || null
+
+      window.jsState.fourthGameQuestion = data.fourthGameQuestion || 1
+      window.jsState.fourthGameRight = data.fourthGameRight || 0
+      window.jsState.fourthGameStatus = data.fourthGameStatus || null
     }
   }
 })()

@@ -1,9 +1,11 @@
+/**
+ * third.js
+ */
 ;(() => {
   const TIMER_SECOND = 45
-  // const LOCAL_KEY = 'GS_KEY_3'
 
   window.jsThirdGame = {
-    gameId: 3,
+    id: 3,
 
     pos: 0,
     isLastLevel: false,
@@ -339,7 +341,7 @@
       if (this.isLastLevel) {
         const score = this.score.reduce((acc, it) => acc + it)
 
-        const result = await window.jsGame._sendResult(this.gameId, score)
+        const result = await window.jsGame._sendResult(this.id, score)
         const gameDataList = await window.jsAuth._getGameData()
         await window.jsAuth.updateScore()
 

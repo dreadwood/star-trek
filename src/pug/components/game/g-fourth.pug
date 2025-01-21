@@ -1,0 +1,118 @@
+include /components/button/btn-default
+
+mixin g-fourth-bg({})
+  .g-msg__mountans
+    +svg({ name: "mountains", w: 375, h: 350, className: "mobile" })
+    +svg({ name: "mountains-desktop", w: 1440, h: 460, className: "desktop" })
+  .g-msg__stars
+    img(class="mobile" src="./img/game/stars-msg.svg" width="190" height="90" alt="")
+    img(class="desktop" src="./img/game/stars-msg-desktop.svg" width="214" height="176" alt="")
+  .g-msg__person.js-msg-ambasador(data-person="ovechkin")
+    img(class="mobile" src="./img/game/ovechkin@2x.webp" width="375" height="482" alt="")
+    img(class="desktop" src="./img/game/ovechkin-desktop@2x.webp" width="565" height="535" alt="")
+  .g-msg__person.js-msg-ambasador(data-person="medvedeva" hidden)
+    img(class="mobile" src="./img/game/medvedeva@2x.webp" width="375" height="482" alt="")
+    img(class="desktop" src="./img/game/medvedeva-desktop@2x.webp" width="565" height="535" alt="")
+  .g-msg__person.js-msg-ambasador(data-person="korney" hidden)
+    img(class="mobile" src="./img/game/korney@2x.webp" width="375" height="482" alt="")
+    img(class="desktop" src="./img/game/korney-desktop@2x.webp" width="565" height="535" alt="")
+  .g-msg__person.js-msg-ambasador(data-person="ed" hidden)
+    img(class="mobile" src="./img/game/ed@2x.webp" width="375" height="482" alt="")
+    img(class="desktop" src="./img/game/ed-desktop@2x.webp" width="565" height="535" alt="")
+  .g-msg__person.js-msg-ambasador(data-person="akinfeev" hidden)
+    img(class="mobile" src="./img/game/akinfeev@2x.webp" width="375" height="482" alt="")
+    img(class="desktop" src="./img/game/akinfeev-desktop@2x.webp" width="565" height="535" alt="")
+
+mixin g-fourth-msg({ isHidden, isShow, className })
+  .g-msg.fourth(class=isShow && "show" class=className hidden=isHidden)
+    .g-msg__backside
+      +g-fourth-bg({})
+    .g-msg__content
+      .g-msg__wrp
+        h2.g-msg__title Испытание звезд
+        p.g-msg__text.dark Больше половины пути позади, Новосибирск уже через пару станций. Знаешь, что это значит? ФОНБЕТ Неделя Звезд Хоккея уже совсем близко! Пора выяснить, что ты&nbsp;о&nbsp;ней знаешь!
+        p.g-msg__text Готов? Отлично. Сейчас будет 12&nbsp;вопросов, на&nbsp;каждый дается 10&nbsp;секунд. За&nbsp;каждый правильный ответ&nbsp;&mdash; 100&nbsp;звезд. Погнали!
+        .g-msg__btn
+          +btn-default({ text: "Начать игру", className: "js-game-fourth-start" })
+      p.g-msg__ribbon Поговорим о&nbsp;Неделе Звезд Хоккея!
+
+mixin g-fourth-end({ isShow, className, isHidden })
+  .g-msg.fourth(class=isShow && "show" class=className,  hidden=isHidden)
+    .g-msg__backside
+      +g-fourth-bg({})
+    .g-msg__content
+      .g-msg__wrp
+        h2.g-msg__title.js-game-fourth-title(
+          data-high="Вау!"
+          data-low="Ты молодец!"
+          data-zero="Ты молодец!"
+        )
+        p.g-msg__text.js-game-fourth-text(
+          data-high="Все правильно! Да&nbsp;ты&nbsp;настоящий фанат ФОНБЕТ Недели Звезд Хоккея. Мне повезло, что у&nbsp;меня такой попутчик!"
+          data-low="Да&nbsp;ты&nbsp;настоящий фанат ФОНБЕТ Недели Звезд Хоккея. Мне повезло, что у&nbsp;меня такой попутчик!"
+          data-zero="Да&nbsp;ты&nbsp;настоящий фанат ФОНБЕТ Недели Звезд Хоккея. Мне повезло, что у&nbsp;меня такой попутчик!"
+        )
+        .g-msg__result
+          .g-msg__result-text Результат: #[span.js-game-fourth-answer 0/12]
+          .g-msg__result-text
+            | Ты заработал:
+            +svg({ name: "star", w: 22, h: 22 })
+            | #[span.js-game-fourth-score 0] звезд
+        .g-msg__btn
+          +btn-default({ text: "На главную", className: 'js-game-fourth-close' })
+
+mixin g-fourth-content({ isShow, className, isHidden })
+  .g-quiz(class=isShow && "show" class=className hidden=isHidden)
+    .g-quiz__content
+      .g-quiz__top
+        .g-quiz__step.js-game-quiz-step Вопрос 1/12
+        .g-quiz__time.js-game-quiz-time 00:10
+        button.g-quiz__btn-next-top.js-game-quiz-next(disabled)
+          span Следующий вопрос
+          .g-quiz__btn-next-top-icon
+            +svg({ name: "quiz-arrow", w: 16, h: 16 })
+      .g-quiz__wrp
+        .g-quiz__question
+          .g-quiz__question-text.js-game-quiz-question
+          .g-quiz__question-img
+            .g-quiz__question-stars
+              img(class="mobile" src="./img/game/stars-quiz.svg" width="233" height="109" alt="")
+              img(class="desktop" src="./img/game/stars-quiz-desktop.svg" width="233" height="133" alt="")
+            .g-quiz__question-person.js-quiz-ambasador(data-person="ovechkin")
+              img(class="mobile" src="./img/person/ovechkin-circle.webp" width="100" height="100" alt="")
+            .g-quiz__question-person.js-quiz-ambasador(data-person="medvedeva" hidden)
+              img(class="mobile" src="./img/person/medvedeva-circle.webp" width="100" height="100" alt="")
+            .g-quiz__question-person.js-quiz-ambasador(data-person="korney" hidden)
+              img(class="mobile" src="./img/person/korney-circle.webp" width="100" height="100" alt="")
+            .g-quiz__question-person.js-quiz-ambasador(data-person="ed" hidden)
+              img(class="mobile" src="./img/person/ed-circle.webp" width="100" height="100" alt="")
+            .g-quiz__question-person.js-quiz-ambasador(data-person="akinfeev" hidden)
+              img(class="mobile" src="./img/person/akinfeev-circle.webp" width="100" height="100" alt="")
+        .g-quiz__control
+          .g-quiz__control-text Варианты ответа
+          .g-quiz__list
+            button.g-quiz__answer.js-game-quiz-answer
+              .g-quiz__answer-num A
+              .g-quiz__answer-text.js-game-quiz-answer-text
+            button.g-quiz__answer.js-game-quiz-answer
+              .g-quiz__answer-num B
+              .g-quiz__answer-text.js-game-quiz-answer-text
+            button.g-quiz__answer.js-game-quiz-answer
+              .g-quiz__answer-num C
+              .g-quiz__answer-text.js-game-quiz-answer-text
+            button.g-quiz__answer.js-game-quiz-answer
+              .g-quiz__answer-num D
+              .g-quiz__answer-text.js-game-quiz-answer-text
+          button.g-quiz__btn-next.js-game-quiz-next
+            span Следующий вопрос
+            .g-quiz__btn-next-icon
+              +svg({ name: "quiz-arrow", w: 16, h: 16 })
+
+mixin g-fourth({ isShow, className })
+  .overlay.js-game-fourth-dialog(class=isShow && "show" class=className)
+    .g-layout
+      .g-layout__close
+        +btn-close({ className: "js-game-fourth-close" })
+      +g-fourth-msg({ isHidden: true, className: "js-game-msg" })
+      +g-fourth-content({ isHidden: true, className: "js-game-content" })
+      +g-fourth-end({ isHidden: true, className: "js-game-end" })
