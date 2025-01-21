@@ -7,7 +7,7 @@
 
   window.jsFourthGame = {
     id: 4,
-    asw: [2, 2, 3, 1, 0, 2, 3, 1, 0, 0, 1, 1],
+    asw: [2, 2, 3, 1, 3, 2, 3, 1, 0, 0, 1, 1],
 
     numQuestions: 0,
 
