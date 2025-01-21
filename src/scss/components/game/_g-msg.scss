@@ -35,6 +35,10 @@
     }
   }
   &.fourth {
+    .g-msg__stars {
+      top: 209rem;
+      right: -24rem;
+    }
     .g-msg__person {
       max-height: 56%;
     }
@@ -69,6 +73,10 @@
       }
     }
     &.fourth {
+      .g-msg__stars {
+        top: 25rem;
+        right: 303rem;
+      }
       .g-msg__person {
         max-height: none;
       }
