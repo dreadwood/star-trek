@@ -37,7 +37,7 @@ mixin g-fourth-msg({ isHidden, isShow, className })
       p.g-msg__ribbon Поговорим о&nbsp;Неделе Звезд Хоккея!
 
 mixin g-fourth-end({ isShow, className, isHidden })
-  .g-msg.fourth(class=isShow && "show" class=className,  hidden=isHidden)
+  .g-msg.fourth(class=isShow && "show" class=className hidden=isHidden)
     .g-msg__backside
       +g-fourth-bg({})
     .g-msg__content
@@ -45,12 +45,12 @@ mixin g-fourth-end({ isShow, className, isHidden })
         h2.g-msg__title.js-game-fourth-title(
           data-high="Вау!"
           data-low="Ты молодец!"
-          data-zero="Ты молодец!"
+          data-zero="Бывает!"
         )
         p.g-msg__text.js-game-fourth-text(
           data-high="Все правильно! Да&nbsp;ты&nbsp;настоящий фанат ФОНБЕТ Недели Звезд Хоккея. Мне повезло, что у&nbsp;меня такой попутчик!"
           data-low="Да&nbsp;ты&nbsp;настоящий фанат ФОНБЕТ Недели Звезд Хоккея. Мне повезло, что у&nbsp;меня такой попутчик!"
-          data-zero="Да&nbsp;ты&nbsp;настоящий фанат ФОНБЕТ Недели Звезд Хоккея. Мне повезло, что у&nbsp;меня такой попутчик!"
+          data-zero="Не&nbsp;расстраивайся&nbsp;&mdash; Фонбет Матч Звезд КХЛ 2025 уже совсем скоро! И&nbsp;ты&nbsp;сможешь узнать всё прямо там!"
         )
         .g-msg__result
           .g-msg__result-text Результат: #[span.js-game-fourth-answer 0/12]

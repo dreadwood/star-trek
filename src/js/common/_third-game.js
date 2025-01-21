@@ -8,6 +8,7 @@
     id: 3,
 
     pos: 0,
+    isAnswering: false,
     isLastLevel: false,
 
     division: ['bobrov', 'chernyshev', 'kharlamov', 'tarasov'],
@@ -42,10 +43,6 @@
       pause: null,
       end: null
     },
-    // thirdMsg: null,
-    // thirdContent: null,
-    // thirdPause: null,
-    // thirdEnd: null,
 
     jersey: null,
     shorts: null,
@@ -190,9 +187,7 @@
     _renderLevel() {
       this._setTimer()
 
-      if (this.pos === 0) {
-        return
-      }
+      if (this.pos === 0 || this.isAnswering) return
 
       const levelList = document.querySelectorAll('.js-game-third-level')
       const name = document.querySelector('.js-game-third-name')
@@ -220,7 +215,7 @@
       this.getri.src = this.getri.dataset.default
       this.answerGrid.dataset.division = this.division[this.pos]
       this.answerList.forEach((it) => {
-        it.classList.remove('error')
+        it.classList.remove('actv')
         it.classList.remove('error')
         it.removeAttribute('disabled', 'disabled')
       })
@@ -234,12 +229,14 @@
 
     _showContentScreen() {
       window.jsGame.isGame = true
+      this.isAnswering = true
 
       window.jsGame.changeVisibleScreen(this.screens, this.screens.content)
     },
 
     _showPauseScreen() {
       window.jsGame.isGame = false
+      this.isAnswering = false
 
       const title = document.querySelector('.js-game-third-level-title')
       const text = document.querySelector('.js-game-third-level-text')
@@ -254,6 +251,7 @@
 
     _showEndScreen() {
       window.jsGame.isGame = false
+      this.isAnswering = false
 
       const title = document.querySelector('.js-game-third-title')
       const text = document.querySelector('.js-game-third-text')
