@@ -99,6 +99,13 @@
           func.apply(this, args)
         }
       }
+    },
+
+    /**
+     * @returns {Date}
+     */
+    getMoscowDate() {
+      //
     }
   }
 })()

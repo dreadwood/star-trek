@@ -38,7 +38,7 @@ mixin b-stars({ className, id })
         name: "Испытание звезд",
         date: "Игра откроется 22 января.",
         btnCssClass: "js-game-fourth-open",
-        state: 1
+        state: 0
       },
       {
         order: 5,
@@ -74,12 +74,12 @@ mixin b-stars({ className, id })
                 if it.state === 0
                   +svg({ name: "lock", w: 10, h: 13 })
                 span=it.name
-              .js-game-card-state(data-state="close" hidden=(it.state !== 0))
+              .js-game-card-state-close(hidden=(it.state !== 0))
                 .b-stars__info-date=it.date
                 .b-stars__info-notif Не пропусти!
-              .js-game-card-state(data-state="open" hidden=(it.state !== 1))
+              .js-game-card-state-open(hidden=(it.state !== 1))
                 button.b-stars__info-btn(class=it.btnCssClass) Играть
-              .js-game-card-state(data-state="done" hidden=(it.state !== 2))
+              .js-game-card-state-done(hidden=(it.state !== 2))
                 .b-stars__info-done
                   +svg({ name: "arrow-check", w: 15, h: 11 })
                   | Игра пройдена
