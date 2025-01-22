@@ -13,7 +13,7 @@ mixin b-predictions({ className, id })
           cssClass: "division",
         },
         {
-          title: "Кто забросит первую шайбу?",
+          title: "Кто забросит первую шайбу в&nbsp;финале ФОНБЕТ Матча звезд КХЛ 2025??",
           subtitle: "Откроется 30 января",
           img: "./img/predictions/predictions-puck.png",
           imgWidth: "302",
@@ -62,7 +62,7 @@ mixin b-predictions({ className, id })
               height=it.imgHeight
               alt=""
             )
-            .b-predictions__card-title=it.title
+            .b-predictions__card-title !{it.title}
             .b-predictions__card-subtitle
               +svg({ name: "lock", w: 10, h: 13 })
               span=it.subtitle
