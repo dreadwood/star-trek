@@ -9,8 +9,11 @@ mixin m-soon({ isShow, className })
         .m-soon__bg
           +picture({ image: "/img/soon/soon-bg.png", w: 375, h: 812, className: "mobile" })
           +picture({ image: "/img/soon/soon-bg-desktop.png", w: 1080, h: 540, className: "desktop" })
+        .m-soon__star
+          img(class="mobile" src="./img/soon/soon-star.svg" width="190" height="90" alt="")
+          img(class="desktop" src="./img/soon/soon-star-desktop.svg" width="214" height="176" alt="")
       .m-soon__content
         h2.m-soon__title Новая игра откроется #[span.js-modal-soon-date скоро], возвращайся!
-        p.m-soon__text Сделай ставку от&nbsp;300&nbsp;₽ на&nbsp;любое событие и&nbsp;получи шанс выиграть один из&nbsp;призов. После 27&nbsp;января мы проверим наличие квалификационной ставки и объявим победителей
+        p.m-soon__text Сделай ставку от&nbsp;300&nbsp;₽ на&nbsp;любое событие и&nbsp;получи шанс выиграть один из&nbsp;призов. После 27&nbsp;января мы&nbsp;проверим наличие квалификационной ставки и&nbsp;объявим победителей
         a.m-soon__btn.btn-default.soon(href=betLink) Сделать ставку
         button.m-soon__link.js-modal-soon-close <– Выйти на главную

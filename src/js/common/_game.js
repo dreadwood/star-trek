@@ -41,8 +41,8 @@
     timerId: null,
 
     sendResultUrl: 'https://xcomfeed.com/fonbet/fasw2025/answer',
-    secondGameUrl: 'https://fon.bet/promo/fasw2025_g2/',
-    // secondGameUrl: 'https://2lands.ru/ru/fasw2025_g2/',
+    // secondGameUrl: 'https://fon.bet/promo/fasw2025_g2/',
+    secondGameUrl: 'https://2lands.ru/ru/fasw2025_g2/',
 
     init() {
       this._initConfirm()
@@ -520,10 +520,12 @@
         }
 
         if (!isOpen) {
-          this.nextGame = startDate.toLocaleDateString('ru-RU', {
-            day: '2-digit',
-            month: 'long'
-          })
+          this.nextGame = startDate
+            .toLocaleDateString('ru-RU', {
+              day: '2-digit',
+              month: 'long'
+            })
+            .replace(' ', '&nbsp;')
           break
         }
       }
@@ -619,7 +621,7 @@
     _openSoonDialog() {
       if (this.nextGame) {
         const date = this.soonDialog.querySelector('.js-modal-soon-date')
-        date.textContent = this.nextGame
+        date.innerHTML = this.nextGame
       }
 
       this.soonDialog.classList.add('show')
