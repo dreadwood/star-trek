@@ -10,6 +10,19 @@
   color: $color-gray-537;
   letter-spacing: -0.02em;
   background-color: $color-gray-961;
+  &.first {
+    .g-msg__stars {
+      top: 209rem;
+      right: -24rem;
+    }
+    .g-msg__person {
+      max-height: 56%;
+    }
+    .g-msg__ribbon {
+      bottom: 14rem;
+      font-size: 16rem;
+    }
+  }
   &.second {
     .g-msg__person {
       max-height: 56%;
@@ -50,6 +63,19 @@
     }
   }
   @include desktop {
+    &.first {
+      .g-msg__stars {
+        top: 25rem;
+        right: 303rem;
+      }
+      .g-msg__person {
+        max-height: none;
+      }
+      .g-msg__ribbon {
+        bottom: 15rem;
+        font-size: 18rem;
+      }
+    }
     &.second {
       .g-msg__person {
         max-height: none;
@@ -84,7 +110,6 @@
         right: 110rem;
         bottom: 40rem;
         left: auto;
-        // width: 516rem;
         transform: rotate(-5deg);
       }
     }

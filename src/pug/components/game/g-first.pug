@@ -24,7 +24,7 @@ mixin g-first-bg({})
     img(class="desktop" src="./img/game/akinfeev-desktop@2x.webp" width="565" height="535" alt="")
 
 mixin g-first-msg({ isHidden, isShow, className })
-  .g-msg(class=isShow && "show" class=className hidden=isHidden)
+  .g-msg.first(class=isShow && "show" class=className hidden=isHidden)
     .g-msg__backside
       +g-first-bg({})
     .g-msg__content
@@ -37,7 +37,7 @@ mixin g-first-msg({ isHidden, isShow, className })
       p.g-msg__ribbon Транссиб&nbsp;&mdash; это не&nbsp;шутка: впереди долгая дорога и&nbsp;4&nbsp;станции. Хорошо, что вместе с&nbsp;тобой на&nbsp;ФОНБЕТ Неделю Звезд Хоккея в&nbsp;Новосибирск еду&nbsp;я!
 
 mixin g-first-end({ isShow, className, isHidden })
-  .g-msg(class=isShow && "show" class=className,  hidden=isHidden)
+  .g-msg.first(class=isShow && "show" class=className,  hidden=isHidden)
     .g-msg__backside
       +g-first-bg({})
     .g-msg__content
