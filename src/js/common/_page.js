@@ -31,6 +31,76 @@
         //   window.jsUtils.hideEl(doneMsg)
         // }
       })
+    },
+
+    renderHeader(pin, score) {
+      const idWrp = document.querySelector('.js-header-id-wrp')
+      const idText = document.querySelector('.js-header-id-text')
+      const scoreWrp = document.querySelector('.js-header-score-wrp')
+      const scoreText = document.querySelector('.js-header-score-text')
+      const btnLogin = document.querySelector('.js-header-login')
+
+      idText.textContent = pin
+      scoreText.textContent = score
+      window.jsUtils.showEl(idWrp)
+      window.jsUtils.showEl(scoreWrp)
+      window.jsUtils.hideEl(btnLogin)
+    },
+
+    renderScore(score) {
+      const scoreText = document.querySelector('.js-header-score-text')
+      scoreText.textContent = score
+    },
+
+    renderAmbasador(ambasador) {
+      const cardAmbasador = document.querySelector('.js-card-ambasador')
+      const ambasadorTestList = cardAmbasador.querySelectorAll(
+        '.js-card-ambasador-img'
+      )
+      const ambasadorMsgList = document.querySelectorAll('.js-msg-ambasador')
+      const ambasadorQuizList = document.querySelectorAll('.js-quiz-ambasador')
+
+      const existTestAmbasador = [...ambasadorTestList].some(
+        (it) => it.dataset.person === ambasador
+      )
+      const existMsgAmbasador = [...ambasadorMsgList].some(
+        (it) => it.dataset.person === ambasador
+      )
+      const existQuizAmbasador = [...ambasadorQuizList].some(
+        (it) => it.dataset.person === ambasador
+      )
+
+      if (existTestAmbasador) {
+        ambasadorTestList.forEach((it) => {
+          if (it.dataset.person === ambasador) {
+            window.jsUtils.showEl(it)
+          } else {
+            window.jsUtils.hideEl(it)
+          }
+        })
+      }
+
+      if (existMsgAmbasador) {
+        ambasadorMsgList.forEach((it) => {
+          if (it.dataset.person === ambasador) {
+            window.jsUtils.showEl(it)
+          } else {
+            window.jsUtils.hideEl(it)
+          }
+        })
+      }
+
+      if (existQuizAmbasador) {
+        ambasadorQuizList.forEach((it) => {
+          if (it.dataset.person === ambasador) {
+            window.jsUtils.showEl(it)
+          } else {
+            window.jsUtils.hideEl(it)
+          }
+        })
+      }
+
+      window.jsUtils.showEl(cardAmbasador)
     }
   }
 })()

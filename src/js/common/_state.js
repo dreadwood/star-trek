@@ -7,7 +7,7 @@
   window.jsState = {
     ambasadorList: ['ovechkin', 'medvedeva', 'korney', 'ed', 'akinfeev'],
     pin: null,
-    ambasador: 'ovechkin',
+    ambasador: null,
 
     // first
     firstQuizQuestion: 1,

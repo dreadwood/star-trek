@@ -50,7 +50,7 @@
       })
 
       startBtn.addEventListener('click', () => {
-        this._startGame()
+        this._startBtnHandler()
       })
 
       closeBtnList.forEach((it) =>
@@ -99,9 +99,14 @@
       window.jsGame.changeVisibleScreen(this.screens, this.screens.end)
     },
 
-    _startGame() {
-      this._renderQuestion()
-      this._showContentScreen()
+    async _startBtnHandler() {
+      if (this.numQuestions < window.jsState.fourthGameQuestion) {
+        await this._sendResult()
+        this._showEndScreen()
+      } else {
+        this._renderQuestion()
+        this._showContentScreen()
+      }
     },
 
     _renderQuestion() {
@@ -132,21 +137,7 @@
 
     async _nextBtnHandler() {
       if (this.numQuestions < window.jsState.fourthGameQuestion) {
-        const score = window.jsState.fourthGameRight * POINTS_FOR_ANSWER
-
-        const result = await window.jsGame._sendResult(this.id, score)
-        const gameDataList = await window.jsAuth._getGameData()
-        await window.jsAuth.updateScore()
-
-        if (result) {
-          window.jsState.setFourthGameScore(score)
-        }
-
-        if (gameDataList) {
-          window.jsPage.renderGameCard(gameDataList)
-          window.jsGame.setNextGameData(gameDataList)
-        }
-
+        await this._sendResult()
         this._showEndScreen()
       } else {
         this._renderQuestion()
@@ -182,6 +173,23 @@
       return asw
     },
 
+    async _sendResult() {
+      const score = window.jsState.fourthGameRight * POINTS_FOR_ANSWER
+
+      const result = await window.jsGame._sendResult(this.id, score)
+      const gameDataList = await window.jsAuth._getGameData()
+      await window.jsAuth.updateScore()
+
+      if (result) {
+        window.jsState.setFourthGameScore(score)
+      }
+
+      if (gameDataList) {
+        window.jsPage.renderGameCard(gameDataList)
+        window.jsGame.setNextGameData(gameDataList)
+      }
+    },
+
     _setTimer() {
       this.stopTimer()
       this._updateTimer()
@@ -212,6 +220,11 @@
       if (!pin) {
         window.jsAuth._openReg()
         return
+      }
+
+      if (!window.jsState.ambasador) {
+        window.jsAuth.isSetOpenBeforeGame = true
+        window.jsAuth.openSet(true)
       }
 
       this._showMsgScreen()

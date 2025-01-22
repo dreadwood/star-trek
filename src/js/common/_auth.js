@@ -4,7 +4,7 @@
 ;(() => {
   window.jsAuth = {
     city: null,
-    ambasador: null,
+    isSetOpenBeforeGame: false,
 
     regModal: null,
     setModal: null,
@@ -23,12 +23,11 @@
 
       document.addEventListener('registrationCompleted', async (evt) => {
         console.log('userInfoUpdated')
-
         const pin = evt.detail.clientId
         if (!pin) return
 
         this._closeReg()
-        await this._checkAmbasador(pin)
+        await this._udpateUserInfo(pin)
       })
 
       document.addEventListener('userInfoUpdated', async (evt) => {
@@ -36,76 +35,31 @@
           console.log('userInfoUpdated')
 
           this._closeReg()
-          await this._checkAmbasador(evt.detail.clientId)
+          await this._udpateUserInfo(pin)
         }
       })
 
       const pin = window.userInfo.getClientID()
       if (pin) {
-        await this._checkAmbasador(pin)
+        await this._udpateUserInfo(pin)
       }
     },
 
-    async _updateData(userInfo) {
-      const idWrp = document.querySelector('.js-header-id-wrp')
-      const idText = document.querySelector('.js-header-id-text')
-      const scoreWrp = document.querySelector('.js-header-score-wrp')
-      const scoreText = document.querySelector('.js-header-score-text')
-      const btnLogin = document.querySelector('.js-header-login')
+    async _udpateUserInfo(pin) {
+      let userInfo = await this._getUserInfo(pin)
 
-      const testBlock = document.querySelector('.js-test')
-      const ambasadorTestList = document.querySelectorAll('.js-test-ambasador')
-      const ambasadorMsgList = document.querySelectorAll('.js-msg-ambasador')
-      const ambasadorQuizList = document.querySelectorAll('.js-quiz-ambasador')
-
-      idText.textContent = userInfo.pin
-      scoreText.textContent = userInfo.score
-      window.jsUtils.showEl(idWrp)
-      window.jsUtils.showEl(scoreWrp)
-      window.jsUtils.hideEl(btnLogin)
-
-      const existTestAmbasador = [...ambasadorTestList].some(
-        (it) => it.dataset.person === userInfo.ambasador
-      )
-      const existMsgAmbasador = [...ambasadorMsgList].some(
-        (it) => it.dataset.person === userInfo.ambasador
-      )
-      const existQuizAmbasador = [...ambasadorQuizList].some(
-        (it) => it.dataset.person === userInfo.ambasador
-      )
-
-      if (existTestAmbasador) {
-        ambasadorTestList.forEach((it) => {
-          if (it.dataset.person === userInfo.ambasador) {
-            window.jsUtils.showEl(it)
-          } else {
-            window.jsUtils.hideEl(it)
-          }
-        })
+      if (!userInfo) {
+        await this._regUser(pin)
+        userInfo = await this._getUserInfo(pin)
       }
 
-      if (existMsgAmbasador) {
-        ambasadorMsgList.forEach((it) => {
-          if (it.dataset.person === userInfo.ambasador) {
-            window.jsUtils.showEl(it)
-          } else {
-            window.jsUtils.hideEl(it)
-          }
-        })
-      }
+      window.jsPage.renderHeader(userInfo.pin, userInfo.score)
 
-      if (existQuizAmbasador) {
-        ambasadorQuizList.forEach((it) => {
-          if (it.dataset.person === userInfo.ambasador) {
-            window.jsUtils.showEl(it)
-          } else {
-            window.jsUtils.hideEl(it)
-          }
-        })
+      if (userInfo.ambasador) {
+        window.jsState.setAmbasador(userInfo.ambasador)
+        window.jsPage.renderAmbasador(userInfo.ambasador)
       }
-
-      window.jsUtils.showEl(testBlock)
-      await this._updateGameState(userInfo.pin, userInfo.ambasador)
+      await this._updateGameState(userInfo.pin)
     },
 
     _initReg() {
@@ -113,15 +67,11 @@
       const closeBtnList = document.querySelectorAll('.js-modal-reg-close')
 
       openBtnList.forEach((it) =>
-        it.addEventListener('click', () => {
-          this._openReg()
-        })
+        it.addEventListener('click', () => this._openReg())
       )
 
       closeBtnList.forEach((it) =>
-        it.addEventListener('click', () => {
-          this._closeReg()
-        })
+        it.addEventListener('click', () => this._closeReg())
       )
 
       this.regModal.addEventListener('click', (evt) => {
@@ -183,10 +133,12 @@
       })
 
       gameBtn.addEventListener('click', () => {
+        // TODO: 2025-01-22 / Амбасадор, приступить к игре
         this._gameBtnHandler()
       })
 
       gameBtnAuth.addEventListener('click', () => {
+        // TODO: 2025-01-22 / Учавствовать
         const pin = window.userInfo.getClientID()
         if (pin) {
           this._gameBtnHandler()
@@ -200,7 +152,8 @@
           ambasadorList.forEach((it) => it.classList.remove('actv'))
 
           ambasador.classList.add('actv')
-          this.ambasador = ambasador.dataset.id
+          window.jsState.setAmbasador(ambasador.dataset.id)
+          // TODO: 2025-01-22 / check
           personImg.src = ambasador.dataset.img
 
           ambasadorBtn.removeAttribute('disabled')
@@ -221,8 +174,10 @@
       const sliderGame = document.querySelector('.js-game-stars-block')
 
       this._closeSet()
-      sliderGame.scrollIntoView({ behavior: 'smooth' })
-      window.jsSlider.stars.slideTo(4, 2000)
+      if (!this.isSetOpenBeforeGame) {
+        sliderGame.scrollIntoView({ behavior: 'smooth' })
+        window.jsSlider.stars.slideTo(4, 2000)
+      }
     },
 
     _closeReg() {
@@ -238,35 +193,21 @@
     },
 
     _closeSet() {
-      if (!this.city || !this.ambasador) return
+      if (!this.city || !window.jsState.ambasador) return
 
       const pin = window.userInfo.getClientID()
       if (!pin) return
 
-      this._checkAmbasador(pin)
-      document.documentElement.classList.remove('scroll-lock')
+      window.jsPage.renderAmbasador(window.jsState.ambasador)
+      if (!this.isSetOpenBeforeGame) {
+        document.documentElement.classList.remove('scroll-lock')
+      }
       this.setModal.classList.remove('show')
     },
 
-    _openSet() {
+    openSet() {
       document.documentElement.classList.add('scroll-lock')
       this.setModal.classList.add('show')
-    },
-
-    async _checkAmbasador(pin) {
-      const userInfo = await this._getUserInfo(pin)
-
-      if (!userInfo) {
-        // подразумеваеться что он если нужно зарегистрирует
-        await this._regUser(pin)
-      }
-
-      if (!userInfo.ambasador) {
-        this._openSet()
-        return
-      }
-
-      await this._updateData(userInfo)
     },
 
     async updateScore() {
@@ -276,25 +217,16 @@
       const userInfo = await this._getUserInfo(pin)
       if (!userInfo) return
 
-      const scoreText = document.querySelector('.js-header-score-text')
-      scoreText.textContent = userInfo.score
+      window.jsPage.renderScore(userInfo.score)
     },
 
-    async _updateGameState(pin, ambasador) {
+    async _updateGameState(pin) {
       if (window.jsState.pin !== pin) {
         window.jsState.resetState(pin)
       }
 
-      window.jsState.setAmbasador(ambasador)
-
       const gameData = await this._getGameData()
       window.jsPage.renderGameCard(gameData)
-
-      if (gameData[0].user.has_answer) {
-        window.jsState.firstQuizQuestion = 6
-        const firstQuizRightAnswer = gameData[0].user.scores / 100
-        window.jsState.setFirstQuizScore(firstQuizRightAnswer)
-      }
     },
 
     async _regUser(pin) {
@@ -342,7 +274,7 @@
         const req = {
           pin,
           city: this.city,
-          ambasador: this.ambasador
+          ambasador: window.jsState.ambasador
         }
 
         const res = await window.jsUtils.sendData(

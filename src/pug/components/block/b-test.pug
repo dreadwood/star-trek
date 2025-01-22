@@ -1,22 +1,22 @@
 include /components/button/btn-default
 
 mixin b-test({ isHidden, className, id })
-  section.b-test.js-test(class=className id=id hidden=isHidden)
+  section.b-test.js-card-ambasador(class=className id=id hidden=isHidden)
     .b-test__card
       .b-test__card-backside
-        .b-test__bg.js-test-ambasador(data-person="ovechkin")
+        .b-test__bg.js-card-ambasador-img(data-person="ovechkin")
           +picture({ image: "/img/test/test-ovechkin.jpg", w: 343, h: 545, className: "mobile" })
           +picture({ image: "/img/test/test-ovechkin-desktop.jpg", w: 1368, h: 590, className: "desktop" })
-        .b-test__bg.js-test-ambasador(data-person="medvedeva" hidden)
+        .b-test__bg.js-card-ambasador-img(data-person="medvedeva" hidden)
           +picture({ image: "/img/test/test-medvedeva.jpg", w: 343, h: 545, className: "mobile" })
           +picture({ image: "/img/test/test-medvedeva-desktop.jpg", w: 1368, h: 590, className: "desktop" })
-        .b-test__bg.js-test-ambasador(data-person="korney" hidden)
+        .b-test__bg.js-card-ambasador-img(data-person="korney" hidden)
           +picture({ image: "/img/test/test-korney.jpg", w: 343, h: 545, className: "mobile" })
           +picture({ image: "/img/test/test-korney-desktop.jpg", w: 1368, h: 590, className: "desktop" })
-        .b-test__bg.js-test-ambasador(data-person="ed" hidden)
+        .b-test__bg.js-card-ambasador-img(data-person="ed" hidden)
           +picture({ image: "/img/test/test-ed.jpg", w: 343, h: 545, className: "mobile" })
           +picture({ image: "/img/test/test-ed-desktop.jpg", w: 1368, h: 590, className: "desktop" })
-        .b-test__bg.js-test-ambasador(data-person="akinfeev" hidden)
+        .b-test__bg.js-card-ambasador-img(data-person="akinfeev" hidden)
           +picture({ image: "/img/test/test-akinfeev.jpg", w: 343, h: 545, className: "mobile" })
           +picture({ image: "/img/test/test-akinfeev-desktop.jpg", w: 1368, h: 590, className: "desktop" })
       .b-test__content

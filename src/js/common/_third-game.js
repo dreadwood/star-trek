@@ -74,7 +74,7 @@
       const btnNext = document.querySelector('.js-game-third-next')
 
       openBtnList.forEach((btn) =>
-        btn.addEventListener('click', () => this._thirdGameOpenHandler())
+        btn.addEventListener('click', () => this._openDialog())
       )
 
       startBtn.addEventListener('click', () => {
@@ -100,22 +100,6 @@
         this._renderLevel()
         this._showContentScreen()
       })
-    },
-
-    async _thirdGameOpenHandler() {
-      const pin = window.userInfo.getClientID()
-      if (!pin) {
-        window.jsAuth._openReg()
-        return
-      }
-
-      this._openDialog()
-
-      if (window.jsState.thirdGameStatus) {
-        return
-      }
-
-      this._showMsgScreen()
     },
 
     _answerHandler(answer) {
@@ -265,6 +249,19 @@
     },
 
     _openDialog() {
+      const pin = window.userInfo.getClientID()
+      if (!pin) {
+        window.jsAuth._openReg()
+        return
+      }
+
+      if (!window.jsState.ambasador) {
+        window.jsAuth.isSetOpenBeforeGame = true
+        window.jsAuth.openSet(true)
+      }
+
+      this._showMsgScreen()
+
       document.documentElement.classList.add('scroll-lock')
       this.dialog.classList.add('show')
     },

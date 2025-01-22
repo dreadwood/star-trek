@@ -12,14 +12,10 @@
       const btnClose = score.querySelector('.js-m-close')
 
       showBtnList.forEach((it) =>
-        it.addEventListener('click', () => {
-          this._openDialog(score)
-        })
+        it.addEventListener('click', () => this._openDialog(score))
       )
 
-      btnClose.addEventListener('click', () => {
-        this._closeDialogl(score)
-      })
+      btnClose.addEventListener('click', () => this._closeDialogl(score))
 
       score.addEventListener('click', (evt) => {
         if (evt.target !== score) return
@@ -78,7 +74,7 @@
     async _loadScore() {
       const pin = window.userInfo.getClientID()
       if (!pin) {
-        console.error('Не получилось таблицу результатов')
+        console.error('Не получилось загрузить таблицу результатов')
         return
       }
 

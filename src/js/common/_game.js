@@ -101,9 +101,7 @@
         this.firstDialog.querySelectorAll('.js-game-quiz-next')
 
       openBtnList.forEach((btn) => {
-        btn.addEventListener('click', () => {
-          this._firstQuizOpenHandler()
-        })
+        btn.addEventListener('click', () => this._openFirstDialog())
       })
 
       startBtn.addEventListener('click', () => {
@@ -150,9 +148,7 @@
       )
 
       openBtnList.forEach((btn) => {
-        btn.addEventListener('click', () => {
-          this._secondGameOpenHandler()
-        })
+        btn.addEventListener('click', () => this._openSecondDialog())
       })
 
       startBtn.addEventListener('click', () => {
@@ -205,41 +201,6 @@
           this._showSecondEnd()
         }
       })
-    },
-
-    async _firstQuizOpenHandler() {
-      const pin = window.userInfo.getClientID()
-      if (!pin) {
-        window.jsAuth._openReg()
-        return
-      }
-
-      this._openFirstDialog()
-
-      if (window.jsState.firstQuizStatus) {
-        this._showFirstEnd()
-        return
-      }
-
-      const length = window.jsFirstQuiz[window.jsState.ambasador].length
-
-      if (length < window.jsState.firstQuizQuestion) {
-        const gameId = 1
-        const result = await this._sendResult(
-          gameId,
-          window.jsState.firstQuizRight
-        )
-
-        if (result) {
-          window.jsState.setFirstQuizScore(window.jsState.firstQuizRight)
-        }
-        await window.jsAuth.updateScore()
-
-        this._showFirstEnd()
-        return
-      }
-
-      this._showFirstMsg()
     },
 
     async _secondGameOpenHandler() {
@@ -570,7 +531,48 @@
       }
     },
 
-    _openFirstDialog() {
+    async _openFirstDialog() {
+      const pin = window.userInfo.getClientID()
+      if (!pin) {
+        window.jsAuth._openReg()
+        return
+      }
+
+      if (!window.jsState.ambasador) {
+        window.jsAuth.isSetOpenBeforeGame = true
+        window.jsAuth.openSet(true)
+      }
+
+      const length = window.jsState.ambasador
+        ? window.jsFirstQuiz[window.jsState.ambasador].length
+        : 0
+
+      if (length > 0 && length < window.jsState.firstQuizQuestion) {
+        const gameId = 1
+        const result = await this._sendResult(
+          gameId,
+          window.jsState.firstQuizRight
+        )
+        const gameDataList = await window.jsAuth._getGameData()
+
+        if (result) {
+          window.jsState.setFirstQuizScore(window.jsState.firstQuizRight)
+        }
+
+        if (gameDataList) {
+          window.jsPage.renderGameCard(gameDataList)
+          this.setNextGameData(gameDataList)
+        }
+
+        await window.jsAuth.updateScore()
+
+        this._showFirstEnd()
+        document.documentElement.classList.add('scroll-lock')
+        this.firstDialog.classList.add('show')
+        return
+      }
+
+      this._showFirstMsg()
       document.documentElement.classList.add('scroll-lock')
       this.firstDialog.classList.add('show')
     },
@@ -591,6 +593,19 @@
     },
 
     _openSecondDialog() {
+      const pin = window.userInfo.getClientID()
+      if (!pin) {
+        window.jsAuth._openReg()
+        return
+      }
+
+      if (!window.jsState.ambasador) {
+        window.jsAuth.isSetOpenBeforeGame = true
+        window.jsAuth.openSet(true)
+      }
+
+      this._showSecondMsg()
+
       document.documentElement.classList.add('scroll-lock')
       this.secondDialog.classList.add('show')
     },
