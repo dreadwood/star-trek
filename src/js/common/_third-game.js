@@ -276,7 +276,7 @@
       document.documentElement.classList.remove('scroll-lock')
       this._stopTimer()
 
-      if (window.jsGame.nextGame) {
+      if (window.jsGame.isGameOver) {
         window.jsGame._openSoonDialog()
         return
       }
@@ -342,7 +342,7 @@
 
         if (gameDataList) {
           window.jsPage.renderGameCard(gameDataList)
-          window.jsGame.setNextGameData(gameDataList)
+          window.jsGame.checkGameOver(gameDataList)
         }
 
         this._showEndScreen()

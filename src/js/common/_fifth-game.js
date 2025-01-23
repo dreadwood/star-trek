@@ -13,9 +13,6 @@
       end: null
     },
 
-    // gameUrl: 'https://fon.bet/promo/fasw2025_g5/',
-    gameUrl: 'https://2lands.ru/ru/fasw2025_g5/',
-
     init() {
       const openBtnList = document.querySelectorAll('.js-game-fifth-open')
       const startBtn = document.querySelector('.js-game-fifth-start')
@@ -52,8 +49,6 @@
 
         const msg = event.data.args[0]
 
-        console.log(msg)
-
         if (!(typeof msg === 'object' && msg !== null)) {
           return
         }
@@ -61,11 +56,8 @@
         if (msg.type === 'exit') {
           this.closeDialog()
           // {
-          //   type: "object",
-          //   string: "eyJ0eXBlI...jFaIn0="
-          // }
-          // {
           //   type: 'exit',
+          //   log: 'eyJ0eXBlI...jFaIn0=',
           //   maxScore: 600,
           //   pucks: []
           //   timeStart: "2025-01-23T10:27:03.343Z",
@@ -74,7 +66,16 @@
         }
 
         if (msg.type === 'finishLog') {
-          const result = await window.jsGame._sendResult(this.id, msg.maxScore)
+          const logObj = {
+            logs: {
+              finish: msg.log
+            }
+          }
+          const result = await window.jsGame._sendResult(
+            this.id,
+            msg.maxScore,
+            logObj
+          )
           const gameDataList = await window.jsAuth._getGameData()
           await window.jsAuth.updateScore()
 
@@ -84,7 +85,7 @@
 
           if (gameDataList) {
             window.jsPage.renderGameCard(gameDataList)
-            window.jsGame.setNextGameData(gameDataList)
+            window.jsGame.checkGameOver(gameDataList)
           }
 
           this._showEndScreen()
@@ -100,7 +101,6 @@
       })
     },
 
-    // TODO: 2025-01-23 /
     _startBtnHandler() {
       this.iframe.src = window.jsGame.fifthGameUrl
       this._showContentScreen()
@@ -158,9 +158,8 @@
 
       this.dialog.classList.remove('show')
       document.documentElement.classList.remove('scroll-lock')
-      this.stopTimer()
 
-      if (window.jsGame.nextGame) {
+      if (window.jsGame.isGameOver) {
         window.jsGame._openSoonDialog()
         return
       }

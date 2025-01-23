@@ -16,7 +16,7 @@
     isGame: false, // открыт экран квиза
     isAnswer: false, // идет ответ на вопрос
 
-    nextGame: null,
+    isGameOver: false,
 
     // first
     firstDialog: null,
@@ -42,10 +42,10 @@
 
     sendResultUrl: 'https://xcomfeed.com/fonbet/fasw2025/answer',
 
-    secondGameUrl: 'https://fon.bet/promo/fasw2025_g2/',
-    fifthGameUrl: 'https://fon.bet/promo/fasw2025_g5/',
-    // secondGameUrl: 'https://2lands.ru/ru/fasw2025_g2/',
-    // fifthGameUrl: 'https://2lands.ru/ru/fasw2025_g5/',
+    // secondGameUrl: 'https://fon.bet/promo/fasw2025_g2/',
+    // fifthGameUrl: 'https://fon.bet/promo/fasw2025_g5/',
+    secondGameUrl: 'https://2lands.ru/ru/fasw2025_g2/',
+    fifthGameUrl: 'https://2lands.ru/ru/fasw2025_g5/',
 
     init() {
       this._initConfirm()
@@ -193,7 +193,7 @@
 
           if (gameDataList) {
             window.jsPage.renderGameCard(gameDataList)
-            this.setNextGameData(gameDataList)
+            this.checkGameOver(gameDataList)
           }
 
           await window.jsAuth.updateScore()
@@ -254,7 +254,7 @@
 
         if (gameDataList) {
           window.jsPage.renderGameCard(gameDataList)
-          this.setNextGameData(gameDataList)
+          this.checkGameOver(gameDataList)
         }
 
         await window.jsAuth.updateScore()
@@ -470,28 +470,8 @@
       this.isAnswer = false
     },
 
-    setNextGameData(gameDataList) {
-      this.nextGame = null
-      const currentDate = new Date()
-
-      for (const it of gameDataList) {
-        const startDate = new Date(it.started_at)
-        const isOpen = startDate < currentDate
-
-        if (isOpen && !it.user.has_answer) {
-          break
-        }
-
-        if (!isOpen) {
-          this.nextGame = startDate
-            .toLocaleDateString('ru-RU', {
-              day: '2-digit',
-              month: 'long'
-            })
-            .replace(' ', '&nbsp;')
-          break
-        }
-      }
+    checkGameOver(gameDataList) {
+      this.isGameOver = gameDataList.every((it) => it.user.has_answer)
     },
 
     changeVisibleScreen(screens, screen) {
@@ -501,7 +481,7 @@
       }
     },
 
-    async _sendResult(gameId, answer) {
+    async _sendResult(gameId, answer, obj = {}) {
       const pin = window.userInfo.getClientID()
       if (!pin || !gameId) {
         console.error('Не получилось отправить результат')
@@ -512,7 +492,8 @@
         const req = {
           pin,
           game_id: gameId,
-          answer
+          answer,
+          ...obj
         }
         const res = await window.jsUtils.sendData(
           this.sendResultUrl,
@@ -563,7 +544,7 @@
 
         if (gameDataList) {
           window.jsPage.renderGameCard(gameDataList)
-          this.setNextGameData(gameDataList)
+          this.checkGameOver(gameDataList)
         }
 
         await window.jsAuth.updateScore()
@@ -588,7 +569,7 @@
       this.firstDialog.classList.remove('show')
       document.documentElement.classList.remove('scroll-lock')
 
-      if (this.nextGame) {
+      if (this.isGameOver) {
         this._openSoonDialog()
         return
       }
@@ -621,7 +602,7 @@
       this.secondDialog.classList.remove('show')
       document.documentElement.classList.remove('scroll-lock')
 
-      if (this.nextGame) {
+      if (this.isGameOver) {
         this._openSoonDialog()
         return
       }
@@ -636,17 +617,12 @@
     },
 
     _openSoonDialog() {
-      if (this.nextGame) {
-        const date = this.soonDialog.querySelector('.js-modal-soon-date')
-        date.innerHTML = this.nextGame
-      }
-
       this.soonDialog.classList.add('show')
       document.documentElement.classList.add('scroll-lock')
     },
 
     _closeSoonDialog() {
-      this.nextGame = null
+      this.isGameOver = false
       this.soonDialog.classList.remove('show')
       document.documentElement.classList.remove('scroll-lock')
     }

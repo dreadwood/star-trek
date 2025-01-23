@@ -186,7 +186,7 @@
 
       if (gameDataList) {
         window.jsPage.renderGameCard(gameDataList)
-        window.jsGame.setNextGameData(gameDataList)
+        window.jsGame.checkGameOver(gameDataList)
       }
     },
 
@@ -243,7 +243,7 @@
       document.documentElement.classList.remove('scroll-lock')
       this.stopTimer()
 
-      if (window.jsGame.nextGame) {
+      if (window.jsGame.isGameOver) {
         window.jsGame._openSoonDialog()
         return
       }
