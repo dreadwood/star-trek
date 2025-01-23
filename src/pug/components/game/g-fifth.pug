@@ -1,0 +1,73 @@
+include /components/button/btn-default
+
+mixin g-fifth-bg({})
+  .g-msg__mountans
+    +svg({ name: "mountains", w: 375, h: 350, className: "mobile" })
+    +svg({ name: "mountains-desktop", w: 1440, h: 460, className: "desktop" })
+  .g-msg__stars
+    img(class="mobile" src="./img/game/stars-msg.svg" width="190" height="90" alt="")
+    img(class="desktop" src="./img/game/stars-msg-desktop.svg" width="214" height="176" alt="")
+  .g-msg__person.js-msg-ambasador(data-person="ovechkin")
+    img(class="mobile" src="./img/game/ovechkin@2x.webp" width="375" height="482" alt="")
+    img(class="desktop" src="./img/game/ovechkin-desktop@2x.webp" width="565" height="535" alt="")
+  .g-msg__person.js-msg-ambasador(data-person="medvedeva" hidden)
+    img(class="mobile" src="./img/game/medvedeva@2x.webp" width="375" height="482" alt="")
+    img(class="desktop" src="./img/game/medvedeva-desktop@2x.webp" width="565" height="535" alt="")
+  .g-msg__person.js-msg-ambasador(data-person="korney" hidden)
+    img(class="mobile" src="./img/game/korney@2x.webp" width="375" height="482" alt="")
+    img(class="desktop" src="./img/game/korney-desktop@2x.webp" width="565" height="535" alt="")
+  .g-msg__person.js-msg-ambasador(data-person="ed" hidden)
+    img(class="mobile" src="./img/game/ed@2x.webp" width="375" height="482" alt="")
+    img(class="desktop" src="./img/game/ed-desktop@2x.webp" width="565" height="535" alt="")
+  .g-msg__person.js-msg-ambasador(data-person="akinfeev" hidden)
+    img(class="mobile" src="./img/game/akinfeev@2x.webp" width="375" height="482" alt="")
+    img(class="desktop" src="./img/game/akinfeev-desktop@2x.webp" width="565" height="535" alt="")
+
+mixin g-fifth-msg({ isHidden, isShow, className })
+  .g-msg.fifth(class=isShow && "show" class=className hidden=isHidden)
+    .g-msg__backside
+      +g-fifth-bg({})
+    .g-msg__content
+      .g-msg__wrp
+        h2.g-msg__title Отбей шайбу
+        p.g-msg__text Твоя задача&nbsp;&mdash; отбивать шайбы, которые на&nbsp;тебя летят. Пропустил шайбу&nbsp;&mdash; потерял жизнь. Поймал цветную шайбу&nbsp;&mdash; получил дополнительную жизнь. Всего у&nbsp;тебя три жизни и&nbsp;три попытки. За&nbsp;каждую шайбу ты&nbsp;получаешь 100&nbsp;звезд.
+        p.g-msg__text Лови быстрее, первая уже летит!
+        .g-msg__btn
+          +btn-default({ text: "Вперед", className: "js-game-fifth-start" })
+      p.g-msg__ribbon Сейчас ты&nbsp;будешь ловить шайбы. Зачем? Не&nbsp;пытайся найти в&nbsp;этой игре смысл&nbsp;&mdash; главное, что поезд прибыл в&nbsp;Новосибирск, а&nbsp;ФОНБЕТ Неделя Звезд Хоккея вот-вот начнется!
+
+mixin g-fifth-end({ isShow, className, isHidden })
+  .g-msg.fifth(class=isShow && "show" class=className,  hidden=isHidden)
+    .g-msg__backside
+      +g-fifth-bg({})
+    .g-msg__content
+      .g-msg__wrp
+        h2.g-msg__title.js-game-fifth-title(
+          data-high="Поздравляю, хорошая игра!"
+          data-zero="Поздравляю, хорошая игра!"
+        )
+        p.g-msg__text.js-game-fifth-text(
+          data-high="Загляни в&nbsp;таблицу лидеров и&nbsp;посмотри, на&nbsp;каком ты&nbsp;месте!"
+          data-zero="Загляни в&nbsp;таблицу лидеров и&nbsp;посмотри, на&nbsp;каком ты&nbsp;месте!"
+        )
+        .g-msg__result
+          .g-msg__result-text
+            | Ты заработал:
+            +svg({ name: "star", w: 22, h: 22 })
+            | #[span.js-game-fifth-score 0] звезд
+        .g-msg__btn
+          +btn-default({ text: "На главную", className: 'js-game-fifth-close' })
+
+mixin g-fifth-content({ isShow, className, isHidden })
+  .g-iframe(class=isShow && "show" class=className, hidden=isHidden)
+    iframe.js-game-iframe(frameborder="0")
+
+
+mixin g-fifth({ isShow, className })
+  .overlay.js-game-fifth-dialog(class=isShow && "show" class=className)
+    .g-layout
+      .g-layout__close
+        +btn-close({ className: "js-game-fifth-close" })
+      +g-fifth-msg({ isHidden: true, className: "js-game-msg" })
+      +g-fifth-content({ isHidden: true, className: "js-game-content" })
+      +g-fifth-end({ isHidden: true, className: "js-game-end" })

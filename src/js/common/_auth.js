@@ -176,7 +176,7 @@
       this._closeSet()
       if (!this.isSetOpenBeforeGame) {
         sliderGame.scrollIntoView({ behavior: 'smooth' })
-        window.jsSlider.stars.slideTo(4, 2000)
+        window.jsSlider.stars.slideTo(5, 2000)
       }
     },
 

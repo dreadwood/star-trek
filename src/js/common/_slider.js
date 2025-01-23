@@ -36,13 +36,13 @@
       this.stars = new Swiper('.js-slider-stars', {
         slidesPerView: 'auto',
         grabCursor: true,
-        // initialSlide: 4,
+        // initialSlide: 1,
         navigation: {
           prevEl: '.js-slider-stars-prev',
           nextEl: '.js-slider-stars-next'
         }
       })
-      this.stars.slideTo(4, 2000)
+      this.stars.slideTo(5, 2000)
     },
 
     _prizes() {

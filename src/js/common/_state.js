@@ -31,6 +31,11 @@
     fourthGameStatus: null, // low / high / zero
     fourthGameScore: 0,
 
+    // fifth
+    fifthGameRight: 0,
+    fifthGameStatus: null, // high / zero
+    fifthGameScore: 0,
+
     resetState(pin) {
       this.pin = pin
 
@@ -101,6 +106,19 @@
           break
         default:
           this.fourthGameStatus = 'low'
+          break
+      }
+    },
+
+    setFifthGameScore(score) {
+      this.fifthGameScore = score
+
+      switch (true) {
+        case score === 0:
+          this.fifthGameStatus = 'zero'
+          break
+        default:
+          this.fifthGameStatus = 'high'
           break
       }
     },

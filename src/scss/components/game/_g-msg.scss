@@ -62,6 +62,20 @@
       transform: translateX(-50%) rotate(-5deg);
     }
   }
+  &.fifth {
+    .g-msg__stars {
+      top: 209rem;
+      right: -24rem;
+    }
+    .g-msg__person {
+      max-height: 56%;
+    }
+    .g-msg__ribbon {
+      bottom: 10rem;
+      font-size: 16rem;
+      line-height: 1.2;
+    }
+  }
   @include desktop {
     &.first {
       .g-msg__stars {
@@ -107,10 +121,22 @@
         max-height: none;
       }
       .g-msg__ribbon {
-        right: 110rem;
-        bottom: 40rem;
-        left: auto;
-        transform: rotate(-5deg);
+        bottom: 15rem;
+        font-size: 18rem;
+      }
+    }
+    &.fifth {
+      .g-msg__stars {
+        top: 25rem;
+        right: 303rem;
+      }
+      .g-msg__person {
+        max-height: none;
+      }
+      .g-msg__ribbon {
+        bottom: 10rem;
+        font-size: 16rem;
+        line-height: 1.2;
       }
     }
   }
