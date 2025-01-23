@@ -47,6 +47,8 @@
           return
         }
 
+        if (event.data.idGame !== this.id) return
+
         const msg = event.data.args[0]
 
         if (!(typeof msg === 'object' && msg !== null)) {
@@ -151,10 +153,11 @@
     },
 
     closeDialog() {
-      if (window.jsGame.isGame) {
-        window.jsGame._openConfirmDialog()
-        return
-      }
+      // if (window.jsGame.isGame) {
+      //   window.jsGame._openConfirmDialog()
+      //   return
+      // }
+      this.iframe.src = ''
 
       this.dialog.classList.remove('show')
       document.documentElement.classList.remove('scroll-lock')

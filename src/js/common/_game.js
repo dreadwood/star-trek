@@ -173,6 +173,8 @@
           return
         }
 
+        if (event.data.idGame !== gameId) return
+
         const msg = event.data.args[0]
 
         if (!(typeof msg === 'object' && msg !== null)) {
@@ -611,6 +613,7 @@
     },
 
     _openConfirmDialog() {
+      console.log('test')
       this.confirmDialog.classList.add('show')
     },
 
