@@ -277,12 +277,14 @@
       window.jsFourthGame.stopTimer()
 
       this.secondIframe.src = ''
+      window.jsFifthGame.iframe.src = ''
 
       this._closeConfirmDialog()
       this._closeFirstDialog()
       this._closeSecondDialog()
       window.jsThirdGame.closeDialog()
       window.jsFourthGame.closeDialog()
+      window.jsFifthGame.closeDialog()
     },
 
     _showFirstMsg() {

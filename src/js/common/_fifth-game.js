@@ -6,7 +6,7 @@
     id: 5,
 
     dialog: null,
-    iFrame: null,
+    iframe: null,
     screens: {
       msg: null,
       content: null,
