@@ -64,7 +64,7 @@
   }
   &.fifth {
     .g-msg__stars {
-      top: 209rem;
+      top: 190rem;
       right: -24rem;
     }
     .g-msg__person {
@@ -72,7 +72,7 @@
     }
     .g-msg__ribbon {
       bottom: 10rem;
-      font-size: 16rem;
+      font-size: 15rem;
       line-height: 1.2;
     }
   }
@@ -121,8 +121,10 @@
         max-height: none;
       }
       .g-msg__ribbon {
-        bottom: 15rem;
-        font-size: 18rem;
+        right: 110rem;
+        bottom: 40rem;
+        left: auto;
+        transform: rotate(-5deg);
       }
     }
     &.fifth {
