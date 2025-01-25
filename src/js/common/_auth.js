@@ -93,7 +93,7 @@
       const ambasadorBtn = this.setModal.querySelector('.js-set-btn-ambasador')
       const finishBtn = this.setModal.querySelector('.js-set-btn-finish')
       const gameBtn = document.querySelector('.js-set-btn-game')
-      const gameBtnAuth = document.querySelector('.js-set-btn-game-auth')
+      // const gameBtnAuth = document.querySelector('.js-set-btn-game-auth')
       const closeBtnList = document.querySelectorAll('.js-set-close')
 
       const cityField = this.setModal.querySelector('.js-set-field')
@@ -140,15 +140,15 @@
         this._gameBtnHandler()
       })
 
-      gameBtnAuth.addEventListener('click', () => {
-        // TODO: 2025-01-22 / Учавствовать
-        const pin = window.userInfo.getClientID()
-        if (pin) {
-          this._gameBtnHandler()
-        } else {
-          this._openReg()
-        }
-      })
+      // gameBtnAuth.addEventListener('click', () => {
+      //   // TODO: 2025-01-22 / Учавствовать
+      //   const pin = window.userInfo.getClientID()
+      //   if (pin) {
+      //     this._gameBtnHandler()
+      //   } else {
+      //     this._openReg()
+      //   }
+      // })
 
       ambasadorList.forEach((ambasador) =>
         ambasador.addEventListener('click', () => {

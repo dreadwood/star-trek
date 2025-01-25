@@ -127,8 +127,8 @@
 </div>`
     },
 
-    async _loadScore() {
-      const pin = window.userInfo.getClientID()
+    async _loadScore(currentPin) {
+      const pin = currentPin || window.userInfo.getClientID()
       if (!pin) {
         console.error('Не получилось загрузить таблицу результатов')
         return
