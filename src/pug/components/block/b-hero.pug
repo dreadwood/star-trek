@@ -1,6 +1,7 @@
 include /components/block/b-header
 
 mixin b-hero({ isHeaderShow, link, className, id })
+  include /data/section-data
   section.b-hero(class=className id=id)
     +b-header({ isShow: isHeaderShow, link: link })
     .b-hero__star
@@ -29,5 +30,5 @@ mixin b-hero({ isHeaderShow, link, className, id })
     .b-hero__date Стань Первой звездой – забери приз!
     .b-hero__btn
       //- +btn-default({ text: "Участвовать", className: "js-set-btn-game-auth" })
-      a.btn-default.hero(href="#arrived") Идет подведение итогов
+      a.btn-default.hero(href=sectionData.score.link) Идет подведение итогов
     p.b-hero__text ФОНБЕТ Неделя Звезд Хоккея 2025 пройдет в&nbsp;самом сердце России&nbsp;&mdash; в&nbsp;Новосибирске. Вступай в&nbsp;команду амбассадоров FONBET, покори Транссибирскую магистраль.

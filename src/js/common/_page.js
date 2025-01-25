@@ -37,11 +37,13 @@
       const idWrp = document.querySelector('.js-header-id-wrp')
       const idText = document.querySelector('.js-header-id-text')
       const scoreWrp = document.querySelector('.js-header-score-wrp')
+      const headerBtn = document.querySelector('.js-header-btn')
       const scoreText = document.querySelector('.js-header-score-text')
       const btnLogin = document.querySelector('.js-header-login')
 
       idText.textContent = pin
       scoreText.textContent = score
+      headerBtn.classList.add('auth')
       window.jsUtils.showEl(idWrp)
       window.jsUtils.showEl(scoreWrp)
       window.jsUtils.hideEl(btnLogin)

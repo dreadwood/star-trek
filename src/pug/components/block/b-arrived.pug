@@ -1,6 +1,7 @@
 include /components/button/btn-default
 
 mixin b-arrived({ className, id })
+  include /data/section-data
   section.b-arrived(class=className id=id)
     .b-arrived__mountains
       +svg({ name: "mountains", w: 375, h: 350, className: "mobile" })
@@ -14,14 +15,14 @@ mixin b-arrived({ className, id })
         .b-arrived__card-content
           .b-arrived__card-wrp
             h2.b-arrived__title Мы прибыли!
-            p.b-arrived__text Позади полный приключений путь в&nbsp;Новосибирск, а&nbsp;впереди мечта любого болельщика&nbsp;&mdash; Фонбет Неделя Звезд Хоккея 2025! Скоро мы&nbsp;подведем итоги игр, а&nbsp;30-го января отроется доступ к&nbsp;прогнозам. #[br]#[br] #[span Увидимся на&nbsp;Фонбет Неделе Звезд Хоккея]
+            p.b-arrived__text Позади полный приключений путь в&nbsp;Новосибирск, а&nbsp;впереди мечта любого болельщика&nbsp;&mdash; ФОНБЕТ Неделя Звезд Хоккея 2025! Скоро мы&nbsp;подведем итоги игр, а&nbsp;30-го января откроется доступ к&nbsp;прогнозам. #[br]#[br] #[span Увидимся на ФОНБЕТ Неделе Звезд Хоккея 2025!]
           .b-arrived__btn
             a(href="#predictions").btn-default.arrived К прогнозам
             //- +btn-default({
             //-   text: "К прогнозам",
             //-   className: "arrived"
             //- })
-      .b-arrived__score(id="arrived")
+      .b-arrived__score(id=sectionData.score.id)
         div
           .b-arrived__score-head
             div Место / ID

@@ -171,6 +171,10 @@
   @include desktop {
     gap: 10rem;
     margin-top: 0;
+    margin-left: 115rem;
+    &.auth {
+      margin-left: -32rem;
+    }
   }
 }
 .b-header__btn-login {
