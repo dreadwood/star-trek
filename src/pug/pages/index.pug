@@ -1,11 +1,13 @@
 extends /elements/layout-page
 include /components/block/b-hero
+include /components/block/b-arrived
 include /components/block/b-stars
 include /components/block/b-prizes
 include /components/block/b-ambassadors
 include /components/block/b-promo
 include /components/block/b-week-star
 include /components/block/b-predictions
+include /components/block/b-bullet
 include /components/block/b-bingo
 include /components/block/b-test
 include /components/block/b-footer
@@ -35,12 +37,14 @@ block libjs
 block content
   include /data/section-data
   +b-hero({ isHeaderShow: false, link: logoLink })
-  +b-prizes({})
-  +b-stars({ id: sectionData.games.id })
-  +b-ambassadors({ id: sectionData.ambassadors.id })
+  +b-arrived({})
+  +b-prizes({ id: sectionData.prizes.id })
+  //- +b-stars({ id: sectionData.games.id })
+  //- +b-ambassadors({ id: sectionData.ambassadors.id })
   +b-promo({})
-  +b-week-star({ id: sectionData.about.id })
-  +b-predictions({})
+  //- +b-week-star({ id: sectionData.about.id })
+  +b-predictions({ id: "predictions" })
+  +b-bullet({})
   +b-bingo({})
   +b-test({ isHidden: true })
   +b-footer({ link: logoLink })

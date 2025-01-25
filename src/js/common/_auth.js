@@ -28,6 +28,7 @@
 
         this._closeReg()
         await this._udpateUserInfo(pin)
+        await window.jsScore.updateScorePage(pin)
       })
 
       document.addEventListener('userInfoUpdated', async (evt) => {
@@ -36,12 +37,14 @@
 
           this._closeReg()
           await this._udpateUserInfo(pin)
+          await window.jsScore.updateScorePage(pin)
         }
       })
 
       const pin = window.userInfo.getClientID()
       if (pin) {
         await this._udpateUserInfo(pin)
+        await window.jsScore.updateScorePage(pin)
       }
     },
 

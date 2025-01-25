@@ -8,15 +8,30 @@
     stars: null,
 
     init() {
-      this._ambassadors()
-      this._stars()
-      this._prizes()
-      this._changeAmbasador()
+      const sliderAmbassadors = document.querySelector('.js-slider-ambassadors')
+      const sliderStars = document.querySelector('.js-slider-stars')
+      const sliderPrizes = document.querySelector('.js-slider-prizes')
+      const sliderChangeAmbassadors = document.querySelector(
+        'js-slider-change-ambasador'
+      )
+
+      if (sliderAmbassadors) {
+        this._ambassadors(sliderAmbassadors)
+      }
+      if (sliderStars) {
+        this._stars(sliderStars)
+      }
+      if (sliderPrizes) {
+        this._prizes(sliderPrizes)
+      }
+      if (sliderChangeAmbassadors) {
+        this._changeAmbasador(sliderChangeAmbassadors)
+      }
     },
 
-    _ambassadors() {
+    _ambassadors(el) {
       // eslint-disable-next-line no-undef
-      const swiper = new Swiper('.js-slider-ambassadors', {
+      const swiper = new Swiper(el, {
         slidesPerView: 'auto',
         grabCursor: true,
         navigation: {
@@ -31,9 +46,9 @@
       this._toggleSwiper(swiper, this.mediaQuery.matches)
     },
 
-    _stars() {
+    _stars(el) {
       // eslint-disable-next-line no-undef
-      this.stars = new Swiper('.js-slider-stars', {
+      this.stars = new Swiper(el, {
         slidesPerView: 'auto',
         grabCursor: true,
         // initialSlide: 1,
@@ -45,9 +60,9 @@
       this.stars.slideTo(5, 2000)
     },
 
-    _prizes() {
+    _prizes(el) {
       // eslint-disable-next-line no-undef
-      new Swiper('.js-slider-prizes', {
+      new Swiper(el, {
         slidesPerView: 'auto',
         grabCursor: true,
         navigation: {
@@ -57,9 +72,9 @@
       })
     },
 
-    _changeAmbasador() {
+    _changeAmbasador(el) {
       // eslint-disable-next-line no-undef
-      const swiper = new Swiper('.js-slider-change-ambasador', {
+      const swiper = new Swiper(el, {
         slidesPerView: 'auto',
         grabCursor: true,
         navigation: {

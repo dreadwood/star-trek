@@ -1,8 +1,10 @@
 .b-promo {
-  padding: 30rem $padding;
+  margin-bottom: -210rem;
+  padding: 30rem $padding 320rem $padding;
   background-color: $color-gray-933;
   @include desktop {
-    padding: 50rem $padding-desktop;
+    margin-bottom: -270rem;
+    padding: 50rem $padding-desktop 220rem $padding-desktop;
   }
 }
 .b-promo__card {

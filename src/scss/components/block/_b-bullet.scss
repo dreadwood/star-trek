@@ -1,0 +1,126 @@
+.b-bullet {
+  padding: 30rem $padding;
+  font-family: $font-default;
+  font-size: 24rem;
+  line-height: 1.1;
+  font-weight: 500;
+  color: $color-white;
+  background-color: $color-white;
+  @include desktop {
+    padding: 50rem $padding-desktop;
+    font-size: 32rem;
+  }
+}
+.b-bullet__card {
+  position: relative;
+  height: auto;
+  background-color: $color-gray-961;
+  border-radius: 14rem;
+  @include desktop {
+    height: 540rem;
+  }
+}
+.b-bullet__card-backside {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 14rem;
+}
+.b-bullet__mountains {
+  display: none;
+  @include desktop {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: auto;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center bottom;
+    }
+  }
+}
+.b-bullet__field {
+  display: none;
+  @include desktop {
+    position: absolute;
+    right: -30rem;
+    bottom: 0;
+    display: block;
+    width: 520rem;
+    height: 458rem;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center bottom;
+    }
+  }
+}
+.b-bullet__content {
+  position: relative;
+  height: 100%;
+  padding: 20rem;
+  @include desktop {
+    display: flex;
+    flex-direction: column;
+    padding: 40rem;
+  }
+}
+.b-bullet__title {
+  margin: 0;
+  font-size: 32rem;
+  line-height: 1.1;
+  font-weight: 700;
+  color: $color-carmine-red-2;
+  text-transform: uppercase;
+  @include desktop {
+    width: 100%;
+    max-width: 920rem;
+    font-size: 60rem;
+    line-height: 1;
+  }
+}
+.b-bullet__text {
+  margin-top: 20rem;
+  margin-bottom: 0;
+  font-size: 16rem;
+  line-height: 1.2;
+  color: $color-gray-537;
+  letter-spacing: -0.02em;
+  @include desktop {
+    width: 100%;
+    max-width: 300rem;
+  }
+}
+.b-bullet__bottom {
+  display: none;
+  @include desktop {
+    display: flex;
+    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
+    gap: 20rem;
+    margin-top: auto;
+  }
+}
+.b-bullet__data {
+  display: flex;
+  align-items: center;
+  gap: 6rem;
+  font-size: 16rem;
+  line-height: 1.2;
+  font-weight: 500;
+  text-align: center;
+  color: $color-gray-537;
+  letter-spacing: -0.02em;
+  svg {
+    flex-shrink: 0;
+    width: 10rem;
+    height: 13rem;
+    fill: currentcolor;
+  }
+}

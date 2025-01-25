@@ -1,0 +1,208 @@
+.b-arrived {
+  position: relative;
+  padding-top: 190rem;
+  @include desktop {
+    padding-top: 160rem;
+  }
+}
+.b-arrived__mountains {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 350rem;
+  user-select: none;
+  pointer-events: none;
+  svg {
+    width: 100%;
+    height: 100%;
+    fill: $color-gray-933;
+  }
+  .desktop {
+    display: none;
+  }
+  @include desktop {
+    top: -200rem;
+    height: 460rem;
+    .mobile {
+      display: none;
+    }
+    .desktop {
+      display: block;
+    }
+  }
+}
+.b-arrived__content {
+  padding: 20rem $padding 30rem $padding;
+  background-color: $color-gray-933;
+  @include desktop {
+    padding: 20rem $padding-desktop 50rem $padding-desktop;
+  }
+}
+.b-arrived__card {
+  position: relative;
+  height: 590rem;
+  overflow: hidden;
+  border-radius: 14rem;
+  box-shadow: $shadow-card;
+  @include desktop {
+    height: 510rem;
+  }
+}
+.b-arrived__card-backside {
+  position: absolute;
+  inset: 0;
+}
+.b-arrived__bg {
+  position: absolute;
+  inset: 0;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .desktop {
+    display: none;
+  }
+  @include desktop {
+    .mobile {
+      display: none;
+    }
+    .desktop {
+      display: block;
+    }
+  }
+}
+.b-arrived__card-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 20rem;
+  @include desktop {
+    padding: 48rem 44rem 44rem 44rem;
+  }
+}
+.b-arrived__card-wrp {
+  @include desktop {
+    width: 100%;
+    max-width: 522rem;
+  }
+}
+.b-arrived__title {
+  margin: 0;
+  font-size: 32rem;
+  line-height: 1.1;
+  font-weight: 700;
+  color: $color-black;
+  text-transform: uppercase;
+  @include desktop {
+    font-size: 70rem;
+    line-height: 1;
+  }
+}
+.b-arrived__text {
+  margin-top: 20rem;
+  margin-bottom: 20rem;
+  font-size: 16rem;
+  line-height: 1.2;
+  font-weight: 500;
+  color: $color-gray-537;
+  letter-spacing: -0.02em;
+  span {
+    color: $color-black;
+  }
+  @include desktop {
+    font-size: 18rem;
+    line-height: 1.1;
+  }
+}
+.b-arrived__btn {
+  margin-top: auto;
+}
+.b-arrived__score {
+  margin-top: 10rem;
+  padding: 20rem;
+  color: transparentize($color-gray-537, 0.4);
+  background-color: $color-white;
+  border-radius: 14rem;
+  box-shadow: $shadow-card;
+  @include desktop {
+    padding: 40rem;
+    border-radius: 20rem;
+  }
+}
+.b-arrived__score-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 19rem 0;
+  font-size: 14rem;
+  line-height: 1.1;
+  font-weight: 400;
+}
+.b-arrived__score-row {
+  display: grid;
+  grid-template-columns: max-content max-content auto max-content max-content;
+  align-items: center;
+  width: 100%;
+  margin-top: 4rem;
+  padding: 18rem 16rem;
+  font-size: 18rem;
+  line-height: 1.1;
+  font-weight: 500;
+  color: $color-black;
+  background-color: $color-gray-961;
+  border-radius: 10rem;
+  & > div:nth-child(1) {
+    min-width: 36rem;
+    color: $color-gray-537;
+    white-space: nowrap;
+    opacity: 0.6;
+  }
+  & > div:nth-child(2) {
+    margin-left: 10rem;
+  }
+  & > div:nth-child(3) {
+    margin-left: 12rem;
+    text-align: left;
+  }
+  & > div:nth-child(4) {
+    width: 24rem;
+    height: 24rem;
+    margin-left: auto;
+    background-image: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.81431 7.55587C8.67218 7.85723 8.3893 8.06801 8.05987 8.11799L2.77955 8.91924L2.67669 8.94115C2.52099 8.98442 2.37904 9.07015 2.26535 9.18961C2.15165 9.30907 2.07029 9.45797 2.02957 9.6211C1.98884 9.78423 1.99021 9.95576 2.03354 10.1182C2.07687 10.2806 2.1606 10.428 2.27619 10.5455L6.12815 14.4697C6.35141 14.6971 6.45288 15.0174 6.40134 15.3319L5.49117 20.8858L5.47934 20.9906C5.46981 21.1591 5.50325 21.3273 5.57624 21.4779C5.64922 21.6284 5.75914 21.756 5.89472 21.8475C6.0303 21.939 6.18668 21.9912 6.34785 21.9986C6.50902 22.0061 6.66918 21.9685 6.81194 21.8899L11.5232 19.2975C11.8236 19.1321 12.1879 19.1323 12.4882 19.2979L17.1878 21.8899L17.2789 21.9337C17.4291 21.9957 17.5924 22.0146 17.752 21.9887C17.9115 21.9628 18.0617 21.893 18.1869 21.7863C18.3122 21.6796 18.4081 21.54 18.4648 21.3818C18.5214 21.2235 18.5369 21.0523 18.5095 20.8858L17.5985 15.3321C17.5469 15.0175 17.6484 14.6971 17.8718 14.4696L21.7254 10.5445L21.7964 10.4635C21.8978 10.3328 21.9643 10.1762 21.9891 10.0099C22.0139 9.84347 21.9961 9.67317 21.9376 9.51631C21.879 9.35946 21.7818 9.22165 21.6558 9.11693C21.5297 9.01222 21.3795 8.94433 21.2202 8.92019L15.9399 8.11808C15.6105 8.06804 15.3276 7.85722 15.1855 7.55585L12.8168 2.53156C12.7417 2.37202 12.6254 2.23768 12.4811 2.14373C12.3368 2.04979 12.1703 2 12.0003 2C11.8304 2 11.6639 2.04979 11.5196 2.14373C11.3753 2.23768 11.259 2.37202 11.1839 2.53156L8.81431 7.55587Z" fill="%23D7E2F9"/></svg>');
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  & > div:nth-child(5) {
+    width: 80rem;
+    margin-left: 6rem;
+    font-size: 18rem;
+    line-height: 1.1;
+    font-weight: 500;
+    color: $color-blue-degrees;
+  }
+  &.blue {
+    color: $color-white;
+    background-color: $color-blue-degrees;
+    & > div:nth-child(1) {
+      color: $color-white;
+    }
+    & > div:nth-child(4) {
+      background-image: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path opacity="0.8" d="M8.81431 7.55587C8.67218 7.85723 8.3893 8.06801 8.05987 8.11799L2.77955 8.91924L2.67669 8.94115C2.52099 8.98442 2.37904 9.07015 2.26535 9.18961C2.15165 9.30907 2.07029 9.45797 2.02957 9.6211C1.98884 9.78423 1.99021 9.95576 2.03354 10.1182C2.07687 10.2806 2.1606 10.428 2.27619 10.5455L6.12815 14.4697C6.35141 14.6971 6.45288 15.0174 6.40134 15.3319L5.49117 20.8858L5.47934 20.9906C5.46981 21.1591 5.50325 21.3273 5.57624 21.4779C5.64922 21.6284 5.75914 21.756 5.89472 21.8475C6.0303 21.939 6.18668 21.9912 6.34785 21.9986C6.50902 22.0061 6.66918 21.9685 6.81194 21.8899L11.5232 19.2975C11.8236 19.1321 12.1879 19.1323 12.4882 19.2979L17.1878 21.8899L17.2789 21.9337C17.4291 21.9957 17.5924 22.0146 17.752 21.9887C17.9115 21.9628 18.0617 21.893 18.1869 21.7863C18.3122 21.6796 18.4081 21.54 18.4648 21.3818C18.5214 21.2235 18.5369 21.0523 18.5095 20.8858L17.5985 15.3321C17.5469 15.0175 17.6484 14.6971 17.8718 14.4696L21.7254 10.5445L21.7964 10.4635C21.8978 10.3328 21.9643 10.1762 21.9891 10.0099C22.0139 9.84347 21.9961 9.67317 21.9376 9.51631C21.879 9.35946 21.7818 9.22165 21.6558 9.11693C21.5297 9.01222 21.3795 8.94433 21.2202 8.92019L15.9399 8.11808C15.6105 8.06804 15.3276 7.85722 15.1855 7.55585L12.8168 2.53156C12.7417 2.37202 12.6254 2.23768 12.4811 2.14373C12.3368 2.04979 12.1703 2 12.0003 2C11.8304 2 11.6639 2.04979 11.5196 2.14373C11.3753 2.23768 11.259 2.37202 11.1839 2.53156L8.81431 7.55587Z" fill="white"/></svg>');
+    }
+    & > div:nth-child(5) {
+      color: $color-white;
+    }
+  }
+}
+.b-arrived__score-line {
+  width: 100%;
+  height: 1rem;
+  margin: 16rem 0;
+  background-color: $color-blue-degrees;
+  border-radius: 2rem;
+  opacity: 0.3;
+}

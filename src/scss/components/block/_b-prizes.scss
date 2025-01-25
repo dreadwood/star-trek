@@ -1,34 +1,33 @@
 .b-prizes {
   position: relative;
-  padding-top: 190rem;
-  @include desktop {
-    padding-top: 60rem;
-  }
+  background-color: $color-gray-933;
 }
 .b-prizes__backside {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
 }
-.b-prizes__bg {
+.b-prizes__sky {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 350rem;
-  svg {
+  top: 10rem;
+  left: 50%;
+  width: 327rem;
+  height: 165rem;
+  translate: -50% 0;
+  user-select: none;
+  pointer-events: none;
+  img {
     width: 100%;
     height: 100%;
-    fill: $color-gray-933;
   }
   .desktop {
     display: none;
   }
   @include desktop {
-    top: -200rem;
-    height: 460rem;
+    position: absolute;
+    top: 102rem;
+    display: block;
+    width: 1313rem;
+    height: 216rem;
     .mobile {
       display: none;
     }
@@ -39,8 +38,7 @@
 }
 .b-prizes__content {
   position: relative;
-  padding: 20rem $padding 30rem $padding;
-  background-color: $color-gray-933;
+  padding: 130rem $padding 30rem $padding;
   @include desktop {
     padding: 50rem $padding-desktop 50rem $padding-desktop;
   }

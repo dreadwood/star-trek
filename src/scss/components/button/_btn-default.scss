@@ -38,6 +38,16 @@
       background-color: $color-gray-925;
     }
   }
+  &.hero {
+    min-width: none;
+    color: $color-blue-degrees;
+    background-color: $color-white;
+    border-color: $color-white;
+    &:hover,
+    &:focus-visible {
+      background-color: $color-gray-925;
+    }
+  }
   &.promo,
   &.bingo {
     width: 100%;
@@ -54,6 +64,9 @@
   &.test {
     width: 100%;
   }
+  &.arrived {
+    width: 100%;
+  }
   &.soon {
     padding-right: 16rem;
     padding-left: 16rem;
@@ -66,6 +79,9 @@
     &.promo,
     &.bingo {
       max-width: 100%;
+    }
+    &.arrived {
+      width: max-content;
     }
   }
 }

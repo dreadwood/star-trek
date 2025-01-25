@@ -41,3 +41,5 @@ $gradient-hero: linear-gradient(
   $color-midnight-blue 0,
   $color-cobalt-blue 100%
 );
+
+$shadow-card: 2rem 2rem 10rem transparentize($color-black, 0.94);

@@ -1,0 +1,43 @@
+include /components/button/btn-default
+
+mixin b-arrived({ className, id })
+  section.b-arrived(class=className id=id)
+    .b-arrived__mountains
+      +svg({ name: "mountains", w: 375, h: 350, className: "mobile" })
+      +svg({ name: "mountains-desktop", w: 1440, h: 460, className: "desktop" })
+    .b-arrived__content
+      .b-arrived__card
+        .b-arrived__card-backside
+          .b-arrived__bg
+            +picture({ image: "/img/arrived/bg-arrived.jpg", w: 343, h: 590, className: "mobile" })
+            +picture({ image: "/img/arrived/bg-arrived-desktop.jpg", w: 1368, h: 510, className: "desktop" })
+        .b-arrived__card-content
+          .b-arrived__card-wrp
+            h2.b-arrived__title Мы прибыли!
+            p.b-arrived__text Позади полный приключений путь в&nbsp;Новосибирск, а&nbsp;впереди мечта любого болельщика&nbsp;&mdash; Фонбет Неделя Звезд Хоккея 2025! Скоро мы&nbsp;подведем итоги игр, а&nbsp;30-го января отроется доступ к&nbsp;прогнозам. #[br]#[br] #[span Увидимся на&nbsp;Фонбет Неделе Звезд Хоккея]
+          .b-arrived__btn
+            a(href="#predictions").btn-default.arrived К прогнозам
+            //- +btn-default({
+            //-   text: "К прогнозам",
+            //-   className: "arrived"
+            //- })
+      .b-arrived__score(id="arrived")
+        div
+          .b-arrived__score-head
+            div Место / ID
+            div Звезды
+          .js-arrived-score-body
+            //- .b-arrived__score-row
+            //-   div 1
+            //-   div *2852
+            //-   div
+            //-   div
+            //-   div 1934602
+          .b-arrived__score-line.js-arrived-score-line(hidden)
+          .js-arrived-score-self(hidden)
+            //- .b-arrived__score-row.blue
+            //-   div 1
+            //-   div *2852
+            //-   div
+            //-   div
+            //-   div 1934602

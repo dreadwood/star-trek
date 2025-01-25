@@ -42,10 +42,10 @@
 
     sendResultUrl: 'https://xcomfeed.com/fonbet/fasw2025/answer',
 
-    // secondGameUrl: 'https://fon.bet/promo/fasw2025_g2/',
-    // fifthGameUrl: 'https://fon.bet/promo/fasw2025_g5/',
-    secondGameUrl: 'https://2lands.ru/ru/fasw2025_g2/',
-    fifthGameUrl: 'https://2lands.ru/ru/fasw2025_g5/',
+    secondGameUrl: 'https://fon.bet/promo/fasw2025_g2/',
+    fifthGameUrl: 'https://fon.bet/promo/fasw2025_g5/',
+    // secondGameUrl: 'https://2lands.ru/ru/fasw2025_g2/',
+    // fifthGameUrl: 'https://2lands.ru/ru/fasw2025_g5/',
 
     init() {
       this._initConfirm()
