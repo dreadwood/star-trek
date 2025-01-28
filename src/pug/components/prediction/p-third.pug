@@ -1,35 +1,35 @@
-mixin p-second-bg({})
+mixin p-third-bg({})
   .g-msg__mountans
     +svg({ name: "mountains", w: 375, h: 350, className: "mobile" })
     +svg({ name: "mountains-desktop", w: 1440, h: 460, className: "desktop" })
   .g-msg__stars-prediction
     img(class="mobile" src="./img/predictions/start-3.svg" width="87" height="83" alt="")
     img(class="desktop" src="./img/predictions/start-2.svg" width="214" height="176" alt="")
-  .g-msg__img-puck
-    +picture({ image: "/img/predictions/predictions-puck-big.png", w: 360, h: 291 })
+  .g-msg__img-goalie
+    img(src="./img/predictions/predictions-goalie.svg" width="562" height="252" alt="")
 
-mixin p-second-msg({ isHidden, isShow, className })
-  .g-msg.p-second(class=isShow && "show" class=className hidden=isHidden)
+mixin p-third-msg({ isHidden, isShow, className })
+  .g-msg.p-third(class=isShow && "show" class=className hidden=isHidden)
     .g-msg__backside
-      +p-second-bg({})
+      +p-third-bg({})
     .g-msg__content
       .g-msg__wrp
-        h2.g-msg__title Кто забросит #[br] первую шайбу?
-        p.g-msg__text На&nbsp;ФОНБЕТ Матче Звезд КХЛ 2025 соберутся лучшие игроки лиги. Угадай, кто из&nbsp;них забросит первую шайбу в&nbsp;финале 9&nbsp;февраля!
+        h2.g-msg__title Какой вратарь #[br] сделает больше #[br] сейвов?
+        p.g-msg__text На&nbsp;ФОНБЕТ Неделе Звезд Хоккея в&nbsp;ворота встанут самые надежные вратари лиги. Угадай, кто из&nbsp;них сделает больше всего сейвов!
         .g-msg__btn
           +btn-default({
             text: "Сделать прогноз",
             className: "js-prediction-start"
           })
 
-mixin p-second-content({ isShow, className, isHidden })
+mixin p-third-content({ isShow, className, isHidden })
   .g-prediction(class=isShow && "show" class=className hidden=isHidden)
     .g-prediction__backside
       .g-prediction__circle
       .g-prediction__stars-additional
         img(src="./img/predictions/start-1.svg" width="243" height="133" alt="")
     .g-prediction__content
-      .g-prediction__title Кто забросит первую шайбу?
+      .g-prediction__title Какой вратарь сделает больше сейвов?
       include /data/hockey-player-list
       .g-prediction__field
         .f-seclect
@@ -44,10 +44,10 @@ mixin p-second-content({ isShow, className, isHidden })
           className: "prediction js-prediction-answer"
         })
 
-mixin p-second-end({ isHidden, isShow, className })
+mixin p-third-end({ isHidden, isShow, className })
   .g-msg.p-end(class=isShow && "show" class=className hidden=isHidden)
     .g-msg__backside
-      +p-second-bg({})
+      +p-third-bg({})
     .g-msg__content
       .g-msg__wrp
         h2.g-msg__title Прогноз #[br] сделан!
@@ -55,15 +55,15 @@ mixin p-second-end({ isHidden, isShow, className })
         .g-msg__btn
           +btn-default({ text: "На главную", className: "js-prediction-close" })
 
-mixin p-second({ isShow, className })
+mixin p-third({ isShow, className })
   .overlay(
-    class="js-prediction-second-dialog"
+    class="js-prediction-third-dialog"
     class=isShow && "show"
     class=className
   )
     .g-layout
       .g-layout__close
         +btn-close({ className: "js-prediction-close" })
-      +p-second-msg({ isHidden: true, className: "js-prediction-msg" })
-      +p-second-content({ isHidden: true , className: "js-prediction-content" })
-      +p-second-end({ isHidden: false, className: "js-prediction-end" })
+      +p-third-msg({ isHidden: true, className: "js-prediction-msg" })
+      +p-third-content({ isHidden: true , className: "js-prediction-content" })
+      +p-third-end({ isHidden: false, className: "js-prediction-end" })

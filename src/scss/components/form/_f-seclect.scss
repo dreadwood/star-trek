@@ -3,12 +3,12 @@
   select {
     display: block;
     width: 100%;
-    padding: 20rem 12rem;
-    font-size: 14rem;
-    line-height: 1.2;
+    padding: 19rem 16rem;
+    font-size: 16rem;
+    line-height: 18rem;
     font-weight: 500;
     color: $color-gray-537;
-    border: 0;
+    border: 1rem solid transparent;
     border-radius: 10rem;
     outline: none;
     appearance: none;
@@ -19,6 +19,11 @@
     }
     &.selected {
       color: $color-black;
+    }
+  }
+  @include desktop {
+    select {
+      padding: 19rem 19rem;
     }
   }
 }

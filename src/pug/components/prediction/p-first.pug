@@ -5,7 +5,7 @@ mixin p-first-bg({})
   .g-msg__stars-prediction
     img(class="mobile" src="./img/predictions/start-3.svg" width="87" height="83" alt="")
     img(class="desktop" src="./img/predictions/start-2.svg" width="214" height="176" alt="")
-  .g-msg__card
+  .g-msg__img-card
     +picture({ image: "/img/predictions/predictions-card-big.png", w: 628, h: 317 })
 
 mixin p-first-msg({ isHidden, isShow, className })
@@ -33,7 +33,7 @@ mixin p-first-content({ isShow, className, isHidden })
       .g-prediction__wrp
         .g-prediction__title Какой дивизион победит?
         .g-prediction__control
-          .g-prediction__text Варианты ответа
+          div Варианты ответа
           .g-prediction__list
             -
               let pFirstAnswers = [
@@ -76,7 +76,7 @@ mixin p-first-content({ isShow, className, isHidden })
                 .g-prediction__answer-text=it.name
 
 mixin p-first-end({ isHidden, isShow, className })
-  .g-msg.p-first(class=isShow && "show" class=className hidden=isHidden)
+  .g-msg.p-end(class=isShow && "show" class=className hidden=isHidden)
     .g-msg__backside
       +p-first-bg({})
     .g-msg__content
@@ -90,7 +90,11 @@ mixin p-first-end({ isHidden, isShow, className })
           })
 
 mixin p-first({ isShow, className })
-  .overlay.js-prediction-first-dialog(class=isShow && "show" class=className)
+  .overlay(
+    class="js-prediction-first-dialog"
+    class=isShow && "show"
+    class=className
+  )
     .g-layout
       .g-layout__close
         +btn-close({ className: "js-prediction-close" })

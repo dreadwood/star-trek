@@ -9,9 +9,6 @@
   font-weight: 500;
   color: $color-black;
   background-color: $color-gray-961;
-  &.p-first {
-    //
-  }
   @include desktop {
     &.p-first {
       .g-prediction__content {
@@ -116,7 +113,7 @@
     line-height: 1;
   }
 }
-.g-prediction__select {
+.g-prediction__field {
   margin-top: 30rem;
   @include desktop {
     margin-top: 50rem;
@@ -129,12 +126,6 @@
     max-width: 496rem;
     margin-top: 0;
   }
-}
-.g-prediction__text {
-  // font-size: 18rem;
-  // line-height: 1.1;
-  // font-weight: 500;
-  // color: $color-black;
 }
 .g-prediction__list {
   display: grid;
@@ -237,8 +228,10 @@
   }
 }
 .g-prediction__btn {
-  position: absolute;
-  right: 40rem;
-  bottom: 90rem;
   margin-top: 20rem;
+  @include desktop {
+    position: absolute;
+    right: 40rem;
+    bottom: 90rem;
+  }
 }

@@ -1,30 +1,21 @@
 /**
- * prediction-first.js
+ * prediction-select.js
  */
 ;(() => {
-  window.jsPredictionFirst = {
-    id: 1,
+  class PredictionSelect {
+    constructor({ id, dialog, openBtnList }) {
+      this.id = id
+      this.dialog = dialog
+      this.screens = {}
 
-    dialog: null,
-    screens: {
-      msg: null,
-      content: null,
-      end: null
-    },
-
-    init() {
-      const openBtnList = document.querySelectorAll(
-        '.js-predictions-first-open'
-      )
-
-      this.dialog = document.querySelector('.js-prediction-first-dialog')
       this.screens.msg = this.dialog.querySelector('.js-prediction-msg')
       this.screens.content = this.dialog.querySelector('.js-prediction-content')
       this.screens.end = this.dialog.querySelector('.js-prediction-end')
       const startBtn = this.dialog.querySelector('.js-prediction-start')
       const closeBtnList = this.dialog.querySelectorAll('.js-prediction-close')
 
-      this.answerList = this.dialog.querySelectorAll('.js-prediction-answer')
+      this.select = this.dialog.querySelector('.js-prediction-select')
+      this.answerBtn = this.dialog.querySelector('.js-prediction-answer')
 
       openBtnList.forEach((btn) => {
         btn.addEventListener('click', () => this.openDialog())
@@ -43,39 +34,51 @@
         this.closeDialog()
       })
 
-      this.answerList.forEach((it) =>
-        it.addEventListener('click', (evt) => this.answerClickHandler(evt))
+      this.select.addEventListener('change', (evt) =>
+        this.selectChangeHandler(evt)
       )
-    },
 
-    async answerClickHandler(evt) {
-      this.answerList.forEach((it) => it.setAttribute('disabled', 'disabled'))
+      this.answerBtn.addEventListener('click', () => this.answerClickHandler())
+    }
+
+    selectChangeHandler(evt) {
+      if (evt.target.value !== '') {
+        this.answerBtn.removeAttribute('disabled')
+        this.select.classList.add('selected')
+      } else {
+        this.answerBtn.setAttribute('disabled', 'disabled')
+        this.select.classList.remove('selected')
+      }
+    }
+
+    async answerClickHandler() {
+      this.answerBtn.setAttribute('disabled', 'disabled')
 
       const result = await window.jsPrediction.sendPrediction(
         this.id,
-        evt.currentTarget.dataset.answer
+        this.select.value
       )
 
       if (result) {
         this.showEndScreen()
       }
-    },
+    }
 
     showMsgScreen() {
       window.jsUtils.changeVisibleList(this.screens, this.screens.msg)
-    },
+    }
 
     showContentScreen() {
-      this.answerList.forEach((it) =>
-        it.removeAttribute('disabled', 'disabled')
-      )
+      this.select.selectedIndex = 0
+      this.answerBtn.setAttribute('disabled', 'disabled')
+      this.select.classList.remove('selected')
 
       window.jsUtils.changeVisibleList(this.screens, this.screens.content)
-    },
+    }
 
     showEndScreen() {
       window.jsUtils.changeVisibleList(this.screens, this.screens.end)
-    },
+    }
 
     openDialog() {
       const pin = window.userInfo.getClientID()
@@ -88,11 +91,15 @@
 
       document.documentElement.classList.add('scroll-lock')
       this.dialog.classList.add('show')
-    },
+    }
 
     closeDialog() {
       this.dialog.classList.remove('show')
       document.documentElement.classList.remove('scroll-lock')
     }
+  }
+
+  window.jsPredictionSelect = {
+    dialog: PredictionSelect
   }
 })()

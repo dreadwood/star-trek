@@ -6,8 +6,67 @@
     sendPredictionUrl: 'https://xcomfeed.com/fonbet/fasw2025/send-forecast',
 
     init() {
-      window.jsPredictionFirst.init()
-      window.jsPredictionSecond.init()
+      this.initFirst()
+      this.initSecond()
+      this.initThird()
+      this.initFourth()
+      this.initFifth()
+    },
+
+    initFirst() {
+      const id = 1
+      const openBtnList = document.querySelectorAll(
+        '.js-predictions-first-open'
+      )
+      const dialog = document.querySelector('.js-prediction-first-dialog')
+
+      if (openBtnList.length === 0 || !dialog) return
+      new window.jsPredictionList.dialog({ id, dialog, openBtnList })
+    },
+
+    initSecond() {
+      const id = 2
+      const openBtnList = document.querySelectorAll(
+        '.js-predictions-second-open'
+      )
+      const dialog = document.querySelector('.js-prediction-second-dialog')
+
+      if (openBtnList.length === 0 || !dialog) return
+      // window.jsPredictionSelect.init({ id, dialog, openBtnList })
+      new window.jsPredictionSelect.dialog({ id, dialog, openBtnList })
+    },
+
+    initThird() {
+      const id = 3
+      const openBtnList = document.querySelectorAll(
+        '.js-predictions-third-open'
+      )
+      const dialog = document.querySelector('.js-prediction-third-dialog')
+
+      if (openBtnList.length === 0 || !dialog) return
+      new window.jsPredictionSelect.dialog({ id, dialog, openBtnList })
+    },
+
+    initFourth() {
+      const id = 4
+      const openBtnList = document.querySelectorAll(
+        '.js-predictions-fourth-open'
+      )
+      const dialog = document.querySelector('.js-prediction-fourth-dialog')
+
+      if (openBtnList.length === 0 || !dialog) return
+      new window.jsPredictionField.dialog({ id, dialog, openBtnList })
+    },
+
+    initFifth() {
+      const id = 5
+      const openBtnList = document.querySelectorAll(
+        '.js-predictions-fifth-open'
+      )
+      const dialog = document.querySelector('.js-prediction-fifth-dialog')
+
+      if (openBtnList.length === 0 || !dialog) return
+      new window.jsPredictionSelect.dialog({ id, dialog, openBtnList })
     },
 
     async sendPrediction(id, answer) {
