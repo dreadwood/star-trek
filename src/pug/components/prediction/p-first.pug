@@ -1,0 +1,99 @@
+mixin p-first-bg({})
+  .g-msg__mountans
+    +svg({ name: "mountains", w: 375, h: 350, className: "mobile" })
+    +svg({ name: "mountains-desktop", w: 1440, h: 460, className: "desktop" })
+  .g-msg__stars-prediction
+    img(class="mobile" src="./img/predictions/start-3.svg" width="87" height="83" alt="")
+    img(class="desktop" src="./img/predictions/start-2.svg" width="214" height="176" alt="")
+  .g-msg__card
+    +picture({ image: "/img/predictions/predictions-card-big.png", w: 628, h: 317 })
+
+mixin p-first-msg({ isHidden, isShow, className })
+  .g-msg.p-first(class=isShow && "show" class=className hidden=isHidden)
+    .g-msg__backside
+      +p-first-bg({})
+    .g-msg__content
+      .g-msg__wrp
+        h2.g-msg__title Какой #[br] дивизион #[br] победит?
+        p.g-msg__text Угадай, какой дивизион станет лучшим на&nbsp;ФОНБЕТ Матче Звезд КХЛ 2025!
+        .g-msg__btn
+          +btn-default({
+            text: "Сделать прогноз",
+            className: "js-prediction-start"
+          })
+
+mixin p-first-content({ isShow, className, isHidden })
+  .g-prediction.p-first(class=isShow && "show" class=className hidden=isHidden)
+    .g-prediction__backside
+      .g-prediction__circle
+      .g-prediction__stars
+        img(class="mobile" src="./img/predictions/start-3.svg" width="87" height="83" alt="")
+        img(class="desktop" src="./img/predictions/start-1.svg" width="243" height="133" alt="")
+    .g-prediction__content
+      .g-prediction__wrp
+        .g-prediction__title Какой дивизион победит?
+        .g-prediction__control
+          .g-prediction__text Варианты ответа
+          .g-prediction__list
+            -
+              let pFirstAnswers = [
+                {
+                  num: "A",
+                  name: "Дивизион Харламова",
+                  img: "./img/predictions/logo-kharlamov.png",
+                  cssClass: "kharlamov",
+                  answer: "Дивизион Харламова",
+                },
+                {
+                  num: "B",
+                  name: "Дивизион Тарасова",
+                  img: "./img/predictions/logo-tarasov.png",
+                  cssClass: "tarasov",
+                  answer: "Дивизион Тарасова",
+                },
+                {
+                  num: "C",
+                  name: "Дивизион Чернышева",
+                  img: "./img/predictions/logo-chernyshev.png",
+                  cssClass: "chernyshev",
+                  answer: "Дивизион Чернышева",
+                },
+                {
+                  num: "D",
+                  name: "Дивизион Боброва",
+                  img: "./img/predictions/logo-bobrov.png",
+                  cssClass: "bobrov",
+                  answer: "Дивизион Боброва",
+                },
+              ]
+            each it in pFirstAnswers
+              button.g-prediction__answer(
+                class="js-prediction-answer"
+                data-answer=it.answer
+              )
+                img.g-prediction__answer-logo(class=it.cssClass src=it.img alt="")
+                .g-prediction__answer-num=it.num
+                .g-prediction__answer-text=it.name
+
+mixin p-first-end({ isHidden, isShow, className })
+  .g-msg.p-first(class=isShow && "show" class=className hidden=isHidden)
+    .g-msg__backside
+      +p-first-bg({})
+    .g-msg__content
+      .g-msg__wrp
+        h2.g-msg__title Прогноз #[br] сделан!
+        p.g-msg__text Уже&nbsp;12.02&nbsp;мы узнаем, насколько хорошо ты&nbsp;шаришь в&nbsp;хоккее!
+        .g-msg__btn
+          +btn-default({
+            text: "На главную",
+            className: "js-prediction-close"
+          })
+
+mixin p-first({ isShow, className })
+  .overlay.js-prediction-first-dialog(class=isShow && "show" class=className)
+    .g-layout
+      .g-layout__close
+        +btn-close({ className: "js-prediction-close" })
+      +p-first-msg({ isHidden: true, className: "js-prediction-msg" })
+      +p-first-content({ isHidden: true , className: "js-prediction-content" })
+      +p-first-end({ isHidden: false, className: "js-prediction-end" })

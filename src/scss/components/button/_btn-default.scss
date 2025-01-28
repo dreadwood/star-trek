@@ -64,7 +64,8 @@
   &.test {
     width: 100%;
   }
-  &.arrived {
+  &.arrived,
+  &.prediction {
     width: 100%;
   }
   &.soon {
@@ -80,7 +81,8 @@
     &.bingo {
       max-width: 100%;
     }
-    &.arrived {
+    &.arrived,
+    &.prediction {
       width: max-content;
     }
   }

@@ -97,13 +97,14 @@
   }
 }
 .b-bullet__bottom {
-  display: none;
+  // display: none;
+  display: flex;
+  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
+  gap: 20rem;
+  margin-top: 20rem;
   @include desktop {
-    display: flex;
-    flex-direction: column;
-    flex-direction: row;
-    align-items: center;
-    gap: 20rem;
     margin-top: auto;
   }
 }

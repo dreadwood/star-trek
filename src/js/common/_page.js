@@ -56,7 +56,7 @@
 
     renderAmbasador(ambasador) {
       const cardAmbasador = document.querySelector('.js-card-ambasador')
-      const ambasadorTestList = cardAmbasador.querySelectorAll(
+      const ambasadorTestList = document.querySelectorAll(
         '.js-card-ambasador-img'
       )
       const ambasadorMsgList = document.querySelectorAll('.js-msg-ambasador')
@@ -102,7 +102,9 @@
         })
       }
 
-      window.jsUtils.showEl(cardAmbasador)
+      if (cardAmbasador) {
+        window.jsUtils.showEl(cardAmbasador)
+      }
     }
   }
 })()

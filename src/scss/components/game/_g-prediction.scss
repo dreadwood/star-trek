@@ -1,0 +1,244 @@
+.g-prediction {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: $font-default;
+  font-size: 18rem;
+  line-height: 1.1;
+  font-weight: 500;
+  color: $color-black;
+  background-color: $color-gray-961;
+  &.p-first {
+    //
+  }
+  @include desktop {
+    &.p-first {
+      .g-prediction__content {
+        padding-top: 131rem;
+      }
+    }
+  }
+}
+.g-prediction__backside {
+  position: absolute;
+  inset: 0;
+}
+.g-prediction__circle {
+  position: absolute;
+  bottom: -363rem;
+  left: 50%;
+  width: 674rem;
+  height: 674rem;
+  background-color: $color-crayola-thistle;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  @include desktop {
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+.g-prediction__stars {
+  position: absolute;
+  top: 448rem;
+  left: 139rem;
+  width: 87rem;
+  height: 83rem;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .desktop {
+    display: none;
+  }
+  @include desktop {
+    top: auto;
+    bottom: 131rem;
+    left: 40rem;
+    width: 243rem;
+    height: 133rem;
+    .mobile {
+      display: none;
+    }
+    .desktop {
+      display: block;
+    }
+  }
+}
+.g-prediction__stars-additional {
+  position: absolute;
+  top: 340rem;
+  left: 71rem;
+  width: 243rem;
+  height: 133rem;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  @include desktop {
+    top: auto;
+    bottom: 90rem;
+    left: 40rem;
+    width: 243rem;
+    height: 133rem;
+  }
+}
+.g-prediction__content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 20rem 16rem;
+  @include desktop {
+    padding: 90rem 40rem 40rem 40rem;
+  }
+}
+.g-prediction__wrp {
+  @include desktop {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+  }
+}
+.g-prediction__title {
+  max-width: 300rem;
+  margin: 0;
+  font-family: inherit;
+  font-size: 32rem;
+  line-height: 1.1;
+  font-weight: 500;
+  text-align: left;
+  color: $color-carmine-red-2;
+  @include desktop {
+    max-width: 450rem;
+    line-height: 1;
+  }
+}
+.g-prediction__select {
+  margin-top: 30rem;
+  @include desktop {
+    margin-top: 50rem;
+  }
+}
+.g-prediction__control {
+  margin-top: 40rem;
+  @include desktop {
+    width: 100%;
+    max-width: 496rem;
+    margin-top: 0;
+  }
+}
+.g-prediction__text {
+  // font-size: 18rem;
+  // line-height: 1.1;
+  // font-weight: 500;
+  // color: $color-black;
+}
+.g-prediction__list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10rem;
+  margin-top: 20rem;
+}
+.g-prediction__answer {
+  @include transition(background);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 114rem;
+  margin: 0;
+  padding: 15rem;
+  font-family: $font-default;
+  font-size: 14rem;
+  line-height: 1.1;
+  font-weight: 400;
+  text-align: left;
+  color: $color-black;
+  background-color: $color-white;
+  border: 0;
+  border-radius: 10rem;
+  &:not(.actv, [disabled]):hover,
+  &:not(.actv, [disabled]):focus-visible {
+    background-color: color.mix($color-gray-961, $color-blue-degrees, 90%);
+  }
+  @include desktop {
+    padding: 15rem 20rem;
+  }
+}
+.g-prediction__answer-logo {
+  position: absolute;
+  object-fit: contain;
+  &.kharlamov {
+    top: 0;
+    right: 5rem;
+    width: 62rem;
+    height: 61rem;
+  }
+  &.tarasov {
+    top: 4rem;
+    right: 4rem;
+    width: 52rem;
+    height: 52rem;
+  }
+  &.chernyshev {
+    top: 3rem;
+    right: 5rem;
+    width: 59rem;
+    height: 59rem;
+  }
+  &.bobrov {
+    top: 8rem;
+    right: 6rem;
+    width: 52rem;
+    height: 52rem;
+  }
+  @include desktop {
+    &.kharlamov {
+      top: 0;
+      right: 10rem;
+      width: 76rem;
+      height: 75rem;
+    }
+    &.tarasov {
+      top: 9rem;
+      right: 10rem;
+      width: 64rem;
+      height: 64rem;
+    }
+    &.chernyshev {
+      top: 0;
+      right: 10rem;
+      width: 71rem;
+      height: 71rem;
+    }
+    &.bobrov {
+      top: 7rem;
+      right: 11rem;
+      width: 64rem;
+      height: 64rem;
+    }
+  }
+}
+.g-prediction__answer-num {
+  opacity: 0.6;
+}
+.g-prediction__answer-text {
+  width: 70%;
+  margin-top: auto;
+  font-size: 16rem;
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  @include desktop {
+    font-size: 18rem;
+    line-height: 1.1;
+  }
+}
+.g-prediction__btn {
+  position: absolute;
+  right: 40rem;
+  bottom: 90rem;
+  margin-top: 20rem;
+}

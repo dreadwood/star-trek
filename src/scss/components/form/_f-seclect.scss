@@ -1,0 +1,24 @@
+.f-seclect {
+  position: relative;
+  select {
+    display: block;
+    width: 100%;
+    padding: 20rem 12rem;
+    font-size: 14rem;
+    line-height: 1.2;
+    font-weight: 500;
+    color: $color-gray-537;
+    border: 0;
+    border-radius: 10rem;
+    outline: none;
+    appearance: none;
+    &:not([disabled]):hover,
+    &:not([disabled]):focus {
+      box-shadow: $shadow-card;
+      cursor: pointer;
+    }
+    &.selected {
+      color: $color-black;
+    }
+  }
+}

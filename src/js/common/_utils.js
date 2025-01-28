@@ -102,10 +102,14 @@
     },
 
     /**
-     * @returns {Date}
+     * @param {HTMLElement[]} list
+     * @param {HTMLElement} item
      */
-    getMoscowDate() {
-      //
+    changeVisibleList(list, item) {
+      for (const it in list) {
+        if (list[it] === item) window.jsUtils.showEl(list[it])
+        else window.jsUtils.hideEl(list[it])
+      }
     }
   }
 })()

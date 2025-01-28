@@ -11,6 +11,7 @@ mixin b-predictions({ className, id })
           imgWidth: "275",
           imgHeight: "138",
           cssClass: "division",
+          btnCssClass: "js-predictions-first-open"
         },
         {
           title: "Кто забросит первую шайбу в&nbsp;финале ФОНБЕТ Матча звезд КХЛ 2025??",
@@ -19,6 +20,7 @@ mixin b-predictions({ className, id })
           imgWidth: "302",
           imgHeight: "244",
           cssClass: "puck",
+          btnCssClass: "js-predictions-second-open"
         },
         {
           title: "Какой вратарь сделает больше сейвов?",
@@ -27,6 +29,7 @@ mixin b-predictions({ className, id })
           imgWidth: "496",
           imgHeight: "233",
           cssClass: "goalie",
+          btnCssClass: "js-predictions-third-open"
         },
         {
           title: "Сколько пробьют буллитов?",
@@ -35,6 +38,7 @@ mixin b-predictions({ className, id })
           imgWidth: "287",
           imgHeight: "186",
           cssClass: "penalty",
+          btnCssClass: "js-predictions-fourth-open"
         },
         {
           title: "Какой игрок станет самым результативным?",
@@ -43,6 +47,7 @@ mixin b-predictions({ className, id })
           imgWidth: "244",
           imgHeight: "208",
           cssClass: "player",
+          btnCssClass: "js-predictions-fifth-open"
         },
       ]
     .b-predictions__backside
@@ -63,6 +68,11 @@ mixin b-predictions({ className, id })
               alt=""
             )
             .b-predictions__card-title !{it.title}
-            .b-predictions__card-subtitle
+            .b-predictions__card-btn
+              +btn-default({
+                text: "Играть",
+                className: it.btnCssClass
+              })
+            //- .b-predictions__card-subtitle
               +svg({ name: "lock", w: 10, h: 13 })
               span=it.subtitle

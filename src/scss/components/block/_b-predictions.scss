@@ -223,3 +223,9 @@
     fill: currentcolor;
   }
 }
+.b-predictions__card-btn {
+  margin-top: 10rem;
+  @include desktop {
+    margin-top: 10rem;
+  }
+}

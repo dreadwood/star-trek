@@ -11,4 +11,5 @@
   await window.jsScore.init()
   await window.jsAuth.init()
   // window.jsGame.init()
+  window.jsPrediction.init()
 })()
