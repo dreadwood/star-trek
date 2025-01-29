@@ -58,10 +58,20 @@
     _renderTable(result) {
       const body = document.querySelector('.js-modal-score-body')
       const self = document.querySelector('.js-modal-score-self')
+      const line = document.querySelector('.js-modal-score-line')
+
+      window.jsUtils.showEl(line)
+      window.jsUtils.showEl(self)
 
       const bodySring = result
         .slice(0, 5)
-        .map((it) => this._renderRow(it))
+        .map((it, i) => {
+          if (it.current_user && i <= 5) {
+            window.jsUtils.hideEl(line)
+            window.jsUtils.hideEl(self)
+          }
+          return this._renderRow(it)
+        })
         .join(' ')
 
       const selfString = result
@@ -69,6 +79,12 @@
         .slice(0, 1)
         .map((it) => this._renderRow(it))
         .join(' ')
+
+      const pin = window.userInfo.getClientID()
+      if (!pin) {
+        window.jsUtils.hideEl(line)
+        window.jsUtils.hideEl(self)
+      }
 
       body.innerHTML = bodySring
       self.innerHTML = selfString
@@ -133,13 +149,9 @@
 
     async _loadScore(currentPin) {
       const pin = currentPin || window.userInfo.getClientID()
-      if (!pin) {
-        console.error('Не получилось загрузить таблицу результатов')
-        return
-      }
 
       try {
-        const req = { pin }
+        const req = { pin: pin || undefined }
         const res = await window.jsUtils.sendData(this.getScoreUrl, 'POST', req)
 
         if (res.error) {
