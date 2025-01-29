@@ -1,5 +1,5 @@
 .b-bullet {
-  padding: 30rem $padding;
+  padding: 30rem $padding 10rem $padding;
   font-family: $font-default;
   font-size: 24rem;
   line-height: 1.1;
@@ -14,6 +14,7 @@
 .b-bullet__card {
   position: relative;
   height: auto;
+  height: 812rem;
   background-color: $color-gray-961;
   border-radius: 14rem;
   @include desktop {
@@ -27,29 +28,40 @@
   border-radius: 14rem;
 }
 .b-bullet__mountains {
-  display: none;
-  @include desktop {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 433rem;
+  img {
     width: 100%;
-    height: auto;
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center bottom;
+    height: 100%;
+    object-fit: cover;
+    object-position: center bottom;
+  }
+  .desktop {
+    display: none;
+  }
+  @include desktop {
+    height: 262rem;
+    .mobile {
+      display: none;
+    }
+    .desktop {
+      display: block;
     }
   }
 }
 .b-bullet__field {
-  display: none;
+  position: absolute;
+  right: -30rem;
+  bottom: 51rem;
+  width: 381rem;
+  height: 336rem;
   @include desktop {
     position: absolute;
     right: -30rem;
     bottom: 0;
-    display: block;
     width: 520rem;
     height: 458rem;
     img {
@@ -97,13 +109,12 @@
   }
 }
 .b-bullet__bottom {
-  // display: none;
   display: flex;
   flex-direction: column;
   flex-direction: row;
   align-items: center;
   gap: 20rem;
-  margin-top: 20rem;
+  margin-top: 40rem;
   @include desktop {
     margin-top: auto;
   }

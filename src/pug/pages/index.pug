@@ -46,7 +46,7 @@ block libjs
 block content
   include /data/section-data
   +b-hero({ isHeaderShow: false, link: logoLink })
-  +b-winners({})
+  +b-winners({ id: sectionData.score.id })
   //- +b-arrived({})
   +b-prizes({ id: sectionData.prizes.id })
   //- +b-stars({ id: sectionData.games.id })
