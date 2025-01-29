@@ -58,40 +58,41 @@ mixin g-bingo-content({ isShow, className, isHidden })
       +btn-close({ className: "js-bingo-close" })
     .g-bingo__backside
       +g-bingo-bg-content({})
-    .g-bingo__content-question
-      .g-bingo__question Выбирай 6&nbsp;событий, которые произойдут во&nbsp;время ФОНБЕТ Матча Звезд КХЛ 2025
-      .g-bingo__grid.js-bingo-grid
-        -
-          let bingoAnswerList = [
-            { name: "Перекладина" },
-            { name: "Гол с неудобной руки" },
-            { name: "Судья задел шайбу" },
-            { name: "Гол «в домик»" },
-            { name: "Лакросс-гол" },
-            { name: "Мельница" },
-            { name: "Клюшка сломалась" },
-            { name: "Клюшка вылетела из рук" },
-            { name: "Шайба вылетела за борт" },
-            { name: "Гол защитника" },
-            { name: "Неудачный буллит" },
-            { name: "Хет трик" },
-            { name: "Гол в падении" },
-            { name: "Шайба порвала сетку ворот" },
-            { name: "Гол от ворот" },
-            { name: "Игрок обменялся клюшкой с другим хоккеистом" },
-          ]
-        //- each it, i in bingoAnswerList
-          button.g-bingo__answer(
-            class="js-bingo-answer"
-            data-id=i+1
-          )=it.name
-      .g-bingo__controls
-        +btn-default({
-          text: "Выбрать",
-          className: "js-bingo-send",
-          isDisabled: true
-        })
-        .g-bingo__count.js-bingo-count 0/6 событий
+    .g-bingo__data
+      .g-bingo__data-wrp
+        .g-bingo__question Выбирай 6&nbsp;событий, которые произойдут во&nbsp;время ФОНБЕТ Матча Звезд КХЛ 2025
+        .g-bingo__grid.js-bingo-grid
+          -
+            let bingoAnswerList = [
+              { name: "Перекладина" },
+              { name: "Гол с неудобной руки" },
+              { name: "Судья задел шайбу" },
+              { name: "Гол «в домик»" },
+              { name: "Лакросс-гол" },
+              { name: "Мельница" },
+              { name: "Клюшка сломалась" },
+              { name: "Клюшка вылетела из рук" },
+              { name: "Шайба вылетела за борт" },
+              { name: "Гол защитника" },
+              { name: "Неудачный буллит" },
+              { name: "Хет трик" },
+              { name: "Гол в падении" },
+              { name: "Шайба порвала сетку ворот" },
+              { name: "Гол от ворот" },
+              { name: "Игрок обменялся клюшкой с другим хоккеистом" },
+            ]
+          //- each it, i in bingoAnswerList
+            button.g-bingo__answer(
+              class="js-bingo-answer"
+              data-id=i+1
+            )=it.name
+        .g-bingo__controls
+          +btn-default({
+            text: "Выбрать",
+            className: "js-bingo-send",
+            isDisabled: true
+          })
+          .g-bingo__count.js-bingo-count 0/6 событий
 
 mixin g-bingo({ isShow, className })
   .overlay.js-bingo-dialog(class=isShow && "show" class=className)

@@ -158,6 +158,10 @@
       }
     }
     &.p-fifth {
+      .g-msg__stars-prediction {
+        top: -10rem;
+        right: 190rem;
+      }
       .g-msg__wrp {
         max-width: 580rem;
       }
