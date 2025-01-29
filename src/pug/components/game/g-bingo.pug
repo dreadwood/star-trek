@@ -1,0 +1,101 @@
+include /components/button/btn-default
+
+mixin g-bingo-bg-content({})
+  .g-bingo__mountans
+    +svg({ name: "mountains", w: 375, h: 350, className: "mobile" })
+    +svg({ name: "mountains-desktop", w: 1440, h: 460, className: "desktop" })
+  .g-bingo__stars
+    img(src="./img/game/stars-quiz-desktop.svg" width="178" height="103" alt="")
+
+mixin g-bingo-bg({})
+  .g-bingo__bg
+    +picture({ image: "/img/bingo/bingo-dialog-bg.jpg", w: 375, h: 812, className: "mobile" })
+    +picture({ image: "/img/bingo/bingo-dialog-bg-desktop.jpg", w: 1080, h: 540, className: "desktop" })
+
+
+mixin g-bingo-bg-paper({})
+  .g-bingo__paper
+    +picture({ image: "/img/bingo/card@2x.png", w: 280, h: 361, className: "mobile" })
+    +picture({ image: "/img/bingo/card-desktop@2x.png", w: 464, h: 600, className: "desktop" })
+
+mixin g-bingo-msg({ isHidden, isShow, className })
+  .g-bingo(class=isShow && "show" class=className hidden=isHidden)
+    .g-layout__close
+      +btn-close({ className: "white js-bingo-close" })
+    .g-bingo__backside
+      +g-bingo-bg({})
+      +g-bingo-bg-paper({})
+    .g-bingo__content
+      .g-bingo__wrp
+        h2.g-bingo__title Бинго!
+        p.g-bingo__text До&nbsp;ФОНБЕТ Матча Звезд КХЛ 2025 чуть больше недели! И&nbsp;пока ты&nbsp;думаешь, где и&nbsp;с&nbsp;кем будешь её&nbsp;смотреть, мы&nbsp;приготовили Бинго. #[br]#[br] Выбирай 6&nbsp;событий, которые произойдут 9&nbsp;февраля в&nbsp;финале ФОНБЕТ Матча Звезд КХЛ 2025. Если все окажутся правильными, ты&nbsp;сможешь выиграть 2500₽ Фрибет от&nbsp;FONBET!
+        .g-bingo__btn
+          +btn-default({
+            text: "Начать игру",
+            className: "bingo-msg js-bingo-start"
+          })
+
+mixin g-bingo-end({ isShow, className, isHidden })
+  .g-bingo(class=isShow && "show" class=className,  hidden=isHidden)
+    .g-layout__close
+      +btn-close({ className: "white js-bingo-close" })
+    .g-bingo__backside
+      +g-bingo-bg({})
+      +g-bingo-bg-paper({})
+    .g-bingo__content
+      .g-bingo__wrp
+        h2.g-bingo__title Выбор сделан!
+        p.g-bingo__text Теперь остаётся только дождаться Матча и&nbsp;насладиться хоккеем. И&nbsp;не&nbsp;забудь крикнуть &laquo;Бинго!&raquo;, если все твои прогнозы сбудутся!
+        .g-bingo__btn
+          +btn-default({
+            text: "На главную",
+            className: 'bingo-msg js-bingo-close'
+          })
+
+mixin g-bingo-content({ isShow, className, isHidden })
+  .g-bingo(class=isShow && "show" class=className,  hidden=isHidden)
+    .g-layout__close
+      +btn-close({ className: "js-bingo-close" })
+    .g-bingo__backside
+      +g-bingo-bg-content({})
+    .g-bingo__content-question
+      .g-bingo__question Выбирай 6&nbsp;событий, которые произойдут во&nbsp;время ФОНБЕТ Матча Звезд КХЛ 2025
+      .g-bingo__grid.js-bingo-grid
+        -
+          let bingoAnswerList = [
+            { name: "Перекладина" },
+            { name: "Гол с неудобной руки" },
+            { name: "Судья задел шайбу" },
+            { name: "Гол «в домик»" },
+            { name: "Лакросс-гол" },
+            { name: "Мельница" },
+            { name: "Клюшка сломалась" },
+            { name: "Клюшка вылетела из рук" },
+            { name: "Шайба вылетела за борт" },
+            { name: "Гол защитника" },
+            { name: "Неудачный буллит" },
+            { name: "Хет трик" },
+            { name: "Гол в падении" },
+            { name: "Шайба порвала сетку ворот" },
+            { name: "Гол от ворот" },
+            { name: "Игрок обменялся клюшкой с другим хоккеистом" },
+          ]
+        //- each it, i in bingoAnswerList
+          button.g-bingo__answer(
+            class="js-bingo-answer"
+            data-id=i+1
+          )=it.name
+      .g-bingo__controls
+        +btn-default({
+          text: "Выбрать",
+          className: "js-bingo-send",
+          isDisabled: true
+        })
+        .g-bingo__count.js-bingo-count 0/6 событий
+
+mixin g-bingo({ isShow, className })
+  .overlay.js-bingo-dialog(class=isShow && "show" class=className)
+    .g-layout
+      +g-bingo-msg({ isHidden: true, className: "js-bingo-msg" })
+      +g-bingo-content({ isHidden: true, className: "js-bingo-content" })
+      +g-bingo-end({ isHidden: true, className: "js-bingo-end" })

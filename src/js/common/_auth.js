@@ -30,6 +30,7 @@
         this._closeReg()
         await this._udpateUserInfo(pin)
         await window.jsPrediction.updatePredictions()
+        await window.jsBingo.updateBingo()
         // await window.jsScore.updateScorePage(pin)
       })
 
@@ -40,6 +41,7 @@
           this._closeReg()
           await this._udpateUserInfo(pin)
           await window.jsPrediction.updatePredictions()
+          await window.jsBingo.updateBingo()
           // await window.jsScore.updateScorePage(pin)
         }
       })
@@ -48,6 +50,7 @@
       if (pin) {
         await this._udpateUserInfo(pin)
         await window.jsPrediction.updatePredictions()
+        await window.jsBingo.updateBingo()
         // await window.jsScore.updateScorePage(pin)
       }
     },

@@ -38,6 +38,9 @@
     animation-timing-function: ease-in-out;
     animation-iteration-count: infinite;
   }
+  &.white {
+    color: $color-white;
+  }
   @include desktop {
     width: 40rem;
     height: 40rem;

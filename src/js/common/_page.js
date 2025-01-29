@@ -44,12 +44,24 @@
         if (hasPrediction) {
           window.jsUtils.hideEl(openEl)
           window.jsUtils.showEl(doneEl)
-          return
         } else {
           window.jsUtils.showEl(openEl)
           window.jsUtils.hideEl(doneEl)
         }
       })
+    },
+
+    renderBingo(isDone) {
+      const openEl = document.querySelector('.js-bingo-card-open')
+      const doneEl = document.querySelector('.js-bingo-card-done')
+
+      if (isDone) {
+        window.jsUtils.hideEl(openEl)
+        window.jsUtils.showEl(doneEl)
+      } else {
+        window.jsUtils.showEl(openEl)
+        window.jsUtils.hideEl(doneEl)
+      }
     },
 
     renderHeader(pin, score) {

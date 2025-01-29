@@ -35,7 +35,7 @@ mixin p-fifth-content({ isShow, className, isHidden })
         .f-seclect
           select.js-prediction-select
             option(value="") Укажи игрока, на которого хочешь поставить
-            each it in hockeyPlayerList
+            each it in hockeyPlayerList.regular
               option(value=`(${it.id}) ${it.nameen}`) #{it.name} (#{it.teamname})
       .g-prediction__btn
         +btn-default({

@@ -25,6 +25,8 @@ include /components/prediction/p-third
 include /components/prediction/p-fourth
 include /components/prediction/p-fifth
 
+include /components/game/g-bingo
+
 include /components/modal/m-auth
 include /components/modal/m-set
 include /components/modal/m-soon
@@ -71,6 +73,9 @@ block modal
   +p-third({ isShow: false })
   +p-fourth({ isShow: false })
   +p-fifth({ isShow: false })
+
+  //- bingo
+  +g-bingo({ isShow: false })
 
   //- modal
   +m-auth({ isShow: false })

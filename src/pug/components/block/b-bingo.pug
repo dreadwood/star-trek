@@ -21,13 +21,19 @@ mixin b-bingo({ className })
           h2.b-bingo__title Бинго!
           p.b-bingo__text Угадай, что произойдет в&nbsp;финале ФОНБЕТ Матча Звезд КХЛ 2025 и&nbsp;получи шанс выиграть приз!
           .b-bingo__bottom
-            .b-bingo__data
+            //- .b-bingo__data
               +svg({ name: "lock", w: 10, h: 13 })
               span Откроется 30 января
-            .b-bingo__btn
+            .b-bingo__btn(
+              class="js-bingo-card-open"
+              hidden
+            )
               +btn-default({
                 text: "Играть",
-                isDisabled: true,
-                className: "promo"
+                className: "promo js-bingo-open"
               })
+            .b-bingo__msg(
+              class="js-bingo-card-done"
+              hidden
+            ) Прогноз сделан
 

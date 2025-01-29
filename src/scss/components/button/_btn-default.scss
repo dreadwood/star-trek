@@ -61,6 +61,19 @@
       background-color: $color-gray-925;
     }
   }
+  &.bingo-msg {
+    padding-right: 20rem;
+    padding-left: 20rem;
+    color: $color-black;
+    background-color: $color-white;
+    &[disabled] {
+      color: transparentize($color-black, 0.5);
+    }
+    &:not([disabled]):hover,
+    &:not([disabled]):focus-visible {
+      background-color: $color-gray-925;
+    }
+  }
   &.test {
     width: 100%;
   }
