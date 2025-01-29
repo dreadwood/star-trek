@@ -4,6 +4,7 @@
 ;(() => {
   window.jsPrediction = {
     sendPredictionUrl: 'https://xcomfeed.com/fonbet/fasw2025/send-forecast',
+    getPredictionsUrl: 'https://xcomfeed.com/fonbet/fasw2025/check-forecast',
 
     init() {
       this.initFirst()
@@ -69,6 +70,11 @@
       new window.jsPredictionSelect.dialog({ id, dialog, openBtnList })
     },
 
+    async updatePredictions() {
+      const predictionData = await this.getPredictionsData()
+      window.jsPage.renderPrediction(predictionData)
+    },
+
     async sendPrediction(id, answer) {
       const pin = window.userInfo.getClientID()
       if (!pin) {
@@ -94,6 +100,36 @@
         }
 
         return res.success
+      } catch (err) {
+        console.error(err)
+        return false
+      }
+    },
+
+    async getPredictionsData() {
+      const pin = window.userInfo.getClientID()
+      if (!pin) {
+        console.error('Не получилось получить прогнозы')
+        return
+      }
+
+      try {
+        const req = {
+          pin,
+          forecast: [1, 2, 3, 4, 5]
+        }
+        const res = await window.jsUtils.sendData(
+          this.getPredictionsUrl,
+          'POST',
+          req
+        )
+
+        if (res.error) {
+          console.error(res)
+          return false
+        }
+
+        return res.result
       } catch (err) {
         console.error(err)
         return false

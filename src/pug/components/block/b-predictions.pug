@@ -5,6 +5,7 @@ mixin b-predictions({ className, id })
     -
       let predictionsCards = [
         {
+          order: 1,
           title: "Какой дивизион победит?",
           subtitle: "Откроется 30 января",
           img: "./img/predictions/predictions-card.png",
@@ -14,6 +15,7 @@ mixin b-predictions({ className, id })
           btnCssClass: "js-predictions-first-open"
         },
         {
+          order: 2,
           title: "Кто забросит первую шайбу в&nbsp;финале ФОНБЕТ Матча звезд КХЛ 2025??",
           subtitle: "Откроется 30 января",
           img: "./img/predictions/predictions-puck.png",
@@ -23,6 +25,7 @@ mixin b-predictions({ className, id })
           btnCssClass: "js-predictions-second-open"
         },
         {
+          order: 3,
           title: "Какой вратарь сделает больше сейвов?",
           subtitle: "Откроется 30 января",
           img: "./img/predictions/predictions-goalie.svg",
@@ -32,6 +35,7 @@ mixin b-predictions({ className, id })
           btnCssClass: "js-predictions-third-open"
         },
         {
+          order: 4,
           title: "Сколько пробьют буллитов?",
           subtitle: "Откроется 30 января",
           img: "./img/predictions/predictions-field.svg",
@@ -41,6 +45,7 @@ mixin b-predictions({ className, id })
           btnCssClass: "js-predictions-fourth-open"
         },
         {
+          order: 5,
           title: "Какой игрок станет самым результативным?",
           subtitle: "Откроется 30 января",
           img: "./img/predictions/predictions-equipment.svg",
@@ -59,7 +64,11 @@ mixin b-predictions({ className, id })
       p.b-predictions__subtext Сделай 5&nbsp;прогнозов на&nbsp;ФОНБЕТ Матч Звезд КХЛ 2025. Выиграешь&nbsp;&mdash; получишь фрибет до&nbsp;50000&nbsp;₽!
       .b-predictions__list
         each it in predictionsCards
-          .b-predictions__card(class=it.cssClass)
+          .b-predictions__card(
+            class="js-predictions-card"
+            class=it.cssClass
+            data-order=it.order
+          )
             .b-predictions__card-circle
             img.b-predictions__card-img(
               src=it.img
@@ -68,11 +77,17 @@ mixin b-predictions({ className, id })
               alt=""
             )
             .b-predictions__card-title !{it.title}
-            .b-predictions__card-btn
+            .b-predictions__card-btn(
+              class="js-predictions-card-open",
+              hidden
+            )
               +btn-default({
                 text: "Играть",
                 className: it.btnCssClass
               })
-            //- .b-predictions__card-subtitle
-              +svg({ name: "lock", w: 10, h: 13 })
-              span=it.subtitle
+            .b-predictions__card-subtitle(
+              class="js-predictions-card-done",
+              hidden
+            )
+              //- +svg({ name: "lock", w: 10, h: 13 })
+              span Прогноз сделан

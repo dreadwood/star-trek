@@ -61,6 +61,7 @@
 
       if (result) {
         this.showEndScreen()
+        await window.jsPrediction.updatePredictions()
       }
     }
 

@@ -1,0 +1,41 @@
+include /components/button/btn-default
+
+mixin b-winners({ className, id })
+  include /data/section-data
+  section.b-winners(class=className id=id)
+    .b-winners__mountains
+      +svg({ name: "mountains", w: 375, h: 350, className: "mobile" })
+      +svg({ name: "mountains-desktop", w: 1440, h: 460, className: "desktop" })
+    .b-winners__content
+      h2.title Победители 2025
+      p.b-winners__text Поздравляем, спасибо за игру! А теперь нам всем пора наслаждаться ФОНБЕТ Неделей Звезд Хоккея!
+      .b-winners__btn
+        +btn-default({
+          text: "Все участники",
+          className: "winners js-modal-score-show"
+        })
+      .b-winners__card
+        .b-winners__card-backside
+          .b-winners__card-bg
+            img(class="mobile" src="./img/winners/bg-winners.jpg" width="343" height="672" alt="")
+            img(class="desktop" src="./img/winners/bg-winners-desktop.jpg" width="1360" height="690" alt="")
+        .b-winners__card-content
+          .b-winners__head
+            div Место / ID
+            div Звезды
+          .b-winners__body
+            -
+              let winnderData = [
+                { pos: "1", id: "*2852", score: "1438709" },
+                { pos: "2", id: "*2852", score: "1251001" },
+                { pos: "3", id: "*2852", score: "1200145" },
+                { pos: "4", id: "*2852", score: "1003246" },
+                { pos: "5", id: "*2852", score: "988172" }
+              ]
+            each it in winnderData
+              .b-winners__row
+                div=it.pos
+                div=it.id
+                div
+                div
+                div=it.score

@@ -1,5 +1,6 @@
 extends /elements/layout-page
 include /components/block/b-hero
+include /components/block/b-winners
 include /components/block/b-arrived
 include /components/block/b-stars
 include /components/block/b-prizes
@@ -43,7 +44,8 @@ block libjs
 block content
   include /data/section-data
   +b-hero({ isHeaderShow: false, link: logoLink })
-  +b-arrived({})
+  +b-winners({})
+  //- +b-arrived({})
   +b-prizes({ id: sectionData.prizes.id })
   //- +b-stars({ id: sectionData.games.id })
   //- +b-ambassadors({ id: sectionData.ambassadors.id })

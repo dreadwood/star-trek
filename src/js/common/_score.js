@@ -1,16 +1,19 @@
 /**
- * dialog.js
+ * score.js
  */
 ;(() => {
   window.jsScore = {
     getScoreUrl: 'https://xcomfeed.com/fonbet/fasw2025/get-leaderboard',
     testPin: 'test1100',
 
+    arrivedScoreBody: null,
+
     async init() {
       const score = document.querySelector('.js-modal-score')
       const showBtnList = document.querySelectorAll('.js-modal-score-show')
-
       const btnClose = score.querySelector('.js-m-close')
+
+      this.arrivedScoreBody = document.querySelector('.js-arrived-score-body')
 
       showBtnList.forEach((it) =>
         it.addEventListener('click', () => this._openDialog(score))
@@ -23,7 +26,7 @@
         this._closeDialogl(score)
       })
 
-      await this.updateScorePage(this.testPin)
+      // await this.updateScorePage(this.testPin)
     },
 
     async _openDialog(dialog) {
@@ -44,6 +47,8 @@
     },
 
     async updateScorePage(pin) {
+      if (this.arrivedScoreBody) return
+
       const result = await this._loadScore(pin)
       if (!result) return
 
@@ -82,7 +87,6 @@
     },
 
     _renderTablePage(result, pin) {
-      const body = document.querySelector('.js-arrived-score-body')
       const self = document.querySelector('.js-arrived-score-self')
       const line = document.querySelector('.js-arrived-score-line')
 
@@ -111,7 +115,7 @@
         window.jsUtils.hideEl(self)
       }
 
-      body.innerHTML = bodySring
+      this.arrivedScoreBody.innerHTML = bodySring
       self.innerHTML = selfString
     },
 

@@ -143,13 +143,13 @@
     }
     &.p-end {
       .g-msg__text {
-        max-width: 384px;
+        max-width: 384rem;
       }
     }
     &.p-first,
     &.p-second {
       .g-msg__text {
-        max-width: 384px;
+        max-width: 384rem;
       }
     }
     &.p-third {
@@ -162,7 +162,7 @@
         max-width: 580rem;
       }
       .g-msg__text {
-        max-width: 440px;
+        max-width: 440rem;
       }
     }
   }

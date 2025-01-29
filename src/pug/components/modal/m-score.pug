@@ -6,7 +6,7 @@ mixin m-score({ isShow, className })
       .m-score__close
         +btn-close({ className: "js-m-close" })
       .m-score__content
-        .m-score__promo
+        //- .m-score__promo
           .m-score__promo-bg
             +picture({ image: "/img/score/score-bg.jpg", w: 343, h: 210, className: "mobile" })
             +picture({ image: "/img/score/score-bg-desktop", w: 780, h: 200, className: "desktop" })
@@ -17,7 +17,7 @@ mixin m-score({ isShow, className })
               button.m-score__promo-link.js-modal-rules-show Правила
         .m-score__table
           .m-score__head
-            div ID
+            div Место / ID
             div Звезды
         .js-modal-score-body
           //- .m-score__row

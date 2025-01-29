@@ -40,6 +40,7 @@
     }
 
     fieldInputHandler(evt) {
+      evt.target.value = evt.target.value.replace(/\D/g, '')
       if (evt.target.value !== '') {
         this.answerBtn.removeAttribute('disabled')
       } else {
@@ -57,6 +58,7 @@
 
       if (result) {
         this.showEndScreen()
+        await window.jsPrediction.updatePredictions()
       }
     }
 

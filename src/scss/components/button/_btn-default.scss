@@ -76,6 +76,10 @@
     width: 100%;
     padding: 19rem 34rem;
   }
+  &.winners {
+    padding-right: 14rem;
+    padding-left: 14rem;
+  }
   @include desktop {
     &.promo,
     &.bingo {

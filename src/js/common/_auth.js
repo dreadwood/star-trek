@@ -13,6 +13,7 @@
     getUserUrl: 'https://xcomfeed.com/fonbet/fasw2025/get-user-info',
     sendAmbasodorUrl: 'https://xcomfeed.com/fonbet/fasw2025/update',
     getGameDataUrl: 'https://xcomfeed.com/fonbet/fasw2025/get-games',
+    getPredictionUrl: 'https://xcomfeed.com/fonbet/fasw2025/check-forecast',
 
     async init() {
       this.regModal = document.querySelector('.js-modal-reg')
@@ -28,7 +29,8 @@
 
         this._closeReg()
         await this._udpateUserInfo(pin)
-        await window.jsScore.updateScorePage(pin)
+        await window.jsPrediction.updatePredictions()
+        // await window.jsScore.updateScorePage(pin)
       })
 
       document.addEventListener('userInfoUpdated', async (evt) => {
@@ -37,14 +39,16 @@
 
           this._closeReg()
           await this._udpateUserInfo(pin)
-          await window.jsScore.updateScorePage(pin)
+          await window.jsPrediction.updatePredictions()
+          // await window.jsScore.updateScorePage(pin)
         }
       })
 
       const pin = window.userInfo.getClientID()
       if (pin) {
         await this._udpateUserInfo(pin)
-        await window.jsScore.updateScorePage(pin)
+        await window.jsPrediction.updatePredictions()
+        // await window.jsScore.updateScorePage(pin)
       }
     },
 
@@ -232,6 +236,10 @@
       window.jsPage.renderGameCard(gameData)
     },
 
+    // async updatePrediction() {
+    //   getPredictionData
+    // },
+
     async _regUser(pin) {
       try {
         const req = { pin }
@@ -319,6 +327,36 @@
         }
 
         return res.data
+      } catch (err) {
+        console.error(err)
+        return false
+      }
+    },
+
+    async getPredictionData() {
+      const pin = window.userInfo.getClientID()
+      if (!pin) {
+        console.error('Не получилось получить прогнозы')
+        return
+      }
+
+      try {
+        const req = {
+          pin,
+          forecast: [1, 2, 3, 4, 5]
+        }
+        const res = await window.jsUtils.sendData(
+          this.getPredictionUrl,
+          'POST',
+          req
+        )
+
+        if (res.error) {
+          console.error(res)
+          return false
+        }
+
+        return res.result
       } catch (err) {
         console.error(err)
         return false
