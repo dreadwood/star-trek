@@ -5,6 +5,8 @@ mixin m-video({ isShow, className })
     .m-video(class=className)
       .m-video__close.js-modal-video-close
         +btn-close({ className: "white js-video-close" })
+      .m-video__loader
+        .loader
       iframe.m-video__container(
         class="js-vote-iframe"
         src=""

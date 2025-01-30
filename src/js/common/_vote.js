@@ -4,7 +4,9 @@
 ;(() => {
   window.jsVote = {
     keyLocal: 'GS_VOTE_KEY',
-    iframeParams: '?width=100%25&amp;height=100%25&amp;lang=ru',
+    // iframeParams: '?width=100%25&amp;height=100%25&amp;lang=ru',
+    iframeParams:
+      '?sr=165&type_id=24&width=100%25&height=100%25&lang=ru&autoplay=1',
     // not-started
     // started - лендинг с голосованием
     // completed - финальное голосование
@@ -44,7 +46,13 @@
 
       // eslint-disable-next-line no-undef
       IMask(this.fieldPhone, {
-        mask: '+7 000 000-00-00'
+        mask: '+{7} 000 000-00-00'
+      })
+
+      this.fieldPhone.addEventListener('input', (evt) => {
+        if (evt.target.value.length < 2) {
+          evt.target.value = '+7'
+        }
       })
 
       startBtn.addEventListener('click', () => this.startBtnClickHandler())
@@ -91,7 +99,9 @@
       const playersData = await this.fetchGetPlayers()
       if (!playersData) return
 
-      this.playersData = playersData.players
+      this.playersData = playersData.players.sort(
+        (a, b) => b.vote_percent - a.vote_percent
+      )
       this.status = playersData.status
 
       if (this.status === 'completed') {
@@ -123,7 +133,7 @@
           (it) =>
             `<article class="v-players__card swiper-slide" data-id="${it.id}">
   <div class="v-players__preview">
-    <img src="./img/vote/preview.jpg" width="260" height="160" alt="">
+    <img src="${it.rank}" width="260" height="160" alt="">
     <button class="v-players__play" data-src="${it.video_url}">
       <div class="v-players__play-icon">
         <svg width="13" height="16">
@@ -175,7 +185,6 @@
 
     renderWinner() {
       const html = this.playersData
-        .sort((a, b) => b.vote_percent - a.vote_percent)
         .slice(0, 1)
         .map(
           (it) =>
@@ -241,7 +250,9 @@
       const playersData = await this.fetchGetPlayers()
       if (playersData) {
         this.renderWinner()
-        this.playersData = playersData.players
+        this.playersData = playersData.players.sort(
+          (a, b) => b.vote_percent - a.vote_percent
+        )
       }
     },
 

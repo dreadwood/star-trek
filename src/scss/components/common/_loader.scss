@@ -1,0 +1,33 @@
+.loader {
+  width: 15rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  animation: l5 1s infinite linear alternate;
+}
+
+@keyframes l5 {
+  0% {
+    background: $color-white;
+    box-shadow:
+      20rem 0 $color-white,
+      -20rem 0 transparentize($color-white, 0.85);
+  }
+  33% {
+    background: transparentize($color-white, 0.85);
+    box-shadow:
+      20rem 0 $color-white,
+      -20rem 0 transparentize($color-white, 0.85);
+  }
+  66% {
+    background: transparentize($color-white, 0.85);
+    box-shadow:
+      20rem 0 transparentize($color-white, 0.85),
+      -20rem 0 $color-white;
+  }
+  100% {
+    background: $color-white;
+    box-shadow:
+      20rem 0 transparentize($color-white, 0.85),
+      -20rem 0 $color-white;
+  }
+}
