@@ -1,0 +1,35 @@
+.m-video {
+  position: relative;
+  width: 100%;
+  height: 480rem;
+  max-width: 340rem;
+  aspect-ratio: 16 / 9;
+  margin: auto;
+  @include desktop {
+    height: 480rem;
+    max-width: 640rem;
+  }
+}
+.m-video__close {
+  position: absolute;
+  bottom: 100%;
+  left: 100%;
+  z-index: 2;
+  width: 30rem;
+  height: 30rem;
+  background-color: transparentize($color-black, 0.5);
+  border-radius: 50%;
+  transform: translate(-100%, -4rem);
+  @include desktop {
+    width: 40rem;
+    height: 40rem;
+    transform: translate(0, 0);
+  }
+}
+.m-video__container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: $color-black;
+  border-radius: 14rem;
+}

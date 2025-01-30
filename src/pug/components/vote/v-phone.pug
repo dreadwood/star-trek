@@ -1,0 +1,52 @@
+include /components/form/f-checkbox
+
+mixin v-phone-form({ className, id, isHidden })
+  .v-phone(class=className id=id hidden=isHidden)
+    .v-phone__backside
+      .v-phone__mountains
+        img(class="mobile" src="./img/bullet/bg-snow-mobile.png" width="343" height="433" alt="")
+        img(class="desktop" src="./img/bullet/bg-snow.png" width="1360" height="262" alt="")
+    .v-phone__content
+      h2.v-phone__title Отличный выбор! Твой голос учтен
+      p.v-phone__subtitle Пожалуйста, оставь свой номер телефона&nbsp;&mdash; мы&nbsp;свяжемся с&nbsp;тобой, если ты&nbsp;выиграешь брендированный мерч от&nbsp;FONBET
+      form.v-phone__form.js-vote-form
+        .v-phone__field
+          input.f-phone(
+            class="js-vote-form-phone"
+            type="tel"
+            name="phone"
+            required
+            placeholder="Телефон"
+          )
+        .v-phone__checkbox
+          +f-checkbox({
+            text: "Я ознакомлен и согласен с полными правилами акции",
+            isRequired: true,
+            id: "vote_agree",
+            name: "agree"
+          })
+        .v-phone__controls
+          +btn-default({ text: "Сохранить", type: "submit", className: "vote" })
+          +btn-default({
+            text: "Пропустить",
+            className: "vote white js-vote-phone-skip"
+          })
+
+mixin v-phone-success({ className, id, isHidden })
+  .v-phone(class=className id=id hidden=isHidden)
+    .v-phone__backside
+      .v-phone__mountains
+        img(class="mobile" src="./img/bullet/bg-snow-mobile.png" width="343" height="433" alt="")
+        img(class="desktop" src="./img/bullet/bg-snow.png" width="1360" height="262" alt="")
+    .v-phone__content-success
+      .v-phone__close
+        +btn-close({ className: "js-vote-success-skip" })
+      h2.v-phone__title-big Розыгрыш доступен только клиентам FONBET
+      p.v-phone__subtitle Фрибет до 15 000 ₽. без депозита для новых клиентов.
+      .v-phone__controls
+        a.btn-default.vote(href=betLink) Сделать ставку
+        +btn-default({
+          text: "Регистрация",
+          className: "vote white js-modal-reg-show"
+        })
+

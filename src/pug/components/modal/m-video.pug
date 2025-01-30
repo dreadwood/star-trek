@@ -1,0 +1,14 @@
+include /components/button/btn-close
+
+mixin m-video({ isShow, className })
+  .overlay.js-modal-video(class=isShow && "show" class=className)
+    .m-video(class=className)
+      .m-video__close.js-modal-video-close
+        +btn-close({ className: "white js-video-close" })
+      iframe.m-video__container(
+        class="js-vote-iframe"
+        src=""
+        frameborder="0"
+        allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;"
+        allowfullscreen
+      )

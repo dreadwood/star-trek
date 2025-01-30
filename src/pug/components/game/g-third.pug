@@ -192,7 +192,7 @@ mixin g-third-pause({ isHidden, isShow, className })
             | #[span.js-game-third-level-score 0] звезд
         .g-msg__btn
           +btn-default({ text: "Следующий уровень", className: "msg js-game-third-next" })
-          +btn-default({ text: "На главную", className: "msg white js-game-third-close" })
+          +btn-default({ text: "На главную", className: "msg white2 js-game-third-close" })
 
 mixin g-third-end({ isShow, className, isHidden })
   .g-msg.third(class=isShow && "show" class=className,  hidden=isHidden)

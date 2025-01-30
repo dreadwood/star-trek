@@ -1,0 +1,8 @@
+mixin btn-play({ src, className })
+  button.btn-play(
+    data-src=src
+    type="button"
+    class=className
+  )
+    +svg({ name: "play", w: 13, h: 16 })
+    span Смотреть видео

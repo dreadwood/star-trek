@@ -1,0 +1,16 @@
+mixin v-promo({ className, id, isHidden })
+  .v-promo(class=className id=id hidden=isHidden)
+    .v-promo__backside
+      .v-promo__mountains
+        img(class="mobile" src="./img/bullet/bg-snow-mobile.png" width="343" height="433" alt="")
+        img(class="desktop" src="./img/bullet/bg-snow.png" width="1360" height="262" alt="")
+      img.v-promo__field(src="./img/bullet/bullet-field.png" width="520" height="458" alt="")
+    .v-promo__content
+      h2.v-promo__title Голосование за&nbsp;самый эффектный буллит
+      p.v-promo__text Получи шанс выиграть брендированный мерч от&nbsp;FONBET
+      .v-promo__bottom
+        .v-promo__date(class="js-vote-state-close")
+          +svg({ name: "lock", w: 10, h: 13 })
+          span Откроется 8 февраля
+        .v-promo__btn(class="js-vote-state-open" hidden)
+          +btn-default({ text: "Проголосовать", className: "js-vote-btn-start" })

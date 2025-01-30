@@ -1,0 +1,43 @@
+include /components/button/btn-arrow
+include /components/button/btn-default
+
+mixin v-players-card({ order })
+  article.v-players__card.swiper-slide(class="")
+    .v-players__preview
+      img(src="./img/vote/preview.jpg" width="260" height="160" alt="")
+      button.v-players__play(data-src="")
+        .v-players__play-icon
+          +svg({ name: "play", w: 13, h: 16 })
+    .v-players__person
+      .v-players__photo
+        img(src="https://www.khl.ru/images/players/16006.jpg" width="260" height="160" alt="")
+      div
+        .v-players__spec Фамилия Имя игрока #{order}
+        .v-players__name Дивизион Чернышева
+
+mixin v-players({ className, id, isHidden })
+  .v-players(class=className id=id hidden=isHidden)
+    .v-players__backside
+      .v-players__mountains
+        img(class="mobile" src="./img/bullet/bg-snow-mobile.png" width="343" height="433" alt="")
+        img(class="desktop" src="./img/bullet/bg-snow.png" width="1360" height="262" alt="")
+    .v-players__content
+      h2.v-players__title Какой буллит был самым эффектным, по&nbsp;твоему мнению?
+      p.v-players__text Выбрать можно только один вариант
+      .v-players__slider.swiper.js-slider-players
+        .v-players__wrp.swiper-wrapper.js-vote-players
+          //- +v-players-card({ order: 1 })
+          //- +v-players-card({ order: 2 })
+          //- +v-players-card({ order: 3 })
+          //- +v-players-card({ order: 4 })
+          //- +v-players-card({ order: 5 })
+          //- +v-players-card({ order: 6 })
+          //- +v-players-card({ order: 7 })
+        .v-players__nav
+          +btn-arrow({
+            isPrev: true,
+            className: "vote js-slider-players-prev"
+          })
+          +btn-arrow({ className: "vote js-slider-players-next" })
+        .v-players__btn
+          +btn-default({ text: "Выбрать", className: "js-vote-btn-select" })

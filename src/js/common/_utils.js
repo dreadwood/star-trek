@@ -48,6 +48,31 @@
     },
 
     /**
+     * wrapper for fetch
+     * @param {string} url
+     * @param {string} method
+     * @param {FormData} formData
+     * @returns
+     */
+    async sendDataForm(url, formData, method = 'POST') {
+      const urlParams = new URLSearchParams(formData)
+
+      const options = {
+        method,
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: urlParams.toString()
+      }
+
+      try {
+        const res = await fetch(url, options)
+        return await res.json()
+      } catch (err) {
+        console.error('Request error:', err)
+        throw err
+      }
+    },
+
+    /**
      * Example: 'балл', 'балла', 'баллов'
      * @param {number} number
      * @param {string} one

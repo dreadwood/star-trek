@@ -1,0 +1,22 @@
+include /components/button/btn-play
+
+mixin v-result-person({})
+  .v-promo__person
+    .v-promo__person-top
+      .v-promo__photo
+        img(src="https://www.khl.ru/images/players/16006.jpg" width="260" height="160" alt="")
+      div Фамилия Имя игрока
+      .v-promo__percent 42%
+    +btn-play({ src: "" })
+
+mixin v-result({ className, id, isHidden })
+  .v-promo.result(class=className id=id hidden=isHidden)
+    .v-promo__backside
+      .v-promo__mountains
+        img(class="mobile" src="./img/bullet/bg-snow-mobile.png" width="343" height="433" alt="")
+        img(class="desktop" src="./img/bullet/bg-snow.png" width="1360" height="262" alt="")
+      img.v-promo__field(src="./img/bullet/bullet-field.png" width="520" height="458" alt="")
+    .v-promo__content
+      h2.v-promo__title Победитель конкурса &laquo;Самый эффектный буллит&raquo;
+      .v-promo__winner.js-vote-winner-wrp
+        +v-result-person({})

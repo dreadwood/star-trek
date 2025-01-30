@@ -1,0 +1,14 @@
+include /components/vote/v-promo
+include /components/vote/v-players
+include /components/vote/v-phone
+include /components/vote/v-table
+include /components/vote/v-result
+
+mixin b-vote({ className, id })
+  .b-vote.js-vote-section
+    +v-promo({ isHidden: false, className: "js-vote-screen-promo" })
+    +v-players({ isHidden: true, className: "js-vote-screen-players" })
+    +v-phone-form({ isHidden: true, className: "js-vote-screen-phone" })
+    +v-phone-success({ isHidden: true, className: "js-vote-screen-success" })
+    +v-table({ isHidden: true, className: "js-vote-screen-table" })
+    +v-result({ isHidden: true, className: "js-vote-screen-result" })

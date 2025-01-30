@@ -28,16 +28,6 @@
     min-width: 134rem;
     padding: 11rem;
   }
-  &.white {
-    min-width: none;
-    color: $color-carmine-red-2;
-    background-color: $color-white;
-    border-color: $color-carmine-red-2;
-    &:hover,
-    &:focus-visible {
-      background-color: $color-gray-925;
-    }
-  }
   &.hero {
     min-width: none;
     color: $color-blue-degrees;
@@ -92,6 +82,32 @@
   &.winners {
     padding-right: 14rem;
     padding-left: 14rem;
+  }
+  &.vote {
+    min-width: 118rem;
+    padding-right: 14rem;
+    padding-left: 14rem;
+  }
+  &.white {
+    color: $color-black;
+    background-color: $color-white;
+    &[disabled] {
+      color: transparentize($color-black, 0.5);
+    }
+    &:not([disabled]):hover,
+    &:not([disabled]):focus-visible {
+      background-color: $color-gray-925;
+    }
+  }
+  &.white2 {
+    min-width: none;
+    color: $color-carmine-red-2;
+    background-color: $color-white;
+    border-color: $color-carmine-red-2;
+    &:hover,
+    &:focus-visible {
+      background-color: $color-gray-925;
+    }
   }
   @include desktop {
     &.promo,

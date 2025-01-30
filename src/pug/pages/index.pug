@@ -8,7 +8,6 @@ include /components/block/b-ambassadors
 include /components/block/b-promo
 include /components/block/b-week-star
 include /components/block/b-predictions
-include /components/block/b-bullet
 include /components/block/b-bingo
 include /components/block/b-test
 include /components/block/b-footer
@@ -33,6 +32,7 @@ include /components/modal/m-soon
 include /components/modal/m-rules
 include /components/modal/m-score
 include /components/modal/m-close
+include /components/modal/m-video
 
 
 block data
@@ -54,7 +54,7 @@ block content
   +b-promo({})
   //- +b-week-star({ id: sectionData.about.id })
   +b-predictions({ id: sectionData.predictions.id })
-  +b-bullet({})
+  //- +b-bullet({})
   +b-bingo({})
   //- +b-test({ isHidden: true })
   +b-footer({ link: logoLink })
@@ -84,3 +84,4 @@ block modal
   +m-score({ isShow: false })
   +m-rules({ isShow: false })
   +m-close({ isShow: false })
+  +m-video({ isShow: false })

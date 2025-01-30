@@ -1,0 +1,37 @@
+.f-checkbox {
+  width: max-content;
+  input:checked + label {
+    .checkbox-off {
+      display: none;
+    }
+    .checkbox-on {
+      display: block;
+    }
+  }
+  label {
+    @include transition(color);
+    display: flex;
+    align-items: center;
+    gap: 10rem;
+    font-family: $font-default;
+    font-size: 12rem;
+    line-height: 1.1;
+    font-weight: 400;
+    text-align: left;
+    color: $color-gray-537;
+    cursor: pointer;
+    user-select: none;
+    svg {
+      flex-shrink: 0;
+      width: 14rem;
+      height: 14rem;
+    }
+    .checkbox-on {
+      display: none;
+    }
+    &:hover,
+    &:focus-visible {
+      color: $color-black;
+    }
+  }
+}

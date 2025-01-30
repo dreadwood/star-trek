@@ -1,0 +1,6 @@
+.b-vote {
+  padding: 30rem 0;
+  @include desktop {
+    padding: 50rem 0;
+  }
+}

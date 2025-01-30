@@ -28,4 +28,12 @@
       background-color: $color-blue-degrees;
     }
   }
+  &.vote {
+    color: $color-black;
+    &:not([disabled]):hover,
+    &:not([disabled]):focus-visible {
+      color: $color-white;
+      background-color: $color-gray-400;
+    }
+  }
 }

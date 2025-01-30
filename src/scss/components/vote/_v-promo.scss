@@ -1,35 +1,46 @@
-.b-bullet {
-  padding: 30rem $padding 10rem $padding;
+.v-promo {
+  position: relative;
+  height: auto;
+  // height: 812rem;
+  height: 680rem;
   font-family: $font-default;
   font-size: 24rem;
   line-height: 1.1;
   font-weight: 500;
-  color: $color-white;
-  background-color: $color-white;
-  @include desktop {
-    padding: 50rem $padding-desktop;
-    font-size: 32rem;
-  }
-}
-.b-bullet__card {
-  position: relative;
-  height: auto;
-  height: 812rem;
+  text-align: left;
+  color: $color-black;
   background-color: $color-gray-961;
   border-radius: 14rem;
+  &.result {
+    .v-promo__mountains {
+      bottom: -280rem;
+    }
+    .v-promo__field {
+      bottom: 40rem;
+    }
+  }
   @include desktop {
     height: 540rem;
+    font-size: 32rem;
+    &.result {
+      .v-promo__mountains {
+        bottom: -10rem;
+      }
+      .v-promo__field {
+        bottom: 0;
+      }
+    }
   }
 }
-.b-bullet__card-backside {
+.v-promo__backside {
   position: absolute;
   inset: 0;
   overflow: hidden;
   border-radius: 14rem;
 }
-.b-bullet__mountains {
+.v-promo__mountains {
   position: absolute;
-  bottom: 0;
+  bottom: -240rem;
   left: 0;
   width: 100%;
   height: 433rem;
@@ -43,6 +54,7 @@
     display: none;
   }
   @include desktop {
+    bottom: -10rem;
     height: 262rem;
     .mobile {
       display: none;
@@ -52,12 +64,13 @@
     }
   }
 }
-.b-bullet__field {
+.v-promo__field {
   position: absolute;
-  right: -30rem;
-  bottom: 51rem;
-  width: 381rem;
-  height: 336rem;
+  right: -20rem;
+  bottom: 110rem;
+  width: 300rem;
+  // height: 336rem;
+  height: auto;
   @include desktop {
     position: absolute;
     right: -30rem;
@@ -72,7 +85,7 @@
     }
   }
 }
-.b-bullet__content {
+.v-promo__content {
   position: relative;
   height: 100%;
   padding: 20rem;
@@ -82,7 +95,7 @@
     padding: 40rem;
   }
 }
-.b-bullet__title {
+.v-promo__title {
   margin: 0;
   font-size: 32rem;
   line-height: 1.1;
@@ -96,7 +109,7 @@
     line-height: 1;
   }
 }
-.b-bullet__text {
+.v-promo__text {
   margin-top: 20rem;
   margin-bottom: 0;
   font-size: 16rem;
@@ -108,18 +121,18 @@
     max-width: 300rem;
   }
 }
-.b-bullet__bottom {
+.v-promo__bottom {
   display: flex;
   flex-direction: column;
   flex-direction: row;
   align-items: center;
   gap: 20rem;
-  margin-top: 40rem;
+  margin-top: 20rem;
   @include desktop {
     margin-top: auto;
   }
 }
-.b-bullet__data {
+.v-promo__date {
   display: flex;
   align-items: center;
   gap: 6rem;
@@ -134,5 +147,55 @@
     width: 10rem;
     height: 13rem;
     fill: currentcolor;
+  }
+}
+.v-promo__winner {
+  margin-top: 20rem;
+}
+.v-promo__person {
+  width: max-content;
+  max-width: 100%;
+  padding: 20rem;
+  overflow: hidden;
+  font-family: $font-default;
+  font-size: 16rem;
+  line-height: 1.3;
+  font-weight: 500;
+  text-align: left;
+  letter-spacing: -0.02em;
+  background-color: $color-white;
+  border-radius: 10rem;
+  @include desktop {
+    font-size: 24rem;
+    line-height: 1.2;
+  }
+}
+.v-promo__person-top {
+  display: flex;
+  align-items: center;
+  gap: 15rem;
+  margin-bottom: 10rem;
+}
+.v-promo__photo {
+  flex-shrink: 0;
+  justify-content: space-between;
+  width: 40rem;
+  height: 40rem;
+  overflow: hidden;
+  border-radius: 10rem;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+.v-promo__percent {
+  flex-shrink: 0;
+  text-align: right;
+  white-space: nowrap;
+  @include desktop {
+    font-size: 20rem;
+    line-height: 1.2;
+    font-weight: 400;
   }
 }

@@ -31,6 +31,7 @@
         await this._udpateUserInfo(pin)
         await window.jsPrediction.updatePredictions()
         await window.jsBingo.updateBingo()
+        window.jsVote.showTableAfterAuth()
         // await window.jsScore.updateScorePage(pin)
       })
 
@@ -42,6 +43,7 @@
           await this._udpateUserInfo(pin)
           await window.jsPrediction.updatePredictions()
           await window.jsBingo.updateBingo()
+          window.jsVote.showTableAfterAuth()
           // await window.jsScore.updateScorePage(pin)
         }
       })

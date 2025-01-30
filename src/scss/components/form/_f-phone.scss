@@ -1,0 +1,23 @@
+.f-phone {
+  @include transition(border);
+  display: block;
+  width: 100%;
+  padding: 18rem 25rem;
+  font-family: $font-default;
+  font-size: 16rem;
+  line-height: 18rem;
+  font-weight: 500;
+  color: $color-black;
+  background-color: transparent;
+  border: 1rem solid $color-gray-770;
+  border-radius: 6rem;
+  outline: none;
+  appearance: none;
+  &:not([disabled]):hover,
+  &:not([disabled]):focus {
+    border-color: $color-gray-537;
+  }
+  &::placeholder {
+    color: $color-gray-537;
+  }
+}

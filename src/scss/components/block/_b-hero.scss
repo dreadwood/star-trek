@@ -21,8 +21,11 @@
   position: absolute;
   top: 180rem;
   left: 29rem;
+  display: none;
   width: 344rem;
   height: 356rem;
+  user-select: none;
+  pointer-events: none;
   img {
     width: 100%;
     height: 100%;

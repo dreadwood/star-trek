@@ -1,0 +1,137 @@
+.v-phone {
+  position: relative;
+  height: 680rem;
+  overflow: hidden;
+  font-family: $font-default;
+  font-size: 16rem;
+  line-height: 1.2;
+  font-weight: 500;
+  text-align: left;
+  color: $color-gray-400;
+  background-color: $color-gray-961;
+  border-radius: 14rem;
+  @include desktop {
+    height: 540rem;
+  }
+}
+.v-phone__backside {
+  position: absolute;
+  inset: 0;
+}
+.v-phone__mountains {
+  position: absolute;
+  bottom: -220rem;
+  left: 0;
+  width: 100%;
+  height: 433rem;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center bottom;
+  }
+  .desktop {
+    display: none;
+  }
+  @include desktop {
+    bottom: -110rem;
+    height: 262rem;
+    .mobile {
+      display: none;
+    }
+    .desktop {
+      display: block;
+    }
+  }
+}
+.v-phone__content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 40rem 16rem;
+  @include desktop {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 437rem;
+    padding-left: 437rem;
+  }
+}
+.v-phone__content-success {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 40rem 16rem;
+  @include desktop {
+    padding-right: 420rem;
+    padding-left: 420rem;
+  }
+}
+.v-phone__close {
+  position: absolute;
+  top: 16rem;
+  right: 16rem;
+  width: max-content;
+  @include desktop {
+    top: 10rem;
+    right: 10rem;
+  }
+}
+.v-phone__title {
+  margin: 0;
+  padding: 0 40rem;
+  font-family: inherit;
+  font-size: 22rem;
+  line-height: 1.1;
+  font-weight: 500;
+  text-align: center;
+  color: $color-black;
+  @include desktop {
+    padding: 0;
+    font-size: 28rem;
+  }
+}
+.v-phone__title-big {
+  margin: 0;
+  padding: 0 40rem;
+  font-family: inherit;
+  font-size: 22rem;
+  line-height: 1.1;
+  font-weight: 500;
+  text-align: center;
+  color: $color-black;
+  @include desktop {
+    padding: 0;
+    font-size: 32rem;
+  }
+}
+.v-phone__subtitle {
+  width: 100%;
+  max-width: 300rem;
+  margin: 20rem auto 0 auto;
+  padding: 0 22rem;
+  text-align: center;
+  letter-spacing: -0.02em;
+  @include desktop {
+    max-width: 400rem;
+    margin-top: 16rem;
+    padding: 0;
+  }
+}
+.v-phone__form {
+  margin-top: 20rem;
+}
+.v-phone__checkbox {
+  width: max-content;
+  margin: 20rem auto 0 auto;
+}
+.v-phone__controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6rem;
+  margin-top: 20rem;
+}

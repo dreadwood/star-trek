@@ -1,2 +1,6 @@
-mixin btn-default({ text, isDisabled, className })
-  button.btn-default(class=className disabled=isDisabled)=text
+mixin btn-default({ text, type, isDisabled, className })
+  button.btn-default(
+    class=className
+    type=(type || "button")
+    disabled=isDisabled
+  )=text

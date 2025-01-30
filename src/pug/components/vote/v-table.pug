@@ -1,0 +1,29 @@
+mixin v-table-player({})
+  .v-table__player
+    .v-table__photo
+      img(src="https://www.khl.ru/images/players/16006.jpg" width="60" height="60" alt="")
+    .v-table__info
+      .v-table__name Фамилия Имя игрока
+      .v-table__subname Дивизион Чернышева
+    .v-table__play
+      +btn-play({ src: "" })
+    .v-table__progress(style="--percent-value: 50%;")
+    .v-table__percent 50 %
+
+mixin v-table({ className, id, isHidden })
+  .v-table(class=className id=id hidden=isHidden)
+    .v-table__backside
+    .v-table__content
+      h2.v-table__title Голосование за самый эффектный буллит
+      p.v-table__subtitle Распределение голосов показано ниже. Отображение в&nbsp;режиме реального времени
+      .v-table__list
+        .v-table__list-wrp.js-vote-table
+          +v-table-player({})
+          +v-table-player({})
+          +v-table-player({})
+          +v-table-player({})
+          +v-table-player({})
+          +v-table-player({})
+          +v-table-player({})
+          +v-table-player({})
+          +v-table-player({})
