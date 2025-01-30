@@ -102,12 +102,15 @@
   width: 270rem;
   padding: 0 5rem;
   opacity: 0.6;
-  pointer-events: none;
+  .v-players__play {
+    pointer-events: none;
+  }
   &.actv {
     opacity: 1;
-    pointer-events: auto;
+    .v-players__play {
+      pointer-events: auto;
+    }
   }
-  // margin-right: 10rem;
 }
 .v-players__preview {
   position: relative;

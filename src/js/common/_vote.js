@@ -4,12 +4,14 @@
 ;(() => {
   window.jsVote = {
     keyLocal: 'GS_VOTE_KEY',
+    iframeParams: '?width=100%25&amp;height=100%25&amp;lang=ru',
     // not-started
     // started - лендинг с голосованием
     // completed - финальное голосование
 
     getPlayersUrl: 'https://xcomfeed.com/fonbet/vote/get',
     sendPhoneUrl: 'https://xcomfeed.com/fonbet/vote/set-phone',
+    sendVoteUrl: 'https://xcomfeed.com/fonbet/vote/vote',
 
     status: null,
 
@@ -40,8 +42,6 @@
       this.table = document.querySelector('.js-vote-table')
       this.winnerWrp = document.querySelector('.js-vote-winner-wrp')
 
-      this.playersData = await this.fetchGetPlayers()
-
       // eslint-disable-next-line no-undef
       IMask(this.fieldPhone, {
         mask: '+7 000 000-00-00'
@@ -49,31 +49,28 @@
 
       startBtn.addEventListener('click', () => this.startBtnClickHandler())
       selectBtn.addEventListener('click', () => this.selectBtnClickHandler())
-      this.players.addEventListener('click', (evt) =>
-        this.playersClickHandler(evt)
-      )
       this.form.addEventListener('submit', (evt) => this.formSubmitHandler(evt))
-
       dialogCloseBtn.forEach((it) =>
         it.addEventListener('click', () => this.closeDialogl())
       )
-
       this.dialog.addEventListener('click', (evt) => {
         if (evt.target !== this.dialog) return
         this.closeDialog()
       })
-
       phoneSkipBtn.addEventListener('click', () =>
         this.phoneSkipBtnClickHandler()
       )
       successSkipBtn.addEventListener('click', () =>
         this.successSkipBtnClickHandler()
       )
-
-      this.table.addEventListener('click', (evt) => this.tableClickHandler(evt))
-
+      this.players.addEventListener('click', (evt) =>
+        this.elHasVideoBtnClickHandler(evt)
+      )
+      this.table.addEventListener('click', (evt) =>
+        this.elHasVideoBtnClickHandler(evt)
+      )
       this.winnerWrp.addEventListener('click', (evt) =>
-        this.winnerWrpClickHandler(evt)
+        this.elHasVideoBtnClickHandler(evt)
       )
 
       await this.update()
@@ -82,8 +79,14 @@
     async update() {
       const stateClose = document.querySelector('.js-vote-state-close')
       const stateOpen = document.querySelector('.js-vote-state-open')
+      const regBtn = document.querySelector('.js-vote-phone-reg')
 
       const isVote = localStorage.getItem(this.keyLocal)
+
+      const pin = window.userInfo.getClientID()
+      if (pin) {
+        window.jsUtils.hideEl(regBtn)
+      }
 
       const playersData = await this.fetchGetPlayers()
       if (!playersData) return
@@ -172,6 +175,7 @@
 
     renderWinner() {
       const html = this.playersData
+        .sort((a, b) => b.vote_percent - a.vote_percent)
         .slice(0, 1)
         .map(
           (it) =>
@@ -223,17 +227,22 @@
       window.jsUtils.showEl(this.playersScreen)
     },
 
-    selectBtnClickHandler() {
+    async selectBtnClickHandler() {
+      const req = { player_id: +this.playerId }
+
+      const result = await this.fetchSendVoteUrl(req)
+      if (!result) return
+
+      localStorage.setItem(this.keyLocal, '1')
+
       window.jsUtils.hideEl(this.playersScreen)
       window.jsUtils.showEl(this.phoneScreen)
-    },
 
-    playersClickHandler(evt) {
-      const el = evt.target.closest('button')
-      if (!el) return
-
-      this.iframe.src = el.dataset.src
-      this.openDialog()
+      const playersData = await this.fetchGetPlayers()
+      if (playersData) {
+        this.renderWinner()
+        this.playersData = playersData.players
+      }
     },
 
     async formSubmitHandler(evt) {
@@ -248,8 +257,6 @@
 
       const result = await this.fetchSendPhoneUrl(req)
       if (!result) return
-
-      localStorage.setItem(this.keyLocal, '1')
 
       window.jsUtils.hideEl(this.phoneScreen)
       window.jsUtils.showEl(this.successScreen)
@@ -266,19 +273,11 @@
       window.jsUtils.showEl(this.tableScreen)
     },
 
-    tableClickHandler(evt) {
+    elHasVideoBtnClickHandler(evt) {
       const el = evt.target.closest('button')
       if (!el) return
 
-      this.iframe.src = el.dataset.src
-      this.openDialog()
-    },
-
-    winnerWrpClickHandler(evt) {
-      const el = evt.target.closest('button')
-      if (!el) return
-
-      this.iframe.src = el.dataset.src
+      this.iframe.src = el.dataset.src + this.iframeParams
       this.openDialog()
     },
 
@@ -328,6 +327,22 @@
           'POST',
           req
         )
+
+        if (res.error) {
+          console.error(res)
+          return false
+        }
+
+        return res.success
+      } catch (err) {
+        console.error(err)
+        return false
+      }
+    },
+
+    async fetchSendVoteUrl(req) {
+      try {
+        const res = await window.jsUtils.sendData(this.sendVoteUrl, 'POST', req)
 
         if (res.error) {
           console.error(res)
