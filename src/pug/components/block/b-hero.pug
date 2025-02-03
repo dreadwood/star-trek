@@ -1,18 +1,18 @@
 include /components/block/b-header
-include /components/block/b-vote
+//- include /components/block/b-vote
 include /components/button/btn-default
 
 mixin b-hero({ isHeaderShow, link, className, id })
   include /data/section-data
   section.b-hero(class=className id=id)
     +b-header({ isShow: isHeaderShow, link: link })
-    +b-vote({})
+    //- +b-vote({})
     .b-hero__star
       img(class="mobile" src="./img/hero/stars.svg" width="344" height="356" alt="")
       img(class="desktop" src="./img/hero/stars-desktop.svg" width="1354" height="407" alt="")
     .b-hero__circle
     .b-hero__title
-      h1.visually-hidden Звездный путь
+      h1.visually-hidden ФОНБЕТ Неделя звезд КХЛ 2025
       .b-hero__skates
         img(src="./img/hero/hero-skates.svg" width="76" height="77" alt="")
       .b-hero__puck

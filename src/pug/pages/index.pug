@@ -11,6 +11,7 @@ include /components/block/b-predictions
 include /components/block/b-bingo
 include /components/block/b-test
 include /components/block/b-footer
+include /components/block/b-vote-promo
 
 //- include /components/game/g-first
 //- include /components/game/g-second
@@ -36,7 +37,8 @@ include /components/modal/m-video
 
 
 block data
-  - title = "FONBET: Звездный путь"
+  - title = "Неделя звезд КХЛ 2025, матч всех звезд в Новосибирске"
+  - description = "Участвуй в акции Фонбет Неделя звезд КХЛ 2025! Сделай прогноз в приложении на матч всех звезд КХЛ в Новосибирске. Победителей ждут призы, а также возможность выиграть фрибет до 50 000 рублей!"
   - logoLink = "https://fon.bet/"
   - betLink = "https://fon.bet/sports/tournament/776"
 
@@ -54,7 +56,7 @@ block content
   +b-promo({})
   //- +b-week-star({ id: sectionData.about.id })
   +b-predictions({ id: sectionData.predictions.id })
-  //- +b-bullet({})
+  +b-vote-promo({})
   +b-bingo({})
   //- +b-test({ isHidden: true })
   +b-footer({ link: logoLink })

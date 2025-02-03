@@ -6,12 +6,13 @@ include /script/s-yametrika-noscript
 include /script/s-pin
 
 - let title = ""
+- let description = ""
 
 block data
 
 doctype html
 html(lang="ru")
-  +head({ title })
+  +head({ title, description })
   body
     +s-gtm-noscript({})
     +s-yametrika-noscript({})

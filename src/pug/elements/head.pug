@@ -3,7 +3,7 @@ include /script/s-gtm
 include /script/s-yametrika
 //- include /elements/open-graph
 
-mixin head({ title })
+mixin head({ title, description })
   head
     meta(charset="utf-8")
     meta(name="viewport" content="width=device-width, initial-scale=1")
@@ -12,12 +12,13 @@ mixin head({ title })
     title=title
 
     +favicon({})
-    //- +open-graph({})
-
     link(rel="stylesheet" href=`${baseUrl}/css/style.css?v=${searchId}`)
+    //- +open-graph({})
 
     +s-gtm({})
     +s-yametrika({})
+
+    meta(name="description" content=description)
 
     //- UTM
     script(src="https://origin.bk6bba-resources.com/webStaticRed/promo/lands/scripts/utm.js")

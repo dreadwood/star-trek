@@ -1,6 +1,13 @@
 .b-vote {
   padding: 30rem 0;
+  &.promo {
+    padding: 30rem 16rem;
+    background-color: $color-white;
+  }
   @include desktop {
     padding: 50rem 0;
+    &.promo {
+      padding: 50rem 36rem;
+    }
   }
 }
