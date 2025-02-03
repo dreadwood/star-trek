@@ -13,5 +13,5 @@
   // window.jsGame.init()
   window.jsPrediction.init()
   window.jsBingo.init()
-  window.jsVote.init()
+  // window.jsVote.init()
 })()
