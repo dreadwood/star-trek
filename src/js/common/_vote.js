@@ -4,9 +4,11 @@
 ;(() => {
   window.jsVote = {
     keyLocal: 'GS_VOTE_KEY',
+
     // iframeParams: '?width=100%25&amp;height=100%25&amp;lang=ru',
     iframeParams:
       '?sr=165&type_id=24&width=100%25&height=100%25&lang=ru&autoplay=1',
+
     // not-started
     // started - лендинг с голосованием
     // completed - финальное голосование
@@ -24,7 +26,7 @@
 
     async init() {
       const startBtn = document.querySelector('.js-vote-btn-start')
-      const selectBtn = document.querySelector('.js-vote-btn-select')
+      this.selectBtn = document.querySelector('.js-vote-btn-select')
 
       this.promoScreen = document.querySelector('.js-vote-screen-promo')
       this.playersScreen = document.querySelector('.js-vote-screen-players')
@@ -56,7 +58,9 @@
       })
 
       startBtn.addEventListener('click', () => this.startBtnClickHandler())
-      selectBtn.addEventListener('click', () => this.selectBtnClickHandler())
+      this.selectBtn.addEventListener('click', () =>
+        this.selectBtnClickHandler()
+      )
       this.form.addEventListener('submit', (evt) => this.formSubmitHandler(evt))
       dialogCloseBtn.forEach((it) =>
         it.addEventListener('click', () => this.closeDialogl())
@@ -72,7 +76,7 @@
         this.successSkipBtnClickHandler()
       )
       this.players.addEventListener('click', (evt) =>
-        this.elHasVideoBtnClickHandler(evt)
+        this.playersClickHandler(evt)
       )
       this.table.addEventListener('click', (evt) =>
         this.elHasVideoBtnClickHandler(evt)
@@ -119,41 +123,47 @@
       }
 
       if (this.status === 'started') {
-        this.renderSlider()
-        this.initSlider()
+        this.renderList()
         window.jsUtils.hideEl(stateClose)
         window.jsUtils.showEl(stateOpen)
         return
       }
     },
 
-    renderSlider() {
+    renderList() {
       const html = this.playersData
         .map(
           (it) =>
-            `<article class="v-players__card swiper-slide" data-id="${it.id}">
-  <div class="v-players__preview">
+            `<article class="c-vote" data-id=${it.id}>
+  <div class="c-vote__preview">
     <img src="${it.rank}" width="260" height="160" alt="">
-    <button class="v-players__play" data-src="${it.video_url}">
-      <div class="v-players__play-icon">
-        <svg width="13" height="16">
-          <use xlink:href="#play"></use>
-        </svg>
-      </div>
-    </button>
   </div>
-  <div class="v-players__person">
-    <div class="v-players__photo"><img src="${it.photo_url}" width="260" height="160" alt=""></div>
-    <div>
-      <div class="v-players__spec">${it.lastname} ${it.firstname}</div>
-      <div class="v-players__name">${it.teamname}</div>
+  <div class="c-vote__person">
+    <div class="c-vote__photo">
+      <img src="${it.photo_url}" width="260" height="160" alt="">
     </div>
+    <div class="c-vote__info">
+      <div class="c-vote__spec">${it.lastname} ${it.firstname}</div>
+      <div class="c-vote__name">${it.teamname}</div>
+    </div>
+  </div>
+  <button class="c-vote__btn-play js-vote-player-play" data-src=${it.video_url}>
+    <svg width="13" height="16">
+      <use xlink:href="#play"></use>
+    </svg>
+  </button>
+  <button class="c-vote__btn-select js-vote-player-select" data-id=${it.id}></button>
+  <div class="c-vote__icon-select">
+    <svg width="15" height="11">
+      <use xlink:href="#arrow-check-2"></use>
+    </svg>
   </div>
 </article>`
         )
         .join('')
 
       this.players.innerHTML = html
+      this.selectBtn.setAttribute('disabled', 'disabled')
     },
 
     renderTable() {
@@ -207,30 +217,6 @@
       this.winnerWrp.innerHTML = html
     },
 
-    initSlider() {
-      const parrent = this
-
-      // eslint-disable-next-line no-undef
-      const swiper = new Swiper(this.slider, {
-        slidesPerView: 'auto',
-        grabCursor: true,
-        centeredSlides: true,
-        slideActiveClass: 'actv',
-        loop: true,
-        navigation: {
-          prevEl: '.js-slider-players-prev',
-          nextEl: '.js-slider-players-next'
-        }
-      })
-      swiper.on('slideChange', function (instance) {
-        const activeSlide = instance.slides[instance.activeIndex]
-        parrent.playerId = activeSlide.dataset.id
-      })
-
-      swiper.slideTo(2)
-      window.addEventListener('resize', () => swiper.updateSize())
-    },
-
     startBtnClickHandler() {
       window.jsUtils.hideEl(this.promoScreen)
       window.jsUtils.showEl(this.playersScreen)
@@ -282,6 +268,29 @@
       this.renderTable()
       window.jsUtils.hideEl(this.successScreen)
       window.jsUtils.showEl(this.tableScreen)
+    },
+
+    playersClickHandler(evt) {
+      const el = evt.target.closest('button')
+      if (!el) return
+
+      if (el.dataset.src) {
+        this.iframe.src = el.dataset.src + this.iframeParams
+        this.openDialog()
+      }
+
+      if (el.dataset.id) {
+        this.players.querySelectorAll('article').forEach((it) => {
+          if (it.dataset.id === el.dataset.id) {
+            it.classList.add('actv')
+          } else {
+            it.classList.remove('actv')
+          }
+        })
+
+        this.playerId = el.dataset.id
+        this.selectBtn.removeAttribute('disabled')
+      }
     },
 
     elHasVideoBtnClickHandler(evt) {

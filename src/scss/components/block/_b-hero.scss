@@ -19,9 +19,9 @@
 }
 .b-hero__star {
   position: absolute;
-  top: 180rem;
+  // top: 180rem;
+  top: 180rem + 740rem;
   left: 29rem;
-  // display: none;
   width: 344rem;
   height: 356rem;
   user-select: none;
@@ -35,7 +35,7 @@
     display: none;
   }
   @include desktop {
-    top: 136rem;
+    top: 136rem + 640rem;
     left: 17rem;
     width: 1354rem;
     height: 407rem;

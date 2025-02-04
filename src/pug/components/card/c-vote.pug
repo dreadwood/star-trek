@@ -1,0 +1,15 @@
+mixin c-vote({ order, isActv, className, id })
+  article.c-vote(class=isActv && 'actv' class=className id=id data-id="")
+    .c-vote__preview
+      img(src="./img/vote/preview.jpg" width="260" height="160" alt="")
+    .c-vote__person
+      .c-vote__photo
+        img(src="https://www.khl.ru/images/players/16006.jpg" width="260" height="160" alt="")
+      .c-vote__info
+        .c-vote__spec Фамилия Имя игрока #{order}
+        .c-vote__name Дивизион Чернышева
+    button.c-vote__btn-play(class="js-vote-player-play" data-src="")
+      +svg({ name: "play", w: 13, h: 16 })
+    button.c-vote__btn-select(class="js-vote-player-select" data-id="")
+    .c-vote__icon-select
+      +svg({ name: "arrow-check-2", w: 15, h: 11 })
